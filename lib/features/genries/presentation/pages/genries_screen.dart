@@ -15,21 +15,37 @@ class GenriesScreen extends StatelessWidget {
             height: 50,
             child: Center(
               child: TextField(
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.all(10),
-                    hintText: "Search By Title",
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                  contentPadding: const EdgeInsets.all(10),
+                  hintText: "Search By Title",
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                  hintStyle: const TextStyle(color: Colors.white),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 0.6),
+                      borderRadius: BorderRadius.circular(10)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 0.6),
+                      borderRadius: BorderRadius.circular(10)),
+                  border: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.white, width: 0.6),
+                      borderRadius: BorderRadius.circular(10)),
+                ),
               ),
             ),
           ),
           elevation: 0.0,
-          backgroundColor: Colors.transparent,
-          bottom: TabBar(
+          bottom: const TabBar(
             indicatorWeight: 1.0,
             indicatorSize: TabBarIndicatorSize.label,
             isScrollable: true,
-            labelColor: Colors.black,
+            labelColor: Colors.white,
             tabs: [
               Tab(
                 text: "Action",
@@ -43,7 +59,7 @@ class GenriesScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(children: [
+        body: const TabBarView(children: [
           GenerieListView(),
           GenerieListView(),
           GenerieListView(),
@@ -61,12 +77,12 @@ class GenerieListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: [
+      children: const [
         GeneryItemWIdget(
           image: "assets/images/animeone.jpeg",
         ),
         Divider(
-          color: Colors.black,
+          color: Colors.white,
           thickness: 0.8,
           indent: 15.0,
           endIndent: 15.0,
@@ -75,7 +91,7 @@ class GenerieListView extends StatelessWidget {
           image: "assets/images/animetwo.jpeg",
         ),
         Divider(
-          color: Colors.black,
+          color: Colors.white,
           thickness: 0.8,
           indent: 15.0,
           endIndent: 15.0,
@@ -84,7 +100,7 @@ class GenerieListView extends StatelessWidget {
           image: "assets/images/animethree.jpeg",
         ),
         Divider(
-          color: Colors.black,
+          color: Colors.white,
           thickness: 0.8,
           indent: 15.0,
           endIndent: 15.0,
@@ -93,7 +109,7 @@ class GenerieListView extends StatelessWidget {
           image: "assets/images/animefour.jpeg",
         ),
         Divider(
-          color: Colors.black,
+          color: Colors.white,
           thickness: 0.8,
           indent: 15.0,
           endIndent: 15.0,
@@ -116,7 +132,7 @@ class GeneryItemWIdget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           height: 150,
           width: MediaQuery.of(context).size.width * 0.45,
           decoration: BoxDecoration(
@@ -127,13 +143,13 @@ class GeneryItemWIdget extends StatelessWidget {
         Column(
           children: [
             const Text("Demon Slayer",
-                style: TextStyle(color: Colors.black, fontSize: 16)),
+                style: TextStyle(color: Colors.white, fontSize: 16)),
             const SizedBox(height: 5),
             Row(
-              children: [
+              children: const [
                 Text("Season 1",
                     style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 16,
                         fontWeight: FontWeight.w500)),
                 SizedBox(
@@ -146,29 +162,35 @@ class GeneryItemWIdget extends StatelessWidget {
                         fontWeight: FontWeight.w400)),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
                   color: Colors.red, borderRadius: BorderRadius.circular(15)),
-              child: Text(
+              child: const Text(
                 "Action",
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ElevatedButton.icon(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
+                    primary: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
-                icon: Icon(Icons.arrow_right_alt_outlined),
-                label: Text("Watch"))
+                icon: const Icon(
+                  Icons.arrow_right_alt_outlined,
+                  color: Colors.black,
+                ),
+                label: const Text(
+                  "Read",
+                  style: TextStyle(color: Colors.black),
+                ))
           ],
         )
       ],

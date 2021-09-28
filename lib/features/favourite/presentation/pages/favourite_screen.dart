@@ -7,13 +7,13 @@ class FavouriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
-            "Favourite",
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          elevation: 0.0,
-          backgroundColor: Colors.transparent),
+        title: const Text(
+          "Favourite",
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+        elevation: 0.0,
+      ),
       body: Container(
         alignment: Alignment.center,
         child: Column(

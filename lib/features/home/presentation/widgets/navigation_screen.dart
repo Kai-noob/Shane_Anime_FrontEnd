@@ -3,7 +3,6 @@ import 'package:movie_app/features/favourite/presentation/pages/favourite_screen
 import 'package:movie_app/features/genries/presentation/pages/genries_screen.dart';
 
 import 'package:movie_app/features/home/presentation/pages/home_screen.dart';
-import 'package:movie_app/features/login/presentation/pages/user_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({Key? key}) : super(key: key);
@@ -36,7 +35,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
           });
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.menu_book_sharp), label: "Comic"),
           BottomNavigationBarItem(
               icon: Icon(Icons.category_rounded), label: "Genres"),
           BottomNavigationBarItem(
