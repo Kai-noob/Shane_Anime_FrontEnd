@@ -39,3 +39,26 @@ const image17 = "assets/images/anime14.jpeg";
 const image18 = "assets/images/anime14.jpeg";
 const image19 = "assets/images/anime14.jpeg";
 const image20 = "assets/images/anime14.jpeg";
+
+const List<String> images = [
+  "assets/images/p1.jpg",
+  "assets/images/p2.jpg",
+  "assets/images/p3.jpg",
+  "assets/images/p4.jpg",
+  "assets/images/p5.jpg",
+  "assets/images/p6.jpg",
+  "assets/images/p7.jpg",
+  "assets/images/p8.jpg",
+  "assets/images/p9.jpg",
+  "assets/images/p10.jpg",
+  "assets/images/p11.jpg",
+  "assets/images/p12.jpg",
+  "assets/images/p13.jpg",
+  "assets/images/p14.jpg",
+  "assets/images/p15.jpg",
+  "assets/images/p16.jpg",
+  "assets/images/p17.jpg",
+  "assets/images/p18.jpg",
+  "assets/images/p19.jpg",
+  "assets/images/p20.jpg",
+];

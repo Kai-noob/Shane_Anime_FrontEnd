@@ -9,7 +9,6 @@ class FavouriteScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           "Favourite",
-          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
         elevation: 0.0,

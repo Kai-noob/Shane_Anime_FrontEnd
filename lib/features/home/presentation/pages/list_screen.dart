@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({Key? key}) : super(key: key);
@@ -11,10 +12,10 @@ class ListScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
           },
         ),
-        title: const Text("Editor's Choice"),
+        title: Text("Editor's Choice"),
       ),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -33,8 +34,7 @@ class ListScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                         image: AssetImage("assets/images/animeone.jpeg"))),
               ),
-              const Text("Demon Slayer",
-                  style: TextStyle(color: Colors.white, fontSize: 16)),
+              const Text("Demon Slayer", style: TextStyle(fontSize: 16)),
               const SizedBox(height: 5),
             ],
           );

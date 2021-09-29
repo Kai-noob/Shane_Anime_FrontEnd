@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movie_app/features/home/presentation/widgets/home_body.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -8,19 +9,18 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text.rich(
-          TextSpan(
-              text: "Shane",
-              style: TextStyle(color: Colors.white),
-              children: [
-                TextSpan(
-                    text: "Manga",
-                    style: TextStyle(color: Colors.deepOrangeAccent))
-              ]),
-        ),
-        backgroundColor: Colors.transparent,
+        title: Text("Shane Manga"),
         elevation: 0.0,
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.isDarkMode
+                    ? Get.changeThemeMode(ThemeMode.dark)
+                    : Get.changeThemeMode(ThemeMode.light);
+              },
+              icon: Icon(Get.isDarkMode ? Icons.dark_mode : Icons.light_mode))
+        ],
       ),
       body: HomeBody(),
     );

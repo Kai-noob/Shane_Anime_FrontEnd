@@ -15,37 +15,33 @@ class GenriesScreen extends StatelessWidget {
             height: 50,
             child: Center(
               child: TextField(
-                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(10),
                   hintText: "Search By Title",
                   prefixIcon: const Icon(
                     Icons.search,
-                    color: Colors.white,
                   ),
-                  hintStyle: const TextStyle(color: Colors.white),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.white, width: 0.6),
-                      borderRadius: BorderRadius.circular(10)),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.white, width: 0.6),
-                      borderRadius: BorderRadius.circular(10)),
-                  border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: Colors.white, width: 0.6),
-                      borderRadius: BorderRadius.circular(10)),
+                  // focusedBorder: OutlineInputBorder(
+                  //     borderSide:
+                  //         const BorderSide(color: Colors.white, width: 0.6),
+                  //     borderRadius: BorderRadius.circular(10)),
+                  // enabledBorder: OutlineInputBorder(
+                  //     borderSide:
+                  //         const BorderSide(color: Colors.white, width: 0.6),
+                  //     borderRadius: BorderRadius.circular(10)),
+                  // border: OutlineInputBorder(
+                  //     borderSide:
+                  //         const BorderSide(color: Colors.white, width: 0.6),
+                  //     borderRadius: BorderRadius.circular(10)),
                 ),
               ),
             ),
           ),
           elevation: 0.0,
-          bottom: const TabBar(
+          bottom: TabBar(
             indicatorWeight: 1.0,
             indicatorSize: TabBarIndicatorSize.label,
             isScrollable: true,
-            labelColor: Colors.white,
             tabs: [
               Tab(
                 text: "Action",
@@ -142,16 +138,13 @@ class GeneryItemWIdget extends StatelessWidget {
         ),
         Column(
           children: [
-            const Text("Demon Slayer",
-                style: TextStyle(color: Colors.white, fontSize: 16)),
+            const Text("Demon Slayer", style: TextStyle(fontSize: 16)),
             const SizedBox(height: 5),
             Row(
               children: const [
                 Text("Season 1",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500)),
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
                 SizedBox(
                   width: 5,
                 ),
@@ -171,7 +164,6 @@ class GeneryItemWIdget extends StatelessWidget {
                   color: Colors.red, borderRadius: BorderRadius.circular(15)),
               child: const Text(
                 "Action",
-                style: TextStyle(color: Colors.white),
               ),
             ),
             const SizedBox(

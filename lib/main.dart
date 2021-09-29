@@ -1,7 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movie_app/features/home/presentation/widgets/navigation_screen.dart';
 
-void main() {
+import 'configs/theme/themes.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -11,18 +17,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            primaryColor: const Color(0xff0f0f0d),
-            appBarTheme: const AppBarTheme(backgroundColor: Color(0xff0f0f0d)),
-            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                selectedItemColor: Colors.red,
-                unselectedItemColor: Colors.white,
-                selectedLabelStyle: TextStyle(color: Colors.white),
-                backgroundColor: Color(0xff0f0f0d)),
-            scaffoldBackgroundColor: const Color(0xff0f0f0d),
-            fontFamily: "MyFont"),
+        theme: Themes.dark,
+        darkTheme: Themes.light,
         home: const NavigationScreen());
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movie_app/configs/strings/strings.dart';
 import 'package:movie_app/features/home/presentation/pages/details_screen.dart';
 import 'package:movie_app/features/home/presentation/pages/list_screen.dart';
@@ -25,18 +26,7 @@ class HomeBody extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        HorizontalListView(
-          image1: image1,
-          label1: label8,
-          image2: image2,
-          label2: label9,
-        ),
-        HorizontalListView(
-          image1: image3,
-          label2: label3,
-          image2: image4,
-          label1: label4,
-        ),
+        HorizontalScrollWidget(),
         const SizedBox(
           height: 10,
         ),
@@ -44,18 +34,7 @@ class HomeBody extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const HorizontalListView(
-          image1: image5,
-          label1: label5,
-          image2: image6,
-          label2: label6,
-        ),
-        const HorizontalListView(
-          image1: image7,
-          label1: label7,
-          image2: image8,
-          label2: label8,
-        ),
+        HorizontalScrollWidget(),
         const SizedBox(
           height: 10,
         ),
@@ -63,13 +42,13 @@ class HomeBody extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const HorizontalListView(
+        const HorizontalRowWidget(
           image1: image9,
           label1: label7,
           image2: image10,
           label2: label8,
         ),
-        const HorizontalListView(
+        const HorizontalRowWidget(
           image1: image11,
           label1: label7,
           image2: image12,
@@ -79,13 +58,13 @@ class HomeBody extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const HorizontalListView(
+        const HorizontalRowWidget(
           image1: image13,
           label1: label7,
           image2: image14,
           label2: label8,
         ),
-        const HorizontalListView(
+        const HorizontalRowWidget(
           image1: image7,
           label1: label7,
           image2: image8,
@@ -95,13 +74,13 @@ class HomeBody extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        const HorizontalListView(
+        const HorizontalRowWidget(
           image1: image7,
           label1: label7,
           image2: image8,
           label2: label8,
         ),
-        const HorizontalListView(
+        const HorizontalRowWidget(
           image1: image7,
           label1: label7,
           image2: image8,
@@ -117,13 +96,11 @@ class HomeBody extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(
-              color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
         TextButton(
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const ListScreen()));
+              Get.to(() => ListScreen());
             },
             child: const Text("View All",
                 style: TextStyle(
@@ -135,12 +112,31 @@ class HomeBody extends StatelessWidget {
   }
 }
 
-class HorizontalListView extends StatelessWidget {
+class HorizontalScrollWidget extends StatelessWidget {
+  const HorizontalScrollWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          HomeListItemTwo(image: image1, label: label5),
+          HomeListItemTwo(image: image2, label: label16),
+          HomeListItemTwo(image: image3, label: label10),
+          HomeListItemTwo(image: image4, label: label4),
+        ],
+      ),
+    );
+  }
+}
+
+class HorizontalRowWidget extends StatelessWidget {
   final String image1;
   final String label1;
   final String image2;
   final String label2;
-  const HorizontalListView({
+  const HorizontalRowWidget({
     Key? key,
     required this.image1,
     required this.label1,
@@ -176,8 +172,7 @@ class HomeListItemWidget extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const DetailsScreen()));
+              Get.to(() => DetailsScreen(image: image));
             },
             child: Container(
               height: 200,
@@ -190,12 +185,49 @@ class HomeListItemWidget extends StatelessWidget {
           ),
           Text(
             label,
-            style: TextStyle(color: Colors.white, fontSize: 16),
+            style: const TextStyle(fontSize: 16),
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 5),
         ],
       ),
+    );
+  }
+}
+
+class HomeListItemTwo extends StatelessWidget {
+  final String image;
+  final String label;
+  const HomeListItemTwo({
+    Key? key,
+    required this.image,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {
+            Get.to(() => DetailsScreen(image: image));
+          },
+          child: Container(
+            height: 200,
+            width: 200,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                image: DecorationImage(
+                    fit: BoxFit.cover, image: AssetImage(image))),
+          ),
+        ),
+        Text(
+          label,
+          style: const TextStyle(fontSize: 16),
+          overflow: TextOverflow.ellipsis,
+        ),
+        const SizedBox(height: 5),
+      ],
     );
   }
 }

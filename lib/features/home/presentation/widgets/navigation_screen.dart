@@ -3,6 +3,7 @@ import 'package:movie_app/features/favourite/presentation/pages/favourite_screen
 import 'package:movie_app/features/genries/presentation/pages/genries_screen.dart';
 
 import 'package:movie_app/features/home/presentation/pages/home_screen.dart';
+import 'package:movie_app/features/home/presentation/pages/settins_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     const HomeScreen(),
     const GenriesScreen(),
     const FavouriteScreen(),
+    // const SettingsScreen()
   ];
 
   int currentIndex = 0;
@@ -41,6 +43,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: Icon(Icons.category_rounded), label: "Genres"),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite_outline), label: "Favourite"),
+          // BottomNavigationBarItem(
+          //     icon: Icon(Icons.settings), label: "Settings"),
         ],
       ),
     );
