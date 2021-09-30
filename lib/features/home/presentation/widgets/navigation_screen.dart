@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_app/features/favourite/presentation/pages/favourite_screen.dart';
 import 'package:movie_app/features/genries/presentation/pages/genries_screen.dart';
@@ -38,11 +39,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
         },
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_sharp), label: "Comic"),
+              icon: Icon(EvaIcons.bookOpen), label: "Comic"),
+          BottomNavigationBarItem(icon: Icon(EvaIcons.grid), label: "Genres"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.category_rounded), label: "Genres"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline), label: "Favourite"),
+              icon: Icon(EvaIcons.heart), label: "Favourite"),
           // BottomNavigationBarItem(
           //     icon: Icon(Icons.settings), label: "Settings"),
         ],

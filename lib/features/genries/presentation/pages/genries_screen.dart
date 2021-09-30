@@ -18,21 +18,21 @@ class GenriesScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(10),
                   hintText: "Search By Title",
-                  prefixIcon: const Icon(
+                  prefixIcon: Icon(
                     Icons.search,
+                    color: Colors.deepOrangeAccent,
                   ),
-                  // focusedBorder: OutlineInputBorder(
-                  //     borderSide:
-                  //         const BorderSide(color: Colors.white, width: 0.6),
-                  //     borderRadius: BorderRadius.circular(10)),
-                  // enabledBorder: OutlineInputBorder(
-                  //     borderSide:
-                  //         const BorderSide(color: Colors.white, width: 0.6),
-                  //     borderRadius: BorderRadius.circular(10)),
-                  // border: OutlineInputBorder(
-                  //     borderSide:
-                  //         const BorderSide(color: Colors.white, width: 0.6),
-                  //     borderRadius: BorderRadius.circular(10)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderRadius: BorderRadius.circular(10)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderRadius: BorderRadius.circular(10)),
+                  border: OutlineInputBorder(
+                      // borderSide:
+                      //     const BorderSide(color: Colors.white, width: 0.6),
+                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderRadius: BorderRadius.circular(10)),
                 ),
               ),
             ),
@@ -78,7 +78,6 @@ class GenerieListView extends StatelessWidget {
           image: "assets/images/animeone.jpeg",
         ),
         Divider(
-          color: Colors.white,
           thickness: 0.8,
           indent: 15.0,
           endIndent: 15.0,
@@ -87,7 +86,6 @@ class GenerieListView extends StatelessWidget {
           image: "assets/images/animetwo.jpeg",
         ),
         Divider(
-          color: Colors.white,
           thickness: 0.8,
           indent: 15.0,
           endIndent: 15.0,
@@ -96,7 +94,6 @@ class GenerieListView extends StatelessWidget {
           image: "assets/images/animethree.jpeg",
         ),
         Divider(
-          color: Colors.white,
           thickness: 0.8,
           indent: 15.0,
           endIndent: 15.0,
@@ -105,7 +102,6 @@ class GenerieListView extends StatelessWidget {
           image: "assets/images/animefour.jpeg",
         ),
         Divider(
-          color: Colors.white,
           thickness: 0.8,
           indent: 15.0,
           endIndent: 15.0,
@@ -159,9 +155,10 @@ class GeneryItemWIdget extends StatelessWidget {
               height: 15,
             ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
               decoration: BoxDecoration(
-                  color: Colors.red, borderRadius: BorderRadius.circular(15)),
+                  color: Colors.red, borderRadius: BorderRadius.circular(10)),
               child: const Text(
                 "Action",
               ),
@@ -172,7 +169,7 @@ class GeneryItemWIdget extends StatelessWidget {
             ElevatedButton.icon(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
+                    primary: Colors.deepOrangeAccent,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 icon: const Icon(

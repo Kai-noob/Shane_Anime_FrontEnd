@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
 
 class Themes {
-  static final light = ThemeData.light().copyWith(
-    // primaryColor: const Color(0xff0f0f0d),
-    tabBarTheme: TabBarTheme(labelColor: Colors.black),
-    appBarTheme: AppBarTheme(
-        color: Colors.deepOrangeAccent,
+  static final ThemeData dark = ThemeData(
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.black,
+          selectedItemColor: Colors.deepOrangeAccent),
+      scaffoldBackgroundColor: Colors.black,
+      primaryColor: Colors.black,
+      colorScheme: ColorScheme.dark(),
+      textTheme: ThemeData.dark().textTheme,
+      appBarTheme: AppBarTheme(backgroundColor: Colors.black),
+      buttonTheme: ButtonThemeData(
+        buttonColor: Colors.white,
+      ),
+      iconTheme: IconThemeData(color: Colors.white));
 
-        // titleTextStyle: TextStyle(color: Colors.black),
-        iconTheme: IconThemeData(color: Colors.white)),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.deepOrangeAccent,
-        unselectedItemColor: Colors.black,
-        selectedLabelStyle: TextStyle(color: Colors.black),
-        backgroundColor: Colors.white),
-    scaffoldBackgroundColor: Colors.white,
-  );
-  static final dark = ThemeData.dark().copyWith(
-    // primaryColor: const Color(0xff0f0f0d),
-    tabBarTheme: TabBarTheme(labelColor: Colors.white),
-    appBarTheme: const AppBarTheme(color: Color(0xff0f0f0d)),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.deepOrangeAccent,
-        unselectedItemColor: Colors.white,
-        selectedLabelStyle: TextStyle(color: Colors.white),
-        backgroundColor: Color(0xff0f0f0d)),
-    scaffoldBackgroundColor: const Color(0xff0f0f0d),
-  );
+  static final ThemeData light = ThemeData(
+      scaffoldBackgroundColor: Colors.white,
+      primaryColor: Colors.white,
+      colorScheme:
+          ColorScheme.light(primary: Colors.white, onPrimary: Colors.black),
+      // appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+      iconTheme: IconThemeData(color: Colors.black),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.deepOrangeAccent));
 }

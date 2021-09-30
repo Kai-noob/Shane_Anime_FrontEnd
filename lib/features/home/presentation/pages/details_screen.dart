@@ -49,8 +49,7 @@ class DetailsScreen extends StatelessWidget {
                   bottom: const TabBar(
                     indicatorColor: Colors.deepOrangeAccent,
                     indicatorSize: TabBarIndicatorSize.label,
-                    labelColor: Colors.deepOrangeAccent,
-                    unselectedLabelColor: Colors.white,
+
                     unselectedLabelStyle:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                     // labelPadding: EdgeInsets.all(10),
