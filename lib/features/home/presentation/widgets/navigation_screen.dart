@@ -4,7 +4,6 @@ import 'package:movie_app/features/favourite/presentation/pages/favourite_screen
 import 'package:movie_app/features/genries/presentation/pages/genries_screen.dart';
 
 import 'package:movie_app/features/home/presentation/pages/home_screen.dart';
-import 'package:movie_app/features/home/presentation/pages/settins_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({Key? key}) : super(key: key);

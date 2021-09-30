@@ -18,27 +18,30 @@ class GenriesScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.all(10),
                   hintText: "Search By Title",
-                  prefixIcon: Icon(
+                  prefixIcon: const Icon(
                     Icons.search,
                     color: Colors.deepOrangeAccent,
                   ),
                   focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderSide:
+                          const BorderSide(color: Colors.deepOrangeAccent),
                       borderRadius: BorderRadius.circular(10)),
                   enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderSide:
+                          const BorderSide(color: Colors.deepOrangeAccent),
                       borderRadius: BorderRadius.circular(10)),
                   border: OutlineInputBorder(
                       // borderSide:
                       //     const BorderSide(color: Colors.white, width: 0.6),
-                      borderSide: BorderSide(color: Colors.deepOrangeAccent),
+                      borderSide:
+                          const BorderSide(color: Colors.deepOrangeAccent),
                       borderRadius: BorderRadius.circular(10)),
                 ),
               ),
             ),
           ),
           elevation: 0.0,
-          bottom: TabBar(
+          bottom: const TabBar(
             indicatorWeight: 1.0,
             indicatorSize: TabBarIndicatorSize.label,
             isScrollable: true,

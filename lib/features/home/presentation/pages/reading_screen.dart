@@ -5,7 +5,7 @@ import 'package:movie_app/configs/strings/strings.dart';
 import 'package:photo_view/photo_view.dart';
 
 class ReadingScreen extends StatefulWidget {
-  ReadingScreen({Key? key}) : super(key: key);
+  const ReadingScreen({Key? key}) : super(key: key);
 
   @override
   State<ReadingScreen> createState() => _ReadingScreenState();
@@ -26,9 +26,9 @@ class _ReadingScreenState extends State<ReadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("DemonSlayer"),
+          title: const Text("DemonSlayer"),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
             onPressed: () {
               Get.back();
             },
@@ -44,25 +44,25 @@ class _ReadingScreenState extends State<ReadingScreen> {
               IconButton(
                 onPressed: () {
                   pageController.previousPage(
-                      duration: Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 500),
                       curve: Curves.linearToEaseOut);
                 },
-                icon: Icon(Icons.arrow_upward_outlined),
+                icon: const Icon(Icons.arrow_upward_outlined),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               Text("$currentPage/${images.length}"),
-              SizedBox(
+              const SizedBox(
                 width: 15,
               ),
               IconButton(
                   onPressed: () {
                     pageController.nextPage(
-                        duration: Duration(milliseconds: 2000),
+                        duration: const Duration(milliseconds: 2000),
                         curve: Curves.linearToEaseOut);
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_downward_outlined,
                   ))
             ],

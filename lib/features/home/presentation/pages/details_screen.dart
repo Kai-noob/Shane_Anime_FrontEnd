@@ -123,13 +123,13 @@ class DetailsScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             onTap: () {
-                              Get.to(() => ReadingScreen());
+                              Get.to(() => const ReadingScreen());
                             },
-                            leading: Icon(
+                            leading: const Icon(
                               Icons.menu_book_outlined,
                               color: Colors.deepOrangeAccent,
                             ),
-                            title: Text("Chapter1"),
+                            title: const Text("Chapter1"),
                           );
                         })
                   ],

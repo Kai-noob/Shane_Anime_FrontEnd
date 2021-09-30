@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:movie_app/features/home/presentation/pages/home_screen.dart';
 import 'package:movie_app/features/home/presentation/widgets/navigation_screen.dart';
 
 import 'configs/theme/themes.dart';

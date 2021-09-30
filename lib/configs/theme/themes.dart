@@ -2,27 +2,29 @@ import 'package:flutter/material.dart';
 
 class Themes {
   static final ThemeData dark = ThemeData(
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.black,
           selectedItemColor: Colors.deepOrangeAccent),
       scaffoldBackgroundColor: Colors.black,
       primaryColor: Colors.black,
-      colorScheme: ColorScheme.dark(),
+      backgroundColor: Colors.black,
+      colorScheme: const ColorScheme.dark(),
       textTheme: ThemeData.dark().textTheme,
-      appBarTheme: AppBarTheme(backgroundColor: Colors.black),
-      buttonTheme: ButtonThemeData(
+      appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
+      buttonTheme: const ButtonThemeData(
         buttonColor: Colors.white,
       ),
-      iconTheme: IconThemeData(color: Colors.white));
+      iconTheme: const IconThemeData(color: Colors.white));
 
   static final ThemeData light = ThemeData(
       scaffoldBackgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       primaryColor: Colors.white,
-      colorScheme:
-          ColorScheme.light(primary: Colors.white, onPrimary: Colors.black),
+      colorScheme: const ColorScheme.light(
+          primary: Colors.white, onPrimary: Colors.black),
       // appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-      iconTheme: IconThemeData(color: Colors.black),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      iconTheme: const IconThemeData(color: Colors.black),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.white,
           selectedItemColor: Colors.deepOrangeAccent));
 }

@@ -26,7 +26,7 @@ class HomeBody extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        HorizontalScrollWidget(),
+        const HorizontalScrollWidget(),
         const SizedBox(
           height: 10,
         ),
@@ -34,7 +34,7 @@ class HomeBody extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        HorizontalScrollWidget(),
+        const HorizontalScrollWidget(),
         const SizedBox(
           height: 10,
         ),
@@ -100,7 +100,7 @@ class HomeBody extends StatelessWidget {
         ),
         TextButton(
             onPressed: () {
-              Get.to(() => ListScreen());
+              Get.to(() => const ListScreen());
             },
             child: const Text("View All",
                 style: TextStyle(
@@ -120,7 +120,7 @@ class HorizontalScrollWidget extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: [
+        children: const [
           HomeListItemTwo(image: image1, label: label5),
           HomeListItemTwo(image: image2, label: label16),
           HomeListItemTwo(image: image3, label: label10),

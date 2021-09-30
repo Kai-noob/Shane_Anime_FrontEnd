@@ -15,7 +15,7 @@ class ListScreen extends StatelessWidget {
             Get.back();
           },
         ),
-        title: Text("Editor's Choice"),
+        title: const Text("Editor's Choice"),
       ),
       body: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
