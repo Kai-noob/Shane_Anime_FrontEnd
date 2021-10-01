@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+// ignore: unused_import
+import 'package:movie_app/core/viewmodel/comic_view_model.dart';
 
-import 'package:movie_app/core/themeService/theme_service.dart';
+import '../../core/services/theme_service.dart';
 
-import 'package:movie_app/features/home/presentation/widgets/home_body.dart';
+import '../widgets/home_body.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ThemeService());
+    // Get.put(ComicViewModel());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: context.theme.backgroundColor,

@@ -1,6 +1,8 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/features/home/presentation/pages/reading_screen.dart';
+
+import 'reading_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key, required this.image}) : super(key: key);
@@ -19,29 +21,26 @@ class DetailsScreen extends StatelessWidget {
           // ),
           body: CustomScrollView(
             slivers: [
-              // SliverToBoxAdapter(
-              //   child: Container(
-              //       height: MediaQuery.of(context).size.height * 0.2,
-              //       width: MediaQuery.of(context).size.width,
-              //       decoration: BoxDecoration(
-              //           image: DecorationImage(image: AssetImage(image5)))),
-              // ),
               SliverAppBar(
                   floating: true,
                   pinned: true,
                   expandedHeight: 250,
-                  // title: Text(
-                  //   "DemonSlayer",
-                  //   style: TextStyle(color: Colors.black),
-                  // ),
                   leading: IconButton(
                     icon: const Icon(Icons.arrow_back_ios_new),
                     onPressed: () {
                       Get.back();
                     },
                   ),
+                  actions: [
+                    IconButton(
+                        onPressed: () {
+                          Get.snackbar("Shane Manga", "Added to Favourite",
+                              duration: const Duration(milliseconds: 1000));
+                        },
+                        icon: const Icon(EvaIcons.heartOutline))
+                  ],
                   flexibleSpace: FlexibleSpaceBar(
-                    background: Image.asset(
+                    background: Image.network(
                       image,
                       fit: BoxFit.fitHeight,
                     ),

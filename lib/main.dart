@@ -2,10 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:movie_app/features/home/presentation/widgets/navigation_screen.dart';
+import 'package:movie_app/helpers/binding.dart';
 
 import 'configs/theme/themes.dart';
-import 'core/themeService/theme_service.dart';
+import 'core/services/theme_service.dart';
+import 'view/home/navigation_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        initialBinding: Binding(),
         debugShowCheckedModeBanner: false,
         theme: Themes.dark,
         darkTheme: Themes.light,

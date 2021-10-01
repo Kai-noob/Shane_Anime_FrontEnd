@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:movie_app/configs/strings/strings.dart';
+import '../../configs/strings/strings.dart';
 import 'package:photo_view/photo_view.dart';
 
 class ReadingScreen extends StatefulWidget {
