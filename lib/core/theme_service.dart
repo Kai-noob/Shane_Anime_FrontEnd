@@ -16,5 +16,7 @@ class ThemeService extends GetxController {
   void swithTheme() {
     Get.changeThemeMode(_loadThemeFromBox() ? ThemeMode.light : ThemeMode.dark);
     _saveThemeToBox(!_loadThemeFromBox());
+
+
   }
 }

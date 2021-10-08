@@ -1,4 +1,4 @@
-import 'package:movie_app/features/favourite/domain/entities/favourite_comic.dart';
+import 'package:movie_app/features/favourite/data/models/favourite_comic.dart';
 import 'package:movie_app/features/favourite/domain/repositories/favourite_repo.dart';
 
 class AddFavouriteComicUseCase {

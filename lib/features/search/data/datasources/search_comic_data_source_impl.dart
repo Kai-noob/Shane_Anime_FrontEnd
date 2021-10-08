@@ -11,7 +11,7 @@ class SearchComicDataSourceImpl implements SearchComicDataSource {
   Future<List<SearchComic>> searchComics({required String query}) async {
     QuerySnapshot querySnapshot = await firebaseFirestore
         .collection("comic")
-        .where("title", isGreaterThanOrEqualTo: query)
+        .where("title", isEqualTo: query)
         .get();
 
     List<SearchComic> searchcomicList = [];

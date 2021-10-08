@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/features/comic/domain/entities/comic.dart';
 import 'package:movie_app/features/comic/presentation/controllers/comic_controller.dart';
-import 'package:movie_app/features/favourite/data/models/favourite_comic_model.dart';
+import 'package:movie_app/features/favourite/data/models/favourite_comic.dart';
 import 'package:movie_app/features/favourite/presentation/controllers/favourite_comic_controller.dart';
 
 import 'package:movie_app/features/comic/presentation/view/pages/reading_screen.dart';
@@ -32,11 +32,11 @@ class DetailsScreen extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {
-                  controller.addFavourite(FavouriteComicModel(
-                      title: comicModel.title,
-                      coverPhoto: comicModel.coverPhoto,
-                      description: comicModel.review,
-                      editorChoice: comicModel.editorChoice));
+                  // controller.addFavourite(FavouriteComicModel(
+                  //     title: comicModel.title,
+                  //     coverPhoto: comicModel.coverPhoto,
+                  //     description: comicModel.review,
+                  //     editorChoice: comicModel.editorChoice));
 
                   print(comicModel.isFavourite);
                 },

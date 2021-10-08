@@ -7,13 +7,13 @@ import 'package:movie_app/configs/common/loading_indicator.dart';
 import 'package:movie_app/features/search/presentation/controllers/search_comic_controller.dart';
 
 class SearchScreen extends StatelessWidget {
-  final SearchComicController searchComicController =
-      Get.find<SearchComicController>();
   final TextEditingController textEditingController = TextEditingController();
   SearchScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final SearchComicController searchComicController =
+        Get.find<SearchComicController>();
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -25,10 +25,11 @@ class SearchScreen extends StatelessWidget {
                 Expanded(
                     flex: 4,
                     child: TextField(
+                        textInputAction: TextInputAction.search,
                         controller: textEditingController,
                         onSubmitted: (value) {
                           searchComicController.searchComicsFromDB(
-                              query: textEditingController.text);
+                              query: value);
                           textEditingController.clear();
                         },
                         decoration: const InputDecoration(
@@ -60,6 +61,11 @@ class SearchScreen extends StatelessWidget {
             child: Obx(() {
               if (searchComicController.isLoading) {
                 return LoadingIndicator();
+              }
+              if (searchComicController.isEmpty) {
+                return Center(
+                  child: Text("Ooops Not Found"),
+                );
               }
               if (searchComicController.searchComicList.isEmpty) {
                 return Center(

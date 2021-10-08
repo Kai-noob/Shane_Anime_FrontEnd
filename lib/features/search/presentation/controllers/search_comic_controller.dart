@@ -9,13 +9,17 @@ class SearchComicController extends GetxController {
 
   SearchComicController({required this.searchComicUseCase});
 
-  final RxList<SearchComic> _searchComicList = <SearchComic>[].obs;
+  final RxList<SearchComic> _searchComicList = RxList();
 
-  List<SearchComic> get searchComicList => [..._searchComicList];
+  List<SearchComic> get searchComicList => _searchComicList;
 
   final RxBool _isLoading = false.obs;
 
+  final RxBool _isEmpty = false.obs;
+
   bool get isLoading => _isLoading.value;
+
+  bool get isEmpty => _isEmpty.value;
 
   setLoading(bool? isLoading) {
     _isLoading.value = isLoading!;
@@ -27,12 +31,18 @@ class SearchComicController extends GetxController {
       List<SearchComic> _searchComics =
           await searchComicUseCase.call(query: query);
 
-      for (var searchComic in _searchComics) {
-        _searchComicList.add(searchComic);
+      if (_searchComics.isNotEmpty) {
+        _searchComicList.clear();
+        for (var searchComic in _searchComics) {
+          _searchComicList.add(searchComic);
+        }
+
+        _isEmpty.value = false;
+      } else {
+        _isEmpty.value = true;
       }
-      query = "";
+
       setLoading(false);
-      update();
     } catch (e) {
       setLoading(false);
       SnackBarUtils().showSnackBar(e.toString());
