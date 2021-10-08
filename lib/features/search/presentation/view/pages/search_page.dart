@@ -102,89 +102,86 @@ class SearchTestScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => Get.find<SearchBloc>(),
-      child: Scaffold(
-        body: SafeArea(
-            child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-              child: Row(
-                children: [
-                  Expanded(
-                      flex: 4,
-                      child: TextField(
-                          textInputAction: TextInputAction.search,
-                          controller: textEditingController,
-                          onSubmitted: (value) {
-                            BlocProvider.of<SearchBloc>(context)
-                                .add(SearchComics(value));
-                            textEditingController.clear();
-                          },
-                          decoration: const InputDecoration(
-                            hintText: "Search",
-                            prefixIcon: Icon(
-                              EvaIcons.searchOutline,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            contentPadding: EdgeInsets.all(10),
-                          ))),
-                  Expanded(
-                    flex: 1,
-                    child: TextButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      child: Text(
-                        "Cancel",
-                        style: TextStyle(
+    return Scaffold(
+      body: SafeArea(
+          child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+            child: Row(
+              children: [
+                Expanded(
+                    flex: 4,
+                    child: TextField(
+                        textInputAction: TextInputAction.search,
+                        controller: textEditingController,
+                        onSubmitted: (value) {
+                          BlocProvider.of<SearchBloc>(context)
+                              .add(SearchComics(value));
+                          textEditingController.clear();
+                        },
+                        decoration: const InputDecoration(
+                          hintText: "Search",
+                          prefixIcon: Icon(
+                            EvaIcons.searchOutline,
                             color: Colors.deepPurpleAccent,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: BlocBuilder<SearchBloc, SearchState>(
-                builder: (context, state) {
-                  if (state is SearchLoading) {
-                    return LoadingIndicator();
-                  }
-                  if (state is SearchInitial) {
-                    return Center(
-                      child: Text("Start Searching"),
-                    );
-                  }
-
-                  if (state is SearchLoaded) {
-                    if (state.searchComics.isEmpty) {
-                      return Center(
-                        child: Text("Ooops No Found"),
-                      );
-                    }
-                    return ListView.builder(
-                      itemCount: state.searchComics.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                state.searchComics[index].coverPhoto),
                           ),
-                          title: Text(state.searchComics[index].title),
-                        );
-                      },
+                          contentPadding: EdgeInsets.all(10),
+                        ))),
+                Expanded(
+                  flex: 1,
+                  child: TextButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(
+                          color: Colors.deepPurpleAccent,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: BlocBuilder<SearchBloc, SearchState>(
+              builder: (context, state) {
+                if (state is SearchLoading) {
+                  return LoadingIndicator();
+                }
+                if (state is SearchInitial) {
+                  return Center(
+                    child: Text("Start Searching"),
+                  );
+                }
+
+                if (state is SearchLoaded) {
+                  if (state.searchComics.isEmpty) {
+                    return Center(
+                      child: Text("Ooops No Found"),
                     );
                   }
-                  return Container();
-                },
-              ),
-            )
-          ],
-        )),
-      ),
+                  return ListView.builder(
+                    itemCount: state.searchComics.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              state.searchComics[index].coverPhoto),
+                        ),
+                        title: Text(state.searchComics[index].title),
+                      );
+                    },
+                  );
+                }
+                return Container();
+              },
+            ),
+          )
+        ],
+      )),
     );
   }
 }

@@ -22,12 +22,13 @@ class GenriesScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: IconButton(
                 onPressed: () {
-                  Get.to(
-                      () => BlocProvider(
-                            create: (context) => Get.find<SearchBloc>(),
-                            child: SearchTestScreen(),
-                          ),
-                      binding: SearchBinding());
+                  // Get.to(
+                  //     () => BlocProvider(
+                  //           create: (context) => Get.find<SearchBloc>(),
+                  //           child: SearchTestScreen(),
+                  //         ),
+                  //     binding: SearchBinding());
+                  Get.to(() => SearchScreen(), binding: SearchBinding());
                 },
                 icon: const Icon(EvaIcons.searchOutline, size: 30)),
           )

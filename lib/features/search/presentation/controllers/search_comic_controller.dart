@@ -31,12 +31,9 @@ class SearchComicController extends GetxController {
       List<SearchComic> _searchComics =
           await searchComicUseCase.call(query: query);
 
-      if (_searchComics.isNotEmpty) {
-        _searchComicList.clear();
-        for (var searchComic in _searchComics) {
-          _searchComicList.add(searchComic);
-        }
+      _searchComicList.value = _searchComics;
 
+      if (_searchComics.isNotEmpty) {
         _isEmpty.value = false;
       } else {
         _isEmpty.value = true;
