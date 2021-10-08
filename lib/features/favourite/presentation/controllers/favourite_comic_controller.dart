@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import '../../data/models/favourite_comic.dart';
 
 class FavouriteComicController extends GetxController {
   // RxList<FavouriteComicModel> favouriteList = <FavouriteComicModel>[].obs;
@@ -50,5 +48,3 @@ class FavouriteComicController extends GetxController {
   //   });
   // }
 }
-
-enum AppLoadState { LOADING, COMPLETED }

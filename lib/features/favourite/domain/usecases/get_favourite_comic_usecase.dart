@@ -1,4 +1,3 @@
-import '../../../comic/domain/entities/comic.dart';
 import '../../data/models/favourite_comic.dart';
 
 import '../repositories/favourite_repo.dart';

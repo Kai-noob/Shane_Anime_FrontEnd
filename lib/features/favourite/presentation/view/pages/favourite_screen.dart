@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../../../configs/common/image_widget.dart';
-import '../../../../../configs/common/loading_indicator.dart';
-import '../../controllers/favourite_comic_controller.dart';
-import '../../../../comic/presentation/view/widgets/home_scroll_item.dart';
-import '../../../../comic/presentation/view/pages/details_screen.dart';
 
 class FavouriteScreen extends StatelessWidget {
-  final FavouriteComicController favouriteComicController =
-      Get.find<FavouriteComicController>();
-  FavouriteScreen({Key? key}) : super(key: key);
-
+  const FavouriteScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

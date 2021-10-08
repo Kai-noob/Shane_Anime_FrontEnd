@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
+
 import 'package:get/get.dart';
+import 'package:movie_app/core/utils/show_snack_bar.dart';
 import '../../domain/entities/searchcomic.dart';
 import '../../domain/usecases/search_comic_usecase.dart';
-import '../../../../helpers/utils/show_snack_bar.dart';
 
 class SearchComicController extends GetxController {
   final SearchComicUseCase searchComicUseCase;
@@ -40,10 +41,12 @@ class SearchComicController extends GetxController {
       }
 
       setLoading(false);
+    } on SocketException {
+      setLoading(false);
+      SnackBarUtils().showSnackBar("No Internet Connection");
     } catch (e) {
       setLoading(false);
       SnackBarUtils().showSnackBar(e.toString());
-      print(e.toString());
     }
   }
 }
