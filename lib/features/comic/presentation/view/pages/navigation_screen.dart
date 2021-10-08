@@ -1,8 +1,8 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
-import 'package:movie_app/features/comic/presentation/view/pages/home_screen.dart';
-import 'package:movie_app/features/favourite/presentation/view/pages/favourite_screen.dart';
+import 'home_screen.dart';
+import '../../../../favourite/presentation/view/pages/favourite_screen.dart';
 
 import 'genries_screen.dart';
 

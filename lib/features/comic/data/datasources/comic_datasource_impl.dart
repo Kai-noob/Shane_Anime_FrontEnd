@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movie_app/features/comic/data/datasources/comic_datasource.dart';
-import 'package:movie_app/features/comic/data/models/comic_model.dart';
-import 'package:movie_app/features/comic/domain/entities/comic.dart';
+import 'comic_datasource.dart';
+import '../models/comic_model.dart';
+import '../../domain/entities/comic.dart';
 
 class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
   final FirebaseFirestore firebaseFirestore;

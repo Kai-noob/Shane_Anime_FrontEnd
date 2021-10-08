@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/configs/common/loading_indicator.dart';
-import 'package:movie_app/features/comic/presentation/controllers/comic_controller.dart';
+import '../../../../../configs/common/loading_indicator.dart';
+import '../../controllers/comic_controller.dart';
 
 import 'home_scroll_item.dart';
 

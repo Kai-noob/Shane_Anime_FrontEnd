@@ -1,4 +1,4 @@
-import 'package:movie_app/features/comic/domain/entities/comic.dart';
+import '../../domain/entities/comic.dart';
 
 abstract class ComicRemoteDataSource {
   Future<List<Comic>> getComicFromFirebase();

@@ -1,17 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/features/search/data/datasources/search_comic_data_source.dart';
-import 'package:movie_app/features/search/data/datasources/search_comic_data_source_impl.dart';
-import 'package:movie_app/features/search/data/repositories/search_comic_repo_impl.dart';
-import 'package:movie_app/features/search/domain/repositories/search_comic_repo.dart';
-import 'package:movie_app/features/search/domain/usecases/search_comic_usecase.dart';
-import 'package:movie_app/features/search/presentation/controllers/search_comic_controller.dart';
+import 'package:movie_app/features/search/presentation/bloc/bloc/search_bloc.dart';
+import '../data/datasources/search_comic_data_source.dart';
+import '../data/datasources/search_comic_data_source_impl.dart';
+import '../data/repositories/search_comic_repo_impl.dart';
+import '../domain/repositories/search_comic_repo.dart';
+import '../domain/usecases/search_comic_usecase.dart';
+import '../presentation/controllers/search_comic_controller.dart';
 
 class SearchBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<SearchComicController>(() => SearchComicController(
         searchComicUseCase: Get.find<SearchComicUseCase>()));
+    Get.lazyPut<SearchBloc>(() => SearchBloc(Get.find<SearchComicUseCase>()));
     Get.lazyPut<SearchComicUseCase>(
         () => SearchComicUseCase(searchRepo: Get.find<SearchRepo>()));
 

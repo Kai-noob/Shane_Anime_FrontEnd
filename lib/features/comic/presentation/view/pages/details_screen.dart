@@ -1,12 +1,12 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/features/comic/domain/entities/comic.dart';
-import 'package:movie_app/features/comic/presentation/controllers/comic_controller.dart';
-import 'package:movie_app/features/favourite/data/models/favourite_comic.dart';
-import 'package:movie_app/features/favourite/presentation/controllers/favourite_comic_controller.dart';
+import '../../../domain/entities/comic.dart';
+import '../../controllers/comic_controller.dart';
+import '../../../../favourite/data/models/favourite_comic.dart';
+import '../../../../favourite/presentation/controllers/favourite_comic_controller.dart';
 
-import 'package:movie_app/features/comic/presentation/view/pages/reading_screen.dart';
+import 'reading_screen.dart';
 import '../../../../../configs/common/image_widget.dart';
 
 class DetailsScreen extends StatelessWidget {

@@ -1,5 +1,5 @@
-import 'package:movie_app/features/comic/domain/entities/comic.dart';
-import 'package:movie_app/features/comic/domain/repositories/comic_repo.dart';
+import '../entities/comic.dart';
+import '../repositories/comic_repo.dart';
 
 class GetComicUseCase {
   final ComicRepo comicRepo;

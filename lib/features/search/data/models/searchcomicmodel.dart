@@ -1,4 +1,4 @@
-import 'package:movie_app/features/search/domain/entities/searchcomic.dart';
+import '../../domain/entities/searchcomic.dart';
 
 class SearchComicModel extends SearchComic {
   SearchComicModel(

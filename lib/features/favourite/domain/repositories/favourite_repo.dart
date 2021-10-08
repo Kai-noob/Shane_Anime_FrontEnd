@@ -1,4 +1,4 @@
-import 'package:movie_app/features/favourite/data/models/favourite_comic.dart';
+import '../../data/models/favourite_comic.dart';
 
 abstract class FavouriteRepo {
   Future<List<FavouriteComic>> getFavouriteComics();

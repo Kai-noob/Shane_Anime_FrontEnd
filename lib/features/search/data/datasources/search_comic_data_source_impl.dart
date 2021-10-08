@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movie_app/features/search/data/datasources/search_comic_data_source.dart';
-import 'package:movie_app/features/search/data/models/searchcomicmodel.dart';
-import 'package:movie_app/features/search/domain/entities/searchcomic.dart';
+import 'search_comic_data_source.dart';
+import '../models/searchcomicmodel.dart';
+import '../../domain/entities/searchcomic.dart';
 
 class SearchComicDataSourceImpl implements SearchComicDataSource {
   final FirebaseFirestore firebaseFirestore;
@@ -11,7 +11,7 @@ class SearchComicDataSourceImpl implements SearchComicDataSource {
   Future<List<SearchComic>> searchComics({required String query}) async {
     QuerySnapshot querySnapshot = await firebaseFirestore
         .collection("comic")
-        .where("title", isEqualTo: query)
+        .where("title", isGreaterThanOrEqualTo: query)
         .get();
 
     List<SearchComic> searchcomicList = [];

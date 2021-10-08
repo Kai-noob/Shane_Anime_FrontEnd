@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/configs/common/image_widget.dart';
-import 'package:movie_app/configs/common/loading_indicator.dart';
-import 'package:movie_app/features/favourite/presentation/controllers/favourite_comic_controller.dart';
-import 'package:movie_app/features/comic/presentation/view/widgets/home_scroll_item.dart';
-import 'package:movie_app/features/comic/presentation/view/pages/details_screen.dart';
+import '../../../../../configs/common/image_widget.dart';
+import '../../../../../configs/common/loading_indicator.dart';
+import '../../controllers/favourite_comic_controller.dart';
+import '../../../../comic/presentation/view/widgets/home_scroll_item.dart';
+import '../../../../comic/presentation/view/pages/details_screen.dart';
 
 class FavouriteScreen extends StatelessWidget {
   final FavouriteComicController favouriteComicController =

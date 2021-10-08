@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/core/theme_service.dart';
+import '../../../../../core/theme_service.dart';
 
-import 'package:movie_app/features/comic/presentation/view/widgets/home_body.dart';
+import '../widgets/home_body.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);

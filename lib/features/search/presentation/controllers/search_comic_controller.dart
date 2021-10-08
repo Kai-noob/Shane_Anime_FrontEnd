@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/features/search/domain/entities/searchcomic.dart';
-import 'package:movie_app/features/search/domain/usecases/search_comic_usecase.dart';
-import 'package:movie_app/helpers/utils/show_snack_bar.dart';
+import '../../domain/entities/searchcomic.dart';
+import '../../domain/usecases/search_comic_usecase.dart';
+import '../../../../helpers/utils/show_snack_bar.dart';
 
 class SearchComicController extends GetxController {
   final SearchComicUseCase searchComicUseCase;

@@ -1,5 +1,5 @@
-import 'package:movie_app/features/search/domain/entities/searchcomic.dart';
-import 'package:movie_app/features/search/domain/repositories/search_comic_repo.dart';
+import '../entities/searchcomic.dart';
+import '../repositories/search_comic_repo.dart';
 
 class SearchComicUseCase {
   final SearchRepo searchRepo;

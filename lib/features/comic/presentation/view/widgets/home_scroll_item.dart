@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/configs/common/image_widget.dart';
-import 'package:movie_app/features/comic/domain/entities/comic.dart';
-import 'package:movie_app/helpers/injection/binding.dart';
-import 'package:movie_app/features/comic/presentation/view/pages/details_screen.dart';
+import '../../../../../configs/common/image_widget.dart';
+import '../../../domain/entities/comic.dart';
+import '../../../../../helpers/injection/binding.dart';
+import '../pages/details_screen.dart';
 
 class HomeScrollItem extends StatelessWidget {
   final String image;

@@ -1,7 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/features/search/injection/search_injection.dart';
+import 'package:movie_app/features/search/presentation/bloc/bloc/search_bloc.dart';
+import '../../../../search/injection/search_injection.dart';
 import '../../../../../configs/strings/strings.dart';
 import '../../../../search/presentation/view/pages/search_page.dart';
 
@@ -20,7 +22,12 @@ class GenriesScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: IconButton(
                 onPressed: () {
-                  Get.to(() => SearchScreen(), binding: SearchBinding());
+                  Get.to(
+                      () => BlocProvider(
+                            create: (context) => Get.find<SearchBloc>(),
+                            child: SearchTestScreen(),
+                          ),
+                      binding: SearchBinding());
                 },
                 icon: const Icon(EvaIcons.searchOutline, size: 30)),
           )

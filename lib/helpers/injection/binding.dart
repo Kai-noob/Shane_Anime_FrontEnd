@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/features/comic/data/datasources/comic_datasource.dart';
-import 'package:movie_app/features/comic/data/datasources/comic_datasource_impl.dart';
+import '../../features/comic/data/datasources/comic_datasource.dart';
+import '../../features/comic/data/datasources/comic_datasource_impl.dart';
 
-import 'package:movie_app/features/comic/data/repositories/comic_repository_impl.dart';
+import '../../features/comic/data/repositories/comic_repository_impl.dart';
 
-import 'package:movie_app/features/comic/domain/repositories/comic_repo.dart';
+import '../../features/comic/domain/repositories/comic_repo.dart';
 
-import 'package:movie_app/features/comic/domain/usecases/get_comic_usecase.dart';
+import '../../features/comic/domain/usecases/get_comic_usecase.dart';
 
-import 'package:movie_app/features/comic/presentation/controllers/comic_controller.dart';
+import '../../features/comic/presentation/controllers/comic_controller.dart';
 
-import 'package:movie_app/features/favourite/domain/repositories/favourite_repo.dart';
-import 'package:movie_app/features/favourite/domain/usecases/add_favourite_comic_usecase.dart';
-import 'package:movie_app/features/favourite/domain/usecases/get_favourite_comic_usecase.dart';
-import 'package:movie_app/features/favourite/presentation/controllers/favourite_comic_controller.dart';
+import '../../features/favourite/domain/repositories/favourite_repo.dart';
+import '../../features/favourite/domain/usecases/add_favourite_comic_usecase.dart';
+import '../../features/favourite/domain/usecases/get_favourite_comic_usecase.dart';
+import '../../features/favourite/presentation/controllers/favourite_comic_controller.dart';
 
 class Binding extends Bindings {
   @override

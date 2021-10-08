@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:movie_app/features/comic/domain/entities/comic.dart';
-import 'package:movie_app/features/comic/domain/usecases/get_comic_usecase.dart';
+import '../../domain/entities/comic.dart';
+import '../../domain/usecases/get_comic_usecase.dart';
 
-import 'package:movie_app/helpers/utils/show_snack_bar.dart';
+import '../../../../helpers/utils/show_snack_bar.dart';
 
 class ComicController extends GetxController {
   final GetComicUseCase getComicUseCase;

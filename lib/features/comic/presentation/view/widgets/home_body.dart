@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/configs/strings/strings.dart';
-import 'package:movie_app/features/comic/presentation/view/pages/list_screen.dart';
+import '../../../../../configs/strings/strings.dart';
+import '../pages/list_screen.dart';
 
 import 'home_scroll_widget.dart';
 import 'image_slider.dart';

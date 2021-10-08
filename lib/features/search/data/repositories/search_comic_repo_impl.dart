@@ -1,6 +1,6 @@
-import 'package:movie_app/features/search/data/datasources/search_comic_data_source.dart';
-import 'package:movie_app/features/search/domain/entities/searchcomic.dart';
-import 'package:movie_app/features/search/domain/repositories/search_comic_repo.dart';
+import '../datasources/search_comic_data_source.dart';
+import '../../domain/entities/searchcomic.dart';
+import '../../domain/repositories/search_comic_repo.dart';
 
 class SearchComicRepoImpl implements SearchRepo {
   final SearchComicDataSource searchComicDataSource;
