@@ -32,8 +32,15 @@ class ComicController extends GetxController {
       setLoading(true);
       List<Comic> _recentComics = await getRecentUseCase.call();
 
-      for (var _recentComic in _recentComics) {
-        _recentComicList.add(_recentComic);
+      if (_recentComics.length < 5) {
+        for (var _recentComic in _recentComics) {
+          _recentComicList.add(_recentComic);
+        }
+      } else {
+        for (var i = 0; i < 5; i++) {
+          print(i);
+          _recentComicList.add(_recentComics[i]);
+        }
       }
 
       setLoading(false);

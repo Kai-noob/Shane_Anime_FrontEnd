@@ -60,8 +60,8 @@ class TestScreen extends StatelessWidget {
             RecentList(),
             HotText(),
             HotList(),
-            // CompletedText(),
-            // CompleteList()
+            CompletedText(),
+            CompleteList()
           ],
         ),
       ),

@@ -14,17 +14,21 @@ class CompleteList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-        return Obx(() {
-          if (_completeController.isLoading) {
-            return LoadingIndicator();
-          }
+    return Obx(() {
+      if (_completeController.isLoading) {
+        return SliverToBoxAdapter(
+          child: LoadingIndicator(),
+        );
+      }
+
+      return SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisSpacing: 10, crossAxisCount: 3, childAspectRatio: 0.45),
+        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
           return Column(
             children: [
               Container(
-                height: 180,
-                width: double.infinity,
+                height: 150,
                 child: ImageWidget(
                   image:
                       _completeController.completeComicList[index].coverPhoto,
@@ -34,14 +38,14 @@ class CompleteList extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   _completeController.completeComicList[index].title,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                 ),
               )
             ],
           );
-        });
-      }, childCount: 3),
-    );
+        }, childCount: _completeController.completeComicList.length),
+      );
+    });
 
     // return SliverPadding(
     //     padding: EdgeInsets.symmetric(vertical: 10),

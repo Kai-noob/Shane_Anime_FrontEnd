@@ -25,8 +25,15 @@ class CompleteController extends GetxController {
       setLoading(true);
       List<Comic> _completeComics = await getCompleteUseCase.call();
 
-      for (var _completeComic in _completeComics) {
-        _completeComicList.add(_completeComic);
+      if (_completeComics.length < 6) {
+        for (var _completeComic in _completeComics) {
+          _completeComicList.add(_completeComic);
+        }
+      } else {
+        for (var i = 0; i < 6; i++) {
+          print(i);
+          _completeComicList.add(_completeComics[i]);
+        }
       }
 
       print(_completeComicList);

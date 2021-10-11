@@ -25,8 +25,15 @@ class HotController extends GetxController {
       setLoading(true);
       List<Comic> _hotComics = await getHotUseCase.call();
 
-      for (var _hotComic in _hotComics) {
-        _hotComicList.add(_hotComic);
+      if (_hotComics.length < 4) {
+        for (var _hotComic in _hotComics) {
+          _hotComicList.add(_hotComic);
+        }
+      } else {
+        for (var i = 0; i < 4; i++) {
+          print(i);
+          _hotComicList.add(_hotComics[i]);
+        }
       }
 
       setLoading(false);
