@@ -31,13 +31,16 @@ class SearchComicController extends GetxController {
       setLoading(true);
       List<SearchComic> _searchComics =
           await searchComicUseCase.call(query: query);
-
-      _searchComicList.value = _searchComics;
-
-      if (_searchComics.isNotEmpty) {
-        _isEmpty.value = false;
+      if (query.isEmpty) {
+        _searchComicList.clear();
       } else {
-        _isEmpty.value = true;
+        _searchComicList.value = _searchComics;
+
+        if (_searchComics.isNotEmpty) {
+          _isEmpty.value = false;
+        } else {
+          _isEmpty.value = true;
+        }
       }
 
       setLoading(false);

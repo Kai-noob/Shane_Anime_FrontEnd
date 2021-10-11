@@ -10,7 +10,7 @@ class SearchComicDataSourceImpl implements SearchComicDataSource {
   @override
   Future<List<SearchComic>> searchComics({required String query}) async {
     QuerySnapshot querySnapshot = await firebaseFirestore
-        .collection("comic")
+        .collection("comics")
         .where("title", isGreaterThanOrEqualTo: query)
         .get();
 
@@ -19,11 +19,12 @@ class SearchComicDataSourceImpl implements SearchComicDataSource {
     for (QueryDocumentSnapshot comic in querySnapshot.docs) {
       searchcomicList.add(SearchComicModel(
           title: comic.get("title"),
-          coverPhoto: comic.get("coverPhoto"),
+          coverPhoto: comic.get("cover_photo"),
           review: comic.get("review"),
-          editorChoice: comic.get("editorChoice"),
-          isFavourite: comic.get("isFavourite"),
-          isCompleted: comic.get("isCompleted")));
+          editorChoice: comic.get("editor_choice"),
+          published: comic.get("published"),
+          completed: comic.get("completed"),
+          created: comic.get("created")));
     }
     return searchcomicList;
   }
