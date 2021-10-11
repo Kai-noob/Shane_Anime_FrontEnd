@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/core/strings/strings.dart';
-import 'package:movie_app/features/home/presentation/view/pages/reading/widgets/reading_nav_bar.dart';
+import '../../../../../../core/strings/strings.dart';
+import 'widgets/reading_nav_bar.dart';
 
 import 'package:photo_view/photo_view.dart';
 

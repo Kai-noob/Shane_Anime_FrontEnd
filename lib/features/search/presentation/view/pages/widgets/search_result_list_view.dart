@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/core/common/loading_indicator.dart';
-import 'package:movie_app/features/search/presentation/controllers/search_comic_controller.dart';
+
+import '../../../../../../core/global/loading_indicator.dart';
+import '../../../controllers/search_comic_controller.dart';
 
 class SearchResultListView extends StatelessWidget {
   const SearchResultListView({

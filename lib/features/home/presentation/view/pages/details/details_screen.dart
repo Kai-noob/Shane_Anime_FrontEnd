@@ -14,7 +14,9 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: const DetailsNavBar(),
+        bottomNavigationBar: DetailsNavBar(
+          image: comicModel.coverPhoto,
+        ),
         body: DetailsBody(comicModel: comicModel, image: image));
   }
 }

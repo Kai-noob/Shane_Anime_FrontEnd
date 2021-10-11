@@ -253,13 +253,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
-  equatable:
-    dependency: "direct main"
-    description:
-      name: equatable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
   eva_icons_flutter:
     dependency: "direct main"
     description:
@@ -436,13 +429,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  ionicons:
-    dependency: "direct main"
-    description:
-      name: ionicons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   js:
     dependency: transitive
     description:

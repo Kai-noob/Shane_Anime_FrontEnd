@@ -1,12 +1,12 @@
 import '../entities/comic.dart';
 import '../repositories/comic_repo.dart';
 
-class GetComicUseCase {
+class GetRecentComicUseCase {
   final ComicRepo comicRepo;
 
-  GetComicUseCase({required this.comicRepo});
+  GetRecentComicUseCase({required this.comicRepo});
 
   Future<List<Comic>> call() {
-    return comicRepo.getComicsFromFirebase();
+    return comicRepo.getRecentComics();
   }
 }

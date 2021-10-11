@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/strings/strings.dart';
+import '../../../../../../../core/strings/strings.dart';
 
 class ReadingNavBar extends StatelessWidget {
   const ReadingNavBar({

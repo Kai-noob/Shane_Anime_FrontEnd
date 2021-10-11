@@ -1,9 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../../core/global/loading_indicator.dart';
 
-import 'package:movie_app/core/common/loading_indicator.dart';
-import 'package:movie_app/core/services/navigation_service.dart';
+import '../../../../../core/services/navigation_service.dart';
 
 class ControlView extends StatelessWidget {
   const ControlView({Key? key}) : super(key: key);
@@ -16,7 +16,9 @@ class ControlView extends StatelessWidget {
         body: controller.currentScreen,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          iconSize: 22,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          iconSize: 25,
           elevation: 0.0,
           currentIndex: controller.navigatorIndex,
           onTap: (index) {
@@ -24,12 +26,11 @@ class ControlView extends StatelessWidget {
           },
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(EvaIcons.bookOpen), label: "Comic"),
-            BottomNavigationBarItem(icon: Icon(EvaIcons.grid), label: "Genres"),
+                icon: Icon(EvaIcons.homeOutline), label: "Comic"),
             BottomNavigationBarItem(
-                icon: Icon(EvaIcons.heart), label: "Favourite"),
-            // BottomNavigationBarItem(
-            //     icon: Icon(Icons.settings), label: "Settings"),
+                icon: Icon(EvaIcons.gridOutline), label: "Genres"),
+            BottomNavigationBarItem(
+                icon: Icon(EvaIcons.heartOutline), label: "Favourite"),
           ],
         ),
       ),
@@ -51,7 +52,10 @@ class NoInternetConnection extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Text("Please check your internet connection.."),
+            Text(
+              "Please check your internet connection..",
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500),
+            ),
           ],
         ),
       ),

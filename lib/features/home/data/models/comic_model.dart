@@ -1,25 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../domain/entities/comic.dart';
 
 class ComicModel extends Comic {
-  ComicModel(
-      {required String title,
-      required String coverPhoto,
-      required String review,
-      required bool editorChoice,
-      required bool isFavourite,
-      required bool isCompleted})
-      : super(
-            title, coverPhoto, review, editorChoice, isFavourite, isCompleted);
+  ComicModel({
+    required String title,
+    required String coverPhoto,
+    required String review,
+    required bool editorChoice,
+    required bool published,
+    required bool completed,
+    required Timestamp created,
+  }) : super(title, coverPhoto, review, editorChoice, published, completed,
+            created);
 
   static ComicModel fromJson(Map<String, dynamic> json) {
     return ComicModel(
-      title: json['title'],
-      coverPhoto: json['coverPhoto'],
-      review: json['review'],
-      editorChoice: json['editorChoice'],
-      isFavourite: json['isFavourite'],
-      isCompleted: json['isCompleted'],
-    );
+        title: json['title'],
+        coverPhoto: json['cover_photo'],
+        review: json['review'],
+        editorChoice: json['editor_choice'],
+        published: json['published'],
+        completed: json['completed'],
+        created: json['created']);
   }
 
   Map<String, dynamic> toJson() {
@@ -28,8 +31,9 @@ class ComicModel extends Comic {
       "coverPhoto": coverPhoto,
       "review": review,
       "editorChoice": editorChoice,
-      "isFavourite": isFavourite,
-      "isCompleted": isCompleted
+      "published": published,
+      "completed": completed,
+      "created": created
     };
   }
 }

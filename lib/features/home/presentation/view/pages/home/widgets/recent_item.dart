@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/core/common/image_widget.dart';
+import 'package:movie_app/core/global/image_widget.dart';
+import 'package:movie_app/features/home/binding/home_binding.dart';
+import 'package:movie_app/features/home/domain/entities/comic.dart';
+import 'package:movie_app/features/home/presentation/view/pages/details/details_screen.dart';
 
-import '../../../../../domain/entities/comic.dart';
-import '../../../../../binding/home_binding.dart';
-import '../../details/details_screen.dart';
-
-class HomeScrollItem extends StatelessWidget {
-  final String image;
+class RecentItem extends StatelessWidget {
   final Comic comicModel;
-  final String label;
-  const HomeScrollItem({
+
+  const RecentItem({
     Key? key,
-    required this.image,
-    required this.label,
     required this.comicModel,
   }) : super(key: key);
 
@@ -36,11 +32,11 @@ class HomeScrollItem extends StatelessWidget {
             child: SizedBox(
               height: 200,
               width: 200,
-              child: ImageWidget(image: image),
+              child: ImageWidget(image: comicModel.coverPhoto),
             ),
           ),
           Text(
-            label,
+            comicModel.title,
             style: const TextStyle(fontSize: 16),
             overflow: TextOverflow.ellipsis,
           ),

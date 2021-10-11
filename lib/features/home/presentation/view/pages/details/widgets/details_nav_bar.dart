@@ -1,9 +1,12 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class DetailsNavBar extends StatelessWidget {
+  final String image;
   const DetailsNavBar({
     Key? key,
+    required this.image,
   }) : super(key: key);
 
   @override
@@ -25,7 +28,9 @@ class DetailsNavBar extends StatelessWidget {
             ),
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Share.share("https://google.com");
+              },
               icon: const Icon(
                 EvaIcons.shareOutline,
                 color: Colors.white,

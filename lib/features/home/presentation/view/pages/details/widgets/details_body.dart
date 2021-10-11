@@ -1,8 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/core/common/image_widget.dart';
-import 'package:movie_app/features/home/domain/entities/comic.dart';
+
+import '../../../../../../../core/global/image_widget.dart';
+import '../../../../../domain/entities/comic.dart';
 
 import '../../reading/reading_screen.dart';
 import 'detial_sliver_delegate.dart';

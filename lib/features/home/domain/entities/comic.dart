@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Comic {
   final String title;
   final String coverPhoto;
   final String review;
   final bool editorChoice;
-  final bool isFavourite;
-  final bool isCompleted;
+  final bool published;
+  final bool completed;
+  final Timestamp created;
 
   Comic(this.title, this.coverPhoto, this.review, this.editorChoice,
-      this.isFavourite, this.isCompleted);
+      this.published, this.completed, this.created);
 }

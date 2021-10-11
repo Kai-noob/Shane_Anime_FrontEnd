@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:movie_app/core/utils/show_snack_bar.dart';
+import '../../../../core/utils/show_snack_bar.dart';
 import '../../domain/entities/searchcomic.dart';
 import '../../domain/usecases/search_comic_usecase.dart';
 
