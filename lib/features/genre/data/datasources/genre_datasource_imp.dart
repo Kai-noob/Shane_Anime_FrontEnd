@@ -44,19 +44,21 @@ class GenreDataSourceImpl implements GenreDataSource {
   }
 
   @override
-  Future<List<ComicByGenre>> getComicByGenreFromFirebase(String doc) {
-    return firebaseFirestore
-        .collection("comics")
-        .doc(doc)
-        .snapshots()
-        .map((snapshot) => ComicByGenreModel(
-            title: snapshot.get("title"),
-            review: snapshot.get("review"),
-            coverPhoto: snapshot.get("cover_photo"),
-            editorChoice: snapshot.get("editor_choice"),
-            completed: snapshot.get("completed"),
-            created: snapshot.get("created"),
-            published: snapshot.get("published")))
-        .toList();
+  Future<ComicByGenre> getComicByGenreFromFirebase(String doc) async {
+    final comic = await firebaseFirestore.collection("comics").doc(doc).get();
+
+    print("ComicID  => $doc");
+
+    final currentComic = comic.data() as Map<String, dynamic>;
+    print("Currentcomic length  ${currentComic}");
+
+    return ComicByGenreModel(
+        title: currentComic["title"],
+        review: currentComic["review"],
+        coverPhoto: currentComic["cover_photo"],
+        editorChoice: currentComic["editor_choice"],
+        completed: currentComic["completed"],
+        published: currentComic["published"],
+        created: currentComic["created"]);
   }
 }

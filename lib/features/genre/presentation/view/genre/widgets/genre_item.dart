@@ -32,7 +32,7 @@ class GeneryItemWIdget extends StatelessWidget {
             ),
             Container(
               constraints: const BoxConstraints(maxWidth: 150),
-              child: const Text(label5,
+              child: Text(comicByGenre.title,
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
             ),
             const SizedBox(

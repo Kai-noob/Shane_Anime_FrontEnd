@@ -1,4 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:movie_app/features/home/data/models/episode_model.dart';
+import 'package:movie_app/features/home/data/models/photo_model.dart';
+import 'package:movie_app/features/home/domain/entities/episodes.dart';
+import 'package:movie_app/features/home/domain/entities/photos.dart';
 import 'comic_datasource.dart';
 import '../models/comic_model.dart';
 import '../../domain/entities/comic.dart';
@@ -16,6 +20,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
 
     for (QueryDocumentSnapshot recentComic in querySnapshot.docs) {
       recentComicList.add(ComicModel(
+          id: recentComic.id,
           title: recentComic.get("title"),
           coverPhoto: recentComic.get("cover_photo"),
           review: recentComic.get("review"),
@@ -38,6 +43,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
 
     for (QueryDocumentSnapshot completeComic in querySnapshot.docs) {
       completeComicList.add(ComicModel(
+          id: completeComic.id,
           title: completeComic.get("title"),
           coverPhoto: completeComic.get("cover_photo"),
           review: completeComic.get("review"),
@@ -60,6 +66,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
 
     for (QueryDocumentSnapshot hotComic in querySnapshot.docs) {
       hotComicList.add(ComicModel(
+          id: hotComic.id,
           title: hotComic.get("title"),
           coverPhoto: hotComic.get("cover_photo"),
           review: hotComic.get("review"),
@@ -69,5 +76,62 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
           created: hotComic.get("created")));
     }
     return hotComicList;
+  }
+
+  @override
+  Future<List<Episodes>> getEpisodes(String comicId) async {
+    QuerySnapshot querySnapshot = await firebaseFirestore
+        .collection("episodes")
+        .orderBy("episode_name")
+        .where("comic_id", isEqualTo: comicId)
+        .get();
+
+    List<Episodes> episodeList = [];
+
+    for (QueryDocumentSnapshot episode in querySnapshot.docs) {
+      episodeList.add(
+        EpisodeModel(
+            comicId: episode.get("comic_id"),
+            episodeName: episode.get("episode_name"),
+            episodes: episode.get("photo_array")),
+      );
+    }
+    return episodeList;
+  }
+
+  @override
+  Future<List<Photos>> getPhotos(String comicId, String episodeName) {
+    // QuerySnapshot querySnapshot = await firebaseFirestore
+    //     .collection("episodes")
+    //     .where('comic_id', isEqualTo: "JwXcaWJE8esQEfG8JsuD")
+    //     .where('episode_name', isEqualTo: "Episode2")
+
+    // // for (QueryDocumentSnapshot photo in querySnapshot.docs) {
+
+    //  return PhotoModel(
+    //         comicId: querySnapshot.docs.
+    //         episodeName: photo.get("episode_name"),
+    //         photos: photo.get("photo_array")),
+
+    // }
+
+    return firebaseFirestore
+        .collection("episodes")
+        .where("comic_id", isEqualTo: "D0YNkdW8cZnPEiM9tvOp")
+        .where("episode_name", isEqualTo: "Episode2")
+        .get()
+        .then((value) {
+      return value.docs
+          .map(
+            (e) => PhotoModel(
+              comicId: e.get("comic_id"),
+              episodeName: e.get("episode_name"),
+              photos: e.get("photo_array"),
+            ),
+          )
+          .toList();
+    });
+
+    // return querySnapshot.docs[]
   }
 }

@@ -1,6 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_app/core/global/loading_indicator.dart';
+import 'package:movie_app/features/home/presentation/controllers/episode_controller.dart';
+import 'package:movie_app/features/home/presentation/controllers/photo_controller.dart';
 
 import '../../../../../../../core/global/image_widget.dart';
 import '../../../../../domain/entities/comic.dart';
@@ -100,24 +103,51 @@ class DetailsBody extends StatelessWidget {
               textAlign: TextAlign.justify,
             ),
           ),
-          ListView.builder(
-            itemCount: 15,
-            itemBuilder: (BuildContext context, int index) {
-              return ListTile(
-                title: const Text("Chapter1"),
-                onTap: () {
-                  Get.to(() => const ReadingScreen());
-                },
-                leading: const Icon(
-                  EvaIcons.bookOpen,
-                  color: Colors.deepPurpleAccent,
-                ),
-                trailing: const Text("Free"),
-              );
-            },
+          EpisodeListView(
+            comicId: comicModel.id,
           ),
         ]),
       ),
     );
+  }
+}
+
+class EpisodeListView extends StatelessWidget {
+  final EpisodeController _episodeController = Get.find<EpisodeController>();
+
+  final String comicId;
+  EpisodeListView({
+    Key? key,
+    required this.comicId,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    _episodeController.getEpisodes(comicId);
+
+    return Obx(() {
+      if (_episodeController.isLoading) {
+        return LoadingIndicator();
+      }
+      return ListView.builder(
+        itemCount: _episodeController.episodeList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text(_episodeController.episodeList[index].episodeName),
+            onTap: () {
+              //  _episodeController.getPhotos(
+              //     "Episode2", "D0YNkdW8cZnPEiM9tvOp");
+              Get.to(() =>
+                  ReadingScreen(photos: _episodeController.episodeList[index]));
+            },
+            leading: const Icon(
+              EvaIcons.bookOpen,
+              color: Colors.deepPurpleAccent,
+            ),
+            trailing: const Text("Free"),
+          );
+        },
+      );
+    });
   }
 }

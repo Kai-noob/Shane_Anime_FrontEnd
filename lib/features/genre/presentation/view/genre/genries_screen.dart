@@ -45,63 +45,54 @@ class _GenriesScreenState extends State<GenriesScreen> {
         body: CustomScrollView(
           physics: BouncingScrollPhysics(),
           slivers: [
-            SliverToBoxAdapter(
-              child: Obx(() {
-                if (controller.isLoading) {
-                  return LoadingIndicator();
-                }
-                return Wrap(
+            Obx(() {
+              if (controller.isLoading) {
+                return SliverToBoxAdapter(child: LoadingIndicator());
+              }
+              return SliverToBoxAdapter(
+                child: Wrap(
                     runSpacing: 6.0,
                     spacing: 12.0,
                     children: controller.genreList
                         .map(
-                          (e) => GestureDetector(
-                            onTap: () {
-                              controller.getComicByGenres();
-                            },
-                            child: ChoiceChip(
-                                selected: _choiceIndex ==
-                                    controller.genreList.indexOf(e),
-                                selectedColor: Colors.deepPurpleAccent,
-                                backgroundColor: Colors.grey.shade700,
-                                onSelected: (bool selected) {
-                                  setState(() {
-                                    _choiceIndex = selected
-                                        ? controller.genreList.indexOf(e)
-                                        : 0;
-                                  });
-                                },
-                                labelStyle: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 13),
-                                label: Text(e.name)),
-                          ),
+                          (e) => ChoiceChip(
+                              selected: _choiceIndex ==
+                                  controller.genreList.indexOf(e),
+                              selectedColor: Colors.deepPurpleAccent,
+                              backgroundColor: Colors.grey.shade700,
+                              onSelected: (bool selected) {
+                                controller.getComicByGenres(e.id);
+                                setState(() {
+                                  _choiceIndex = selected
+                                      ? controller.genreList.indexOf(e)
+                                      : controller.genreList.indexOf(e);
+                                });
+                              },
+                              labelStyle: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 13),
+                              label: Text(e.name)),
                         )
-                        .toList());
-              }),
-            ),
-            SliverList(
-              delegate:
-                  SliverChildBuilderDelegate((BuildContext context, int index) {
-                return Obx(() {
-                  print(controller.comicByGenreList.length);
-                  if (controller.comicByGenreList.isEmpty) {
-                    return Center(
-                      child: Text("No Data"),
-                    );
-                  }
-                  if (controller.isLoadingTest) {
-                    return Center(
-                        child: CircularProgressIndicator(
-                      color: Colors.red,
-                    ));
-                  }
+                        .toList()),
+              );
+            }),
+            Obx(() {
+              if (controller.comicByGenreList.isEmpty) {
+                return SliverToBoxAdapter(
+                    child: Center(child: Text("NO Data")));
+              }
+              if (controller.isLoadingTest) {
+                return SliverToBoxAdapter(child: LoadingIndicator());
+              }
+              return SliverList(
+                delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
                   return GeneryItemWIdget(
                       comicByGenre: controller.comicByGenreList[index]);
-                });
-              }, childCount: controller.comicByGenreList.length),
-            )
+                }, childCount: controller.comicByGenreList.length),
+              );
+            })
           ],
         ));
   }

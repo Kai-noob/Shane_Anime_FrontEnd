@@ -9,9 +9,13 @@ import 'package:movie_app/features/genre/domain/usecases/get_comic_genre_usecase
 import 'package:movie_app/features/genre/domain/usecases/get_genre_usecase.dart';
 import 'package:movie_app/features/genre/presentation/controllers/genre_controller.dart';
 import 'package:movie_app/features/home/domain/usecases/get_completed_comic_usecase.dart';
+import 'package:movie_app/features/home/domain/usecases/get_episodes_usecase.dart';
 import 'package:movie_app/features/home/domain/usecases/get_hot_comic_usecase.dart';
+import 'package:movie_app/features/home/domain/usecases/get_phoots_usecase.dart';
 import 'package:movie_app/features/home/presentation/controllers/complete_controller.dart';
+import 'package:movie_app/features/home/presentation/controllers/episode_controller.dart';
 import 'package:movie_app/features/home/presentation/controllers/hot_controller.dart';
+import 'package:movie_app/features/home/presentation/controllers/photo_controller.dart';
 import '../../../core/services/connection_service.dart';
 import '../data/datasources/comic_datasource.dart';
 import '../data/datasources/comic_datasource_impl.dart';
@@ -41,6 +45,15 @@ class Binding extends Bindings {
           getHotUseCase: Get.find<GetHotComicUseCase>(),
         ));
 
+    Get.lazyPut(() => EpisodeController(
+          getPhotosUseCase: Get.find<GetPhotosUseCase>(),
+          getEpisodesUseCase: Get.find<GetEpisodesUseCase>(),
+        ));
+
+    Get.lazyPut(() => PhotoController(
+          getPhotosUseCase: Get.find<GetPhotosUseCase>(),
+        ));
+
     Get.lazyPut<GenreController>(() => GenreController(
         getComicGenreUseCase: Get.find<GetComicGenreUseCase>(),
         getComicByGenreUseCase: Get.find<GetComicByGenreUseCase>(),
@@ -54,6 +67,12 @@ class Binding extends Bindings {
 
     Get.lazyPut<GetCompletedComicUseCase>(
         () => GetCompletedComicUseCase(comicRepo: Get.find<ComicRepo>()));
+
+    Get.lazyPut<GetEpisodesUseCase>(
+        () => GetEpisodesUseCase(comicRepo: Get.find<ComicRepo>()));
+
+    Get.lazyPut<GetPhotosUseCase>(
+        () => GetPhotosUseCase(comicRepo: Get.find<ComicRepo>()));
 
     Get.lazyPut<GetComicGenreUseCase>(
         () => GetComicGenreUseCase(genreRepo: Get.find<GenreRepo>()));

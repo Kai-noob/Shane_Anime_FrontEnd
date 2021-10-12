@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/core/global/image_widget.dart';
 import 'package:movie_app/core/global/loading_indicator.dart';
+import 'package:movie_app/core/services/connection_service.dart';
 import 'package:movie_app/core/services/theme_service.dart';
 import 'package:movie_app/core/strings/strings.dart';
 import 'package:movie_app/features/home/presentation/controllers/comic_controller.dart';
@@ -13,6 +14,7 @@ import 'package:movie_app/features/home/presentation/view/pages/home/widgets/ima
 import 'package:movie_app/features/home/presentation/view/pages/home/widgets/recent_item.dart';
 import 'package:movie_app/features/home/presentation/view/pages/list/list_screen.dart';
 
+import '../controll_screen.dart';
 import 'widgets/recent_list.dart';
 
 class TestScreen extends StatelessWidget {
@@ -29,42 +31,57 @@ class TestScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5.0),
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              backgroundColor: context.theme.backgroundColor,
-              elevation: 0.0,
-              title: Text("Shane Manga"),
-              floating: true,
-              actions: [
-                IconButton(
-                    onPressed: () {
-                      ThemeService().swithTheme();
-                    },
-                    icon: Icon(Get.isDarkMode
-                        ? EvaIcons.sunOutline
-                        : EvaIcons.moonOutline))
-              ],
-            ),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 10),
-              sliver: SliverToBoxAdapter(
-                child: ImageCarouselWidget(
-                  images: images,
-                ),
-              ),
-            ),
-            RecentText(),
-            RecentList(),
-            HotText(),
-            HotList(),
-            CompletedText(),
-            CompleteList()
+      body: Obx(() =>
+          Get.find<NetworkController>().connectionStatus.value == 1 ||
+                  Get.find<NetworkController>().connectionStatus.value == 2
+              ? HomeBody(images: images)
+              : const NoInternetConnection()),
+    );
+  }
+}
+
+class HomeBody extends StatelessWidget {
+  const HomeBody({
+    Key? key,
+    required this.images,
+  }) : super(key: key);
+
+  final List images;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          backgroundColor: context.theme.backgroundColor,
+          elevation: 0.0,
+          title: Text("Shane Manga"),
+          floating: true,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  ThemeService().swithTheme();
+                },
+                icon: Icon(Get.isDarkMode
+                    ? EvaIcons.sunOutline
+                    : EvaIcons.moonOutline))
           ],
         ),
-      ),
+        SliverPadding(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          sliver: SliverToBoxAdapter(
+            child: ImageCarouselWidget(
+              images: images,
+            ),
+          ),
+        ),
+        RecentText(),
+        RecentList(),
+        HotText(),
+        HotList(),
+        CompletedText(),
+        CompleteList()
+      ],
     );
   }
 }

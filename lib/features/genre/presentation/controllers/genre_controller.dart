@@ -75,47 +75,39 @@ class GenreController extends GetxController {
     } catch (e) {
       setLoading(false);
       SnackBarUtils().showSnackBar(e.toString());
+      print(" Genres${e.toString()}");
     }
   }
 
-  Future<void> getComicByGenres() async {
+  Future<void> getComicByGenres(String genreId) async {
     try {
       setLoadingTest(true);
+      List<ComicGenre> _comicGenres = await getComicGenreUseCase.call(genreId);
 
-      List<ComicByGenre> _comicByGenres =
-          await getComicByGenreUseCase.call("UY0t7ISYeMWj2tCT2ioU");
-      for (var _comicByGenre in _comicByGenres) {
-        _comicByGenreList.add(_comicByGenre);
+      // List<String> _comicId = [];
+
+      for (var i = 0; i < _comicGenres.length; i++) {
+        ComicByGenre _comicByGenres =
+            await getComicByGenreUseCase.call(_comicGenres[i].comicId);
+
+        _comicByGenreList.insert(i, _comicByGenres);
+        _comicByGenreList.clear();
       }
+
+      // print("ComicGenres => ${_comicByGenres.length}");
 
       setLoadingTest(false);
     } catch (e) {
       setLoading(false);
-      SnackBarUtils().showSnackBar(e.toString());
-      print(e.toString());
-    }
-  }
-
-  Future<void> getComicGenres() async {
-    try {
-      setLoadingTest(true);
-      List<ComicGenre> _comicGenres =
-          await getComicGenreUseCase.call("ddoW4ADurggxMQJhxRye");
-      for (var comicGenre in _comicGenres) {
-        _comicGenreList.add(comicGenre);
-      }
-      print("ComicGenres => ${_comicGenres}");
-      setLoadingTest(false);
-    } catch (e) {
-      setLoading(false);
-      SnackBarUtils().showSnackBar(e.toString());
-      print(e.toString());
+      SnackBarUtils().showSnackBar("Comic By Genres${e.toString()}");
+      print("Comic By Genres${e.toString()}");
     }
   }
 
   @override
   void onInit() async {
     await getGenres();
+
     super.onInit();
   }
 }

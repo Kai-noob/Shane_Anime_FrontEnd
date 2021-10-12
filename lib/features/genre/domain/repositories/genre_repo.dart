@@ -7,5 +7,5 @@ abstract class GenreRepo {
 
   Future<List<Genre>> getGenre();
 
-  Future<List<ComicByGenre>> getComicByGenre(String doc);
+  Future<ComicByGenre> getComicByGenre(String doc);
 }

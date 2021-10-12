@@ -4,6 +4,7 @@ import '../../domain/entities/comic.dart';
 
 class ComicModel extends Comic {
   ComicModel({
+    String? id,
     required String title,
     required String coverPhoto,
     required String review,
@@ -11,7 +12,7 @@ class ComicModel extends Comic {
     required bool published,
     required bool completed,
     required Timestamp created,
-  }) : super(title, coverPhoto, review, editorChoice, published, completed,
+  }) : super(id!, title, coverPhoto, review, editorChoice, published, completed,
             created);
 
   static ComicModel fromJson(Map<String, dynamic> json) {

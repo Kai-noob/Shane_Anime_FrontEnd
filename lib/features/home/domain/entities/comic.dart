@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Comic {
+  final String id;
   final String title;
   final String coverPhoto;
   final String review;
@@ -9,6 +10,6 @@ class Comic {
   final bool completed;
   final Timestamp created;
 
-  Comic(this.title, this.coverPhoto, this.review, this.editorChoice,
+  Comic(this.id, this.title, this.coverPhoto, this.review, this.editorChoice,
       this.published, this.completed, this.created);
 }
