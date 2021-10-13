@@ -94,14 +94,17 @@ class CompletedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       sliver: SliverToBoxAdapter(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               "Completed Series",
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: const TextStyle(
+                  fontFamily: "MyFont",
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600),
             ),
             TextButton(
                 onPressed: () {
@@ -109,6 +112,7 @@ class CompletedText extends StatelessWidget {
                 },
                 child: const Text("View All",
                     style: TextStyle(
+                        fontFamily: "MyFont",
                         fontWeight: FontWeight.w700,
                         color: Colors.deepPurple,
                         fontSize: 17)))
@@ -127,14 +131,17 @@ class HotText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       sliver: SliverToBoxAdapter(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               "Hot Mangas",
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: const TextStyle(
+                  fontFamily: "MyFont",
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600),
             ),
             TextButton(
                 onPressed: () {
@@ -143,6 +150,7 @@ class HotText extends StatelessWidget {
                 child: const Text("View All",
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
+                        fontFamily: "MyFont",
                         color: Colors.deepPurple,
                         fontSize: 17)))
           ],
@@ -160,14 +168,17 @@ class RecentText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       sliver: SliverToBoxAdapter(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               "Daily Update",
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: const TextStyle(
+                  fontFamily: "MyFont",
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600),
             ),
             TextButton(
                 onPressed: () {
@@ -176,6 +187,7 @@ class RecentText extends StatelessWidget {
                 child: const Text("View All",
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
+                        fontFamily: "MyFont",
                         color: Colors.deepPurple,
                         fontSize: 17)))
           ],

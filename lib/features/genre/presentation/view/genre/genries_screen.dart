@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/core/global/loading_indicator.dart';
 import 'package:movie_app/core/strings/strings.dart';
+import 'package:movie_app/core/utils/show_snack_bar.dart';
 
 import 'package:movie_app/features/genre/presentation/controllers/genre_controller.dart';
 import 'package:movie_app/features/genre/presentation/view/genre/widgets/genre_item.dart';
@@ -50,38 +51,18 @@ class _GenriesScreenState extends State<GenriesScreen> {
                 return SliverToBoxAdapter(child: LoadingIndicator());
               }
               return SliverToBoxAdapter(
-                child: Wrap(
-                    runSpacing: 6.0,
-                    spacing: 12.0,
-                    children: controller.genreList
-                        .map(
-                          (e) => ChoiceChip(
-                              selected: _choiceIndex ==
-                                  controller.genreList.indexOf(e),
-                              selectedColor: Colors.deepPurpleAccent,
-                              backgroundColor: Colors.grey.shade700,
-                              onSelected: (bool selected) {
+                  child: Wrap(
+                      runSpacing: 6.0,
+                      spacing: 12.0,
+                      children: controller.genreList
+                          .map((e) => ActionChip(
+                              label: Text(e.name),
+                              onPressed: () {
                                 controller.getComicByGenres(e.id);
-                                setState(() {
-                                  _choiceIndex = selected
-                                      ? controller.genreList.indexOf(e)
-                                      : controller.genreList.indexOf(e);
-                                });
-                              },
-                              labelStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 13),
-                              label: Text(e.name)),
-                        )
-                        .toList()),
-              );
+                              }))
+                          .toList()));
             }),
             Obx(() {
-              if (controller.comicByGenreList.isEmpty) {
-                return SliverToBoxAdapter(
-                    child: Center(child: Text("NO Data")));
-              }
               if (controller.isLoadingTest) {
                 return SliverToBoxAdapter(child: LoadingIndicator());
               }

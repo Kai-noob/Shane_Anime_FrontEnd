@@ -16,8 +16,6 @@ class ControlView extends StatelessWidget {
         body: controller.currentScreen,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
           iconSize: 25,
           elevation: 0.0,
           currentIndex: controller.navigatorIndex,
@@ -26,7 +24,7 @@ class ControlView extends StatelessWidget {
           },
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(EvaIcons.homeOutline), label: "Comic"),
+                icon: Icon(EvaIcons.bookOpenOutline), label: "Comic"),
             BottomNavigationBarItem(
                 icon: Icon(EvaIcons.gridOutline), label: "Genres"),
             BottomNavigationBarItem(

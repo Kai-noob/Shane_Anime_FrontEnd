@@ -85,13 +85,12 @@ class GenreController extends GetxController {
       List<ComicGenre> _comicGenres = await getComicGenreUseCase.call(genreId);
 
       // List<String> _comicId = [];
-
+      _comicByGenreList.clear();
       for (var i = 0; i < _comicGenres.length; i++) {
         ComicByGenre _comicByGenres =
             await getComicByGenreUseCase.call(_comicGenres[i].comicId);
 
-        _comicByGenreList.insert(i, _comicByGenres);
-        _comicByGenreList.clear();
+        _comicByGenreList.add(_comicByGenres);
       }
 
       // print("ComicGenres => ${_comicByGenres.length}");
@@ -102,6 +101,14 @@ class GenreController extends GetxController {
       SnackBarUtils().showSnackBar("Comic By Genres${e.toString()}");
       print("Comic By Genres${e.toString()}");
     }
+  }
+
+  @override
+  void onReady() {
+    ever(_comicByGenreList, (callback) {
+      // _comicByGenreList.clear();
+    });
+    super.onReady();
   }
 
   @override
