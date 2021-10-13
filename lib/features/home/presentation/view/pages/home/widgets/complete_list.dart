@@ -38,7 +38,10 @@ class CompleteList extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   _completeController.completeComicList[index].title,
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      overflow: TextOverflow.ellipsis),
                 ),
               )
             ],

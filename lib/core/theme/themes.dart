@@ -9,6 +9,7 @@ class Themes {
       backgroundColor: Colors.black,
       colorScheme: const ColorScheme.dark(),
       textTheme: ThemeData.dark().textTheme,
+      fontFamily: "MyFont",
       appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
       buttonTheme: const ButtonThemeData(
         buttonColor: Colors.white,
@@ -30,6 +31,7 @@ class Themes {
       iconTheme: const IconThemeData(color: Colors.white));
 
   static final ThemeData light = ThemeData(
+      fontFamily: "MyFont",
       scaffoldBackgroundColor: Colors.white,
       backgroundColor: Colors.white,
       primaryColor: Colors.white,

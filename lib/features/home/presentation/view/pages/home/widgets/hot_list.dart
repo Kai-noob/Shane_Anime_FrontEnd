@@ -40,7 +40,10 @@ class HotList extends StatelessWidget {
           );
         }, childCount: _hotController.hotComicList.length),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
+            childAspectRatio: 0.9,
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10),
       );
     });
   }

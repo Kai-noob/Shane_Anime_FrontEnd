@@ -19,15 +19,12 @@ class RecentList extends StatelessWidget {
           if (_recentController.isLoading) {
             return LoadingIndicator();
           }
-          return SizedBox(
-            height: 230,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: _recentController.recentComicList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return RecentItem(
-                    comicModel: _recentController.recentComicList[index]);
-              },
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: _recentController.recentComicList
+                  .map((e) => RecentItem(comicModel: e))
+                  .toList(),
             ),
           );
         }),

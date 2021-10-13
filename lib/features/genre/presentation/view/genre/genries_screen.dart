@@ -9,8 +9,6 @@ import 'package:movie_app/core/utils/show_snack_bar.dart';
 import 'package:movie_app/features/genre/presentation/controllers/genre_controller.dart';
 import 'package:movie_app/features/genre/presentation/view/genre/widgets/genre_item.dart';
 
-import '../../../../search/binding/search_binding.dart';
-
 import '../../../../search/presentation/view/pages/search_page.dart';
 
 class GenriesScreen extends StatefulWidget {
@@ -23,7 +21,7 @@ class GenriesScreen extends StatefulWidget {
 class _GenriesScreenState extends State<GenriesScreen> {
   final GenreController controller = Get.find<GenreController>();
 
-  int _choiceIndex = 0;
+  late String _choiceIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +35,7 @@ class _GenriesScreenState extends State<GenriesScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               child: IconButton(
                   onPressed: () {
-                    Get.to(() => SearchScreen(), binding: SearchBinding());
+                    Get.to(() => SearchScreen());
                   },
                   icon: const Icon(EvaIcons.searchOutline, size: 30)),
             )

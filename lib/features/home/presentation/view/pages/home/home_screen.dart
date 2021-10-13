@@ -8,6 +8,7 @@ import 'package:movie_app/core/services/theme_service.dart';
 import 'package:movie_app/core/strings/strings.dart';
 import 'package:movie_app/features/home/presentation/controllers/comic_controller.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/widgets/complete_list.dart';
+import 'package:movie_app/features/home/presentation/view/pages/home/widgets/genre_list.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/widgets/hot_list.dart';
 
 import 'package:movie_app/features/home/presentation/view/pages/home/widgets/image_slider.dart';
@@ -17,8 +18,8 @@ import 'package:movie_app/features/home/presentation/view/pages/list/list_screen
 import '../controll_screen.dart';
 import 'widgets/recent_list.dart';
 
-class TestScreen extends StatelessWidget {
-  TestScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
   final List images = [
     "assets/images/animeone.jpeg",
@@ -75,6 +76,8 @@ class HomeBody extends StatelessWidget {
             ),
           ),
         ),
+        GenresText(),
+        GenreList(),
         RecentText(),
         RecentList(),
         HotText(),
@@ -82,6 +85,26 @@ class HomeBody extends StatelessWidget {
         CompletedText(),
         CompleteList()
       ],
+    );
+  }
+}
+
+class GenresText extends StatelessWidget {
+  const GenresText({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      sliver: SliverToBoxAdapter(
+        child: Text(
+          "Genres",
+          style: const TextStyle(
+              fontFamily: "MyFont", fontSize: 20, fontWeight: FontWeight.w600),
+        ),
+      ),
     );
   }
 }

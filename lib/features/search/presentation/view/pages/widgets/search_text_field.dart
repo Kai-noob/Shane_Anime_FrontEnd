@@ -14,22 +14,20 @@ class SearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        flex: 4,
-        child: TextField(
-            textInputAction: TextInputAction.search,
-            controller: textEditingController,
-            onSubmitted: (value) {
-              searchComicController.searchComicsFromDB(query: value);
-              textEditingController.clear();
-            },
-            decoration: const InputDecoration(
-              hintText: "Search",
-              prefixIcon: Icon(
-                EvaIcons.searchOutline,
-                color: Colors.deepPurpleAccent,
-              ),
-              contentPadding: EdgeInsets.all(10),
-            )));
+    return TextField(
+        textInputAction: TextInputAction.search,
+        controller: textEditingController,
+        onSubmitted: (value) {
+          searchComicController.searchComicsFromDB(query: value);
+          textEditingController.clear();
+        },
+        decoration: const InputDecoration(
+          hintText: "Search",
+          prefixIcon: Icon(
+            EvaIcons.searchOutline,
+            color: Colors.deepPurpleAccent,
+          ),
+          contentPadding: EdgeInsets.all(10),
+        ));
   }
 }

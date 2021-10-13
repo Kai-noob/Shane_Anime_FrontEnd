@@ -37,7 +37,8 @@ class GenreDataSourceImpl implements GenreDataSource {
     List<Genre> genres = [];
 
     for (QueryDocumentSnapshot genre in querySnapshot.docs) {
-      genres.add(GenreModel(id: genre.id, name: genre.get('name')));
+      genres.add(GenreModel(
+          id: genre.id, name: genre.get('name'), image: genre.get("imageUrl")));
     }
 
     return genres;

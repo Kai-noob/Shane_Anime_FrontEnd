@@ -26,7 +26,7 @@ class ControlView extends StatelessWidget {
             BottomNavigationBarItem(
                 icon: Icon(EvaIcons.bookOpenOutline), label: "Comic"),
             BottomNavigationBarItem(
-                icon: Icon(EvaIcons.gridOutline), label: "Genres"),
+                icon: Icon(EvaIcons.searchOutline), label: "Search"),
             BottomNavigationBarItem(
                 icon: Icon(EvaIcons.heartOutline), label: "Favourite"),
           ],
