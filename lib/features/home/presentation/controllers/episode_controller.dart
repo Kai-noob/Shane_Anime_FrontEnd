@@ -1,16 +1,14 @@
 import 'package:get/get.dart';
-import 'package:movie_app/core/utils/show_snack_bar.dart';
-import 'package:movie_app/features/home/domain/entities/episodes.dart';
-import 'package:movie_app/features/home/domain/entities/photos.dart';
-import 'package:movie_app/features/home/domain/usecases/get_episodes_usecase.dart';
-import 'package:movie_app/features/home/domain/usecases/get_phoots_usecase.dart';
+import '../../../../core/utils/show_snack_bar.dart';
+import '../../domain/entities/episodes.dart';
+import '../../domain/entities/photos.dart';
+import '../../domain/usecases/get_episodes_usecase.dart';
+import '../../domain/usecases/get_phoots_usecase.dart';
 
 class EpisodeController extends GetxController {
   final GetEpisodesUseCase getEpisodesUseCase;
-  final GetPhotosUseCase getPhotosUseCase;
 
-  EpisodeController(
-      {required this.getEpisodesUseCase, required this.getPhotosUseCase});
+  EpisodeController({required this.getEpisodesUseCase});
 
   final RxList<Episodes> _episodeList = RxList();
 

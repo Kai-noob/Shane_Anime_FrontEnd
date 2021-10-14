@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movie_app/features/genre/data/datasources/genre_datasource.dart';
-import 'package:movie_app/features/genre/data/models/comic_by_genre_model.dart';
-import 'package:movie_app/features/genre/data/models/comic_genre_model.dart';
-import 'package:movie_app/features/genre/data/models/genre_model.dart';
-import 'package:movie_app/features/genre/domain/entities/comic_by_genre.dart';
-import 'package:movie_app/features/genre/domain/entities/comic_gere.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
+import 'genre_datasource.dart';
+import '../models/comic_by_genre_model.dart';
+import '../models/comic_genre_model.dart';
+import '../models/genre_model.dart';
+import '../../domain/entities/comic_by_genre.dart';
+import '../../domain/entities/comic_gere.dart';
+import '../../domain/entities/genre.dart';
 
 class GenreDataSourceImpl implements GenreDataSource {
   final FirebaseFirestore firebaseFirestore;
@@ -37,8 +37,7 @@ class GenreDataSourceImpl implements GenreDataSource {
     List<Genre> genres = [];
 
     for (QueryDocumentSnapshot genre in querySnapshot.docs) {
-      genres.add(GenreModel(
-          id: genre.id, name: genre.get('name'), image: genre.get("imageUrl")));
+      genres.add(GenreModel(id: genre.id, name: genre.get('name')));
     }
 
     return genres;
@@ -48,10 +47,7 @@ class GenreDataSourceImpl implements GenreDataSource {
   Future<ComicByGenre> getComicByGenreFromFirebase(String doc) async {
     final comic = await firebaseFirestore.collection("comics").doc(doc).get();
 
-    print("ComicID  => $doc");
-
     final currentComic = comic.data() as Map<String, dynamic>;
-    print("Currentcomic length  ${currentComic}");
 
     return ComicByGenreModel(
         title: currentComic["title"],

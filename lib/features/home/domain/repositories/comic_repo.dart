@@ -1,5 +1,5 @@
-import 'package:movie_app/features/home/domain/entities/episodes.dart';
-import 'package:movie_app/features/home/domain/entities/photos.dart';
+import '../entities/episodes.dart';
+import '../entities/photos.dart';
 
 import '../entities/comic.dart';
 

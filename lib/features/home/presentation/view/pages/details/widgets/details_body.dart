@@ -1,9 +1,9 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/home/presentation/controllers/episode_controller.dart';
-import 'package:movie_app/features/home/presentation/controllers/photo_controller.dart';
+import 'package:movie_app/features/home/presentation/view/pages/reading/binding/photo_binding.dart';
+import '../../../../../../../core/global/loading_indicator.dart';
+import '../../../../controllers/episode_controller.dart';
 
 import '../../../../../../../core/global/image_widget.dart';
 import '../../../../../domain/entities/comic.dart';
@@ -58,10 +58,20 @@ class DetailsBody extends StatelessWidget {
               padding: const EdgeInsets.all(15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text("Demon Slayer",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                children: [
+                  Row(
+                    children: [
+                      Text(comicModel.title,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500)),
+                      TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            "Comedy",
+                            style: TextStyle(color: Colors.red),
+                          ))
+                    ],
+                  ),
                   SizedBox(height: 10),
                   Text("Presented by Shane Manga")
                 ],
@@ -74,18 +84,8 @@ class DetailsBody extends StatelessWidget {
                   indicatorSize: TabBarIndicatorSize.label,
                   indicatorWeight: 1.0,
                   tabs: [
-                    Tab(
-                        icon: Icon(
-                          Icons.reviews_outlined,
-                          size: 28,
-                        ),
-                        text: "Review"),
-                    Tab(
-                        icon: Icon(
-                          EvaIcons.list,
-                          size: 28,
-                        ),
-                        text: "Episodes"),
+                    Tab(text: "Review"),
+                    Tab(text: "Episodes"),
                   ],
                 ),
               ),
@@ -94,10 +94,10 @@ class DetailsBody extends StatelessWidget {
           ];
         },
         body: TabBarView(children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20),
             child: Text(
-              "industry. Lorem Ipsumdustry. Lorem Ipsum has dustry. Lorem Ipsum has been ing versions of Los of Lorem Ipsumdustry. Lorem Ipsum has been ing versions of Los of Lorem Ipsumdustry. Lorem Ipsum has been ing versions of Los of Lorem Ipsumbeen ing versions of Los of Lorem Ipsumdustry. Lorem Ipsum has been ing versions of Los of Lorem Ipsumdustry. Lorem Ipsum has been ing versions of Los of Lorem Ipsumdustry. Lorem Ipsum has been ing versions of Los of Lorem Ipsum has been ing versions of Los of Lorem Ipsum",
+              comicModel.review,
               style: TextStyle(
                   height: 2.0, fontWeight: FontWeight.w500, fontSize: 15),
               textAlign: TextAlign.justify,
@@ -127,7 +127,7 @@ class EpisodeListView extends StatelessWidget {
 
     return Obx(() {
       if (_episodeController.isLoading) {
-        return LoadingIndicator();
+        return const LoadingIndicator();
       }
       return ListView.builder(
         itemCount: _episodeController.episodeList.length,
@@ -135,10 +135,10 @@ class EpisodeListView extends StatelessWidget {
           return ListTile(
             title: Text(_episodeController.episodeList[index].episodeName),
             onTap: () {
-              //  _episodeController.getPhotos(
-              //     "Episode2", "D0YNkdW8cZnPEiM9tvOp");
-              Get.to(() =>
-                  ReadingScreen(photos: _episodeController.episodeList[index]));
+              Get.to(
+                  () => ReadingScreen(
+                      photos: _episodeController.episodeList[index]),
+                  binding: PhotoBinding());
             },
             leading: const Icon(
               EvaIcons.bookOpen,

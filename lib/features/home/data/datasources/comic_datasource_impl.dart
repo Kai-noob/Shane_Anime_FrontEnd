@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movie_app/features/home/data/models/episode_model.dart';
-import 'package:movie_app/features/home/data/models/photo_model.dart';
-import 'package:movie_app/features/home/domain/entities/episodes.dart';
-import 'package:movie_app/features/home/domain/entities/photos.dart';
+import '../models/episode_model.dart';
+import '../models/photo_model.dart';
+import '../../domain/entities/episodes.dart';
+import '../../domain/entities/photos.dart';
 import 'comic_datasource.dart';
 import '../models/comic_model.dart';
 import '../../domain/entities/comic.dart';
@@ -100,38 +100,25 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
   }
 
   @override
-  Future<List<Photos>> getPhotos(String comicId, String episodeName) {
-    // QuerySnapshot querySnapshot = await firebaseFirestore
-    //     .collection("episodes")
-    //     .where('comic_id', isEqualTo: "JwXcaWJE8esQEfG8JsuD")
-    //     .where('episode_name', isEqualTo: "Episode2")
-
-    // // for (QueryDocumentSnapshot photo in querySnapshot.docs) {
-
-    //  return PhotoModel(
-    //         comicId: querySnapshot.docs.
-    //         episodeName: photo.get("episode_name"),
-    //         photos: photo.get("photo_array")),
-
-    // }
-
-    return firebaseFirestore
+  Future<List<Photos>> getPhotos(String comicId, String episodeName) async {
+    QuerySnapshot querySnapshot = await firebaseFirestore
         .collection("episodes")
-        .where("comic_id", isEqualTo: "D0YNkdW8cZnPEiM9tvOp")
-        .where("episode_name", isEqualTo: "Episode2")
-        .get()
-        .then((value) {
-      return value.docs
-          .map(
-            (e) => PhotoModel(
-              comicId: e.get("comic_id"),
-              episodeName: e.get("episode_name"),
-              photos: e.get("photo_array"),
-            ),
-          )
-          .toList();
-    });
+        .where('comic_id', isEqualTo: comicId)
+        .where('episode_name', isEqualTo: episodeName)
+        .get();
 
-    // return querySnapshot.docs[]
+    List<Photos> photoList = [];
+
+    for (QueryDocumentSnapshot photo in querySnapshot.docs) {
+      List<String> images = List.from(photo.get("photo_array"));
+      photoList.add(PhotoModel(
+          comicId: photo.get("comic_id"),
+          episodeName: photo.get("episode_name"),
+          photos: images));
+    }
+
+    print(photoList);
+
+    return photoList;
   }
 }

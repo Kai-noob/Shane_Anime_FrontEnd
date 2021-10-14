@@ -1,5 +1,5 @@
-import 'package:movie_app/features/genre/domain/entities/comic_gere.dart';
-import 'package:movie_app/features/genre/domain/repositories/genre_repo.dart';
+import '../entities/comic_gere.dart';
+import '../repositories/genre_repo.dart';
 
 class GetComicGenreUseCase {
   final GenreRepo genreRepo;

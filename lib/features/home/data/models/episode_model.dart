@@ -1,4 +1,4 @@
-import 'package:movie_app/features/home/domain/entities/episodes.dart';
+import '../../domain/entities/episodes.dart';
 
 class EpisodeModel extends Episodes {
   EpisodeModel(

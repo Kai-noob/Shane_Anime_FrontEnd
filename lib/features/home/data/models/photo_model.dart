@@ -1,5 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movie_app/features/home/domain/entities/photos.dart';
+import '../../domain/entities/photos.dart';
 
 class PhotoModel extends Photos {
   PhotoModel(

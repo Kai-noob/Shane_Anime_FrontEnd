@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/home_screen.dart';
-import 'package:movie_app/features/search/presentation/view/pages/search_page.dart';
+import '../../features/home/presentation/view/pages/home/home_screen.dart';
+import '../../features/search/presentation/view/pages/search_page.dart';
 
 import '../../features/favourite/presentation/view/pages/favourite_screen.dart';
-import '../../features/genre/presentation/view/genre/genries_screen.dart';
 
 class NavigationController extends GetxController {
   Widget _currentScreen = HomeScreen();
@@ -24,7 +23,7 @@ class NavigationController extends GetxController {
         _currentScreen = SearchScreen();
         break;
       case 2:
-        _currentScreen = FavouriteScreen();
+        _currentScreen = const FavouriteScreen();
         break;
     }
     update();

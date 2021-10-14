@@ -2,8 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/features/home/domain/usecases/get_completed_comic_usecase.dart';
-import 'package:movie_app/features/home/domain/usecases/get_hot_comic_usecase.dart';
+
 import '../../../../core/utils/show_snack_bar.dart';
 import '../../domain/entities/comic.dart';
 import '../../domain/usecases/get_recent_usecase.dart';
@@ -27,7 +26,7 @@ class ComicController extends GetxController {
     _isLoading.value = isLoading!;
   }
 
-  Future<void> getRecentComics() async {
+  Future<void> getHomeRecentComics() async {
     try {
       setLoading(true);
       List<Comic> _recentComics = await getRecentUseCase.call();
@@ -38,32 +37,34 @@ class ComicController extends GetxController {
         }
       } else {
         for (var i = 0; i < 5; i++) {
-          print(i);
           _recentComicList.add(_recentComics[i]);
         }
       }
 
       setLoading(false);
-    } on FirebaseException catch (e) {
-      setLoading(false);
-      SnackBarUtils().showSnackBar(e.toString());
-    } on SocketException catch (e) {
-      setLoading(false);
-      SnackBarUtils().showSnackBar(e.toString());
     } catch (e) {
       setLoading(false);
-      SnackBarUtils().showSnackBar("Recent ${e.toString()}");
+      SnackBarUtils().showSnackBar("Something wrong.Please Try Again Later.");
+    }
+  }
+
+  Future<void> getAllRecentComics() async {
+    try {
+      setLoading(true);
+      List<Comic> _recentComics = await getRecentUseCase.call();
+
+      _recentComicList.value = _recentComics;
+
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      SnackBarUtils().showSnackBar("Something wrong.Please Try Again Later.");
     }
   }
 
   @override
   void onInit() {
-    getRecentComics();
+    getHomeRecentComics();
     super.onInit();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 }

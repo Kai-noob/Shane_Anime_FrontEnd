@@ -1,39 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/features/genre/data/datasources/genre_datasource.dart';
-import 'package:movie_app/features/genre/data/datasources/genre_datasource_imp.dart';
-import 'package:movie_app/features/genre/data/repositories/genre_repo_impl.dart';
-import 'package:movie_app/features/genre/domain/repositories/genre_repo.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_comic_by_genre_usecase.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_comic_genre_usecase.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_genre_usecase.dart';
-import 'package:movie_app/features/genre/presentation/controllers/genre_controller.dart';
-import 'package:movie_app/features/home/domain/usecases/get_completed_comic_usecase.dart';
-import 'package:movie_app/features/home/domain/usecases/get_episodes_usecase.dart';
-import 'package:movie_app/features/home/domain/usecases/get_hot_comic_usecase.dart';
-import 'package:movie_app/features/home/domain/usecases/get_phoots_usecase.dart';
-import 'package:movie_app/features/home/presentation/controllers/complete_controller.dart';
-import 'package:movie_app/features/home/presentation/controllers/episode_controller.dart';
-import 'package:movie_app/features/home/presentation/controllers/hot_controller.dart';
-import 'package:movie_app/features/home/presentation/controllers/photo_controller.dart';
-import 'package:movie_app/features/search/data/datasources/search_comic_data_source.dart';
-import 'package:movie_app/features/search/data/datasources/search_comic_data_source_impl.dart';
-import 'package:movie_app/features/search/data/repositories/search_comic_repo_impl.dart';
-import 'package:movie_app/features/search/domain/repositories/search_comic_repo.dart';
-import 'package:movie_app/features/search/domain/usecases/search_comic_usecase.dart';
-import 'package:movie_app/features/search/presentation/controllers/search_comic_controller.dart';
+import '../../genre/data/datasources/genre_datasource.dart';
+import '../../genre/data/datasources/genre_datasource_imp.dart';
+import '../../genre/data/repositories/genre_repo_impl.dart';
+import '../../genre/domain/repositories/genre_repo.dart';
+import '../../genre/domain/usecases/get_comic_by_genre_usecase.dart';
+import '../../genre/domain/usecases/get_comic_genre_usecase.dart';
+import '../../genre/domain/usecases/get_genre_usecase.dart';
+import '../../genre/presentation/controllers/genre_controller.dart';
+import '../domain/usecases/get_completed_comic_usecase.dart';
+import '../domain/usecases/get_episodes_usecase.dart';
+import '../domain/usecases/get_hot_comic_usecase.dart';
+import '../domain/usecases/get_phoots_usecase.dart';
+import '../presentation/controllers/complete_controller.dart';
+import '../presentation/controllers/episode_controller.dart';
+import '../presentation/controllers/hot_controller.dart';
+import '../presentation/controllers/photo_controller.dart';
+import '../../search/data/datasources/search_comic_data_source.dart';
+import '../../search/data/datasources/search_comic_data_source_impl.dart';
+import '../../search/data/repositories/search_comic_repo_impl.dart';
+import '../../search/domain/repositories/search_comic_repo.dart';
+import '../../search/domain/usecases/search_comic_usecase.dart';
+import '../../search/presentation/controllers/search_comic_controller.dart';
 import '../../../core/services/connection_service.dart';
 import '../data/datasources/comic_datasource.dart';
 import '../data/datasources/comic_datasource_impl.dart';
 import '../data/repositories/comic_repository_impl.dart';
 import '../domain/repositories/comic_repo.dart';
 import '../domain/usecases/get_recent_usecase.dart';
-import '../presentation/controllers/comic_controller.dart';
-
-import '../../favourite/domain/repositories/favourite_repo.dart';
-import '../../favourite/domain/usecases/add_favourite_comic_usecase.dart';
-import '../../favourite/domain/usecases/get_favourite_comic_usecase.dart';
-import '../../favourite/presentation/controllers/favourite_comic_controller.dart';
+import '../presentation/controllers/recent_controller.dart';
 
 class Binding extends Bindings {
   @override
@@ -52,12 +47,7 @@ class Binding extends Bindings {
         ));
 
     Get.lazyPut(() => EpisodeController(
-          getPhotosUseCase: Get.find<GetPhotosUseCase>(),
           getEpisodesUseCase: Get.find<GetEpisodesUseCase>(),
-        ));
-
-    Get.lazyPut(() => PhotoController(
-          getPhotosUseCase: Get.find<GetPhotosUseCase>(),
         ));
 
     Get.lazyPut<SearchComicController>(() => SearchComicController(
@@ -87,9 +77,6 @@ class Binding extends Bindings {
 
     Get.lazyPut<GetEpisodesUseCase>(
         () => GetEpisodesUseCase(comicRepo: Get.find<ComicRepo>()));
-
-    Get.lazyPut<GetPhotosUseCase>(
-        () => GetPhotosUseCase(comicRepo: Get.find<ComicRepo>()));
 
     Get.lazyPut<GetComicGenreUseCase>(
         () => GetComicGenreUseCase(genreRepo: Get.find<GenreRepo>()));

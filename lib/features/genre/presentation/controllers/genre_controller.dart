@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:movie_app/core/utils/show_snack_bar.dart';
-import 'package:movie_app/features/genre/domain/entities/comic_by_genre.dart';
-import 'package:movie_app/features/genre/domain/entities/comic_gere.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_comic_by_genre_usecase.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_comic_genre_usecase.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_genre_usecase.dart';
+import '../../../../core/utils/show_snack_bar.dart';
+import '../../domain/entities/comic_by_genre.dart';
+import '../../domain/entities/comic_gere.dart';
+import '../../domain/entities/genre.dart';
+import '../../domain/usecases/get_comic_by_genre_usecase.dart';
+import '../../domain/usecases/get_comic_genre_usecase.dart';
+import '../../domain/usecases/get_genre_usecase.dart';
 
 class GenreController extends GetxController {
   final GetComicGenreUseCase getComicGenreUseCase;
@@ -66,7 +66,6 @@ class GenreController extends GetxController {
       setLoading(true);
       List<Genre> _genres = await getGenreUsecase.call();
 
-      print(_genres);
       for (var genre in _genres) {
         _genreList.add(genre);
       }
@@ -75,7 +74,6 @@ class GenreController extends GetxController {
     } catch (e) {
       setLoading(false);
       SnackBarUtils().showSnackBar(e.toString());
-      print(" Genres${e.toString()}");
     }
   }
 
@@ -99,7 +97,6 @@ class GenreController extends GetxController {
     } catch (e) {
       setLoading(false);
       SnackBarUtils().showSnackBar("Comic By Genres${e.toString()}");
-      print("Comic By Genres${e.toString()}");
     }
   }
 

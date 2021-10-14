@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/genre/presentation/controllers/genre_controller.dart';
+import '../../../../../core/global/loading_indicator.dart';
+import '../../../../genre/presentation/controllers/genre_controller.dart';
 
 import '../../controllers/search_comic_controller.dart';
 import 'widgets/search_result_list_view.dart';
@@ -34,12 +34,28 @@ class SearchScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Obx(() {
               if (genreController.isLoading) {
-                return LoadingIndicator();
+                return const LoadingIndicator();
               }
               return Row(
                   children: genreController.genreList
-                      .map((e) =>
-                          ActionChip(label: Text(e.name), onPressed: () {}))
+                      .map((e) => Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: ActionChip(
+                                padding: EdgeInsets.all(2.0),
+                                // avatar: CircleAvatar(
+                                //   backgroundColor: Colors.redAccent,
+                                //   child: Icon(
+                                //     Icons.mode_comment,
+                                //     color: Colors.white,
+                                //     size: 20,
+                                //   ),
+                                // ),
+                                label: Text(e.name),
+                                onPressed: () {},
+                                backgroundColor:
+                                    Colors.purple.withOpacity(0.2)),
+                          ))
                       .toList());
             }),
           ),

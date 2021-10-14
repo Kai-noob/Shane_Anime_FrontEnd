@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
-import 'package:movie_app/features/genre/presentation/controllers/genre_controller.dart';
+import '../../../../../../core/global/loading_indicator.dart';
+import '../../../../../genre/domain/entities/genre.dart';
+import '../../../../../genre/presentation/controllers/genre_controller.dart';
 
 class ListScreen extends StatelessWidget {
   const ListScreen({Key? key}) : super(key: key);
@@ -69,7 +69,7 @@ class GenreScreen extends StatelessWidget {
         ),
         body: Obx(() {
           if (_genreController.isLoadingTest) {
-            return LoadingIndicator();
+            return const LoadingIndicator();
           }
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -89,7 +89,7 @@ class GenreScreen extends StatelessWidget {
                                 .comicByGenreList[index].coverPhoto))),
                   ),
                   Text(_genreController.comicByGenreList[index].title,
-                      style: TextStyle(fontSize: 16)),
+                      style: const TextStyle(fontSize: 16)),
                   const SizedBox(height: 5),
                 ],
               );

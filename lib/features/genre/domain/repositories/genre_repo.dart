@@ -1,6 +1,6 @@
-import 'package:movie_app/features/genre/domain/entities/comic_by_genre.dart';
-import 'package:movie_app/features/genre/domain/entities/comic_gere.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
+import '../entities/comic_by_genre.dart';
+import '../entities/comic_gere.dart';
+import '../entities/genre.dart';
 
 abstract class GenreRepo {
   Future<List<ComicGenre>> getComicGenre(String genreId);

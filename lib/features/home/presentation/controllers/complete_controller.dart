@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:movie_app/core/utils/show_snack_bar.dart';
-import 'package:movie_app/features/home/domain/entities/comic.dart';
-import 'package:movie_app/features/home/domain/usecases/get_completed_comic_usecase.dart';
+import '../../../../core/utils/show_snack_bar.dart';
+import '../../domain/entities/comic.dart';
+import '../../domain/usecases/get_completed_comic_usecase.dart';
 
 class CompleteController extends GetxController {
   final GetCompletedComicUseCase getCompleteUseCase;
@@ -31,12 +31,9 @@ class CompleteController extends GetxController {
         }
       } else {
         for (var i = 0; i < 6; i++) {
-          print(i);
           _completeComicList.add(_completeComics[i]);
         }
       }
-
-      print(_completeComicList);
 
       setLoading(false);
     } catch (e) {

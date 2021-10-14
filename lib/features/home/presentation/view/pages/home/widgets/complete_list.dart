@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/core/global/image_widget.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/home/presentation/controllers/comic_controller.dart';
-import 'package:movie_app/features/home/presentation/controllers/complete_controller.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/recent_item.dart';
+import '../../../../../../../core/global/image_widget.dart';
+import '../../../../../../../core/global/loading_indicator.dart';
+import '../../../../controllers/complete_controller.dart';
 
 class CompleteList extends StatelessWidget {
   final CompleteController _completeController = Get.find<CompleteController>();
@@ -16,18 +14,18 @@ class CompleteList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       if (_completeController.isLoading) {
-        return SliverToBoxAdapter(
+        return const SliverToBoxAdapter(
           child: LoadingIndicator(),
         );
       }
 
       return SliverGrid(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 10, crossAxisCount: 3, childAspectRatio: 0.45),
         delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
           return Column(
             children: [
-              Container(
+              SizedBox(
                 height: 150,
                 child: ImageWidget(
                   image:
@@ -38,7 +36,7 @@ class CompleteList extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   _completeController.completeComicList[index].title,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       overflow: TextOverflow.ellipsis),

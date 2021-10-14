@@ -1,4 +1,4 @@
-import 'package:movie_app/features/genre/domain/entities/comic_gere.dart';
+import '../../domain/entities/comic_gere.dart';
 
 class ComicGenreModel extends ComicGenre {
   ComicGenreModel({required String comicId, required String genreId})

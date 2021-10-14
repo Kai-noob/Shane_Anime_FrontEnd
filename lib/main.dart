@@ -2,9 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:movie_app/features/favourite/presentation/view/pages/favourite_screen.dart';
-import 'package:movie_app/features/genre/presentation/view/genre/genries_screen.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'core/services/theme_service.dart';
 import 'core/theme/themes.dart';
 import 'features/home/presentation/view/pages/controll_screen.dart';
@@ -29,6 +26,6 @@ class MyApp extends StatelessWidget {
         theme: Themes.dark,
         darkTheme: Themes.light,
         themeMode: ThemeService().theme,
-        home: ControlView());
+        home: const ControlView());
   }
 }

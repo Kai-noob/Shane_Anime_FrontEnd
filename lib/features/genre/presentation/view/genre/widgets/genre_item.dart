@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/strings/strings.dart';
-import 'package:movie_app/features/genre/domain/entities/comic_by_genre.dart';
+import '../../../../domain/entities/comic_by_genre.dart';
 
 class GeneryItemWIdget extends StatelessWidget {
   final ComicByGenre comicByGenre;
@@ -33,7 +32,8 @@ class GeneryItemWIdget extends StatelessWidget {
             Container(
               constraints: const BoxConstraints(maxWidth: 150),
               child: Text(comicByGenre.title,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w700)),
             ),
             const SizedBox(
               height: 8,

@@ -2,17 +2,15 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/core/strings/strings.dart';
-import 'package:movie_app/core/utils/show_snack_bar.dart';
+import '../../../../../core/global/loading_indicator.dart';
 
-import 'package:movie_app/features/genre/presentation/controllers/genre_controller.dart';
-import 'package:movie_app/features/genre/presentation/view/genre/widgets/genre_item.dart';
+import '../../controllers/genre_controller.dart';
+import 'widgets/genre_item.dart';
 
 import '../../../../search/presentation/view/pages/search_page.dart';
 
 class GenriesScreen extends StatefulWidget {
-  GenriesScreen({Key? key}) : super(key: key);
+  const GenriesScreen({Key? key}) : super(key: key);
 
   @override
   State<GenriesScreen> createState() => _GenriesScreenState();
@@ -20,8 +18,6 @@ class GenriesScreen extends StatefulWidget {
 
 class _GenriesScreenState extends State<GenriesScreen> {
   final GenreController controller = Get.find<GenreController>();
-
-  late String _choiceIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +38,11 @@ class _GenriesScreenState extends State<GenriesScreen> {
           ],
         ),
         body: CustomScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           slivers: [
             Obx(() {
               if (controller.isLoading) {
-                return SliverToBoxAdapter(child: LoadingIndicator());
+                return const SliverToBoxAdapter(child: LoadingIndicator());
               }
               return SliverToBoxAdapter(
                   child: Wrap(
@@ -62,7 +58,7 @@ class _GenriesScreenState extends State<GenriesScreen> {
             }),
             Obx(() {
               if (controller.isLoadingTest) {
-                return SliverToBoxAdapter(child: LoadingIndicator());
+                return const SliverToBoxAdapter(child: LoadingIndicator());
               }
               return SliverList(
                 delegate: SliverChildBuilderDelegate(

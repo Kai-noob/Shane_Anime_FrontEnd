@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:movie_app/core/utils/show_snack_bar.dart';
-import 'package:movie_app/features/home/domain/entities/photos.dart';
+import '../../../../core/utils/show_snack_bar.dart';
+import '../../domain/entities/photos.dart';
 import 'package:movie_app/features/home/domain/usecases/get_phoots_usecase.dart';
 
 class PhotoController extends GetxController {
@@ -39,7 +39,7 @@ class PhotoController extends GetxController {
     } catch (e) {
       setLoading(false);
       print(e.toString());
-      SnackBarUtils().showSnackBar("Complete ${e.toString()}");
+      SnackBarUtils().showSnackBar("Photo ${e.toString()}");
     }
   }
 }

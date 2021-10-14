@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/genre/presentation/controllers/genre_controller.dart';
 
-import 'genre_item.dart';
 
 // class GenerieListView extends StatefulWidget {
 //   const GenerieListView({

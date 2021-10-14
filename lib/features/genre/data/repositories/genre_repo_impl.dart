@@ -1,8 +1,8 @@
-import 'package:movie_app/features/genre/data/datasources/genre_datasource.dart';
-import 'package:movie_app/features/genre/domain/entities/comic_by_genre.dart';
-import 'package:movie_app/features/genre/domain/entities/comic_gere.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
-import 'package:movie_app/features/genre/domain/repositories/genre_repo.dart';
+import '../datasources/genre_datasource.dart';
+import '../../domain/entities/comic_by_genre.dart';
+import '../../domain/entities/comic_gere.dart';
+import '../../domain/entities/genre.dart';
+import '../../domain/repositories/genre_repo.dart';
 
 class GenreRepoImpl implements GenreRepo {
   final GenreDataSource genreDataSource;

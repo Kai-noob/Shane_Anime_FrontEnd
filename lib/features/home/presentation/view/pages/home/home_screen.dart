@@ -1,19 +1,14 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movie_app/core/global/image_widget.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/core/services/connection_service.dart';
-import 'package:movie_app/core/services/theme_service.dart';
-import 'package:movie_app/core/strings/strings.dart';
-import 'package:movie_app/features/home/presentation/controllers/comic_controller.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/complete_list.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/genre_list.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/hot_list.dart';
+import '../../../../../../core/services/connection_service.dart';
+import '../../../../../../core/services/theme_service.dart';
+import 'widgets/complete_list.dart';
+import 'widgets/genre_list.dart';
+import 'widgets/hot_list.dart';
 
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/image_slider.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/recent_item.dart';
-import 'package:movie_app/features/home/presentation/view/pages/list/list_screen.dart';
+import 'widgets/image_slider.dart';
+import '../list/list_screen.dart';
 
 import '../controll_screen.dart';
 import 'widgets/recent_list.dart';
@@ -56,33 +51,68 @@ class HomeBody extends StatelessWidget {
         SliverAppBar(
           backgroundColor: context.theme.backgroundColor,
           elevation: 0.0,
-          title: Text("Shane Manga"),
-          floating: true,
+          title: const Text(
+            "Shane Manga MM",
+            style: TextStyle(color: Colors.white),
+          ),
+          // floating: true,
+          expandedHeight: 350,
+
           actions: [
-            IconButton(
-                onPressed: () {
-                  ThemeService().swithTheme();
-                },
-                icon: Icon(Get.isDarkMode
-                    ? EvaIcons.sunOutline
-                    : EvaIcons.moonOutline))
+            CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.black,
+              child: IconButton(
+                  onPressed: () {
+                    ThemeService().swithTheme();
+                  },
+                  icon: Icon(
+                    Get.isDarkMode ? EvaIcons.sunOutline : EvaIcons.moonOutline,
+                    color: Colors.white,
+                  )),
+            )
           ],
-        ),
-        SliverPadding(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          sliver: SliverToBoxAdapter(
-            child: ImageCarouselWidget(
-              images: images,
-            ),
+          flexibleSpace: Container(
+            height: 350,
+            child: PageView.builder(
+                itemCount: images.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Stack(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(images[index]))),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        child: Text(
+                          "Demon Slayer",
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.w800),
+                        ),
+                      )
+                    ],
+                  );
+                }),
           ),
         ),
-        GenresText(),
+        // SliverPadding(
+        //   padding: const EdgeInsets.symmetric(vertical: 10),
+        //   sliver: SliverToBoxAdapter(
+        //     child: ImageCarouselWidget(
+        //       images: images,
+        //     ),
+        //   ),
+        // ),
+        const GenresText(),
         GenreList(),
-        RecentText(),
+        const RecentText(),
         RecentList(),
-        HotText(),
+        const HotText(),
         HotList(),
-        CompletedText(),
+        const CompletedText(),
         CompleteList()
       ],
     );
@@ -96,13 +126,12 @@ class GenresText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+    return const SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
       sliver: SliverToBoxAdapter(
         child: Text(
           "Genres",
-          style: const TextStyle(
-              fontFamily: "MyFont", fontSize: 20, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ),
       ),
     );
@@ -117,17 +146,14 @@ class CompletedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       sliver: SliverToBoxAdapter(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               "Completed Series",
-              style: const TextStyle(
-                  fontFamily: "MyFont",
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
             TextButton(
                 onPressed: () {
@@ -135,7 +161,6 @@ class CompletedText extends StatelessWidget {
                 },
                 child: const Text("View All",
                     style: TextStyle(
-                        fontFamily: "MyFont",
                         fontWeight: FontWeight.w700,
                         color: Colors.deepPurple,
                         fontSize: 17)))
@@ -154,14 +179,14 @@ class HotText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       sliver: SliverToBoxAdapter(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               "Hot Mangas",
-              style: const TextStyle(
+              style: TextStyle(
                   fontFamily: "MyFont",
                   fontSize: 20,
                   fontWeight: FontWeight.w600),
@@ -191,17 +216,14 @@ class RecentText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       sliver: SliverToBoxAdapter(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
+            const Text(
               "Daily Update",
-              style: const TextStyle(
-                  fontFamily: "MyFont",
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
             TextButton(
                 onPressed: () {
@@ -210,7 +232,6 @@ class RecentText extends StatelessWidget {
                 child: const Text("View All",
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontFamily: "MyFont",
                         color: Colors.deepPurple,
                         fontSize: 17)))
           ],

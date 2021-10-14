@@ -1,6 +1,5 @@
-import 'package:movie_app/features/home/domain/entities/episodes.dart';
-import 'package:movie_app/features/home/domain/entities/photos.dart';
-import 'package:movie_app/features/home/domain/repositories/comic_repo.dart';
+import '../entities/photos.dart';
+import '../repositories/comic_repo.dart';
 
 class GetPhotosUseCase {
   final ComicRepo comicRepo;

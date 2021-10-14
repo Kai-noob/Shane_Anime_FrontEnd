@@ -1,14 +1,13 @@
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
+import '../../domain/entities/genre.dart';
 
 class GenreModel extends Genre {
-  GenreModel({String? id, required String name, required String image})
-      : super(id!, name, image);
+  GenreModel({String? id, required String name}) : super(id!, name);
 
   static GenreModel fromJson(Map<String, dynamic> json) {
-    return GenreModel(name: json['name'], image: json['image']);
+    return GenreModel(name: json['name']);
   }
 
   Map<String, dynamic> toJson() {
-    return {"name": name, "image": image};
+    return {"name": name};
   }
 }
