@@ -18,21 +18,23 @@ class GenreList extends StatelessWidget {
           return const LoadingIndicator();
         }
         return Wrap(
+            runSpacing: 10,
+            runAlignment: WrapAlignment.spaceEvenly,
             children: _genreController.genreList.map(
-          (e) {
-            return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: ActionChip(
-                    padding: const EdgeInsets.all(2.0),
-                    label: Text(e.name),
-                    onPressed: () {
-                      Get.to(GenreScreen(
-                        genre: e,
-                      ));
-                    },
-                    backgroundColor: Colors.purple.withOpacity(0.15)));
-          },
-        ).toList());
+              (e) {
+                return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: ActionChip(
+                        padding: EdgeInsets.zero,
+                        label: Text(e.name),
+                        onPressed: () {
+                          Get.to(GenreScreen(
+                            genre: e,
+                          ));
+                        },
+                        backgroundColor: Colors.purple.withOpacity(0.15)));
+              },
+            ).toList());
       }),
     );
   }

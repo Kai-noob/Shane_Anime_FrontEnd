@@ -14,6 +14,8 @@ class ControlView extends StatelessWidget {
       builder: (controller) => Scaffold(
         body: controller.currentScreen,
         bottomNavigationBar: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           type: BottomNavigationBarType.fixed,
           iconSize: 25,
           elevation: 0.0,
@@ -23,11 +25,21 @@ class ControlView extends StatelessWidget {
           },
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(EvaIcons.bookOpenOutline), label: "Comic"),
+                activeIcon: Icon(EvaIcons.bookOpen),
+                icon: Icon(EvaIcons.bookOpenOutline),
+                label: "Comic"),
             BottomNavigationBarItem(
-                icon: Icon(EvaIcons.searchOutline), label: "Search"),
+                activeIcon: Icon(EvaIcons.search),
+                icon: Icon(EvaIcons.searchOutline),
+                label: "Search"),
             BottomNavigationBarItem(
-                icon: Icon(EvaIcons.heartOutline), label: "Favourite"),
+                activeIcon: Icon(EvaIcons.heart),
+                icon: Icon(EvaIcons.heartOutline),
+                label: "Favourite"),
+            BottomNavigationBarItem(
+                activeIcon: Icon(EvaIcons.person),
+                icon: Icon(EvaIcons.personOutline),
+                label: "Account"),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../controllers/search_comic_controller.dart';
 
 class SearchTextField extends StatelessWidget {
@@ -14,21 +15,27 @@ class SearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-        textInputAction: TextInputAction.search,
-        controller: textEditingController,
-        cursorColor: Colors.black,
-        onSubmitted: (value) {
-          searchComicController.searchComicsFromDB(query: value);
-          textEditingController.clear();
-        },
-        decoration: const InputDecoration(
-          hintText: "Search",
-          prefixIcon: Icon(
-            EvaIcons.searchOutline,
-            color: Colors.deepPurpleAccent,
-          ),
-          contentPadding: EdgeInsets.all(10),
-        ));
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10), color: Colors.grey.shade300),
+      child: TextField(
+          textInputAction: TextInputAction.search,
+          controller: textEditingController,
+          cursorColor: Colors.black,
+          onSubmitted: (value) {
+            searchComicController.searchComicsFromDB(query: value);
+            textEditingController.clear();
+          },
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 4),
+            border: InputBorder.none,
+            hintStyle: TextStyle(color: Colors.black),
+            hintText: "Search",
+            prefixIcon: Icon(
+              EvaIcons.searchOutline,
+              color: Colors.black,
+            ),
+          )),
+    );
   }
 }

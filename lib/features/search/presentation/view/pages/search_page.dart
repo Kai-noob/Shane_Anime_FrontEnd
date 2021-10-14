@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:movie_app/features/genre/presentation/view/genre_screen.dart';
 import '../../../../../core/global/loading_indicator.dart';
 import '../../../../genre/presentation/controllers/genre_controller.dart';
 
@@ -40,9 +41,9 @@ class SearchScreen extends StatelessWidget {
                   children: genreController.genreList
                       .map((e) => Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
+                                const EdgeInsets.symmetric(horizontal: 5.0),
                             child: ActionChip(
-                                padding: const EdgeInsets.all(2.0),
+                                padding: EdgeInsets.zero,
                                 // avatar: CircleAvatar(
                                 //   backgroundColor: Colors.redAccent,
                                 //   child: Icon(
@@ -52,9 +53,11 @@ class SearchScreen extends StatelessWidget {
                                 //   ),
                                 // ),
                                 label: Text(e.name),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(() => GenreScreen(genre: e));
+                                },
                                 backgroundColor:
-                                    Colors.purple.withOpacity(0.2)),
+                                    Colors.purple.withOpacity(0.15)),
                           ))
                       .toList());
             }),

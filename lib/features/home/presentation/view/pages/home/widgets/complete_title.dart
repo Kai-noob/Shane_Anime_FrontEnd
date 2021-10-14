@@ -23,7 +23,7 @@ class CompleteTitle extends StatelessWidget {
                 onPressed: () {
                   Get.to(() => CompleteAllComicView());
                 },
-                child: const Text("View All",
+                child: const Text("more",
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.deepPurple,

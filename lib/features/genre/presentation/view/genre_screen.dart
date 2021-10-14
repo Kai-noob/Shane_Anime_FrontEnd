@@ -16,6 +16,7 @@ class GenreScreen extends StatelessWidget {
     _genreController.getComicByGenres(genre.id);
     return Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           centerTitle: true,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),

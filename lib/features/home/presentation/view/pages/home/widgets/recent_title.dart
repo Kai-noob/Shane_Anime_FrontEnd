@@ -23,7 +23,7 @@ class RecentTitle extends StatelessWidget {
                 onPressed: () {
                   Get.to(() => RecentAllComicView());
                 },
-                child: const Text("View All",
+                child: const Text("more",
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: Colors.deepPurple,

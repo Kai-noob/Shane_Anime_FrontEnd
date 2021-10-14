@@ -27,15 +27,6 @@ class DetailsNavBar extends StatelessWidget {
               size: 28,
             ),
           ),
-          IconButton(
-              onPressed: () {
-                Share.share("https://google.com");
-              },
-              icon: const Icon(
-                EvaIcons.shareOutline,
-                color: Colors.white,
-                size: 28,
-              )),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                   primary: Colors.white, shape: const StadiumBorder()),

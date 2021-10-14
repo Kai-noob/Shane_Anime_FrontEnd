@@ -41,6 +41,7 @@ class SearchResultListView extends StatelessWidget {
           );
         } else {
           return ListView.builder(
+            padding: EdgeInsets.all(10),
             itemCount: searchComicController.searchComicList.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
