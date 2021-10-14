@@ -1,18 +1,16 @@
 import 'package:get/get.dart';
 import '../../../../core/utils/show_snack_bar.dart';
 import '../../domain/entities/photos.dart';
-import 'package:movie_app/features/home/domain/usecases/get_phoots_usecase.dart';
+import '../../domain/usecases/get_phoots_usecase.dart';
 
 class PhotoController extends GetxController {
   final GetPhotosUseCase getPhotosUseCase;
 
   PhotoController({required this.getPhotosUseCase});
 
-  final RxList<Photos> _photoList = RxList();
-  final RxList<String> _imageList = RxList();
+  final RxList<String> _photoList = RxList();
 
-  List<Photos> get photoList => [..._photoList];
-  List<String> get imageList => [..._imageList];
+  List<String> get photoList => [..._photoList];
 
   final RxBool _isLoading = false.obs;
 
@@ -25,21 +23,20 @@ class PhotoController extends GetxController {
   Future<void> getPhotos(String comicId, String episodeName) async {
     try {
       setLoading(true);
-      List<Photos> _photos = await getPhotosUseCase.call(comicId, episodeName);
+      List<Photos> _episodes =
+          await getPhotosUseCase.call(comicId, episodeName);
 
-      for (var _photo in _photos) {
-        _photoList.add(_photo);
-
-        for (String _images in _photo.photos) {
-          _imageList.add(_images);
+      for (var _episode in _episodes) {
+        for (String _photo in _episode.photos) {
+          _photoList.add(_photo);
         }
       }
-      print(_photos);
+
       setLoading(false);
     } catch (e) {
       setLoading(false);
-      print(e.toString());
-      SnackBarUtils().showSnackBar("Photo ${e.toString()}");
+
+      SnackBarUtils().showSnackBar("Something went Wrong");
     }
   }
 }

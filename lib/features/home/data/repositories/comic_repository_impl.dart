@@ -1,9 +1,8 @@
+import '../../domain/entities/comic.dart';
 import '../../domain/entities/episodes.dart';
 import '../../domain/entities/photos.dart';
-
-import '../datasources/comic_datasource.dart';
-import '../../domain/entities/comic.dart';
 import '../../domain/repositories/comic_repo.dart';
+import '../datasources/comic_datasource.dart';
 
 class ComicRepoImpl implements ComicRepo {
   final ComicRemoteDataSource remoteDataSource;

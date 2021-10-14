@@ -47,6 +47,7 @@ class FavouriteScreen extends StatelessWidget {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
+                            childAspectRatio: 0.8,
                             mainAxisSpacing: 10,
                             crossAxisSpacing: 10),
                   );

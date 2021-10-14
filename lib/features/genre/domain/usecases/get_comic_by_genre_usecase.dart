@@ -6,7 +6,7 @@ class GetComicByGenreUseCase {
 
   GetComicByGenreUseCase({required this.genreRepo});
 
-  Future<ComicByGenre> call(String doc) {
-    return genreRepo.getComicByGenre(doc);
+  Future<ComicByGenre> call(String comicId) {
+    return genreRepo.getComicByGenre(comicId);
   }
 }

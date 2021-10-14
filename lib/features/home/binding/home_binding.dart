@@ -11,11 +11,9 @@ import '../../genre/presentation/controllers/genre_controller.dart';
 import '../domain/usecases/get_completed_comic_usecase.dart';
 import '../domain/usecases/get_episodes_usecase.dart';
 import '../domain/usecases/get_hot_comic_usecase.dart';
-import '../domain/usecases/get_phoots_usecase.dart';
 import '../presentation/controllers/complete_controller.dart';
 import '../presentation/controllers/episode_controller.dart';
 import '../presentation/controllers/hot_controller.dart';
-import '../presentation/controllers/photo_controller.dart';
 import '../../search/data/datasources/search_comic_data_source.dart';
 import '../../search/data/datasources/search_comic_data_source_impl.dart';
 import '../../search/data/repositories/search_comic_repo_impl.dart';
@@ -30,13 +28,13 @@ import '../domain/repositories/comic_repo.dart';
 import '../domain/usecases/get_recent_usecase.dart';
 import '../presentation/controllers/recent_controller.dart';
 
-class Binding extends Bindings {
+class HomeBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<NetworkController>(() => NetworkController());
 
-    Get.lazyPut<ComicController>(() =>
-        ComicController(getRecentUseCase: Get.find<GetRecentComicUseCase>()));
+    Get.lazyPut<RecentController>(() =>
+        RecentController(getRecentUseCase: Get.find<GetRecentComicUseCase>()));
 
     Get.lazyPut<CompleteController>(() => CompleteController(
           getCompleteUseCase: Get.find<GetCompletedComicUseCase>(),

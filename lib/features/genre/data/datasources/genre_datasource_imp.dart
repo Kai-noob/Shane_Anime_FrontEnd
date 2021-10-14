@@ -13,49 +13,50 @@ class GenreDataSourceImpl implements GenreDataSource {
   GenreDataSourceImpl({required this.firebaseFirestore});
   @override
   Future<List<ComicGenre>> getComicGenreFromFirebase(String genreId) async {
-    QuerySnapshot querySnapshot = await firebaseFirestore
+    QuerySnapshot _querySnapshot = await firebaseFirestore
         .collection("comic_genre")
         .where("genre_id", isEqualTo: genreId)
         .get();
 
-    List<ComicGenre> comicGenres = [];
+    List<ComicGenre> _comicGenres = [];
 
-    for (QueryDocumentSnapshot comicGenre in querySnapshot.docs) {
-      comicGenres.add(ComicGenreModel(
-        comicId: comicGenre.get("comic_id"),
-        genreId: comicGenre.get("genre_id"),
+    for (QueryDocumentSnapshot _comicGenre in _querySnapshot.docs) {
+      _comicGenres.add(ComicGenreModel(
+        comicId: _comicGenre.get("comic_id"),
+        genreId: _comicGenre.get("genre_id"),
       ));
     }
-    return comicGenres;
+    return _comicGenres;
   }
 
   @override
   Future<List<Genre>> getGenreFromFirebase() async {
-    QuerySnapshot querySnapshot =
+    QuerySnapshot _querySnapshot =
         await firebaseFirestore.collection("genres").get();
 
-    List<Genre> genres = [];
+    List<Genre> _genres = [];
 
-    for (QueryDocumentSnapshot genre in querySnapshot.docs) {
-      genres.add(GenreModel(id: genre.id, name: genre.get('name')));
+    for (QueryDocumentSnapshot _genre in _querySnapshot.docs) {
+      _genres.add(GenreModel(id: _genre.id, name: _genre.get('name')));
     }
 
-    return genres;
+    return _genres;
   }
 
   @override
-  Future<ComicByGenre> getComicByGenreFromFirebase(String doc) async {
-    final comic = await firebaseFirestore.collection("comics").doc(doc).get();
+  Future<ComicByGenre> getComicByGenreFromFirebase(String comicId) async {
+    final _querySnapshot =
+        await firebaseFirestore.collection("comics").doc(comicId).get();
 
-    final currentComic = comic.data() as Map<String, dynamic>;
+    final _comic = _querySnapshot.data() as Map<String, dynamic>;
 
     return ComicByGenreModel(
-        title: currentComic["title"],
-        review: currentComic["review"],
-        coverPhoto: currentComic["cover_photo"],
-        editorChoice: currentComic["editor_choice"],
-        completed: currentComic["completed"],
-        published: currentComic["published"],
-        created: currentComic["created"]);
+        title: _comic["title"],
+        review: _comic["review"],
+        coverPhoto: _comic["cover_photo"],
+        editorChoice: _comic["editor_choice"],
+        completed: _comic["completed"],
+        published: _comic["published"],
+        created: _comic["created"]);
   }
 }

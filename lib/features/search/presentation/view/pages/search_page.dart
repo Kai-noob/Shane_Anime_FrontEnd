@@ -42,7 +42,7 @@ class SearchScreen extends StatelessWidget {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 10.0),
                             child: ActionChip(
-                                padding: EdgeInsets.all(2.0),
+                                padding: const EdgeInsets.all(2.0),
                                 // avatar: CircleAvatar(
                                 //   backgroundColor: Colors.redAccent,
                                 //   child: Icon(

@@ -19,7 +19,7 @@ class GenreRepoImpl implements GenreRepo {
   }
 
   @override
-  Future<ComicByGenre> getComicByGenre(String doc) {
-    return genreDataSource.getComicByGenreFromFirebase(doc);
+  Future<ComicByGenre> getComicByGenre(String comicId) {
+    return genreDataSource.getComicByGenreFromFirebase(comicId);
   }
 }

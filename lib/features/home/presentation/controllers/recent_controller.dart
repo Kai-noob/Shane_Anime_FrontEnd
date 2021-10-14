@@ -1,22 +1,23 @@
-import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/utils/show_snack_bar.dart';
 import '../../domain/entities/comic.dart';
 import '../../domain/usecases/get_recent_usecase.dart';
 
-class ComicController extends GetxController {
+class RecentController extends GetxController {
   final GetRecentComicUseCase getRecentUseCase;
 
-  ComicController({
+  RecentController({
     required this.getRecentUseCase,
   });
 
   final RxList<Comic> _recentComicList = RxList();
 
   List<Comic> get recentComicList => [..._recentComicList];
+
+  final RxList<Comic> _recentAllComicList = RxList();
+
+  List<Comic> get recentAllComicList => [..._recentAllComicList];
 
   final RxBool _isLoading = false.obs;
 
@@ -26,7 +27,7 @@ class ComicController extends GetxController {
     _isLoading.value = isLoading!;
   }
 
-  Future<void> getHomeRecentComics() async {
+  Future<void> getRecentComics() async {
     try {
       setLoading(true);
       List<Comic> _recentComics = await getRecentUseCase.call();
@@ -53,7 +54,7 @@ class ComicController extends GetxController {
       setLoading(true);
       List<Comic> _recentComics = await getRecentUseCase.call();
 
-      _recentComicList.value = _recentComics;
+      _recentAllComicList.value = _recentComics;
 
       setLoading(false);
     } catch (e) {
@@ -63,8 +64,9 @@ class ComicController extends GetxController {
   }
 
   @override
-  void onInit() {
-    getHomeRecentComics();
+  void onInit() async {
+    await getRecentComics();
+    await getAllRecentComics();
     super.onInit();
   }
 }

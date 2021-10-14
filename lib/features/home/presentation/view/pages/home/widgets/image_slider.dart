@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class ImageCarouselWidget extends StatefulWidget {
@@ -41,7 +40,7 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
     //       enlargeCenterPage: true,
     //     ));
 
-    return Container(
+    return SizedBox(
       height: 350,
       child: PageView.builder(
           itemCount: widget.images.length,
@@ -51,12 +50,12 @@ class _ImageCarouselWidgetState extends State<ImageCarouselWidget> {
                 Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          colorFilter: ColorFilter.mode(
+                          colorFilter: const ColorFilter.mode(
                               Colors.black12, BlendMode.softLight),
                           fit: BoxFit.cover,
                           image: AssetImage(widget.images[index]))),
                 ),
-                Positioned(
+                const Positioned(
                   left: 30,
                   bottom: 0,
                   child: Text(

@@ -9,8 +9,7 @@ class ListBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
+          mainAxisSpacing: 10, crossAxisCount: 2, childAspectRatio: 0.2),
       itemCount: 12,
       itemBuilder: (BuildContext context, int index) {
         return Column(
@@ -22,7 +21,7 @@ class ListBody extends StatelessWidget {
                   borderRadius: BorderRadius.circular(5),
                   image: const DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage("assets/images/animeone.jpeg"))),
+                      image: AssetImage("assets/images/animetwo.jpeg"))),
             ),
             const Text("Demon Slayer", style: TextStyle(fontSize: 16)),
             const SizedBox(height: 5),

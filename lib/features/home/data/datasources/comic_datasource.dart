@@ -1,7 +1,6 @@
+import '../../domain/entities/comic.dart';
 import '../../domain/entities/episodes.dart';
 import '../../domain/entities/photos.dart';
-
-import '../../domain/entities/comic.dart';
 
 abstract class ComicRemoteDataSource {
   Future<List<Comic>> getRecentComic();

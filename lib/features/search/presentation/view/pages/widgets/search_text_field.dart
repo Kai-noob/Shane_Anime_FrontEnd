@@ -17,6 +17,7 @@ class SearchTextField extends StatelessWidget {
     return TextField(
         textInputAction: TextInputAction.search,
         controller: textEditingController,
+        cursorColor: Colors.black,
         onSubmitted: (value) {
           searchComicController.searchComicsFromDB(query: value);
           textEditingController.clear();

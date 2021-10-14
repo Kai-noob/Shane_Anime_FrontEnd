@@ -7,5 +7,5 @@ abstract class GenreDataSource {
 
   Future<List<Genre>> getGenreFromFirebase();
 
-  Future<ComicByGenre> getComicByGenreFromFirebase(String doc);
+  Future<ComicByGenre> getComicByGenreFromFirebase(String comicId);
 }

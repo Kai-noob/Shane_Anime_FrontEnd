@@ -12,6 +12,10 @@ class CompleteController extends GetxController {
 
   List<Comic> get completeComicList => [..._completeComicList];
 
+  final RxList<Comic> _allCompleteComicList = RxList();
+
+  List<Comic> get allCompleteComicList => [..._allCompleteComicList];
+
   final RxBool _isLoading = false.obs;
 
   bool get isLoading => _isLoading.value;
@@ -42,9 +46,24 @@ class CompleteController extends GetxController {
     }
   }
 
+  Future<void> getAllCompleteComics() async {
+    try {
+      setLoading(true);
+      List<Comic> _completeComics = await getCompleteUseCase.call();
+
+      _allCompleteComicList.value = _completeComics;
+
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      SnackBarUtils().showSnackBar("Complete ${e.toString()}");
+    }
+  }
+
   @override
-  void onInit() {
-    getCompleteComics();
+  void onInit() async {
+    await getCompleteComics();
+    await getAllCompleteComics();
     super.onInit();
   }
 }

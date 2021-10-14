@@ -5,7 +5,7 @@ import '../../../../controllers/recent_controller.dart';
 import 'recent_item.dart';
 
 class RecentList extends StatelessWidget {
-  final ComicController _recentController = Get.find<ComicController>();
+  final RecentController _recentController = Get.find<RecentController>();
   RecentList({
     Key? key,
   }) : super(key: key);

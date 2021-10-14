@@ -5,10 +5,8 @@ import 'widgets/details_body.dart';
 import 'widgets/details_nav_bar.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key, required this.image, required this.comicModel})
-      : super(key: key);
+  const DetailsScreen({Key? key, required this.comicModel}) : super(key: key);
 
-  final String image;
   final Comic comicModel;
 
   @override
@@ -17,6 +15,6 @@ class DetailsScreen extends StatelessWidget {
         bottomNavigationBar: DetailsNavBar(
           image: comicModel.coverPhoto,
         ),
-        body: DetailsBody(comicModel: comicModel, image: image));
+        body: DetailsBody(comicModel: comicModel));
   }
 }

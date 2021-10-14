@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_app/features/home/binding/home_binding.dart';
+import 'package:movie_app/features/home/presentation/view/pages/details/details_screen.dart';
 import '../../../../../../../core/global/image_widget.dart';
 import '../../../../../../../core/global/loading_indicator.dart';
 import '../../../../controllers/complete_controller.dart';
@@ -27,9 +29,18 @@ class CompleteList extends StatelessWidget {
             children: [
               SizedBox(
                 height: 150,
-                child: ImageWidget(
-                  image:
-                      _completeController.completeComicList[index].coverPhoto,
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(
+                        () => DetailsScreen(
+                            comicModel:
+                                _completeController.completeComicList[index]),
+                        binding: HomeBinding());
+                  },
+                  child: ImageWidget(
+                    image:
+                        _completeController.completeComicList[index].coverPhoto,
+                  ),
                 ),
               ),
               Padding(
@@ -47,26 +58,5 @@ class CompleteList extends StatelessWidget {
         }, childCount: _completeController.completeComicList.length),
       );
     });
-
-    // return SliverPadding(
-    //     padding: EdgeInsets.symmetric(vertical: 10),
-    //     sliver: SliverToBoxAdapter(
-    //       child: Obx(() {
-    //         if (_completeController.isLoading) {
-    //           return LoadingIndicator();
-    //         }
-    //         return SizedBox(
-    //           height: 230,
-    //           child: ListView.builder(
-    //             scrollDirection: Axis.horizontal,
-    //             itemCount: _completeController.completeComicList.length,
-    //             itemBuilder: (BuildContext context, int index) {
-    //               return RecentItem(
-    //                   comicModel: _completeController.completeComicList[index]);
-    //             },
-    //           ),
-    //         );
-    //       }),
-    //     ));
   }
 }

@@ -1,16 +1,18 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../../genre/presentation/view/genre_title.dart';
+import 'widgets/recent_title.dart';
 import '../../../../../../core/services/connection_service.dart';
 import '../../../../../../core/services/theme_service.dart';
+import 'no_internet_connection_widget.dart';
 import 'widgets/complete_list.dart';
-import 'widgets/genre_list.dart';
+import '../../../../../genre/presentation/view/genre_list.dart';
+import 'widgets/complete_title.dart';
 import 'widgets/hot_list.dart';
 
-import 'widgets/image_slider.dart';
-import '../list/list_screen.dart';
+import 'widgets/hot_title.dart';
 
-import '../controll_screen.dart';
 import 'widgets/recent_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -72,7 +74,7 @@ class HomeBody extends StatelessWidget {
                   )),
             )
           ],
-          flexibleSpace: Container(
+          flexibleSpace: SizedBox(
             height: 350,
             child: PageView.builder(
                 itemCount: images.length,
@@ -85,7 +87,7 @@ class HomeBody extends StatelessWidget {
                                 fit: BoxFit.cover,
                                 image: AssetImage(images[index]))),
                       ),
-                      Positioned(
+                      const Positioned(
                         bottom: 0,
                         child: Text(
                           "Demon Slayer",
@@ -106,137 +108,15 @@ class HomeBody extends StatelessWidget {
         //     ),
         //   ),
         // ),
-        const GenresText(),
+        const GenreTitle(),
         GenreList(),
-        const RecentText(),
+        const RecentTitle(),
         RecentList(),
-        const HotText(),
+        const HotTitle(),
         HotList(),
-        const CompletedText(),
+        const CompleteTitle(),
         CompleteList()
       ],
-    );
-  }
-}
-
-class GenresText extends StatelessWidget {
-  const GenresText({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      sliver: SliverToBoxAdapter(
-        child: Text(
-          "Genres",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-        ),
-      ),
-    );
-  }
-}
-
-class CompletedText extends StatelessWidget {
-  const CompletedText({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      sliver: SliverToBoxAdapter(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Completed Series",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-            ),
-            TextButton(
-                onPressed: () {
-                  Get.to(() => const ListScreen());
-                },
-                child: const Text("View All",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.deepPurple,
-                        fontSize: 17)))
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class HotText extends StatelessWidget {
-  const HotText({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      sliver: SliverToBoxAdapter(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Hot Mangas",
-              style: TextStyle(
-                  fontFamily: "MyFont",
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-            ),
-            TextButton(
-                onPressed: () {
-                  Get.to(() => const ListScreen());
-                },
-                child: const Text("View All",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontFamily: "MyFont",
-                        color: Colors.deepPurple,
-                        fontSize: 17)))
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class RecentText extends StatelessWidget {
-  const RecentText({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      sliver: SliverToBoxAdapter(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Daily Update",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-            ),
-            TextButton(
-                onPressed: () {
-                  Get.to(() => const ListScreen());
-                },
-                child: const Text("View All",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.deepPurple,
-                        fontSize: 17)))
-          ],
-        ),
-      ),
     );
   }
 }

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        initialBinding: Binding(),
+        initialBinding: HomeBinding(),
         debugShowCheckedModeBanner: false,
         theme: Themes.dark,
         darkTheme: Themes.light,

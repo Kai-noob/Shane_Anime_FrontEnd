@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../../core/global/loading_indicator.dart';
-import '../../../../../genre/domain/entities/genre.dart';
-import '../../../../../genre/presentation/controllers/genre_controller.dart';
+import 'package:movie_app/core/global/image_widget.dart';
+import 'package:movie_app/core/global/loading_indicator.dart';
+import 'package:movie_app/features/home/domain/entities/comic.dart';
+import 'package:movie_app/features/home/presentation/controllers/complete_controller.dart';
+import 'package:movie_app/features/home/presentation/controllers/hot_controller.dart';
+import 'package:movie_app/features/home/presentation/controllers/recent_controller.dart';
 
-class ListScreen extends StatelessWidget {
-  const ListScreen({Key? key}) : super(key: key);
+class CompleteAllComicView extends StatelessWidget {
+  final CompleteController _completeController = Get.find<CompleteController>();
+  CompleteAllComicView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,78 +22,119 @@ class ListScreen extends StatelessWidget {
               Get.back();
             },
           ),
-          title: const Text("Editor's Choice"),
-        ),
-        body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          itemCount: 12,
-          itemBuilder: (BuildContext context, int index) {
-            return Column(
-              children: [
-                Container(
-                  height: 150,
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage("assets/images/animeone.jpeg"))),
-                ),
-                const Text("Demon Slayer", style: TextStyle(fontSize: 16)),
-                const SizedBox(height: 5),
-              ],
-            );
-          },
-        ));
-  }
-}
-
-class GenreScreen extends StatelessWidget {
-  final Genre genre;
-
-  final GenreController _genreController = Get.find<GenreController>();
-
-  GenreScreen({Key? key, required this.genre}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    _genreController.getComicByGenres(genre.id);
-    return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: () {
-              Get.back();
-            },
-          ),
-          title: Text(genre.name),
+          title: Text("Completed Series"),
         ),
         body: Obx(() {
-          if (_genreController.isLoadingTest) {
-            return const LoadingIndicator();
+          if (_completeController.isLoading) {
+            return LoadingIndicator();
           }
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, childAspectRatio: 0.8),
-            itemCount: _genreController.comicByGenreList.length,
+            itemCount: _completeController.allCompleteComicList.length,
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 children: [
                   Container(
-                    height: 150,
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(_genreController
-                                .comicByGenreList[index].coverPhoto))),
-                  ),
-                  Text(_genreController.comicByGenreList[index].title,
-                      style: const TextStyle(fontSize: 16)),
+                      height: 150,
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: ImageWidget(
+                        image: _completeController
+                            .allCompleteComicList[index].coverPhoto,
+                      )),
+                  Text(_completeController.allCompleteComicList[index].title,
+                      style: TextStyle(fontSize: 16)),
+                  const SizedBox(height: 5),
+                ],
+              );
+            },
+          );
+        }));
+  }
+}
+
+class HotAllComicView extends StatelessWidget {
+  final HotController _hotController = Get.find<HotController>();
+  HotAllComicView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          title: Text("Hot Mangas"),
+        ),
+        body: Obx(() {
+          if (_hotController.isLoading) {
+            return LoadingIndicator();
+          }
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, childAspectRatio: 0.8),
+            itemCount: _hotController.hotAllComicList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Column(
+                children: [
+                  Container(
+                      height: 150,
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: ImageWidget(
+                        image: _hotController.hotAllComicList[index].coverPhoto,
+                      )),
+                  Text(_hotController.hotAllComicList[index].title,
+                      style: TextStyle(fontSize: 16)),
+                  const SizedBox(height: 5),
+                ],
+              );
+            },
+          );
+        }));
+  }
+}
+
+class RecentAllComicView extends StatelessWidget {
+  final RecentController _recentController = Get.find<RecentController>();
+  RecentAllComicView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new),
+            onPressed: () {
+              Get.back();
+            },
+          ),
+          title: Text("Daily Update"),
+        ),
+        body: Obx(() {
+          if (_recentController.isLoading) {
+            return LoadingIndicator();
+          }
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, childAspectRatio: 0.8),
+            itemCount: _recentController.recentAllComicList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Column(
+                children: [
+                  Container(
+                      height: 150,
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: ImageWidget(
+                        image: _recentController
+                            .recentAllComicList[index].coverPhoto,
+                      )),
+                  Text(_recentController.recentAllComicList[index].title,
+                      style: TextStyle(fontSize: 16)),
                   const SizedBox(height: 5),
                 ],
               );

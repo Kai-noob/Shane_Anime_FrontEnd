@@ -24,10 +24,9 @@ class RecentItem extends StatelessWidget {
               // Get.to(() => DetailsScreen(comicModel: comicModel, image: image));
               Get.to(
                   () => DetailsScreen(
-                        image: comicModel.coverPhoto,
                         comicModel: comicModel,
                       ),
-                  binding: Binding());
+                  binding: HomeBinding());
             },
             child: SizedBox(
               height: 130,
@@ -35,7 +34,7 @@ class RecentItem extends StatelessWidget {
               child: ImageWidget(image: comicModel.coverPhoto),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(

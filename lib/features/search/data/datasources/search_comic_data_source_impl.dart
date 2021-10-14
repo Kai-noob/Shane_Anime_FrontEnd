@@ -9,23 +9,23 @@ class SearchComicDataSourceImpl implements SearchComicDataSource {
   SearchComicDataSourceImpl({required this.firebaseFirestore});
   @override
   Future<List<SearchComic>> searchComics({required String query}) async {
-    QuerySnapshot querySnapshot = await firebaseFirestore
+    QuerySnapshot _querySnapshot = await firebaseFirestore
         .collection("comics")
         .where("title", isGreaterThanOrEqualTo: query)
         .get();
 
-    List<SearchComic> searchcomicList = [];
+    List<SearchComic> _searchcomicList = [];
 
-    for (QueryDocumentSnapshot comic in querySnapshot.docs) {
-      searchcomicList.add(SearchComicModel(
-          title: comic.get("title"),
-          coverPhoto: comic.get("cover_photo"),
-          review: comic.get("review"),
-          editorChoice: comic.get("editor_choice"),
-          published: comic.get("published"),
-          completed: comic.get("completed"),
-          created: comic.get("created")));
+    for (QueryDocumentSnapshot _searchComic in _querySnapshot.docs) {
+      _searchcomicList.add(SearchComicModel(
+          title: _searchComic.get("title"),
+          coverPhoto: _searchComic.get("cover_photo"),
+          review: _searchComic.get("review"),
+          editorChoice: _searchComic.get("editor_choice"),
+          published: _searchComic.get("published"),
+          completed: _searchComic.get("completed"),
+          created: _searchComic.get("created")));
     }
-    return searchcomicList;
+    return _searchcomicList;
   }
 }

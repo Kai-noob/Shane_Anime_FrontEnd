@@ -6,11 +6,15 @@ import '../../domain/usecases/get_hot_comic_usecase.dart';
 class HotController extends GetxController {
   final GetHotComicUseCase getHotUseCase;
 
-  final RxList<Comic> _hotComicList = RxList();
-
   HotController({required this.getHotUseCase});
 
+  final RxList<Comic> _hotComicList = RxList();
+
   List<Comic> get hotComicList => [..._hotComicList];
+
+  final RxList<Comic> _hotAllComicList = RxList();
+
+  List<Comic> get hotAllComicList => [..._hotAllComicList];
 
   final RxBool _isLoading = false.obs;
 
@@ -38,13 +42,27 @@ class HotController extends GetxController {
       setLoading(false);
     } catch (e) {
       setLoading(false);
-      SnackBarUtils().showSnackBar("Hot ${e.toString()}");
+      SnackBarUtils().showSnackBar("Something went Wrong.");
+    }
+  }
+
+  Future<void> getAllHotComics() async {
+    try {
+      setLoading(true);
+      List<Comic> _hotComics = await getHotUseCase.call();
+      _hotAllComicList.value = _hotComics;
+
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      SnackBarUtils().showSnackBar("Something went Wrong.");
     }
   }
 
   @override
-  void onInit() {
-    getHotComics();
+  void onInit() async {
+    await getHotComics();
+    await getAllHotComics();
     super.onInit();
   }
 }

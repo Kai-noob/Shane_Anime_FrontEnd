@@ -20,13 +20,24 @@ class SearchResultListView extends StatelessWidget {
           return const LoadingIndicator();
         }
         if (searchComicController.isEmpty) {
-          return const Center(
-            child: Text("Ooops Not Found"),
+          return Center(
+            child: Column(
+              children: const [
+                Icon(Icons.error),
+                Text(
+                  "Ooops No Comic Found",
+                  style: TextStyle(color: Colors.red, fontSize: 20),
+                ),
+              ],
+            ),
           );
         }
         if (searchComicController.searchComicList.isEmpty) {
           return const Center(
-            child: Text("Search"),
+            child: Text(
+              "Search Your Mangas",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            ),
           );
         } else {
           return ListView.builder(
@@ -37,7 +48,11 @@ class SearchResultListView extends StatelessWidget {
                   backgroundImage: NetworkImage(
                       searchComicController.searchComicList[index].coverPhoto),
                 ),
-                title: Text(searchComicController.searchComicList[index].title),
+                title: Text(
+                  searchComicController.searchComicList[index].title,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w500),
+                ),
               );
             },
           );

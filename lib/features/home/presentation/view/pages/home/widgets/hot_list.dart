@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_app/features/home/binding/home_binding.dart';
+import 'package:movie_app/features/home/presentation/view/pages/details/details_screen.dart';
 import '../../../../../../../core/global/image_widget.dart';
 import '../../../../../../../core/global/loading_indicator.dart';
 import '../../../../controllers/hot_controller.dart';
@@ -25,8 +27,16 @@ class HotList extends StatelessWidget {
               SizedBox(
                 height: 150,
                 width: 150,
-                child: ImageWidget(
-                  image: _hotController.hotComicList[index].coverPhoto,
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(
+                        () => DetailsScreen(
+                            comicModel: _hotController.hotComicList[index]),
+                        binding: HomeBinding());
+                  },
+                  child: ImageWidget(
+                    image: _hotController.hotComicList[index].coverPhoto,
+                  ),
                 ),
               ),
               Text(

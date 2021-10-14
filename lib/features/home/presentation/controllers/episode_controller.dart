@@ -3,7 +3,6 @@ import '../../../../core/utils/show_snack_bar.dart';
 import '../../domain/entities/episodes.dart';
 import '../../domain/entities/photos.dart';
 import '../../domain/usecases/get_episodes_usecase.dart';
-import '../../domain/usecases/get_phoots_usecase.dart';
 
 class EpisodeController extends GetxController {
   final GetEpisodesUseCase getEpisodesUseCase;
@@ -38,20 +37,4 @@ class EpisodeController extends GetxController {
       SnackBarUtils().showSnackBar("Complete ${e.toString()}");
     }
   }
-
-  // Future<void> getPhotos(String comicId, String episodeName) async {
-  //   try {
-  //     setLoading(true);
-  //     List<Photos> _photos = await getPhotosUseCase.call(comicId, episodeName);
-
-  //     for (var _photo in _photos) {
-  //       _photoList.add(_photo);
-  //     }
-  //     print(_photos);
-  //     setLoading(false);
-  //   } catch (e) {
-  //     setLoading(false);
-  //     SnackBarUtils().showSnackBar("Complete ${e.toString()}");
-  //   }
-  // }
 }

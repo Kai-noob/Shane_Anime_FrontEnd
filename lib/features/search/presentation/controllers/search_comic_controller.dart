@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:get/get.dart';
 import '../../../../core/utils/show_snack_bar.dart';
 import '../../domain/entities/searchcomic.dart';
@@ -44,12 +42,9 @@ class SearchComicController extends GetxController {
       }
 
       setLoading(false);
-    } on SocketException {
-      setLoading(false);
-      SnackBarUtils().showSnackBar("No Internet Connection");
     } catch (e) {
       setLoading(false);
-      SnackBarUtils().showSnackBar(e.toString());
+      SnackBarUtils().showSnackBar("Something Went Wrong.");
     }
   }
 }

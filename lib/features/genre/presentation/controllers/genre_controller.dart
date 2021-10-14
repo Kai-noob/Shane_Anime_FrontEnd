@@ -20,6 +20,7 @@ class GenreController extends GetxController {
       required this.getComicByGenreUseCase});
 
   final RxList<ComicGenre> _comicGenreList = RxList();
+
   List<ComicGenre> get comicGenreList => [..._comicGenreList];
 
   final RxList<ComicByGenre> _comicByGenreList = RxList();
@@ -34,40 +35,25 @@ class GenreController extends GetxController {
 
   bool get isLoading => _isLoading.value;
 
-  final RxBool _isLoadingTest = false.obs;
+  final RxBool _isComicByGenreLoading = false.obs;
 
-  bool get isLoadingTest => _isLoadingTest.value;
+  bool get isComicByGenreLoading => _isComicByGenreLoading.value;
 
   setLoading(bool? isLoading) {
     _isLoading.value = isLoading!;
   }
 
-  setLoadingTest(bool? isLoadingTest) {
-    _isLoadingTest.value = isLoadingTest!;
+  setComicByGenreLoading(bool? isComicByGenreLoading) {
+    _isComicByGenreLoading.value = isComicByGenreLoading!;
   }
-
-  // Future<void> getComicGenre() async {
-  //   try {
-  //     setLoading(true);
-  //     List<ComicGenre> _comicGenres = await getComicGenreUseCase.call();
-
-  //     setLoading(false);
-  //   } on SocketException {
-  //     setLoading(false);
-  //     SnackBarUtils().showSnackBar("No Internet Connection");
-  //   } catch (e) {
-  //     setLoading(false);
-  //     SnackBarUtils().showSnackBar(e.toString());
-  //   }
-  // }
 
   Future<void> getGenres() async {
     try {
       setLoading(true);
       List<Genre> _genres = await getGenreUsecase.call();
 
-      for (var genre in _genres) {
-        _genreList.add(genre);
+      for (var _genre in _genres) {
+        _genreList.add(_genre);
       }
 
       setLoading(false);
@@ -79,11 +65,12 @@ class GenreController extends GetxController {
 
   Future<void> getComicByGenres(String genreId) async {
     try {
-      setLoadingTest(true);
+      setComicByGenreLoading(true);
+
       List<ComicGenre> _comicGenres = await getComicGenreUseCase.call(genreId);
 
-      // List<String> _comicId = [];
       _comicByGenreList.clear();
+
       for (var i = 0; i < _comicGenres.length; i++) {
         ComicByGenre _comicByGenres =
             await getComicByGenreUseCase.call(_comicGenres[i].comicId);
@@ -91,21 +78,11 @@ class GenreController extends GetxController {
         _comicByGenreList.add(_comicByGenres);
       }
 
-      // print("ComicGenres => ${_comicByGenres.length}");
-
-      setLoadingTest(false);
+      setComicByGenreLoading(false);
     } catch (e) {
-      setLoading(false);
-      SnackBarUtils().showSnackBar("Comic By Genres${e.toString()}");
+      setComicByGenreLoading(false);
+      SnackBarUtils().showSnackBar("Something Went Wrong");
     }
-  }
-
-  @override
-  void onReady() {
-    ever(_comicByGenreList, (callback) {
-      // _comicByGenreList.clear();
-    });
-    super.onReady();
   }
 
   @override
