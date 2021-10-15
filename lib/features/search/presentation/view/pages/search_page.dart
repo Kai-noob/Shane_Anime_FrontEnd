@@ -31,37 +31,37 @@ class SearchScreen extends StatelessWidget {
                 textEditingController: textEditingController,
                 searchComicController: searchComicController),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Obx(() {
-              if (genreController.isLoading) {
-                return const LoadingIndicator();
-              }
-              return Row(
-                  children: genreController.genreList
-                      .map((e) => Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 5.0),
-                            child: ActionChip(
-                                padding: EdgeInsets.zero,
-                                // avatar: CircleAvatar(
-                                //   backgroundColor: Colors.redAccent,
-                                //   child: Icon(
-                                //     Icons.mode_comment,
-                                //     color: Colors.white,
-                                //     size: 20,
-                                //   ),
-                                // ),
-                                label: Text(e.name),
-                                onPressed: () {
-                                  Get.to(() => GenreScreen(genre: e));
-                                },
-                                backgroundColor:
-                                    Colors.purple.withOpacity(0.15)),
-                          ))
-                      .toList());
-            }),
-          ),
+          // SingleChildScrollView(
+          //   scrollDirection: Axis.horizontal,
+          //   child: Obx(() {
+          //     if (genreController.isLoading) {
+          //       return const LoadingIndicator();
+          //     }
+          //     return Row(
+          //         children: genreController.genreList
+          //             .map((e) => Padding(
+          //                   padding:
+          //                       const EdgeInsets.symmetric(horizontal: 5.0),
+          //                   child: ActionChip(
+          //                       padding: EdgeInsets.zero,
+          //                       // avatar: CircleAvatar(
+          //                       //   backgroundColor: Colors.redAccent,
+          //                       //   child: Icon(
+          //                       //     Icons.mode_comment,
+          //                       //     color: Colors.white,
+          //                       //     size: 20,
+          //                       //   ),
+          //                       // ),
+          //                       label: Text(e.name),
+          //                       onPressed: () {
+          //                         Get.to(() => GenreScreen(genre: e));
+          //                       },
+          //                       backgroundColor:
+          //                           Colors.purple.withOpacity(0.15)),
+          //                 ))
+          //             .toList());
+          //   }),
+          // ),
           SearchResultListView(searchComicController: searchComicController)
         ],
       )),

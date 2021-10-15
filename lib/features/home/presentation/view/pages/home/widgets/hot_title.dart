@@ -19,15 +19,15 @@ class HotTitle extends StatelessWidget {
               "Hot Mangas",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-            TextButton(
-                onPressed: () {
-                  Get.to(() => HotAllComicView());
-                },
-                child: const Text("more",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.deepPurple,
-                        fontSize: 17)))
+            GestureDetector(
+              onTap: () {
+                Get.to(() => HotAllComicView());
+              },
+              child: Text(
+                "more",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
+              ),
+            )
           ],
         ),
       ),

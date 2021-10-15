@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_app/features/home/binding/home_binding.dart';
+import 'package:movie_app/features/home/presentation/view/pages/details/details_screen.dart';
 import '../../../../core/global/loading_indicator.dart';
 import '../../domain/entities/genre.dart';
 import '../controllers/genre_controller.dart';
@@ -37,18 +39,28 @@ class GenreScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return Column(
                 children: [
-                  Container(
-                    height: 150,
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(_genreController
-                                .comicByGenreList[index].coverPhoto))),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(
+                          () => DetailsScreen(
+                              comicModel:
+                                  _genreController.comicByGenreList[index]),
+                          binding: HomeBinding());
+                    },
+                    child: Container(
+                      height: 150,
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(_genreController
+                                  .comicByGenreList[index].coverPhoto))),
+                    ),
                   ),
                   Text(_genreController.comicByGenreList[index].title,
-                      style: const TextStyle(fontSize: 16)),
+                      style: const TextStyle(
+                          fontSize: 16, overflow: TextOverflow.ellipsis)),
                   const SizedBox(height: 5),
                 ],
               );

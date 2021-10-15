@@ -1,6 +1,6 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../../core/services/navigation_service.dart';
 
@@ -25,20 +25,20 @@ class ControlView extends StatelessWidget {
           },
           items: const [
             BottomNavigationBarItem(
-                activeIcon: Icon(EvaIcons.bookOpen),
-                icon: Icon(EvaIcons.bookOpenOutline),
+                activeIcon: Icon(Ionicons.home),
+                icon: Icon(Ionicons.home_outline),
                 label: "Comic"),
             BottomNavigationBarItem(
-                activeIcon: Icon(EvaIcons.search),
-                icon: Icon(EvaIcons.searchOutline),
+                activeIcon: Icon(Ionicons.search),
+                icon: Icon(Ionicons.search_outline),
                 label: "Search"),
             BottomNavigationBarItem(
-                activeIcon: Icon(EvaIcons.heart),
-                icon: Icon(EvaIcons.heartOutline),
+                activeIcon: Icon(Ionicons.heart),
+                icon: Icon(Ionicons.heart_outline),
                 label: "Favourite"),
             BottomNavigationBarItem(
-                activeIcon: Icon(EvaIcons.person),
-                icon: Icon(EvaIcons.personOutline),
+                activeIcon: Icon(Ionicons.person),
+                icon: Icon(Ionicons.person_outline),
                 label: "Account"),
           ],
         ),

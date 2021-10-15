@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:movie_app/features/home/data/models/comic_model.dart';
+import 'package:movie_app/features/home/domain/entities/comic.dart';
 import 'genre_datasource.dart';
 import '../models/comic_by_genre_model.dart';
 import '../models/comic_genre_model.dart';
@@ -12,7 +14,7 @@ class GenreDataSourceImpl implements GenreDataSource {
 
   GenreDataSourceImpl({required this.firebaseFirestore});
   @override
-  Future<List<ComicGenre>> getComicGenreFromFirebase(String genreId) async {
+  Future<List<ComicGenre>> getComicId(String genreId) async {
     QuerySnapshot _querySnapshot = await firebaseFirestore
         .collection("comic_genre")
         .where("genre_id", isEqualTo: genreId)
@@ -30,7 +32,7 @@ class GenreDataSourceImpl implements GenreDataSource {
   }
 
   @override
-  Future<List<Genre>> getGenreFromFirebase() async {
+  Future<List<Genre>> getGenres() async {
     QuerySnapshot _querySnapshot =
         await firebaseFirestore.collection("genres").get();
 
@@ -44,13 +46,14 @@ class GenreDataSourceImpl implements GenreDataSource {
   }
 
   @override
-  Future<ComicByGenre> getComicByGenreFromFirebase(String comicId) async {
+  Future<Comic> getComics(String comicId) async {
     final _querySnapshot =
         await firebaseFirestore.collection("comics").doc(comicId).get();
 
     final _comic = _querySnapshot.data() as Map<String, dynamic>;
 
-    return ComicByGenreModel(
+    return ComicModel(
+        id: comicId,
         title: _comic["title"],
         review: _comic["review"],
         coverPhoto: _comic["cover_photo"],
@@ -58,5 +61,35 @@ class GenreDataSourceImpl implements GenreDataSource {
         completed: _comic["completed"],
         published: _comic["published"],
         created: _comic["created"]);
+  }
+
+  @override
+  Future<List<ComicGenre>> getGenreId(String comicId) async {
+    final QuerySnapshot _comicGenreSnapshot = await firebaseFirestore
+        .collection("comic_genre")
+        .where("comic_id", isEqualTo: comicId)
+        .get();
+
+    List<ComicGenre> _comicGenres = [];
+
+    for (QueryDocumentSnapshot _comicGenre in _comicGenreSnapshot.docs) {
+      _comicGenres.add(
+        ComicGenreModel(
+          comicId: _comicGenre.get("comic_id"),
+          genreId: _comicGenre.get("genre_id"),
+        ),
+      );
+    }
+    return _comicGenres;
+  }
+
+  @override
+  Future<Genre> getGenre(String genreId) async {
+    final _querySnapshot =
+        await firebaseFirestore.collection("genres").doc(genreId).get();
+
+    final _genre = _querySnapshot.data() as Map<String, dynamic>;
+
+    return GenreModel(id: genreId, name: _genre["name"]);
   }
 }

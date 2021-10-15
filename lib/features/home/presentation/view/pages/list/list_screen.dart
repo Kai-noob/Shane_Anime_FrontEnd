@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/core/global/image_widget.dart';
 import 'package:movie_app/core/global/loading_indicator.dart';
+import 'package:movie_app/features/genre/presentation/controllers/genre_controller.dart';
+import 'package:movie_app/features/home/binding/home_binding.dart';
 import 'package:movie_app/features/home/presentation/controllers/complete_controller.dart';
 import 'package:movie_app/features/home/presentation/controllers/hot_controller.dart';
 import 'package:movie_app/features/home/presentation/controllers/recent_controller.dart';
+import 'package:movie_app/features/home/presentation/view/pages/details/details_screen.dart';
 
 class CompleteAllComicView extends StatelessWidget {
   final CompleteController _completeController = Get.find<CompleteController>();
@@ -29,7 +32,7 @@ class CompleteAllComicView extends StatelessWidget {
             return const LoadingIndicator();
           }
           return ListView.builder(
-            itemCount: _completeController.completeComicList.length,
+            itemCount: _completeController.allCompleteComicList.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -39,9 +42,18 @@ class CompleteAllComicView extends StatelessWidget {
                     SizedBox(
                         height: 200,
                         width: MediaQuery.of(context).size.width * 0.45,
-                        child: ImageWidget(
-                          image: _completeController
-                              .completeComicList[index].coverPhoto,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(
+                                () => DetailsScreen(
+                                    comicModel: _completeController
+                                        .allCompleteComicList[index]),
+                                binding: HomeBinding());
+                          },
+                          child: ImageWidget(
+                            image: _completeController
+                                .allCompleteComicList[index].coverPhoto,
+                          ),
                         )),
                     Expanded(
                       child: Padding(
@@ -51,20 +63,30 @@ class CompleteAllComicView extends StatelessWidget {
                           children: [
                             Text(
                                 _completeController
-                                    .completeComicList[index].title,
+                                    .allCompleteComicList[index].title,
                                 style: const TextStyle(
                                     overflow: TextOverflow.ellipsis,
                                     fontSize: 19,
                                     fontWeight: FontWeight.w800)),
-                            Text(
-                              "Comedy,Action",
-                              style: TextStyle(fontSize: 15),
-                            ),
-                            Text(
-                              "Episodes- 28",
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w600),
-                            ),
+                            Obx(() {
+                              _completeController.getCompleteGenre(
+                                  _completeController
+                                      .allCompleteComicList[index].id);
+                              return SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                child: Row(
+                                  children:
+                                      _completeController.completeGenreList
+                                          .map(
+                                            (e) => Text(
+                                              e.name,
+                                              style: TextStyle(fontSize: 15),
+                                            ),
+                                          )
+                                          .toList(),
+                                ),
+                              );
+                            })
                           ],
                         ),
                       ),
@@ -81,10 +103,13 @@ class CompleteAllComicView extends StatelessWidget {
 
 class HotAllComicView extends StatelessWidget {
   final HotController _hotController = Get.find<HotController>();
+
+  final GenreController _genreController = Get.find<GenreController>();
   HotAllComicView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // _genreController.getGenresByComic(_hotController.hotAllComicList);
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -112,9 +137,18 @@ class HotAllComicView extends StatelessWidget {
                     SizedBox(
                         height: 200,
                         width: MediaQuery.of(context).size.width * 0.45,
-                        child: ImageWidget(
-                          image:
-                              _hotController.hotAllComicList[index].coverPhoto,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(
+                                () => DetailsScreen(
+                                    comicModel:
+                                        _hotController.hotAllComicList[index]),
+                                binding: HomeBinding());
+                          },
+                          child: ImageWidget(
+                            image: _hotController
+                                .hotAllComicList[index].coverPhoto,
+                          ),
                         )),
                     Expanded(
                       child: Padding(
@@ -181,12 +215,22 @@ class RecentAllComicView extends StatelessWidget {
                   SizedBox(
                       height: 150,
                       width: MediaQuery.of(context).size.width * 0.45,
-                      child: ImageWidget(
-                        image: _recentController
-                            .recentAllComicList[index].coverPhoto,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(
+                              () => DetailsScreen(
+                                  comicModel: _recentController
+                                      .recentAllComicList[index]),
+                              binding: HomeBinding());
+                        },
+                        child: ImageWidget(
+                          image: _recentController
+                              .recentAllComicList[index].coverPhoto,
+                        ),
                       )),
                   Text(_recentController.recentAllComicList[index].title,
-                      style: const TextStyle(fontSize: 16)),
+                      style: const TextStyle(
+                          fontSize: 16, overflow: TextOverflow.ellipsis)),
                   const SizedBox(height: 5),
                 ],
               );

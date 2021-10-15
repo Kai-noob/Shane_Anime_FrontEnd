@@ -27,12 +27,13 @@ class GenreList extends StatelessWidget {
                     child: ActionChip(
                         padding: EdgeInsets.zero,
                         label: Text(e.name),
+                        labelStyle: TextStyle(color: Colors.white),
                         onPressed: () {
                           Get.to(GenreScreen(
                             genre: e,
                           ));
                         },
-                        backgroundColor: Colors.purple.withOpacity(0.15)));
+                        backgroundColor: Color(0xfffa411b).withOpacity(0.6)));
               },
             ).toList());
       }),

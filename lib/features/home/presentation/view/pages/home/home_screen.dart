@@ -1,4 +1,4 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../genre/presentation/view/genre_title.dart';
@@ -19,10 +19,11 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
   final List images = [
-    "assets/images/animeone.jpeg",
-    "assets/images/animefour.jpeg",
-    "assets/images/animethree.jpeg",
-    "assets/images/animethree.jpeg",
+    "assets/images/manga.jpg",
+    "assets/images/manga.jpg",
+    "assets/images/manga.jpg",
+    "assets/images/manga.jpg",
+
     // "assets/images/animethree.jpeg",
     // "assets/images/animethree.jpeg",
   ];
@@ -50,56 +51,51 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          backgroundColor: context.theme.backgroundColor,
-          elevation: 0.0,
-          title: const Text(
-            "Shane Manga MM",
-            style: TextStyle(color: Colors.white),
-          ),
-          // floating: true,
-          expandedHeight: 350,
-
-          actions: [
-            CircleAvatar(
-              radius: 20,
-              backgroundColor: Colors.black,
-              child: IconButton(
-                  onPressed: () {
-                    ThemeService().swithTheme();
-                  },
-                  icon: Icon(
-                    Get.isDarkMode ? EvaIcons.sunOutline : EvaIcons.moonOutline,
-                    color: Colors.white,
-                  )),
-            )
-          ],
-          flexibleSpace: SizedBox(
-            height: 350,
+        SliverToBoxAdapter(
+          child: SizedBox(
+            height: 300,
             child: PageView.builder(
-                itemCount: images.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(images[index]))),
+              itemCount: images.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Stack(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(images[index]))),
+                    ),
+                    const Positioned(
+                      bottom: 0,
+                      child: Text(
+                        "Demon Slayer",
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.w800),
                       ),
-                      const Positioned(
-                        bottom: 0,
-                        child: Text(
-                          "Demon Slayer",
-                          style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.w800),
-                        ),
-                      )
-                    ],
-                  );
-                }),
+                    )
+                  ],
+                );
+              },
+            ),
           ),
         ),
+        // SliverToBoxAdapter(
+        //   child: SizedBox(
+        //     child: CarouselSlider(
+        //       items: images.map((e) => Image.asset(e)).toList(),
+        //       options: CarouselOptions(height: 350),
+        //     ),
+        //   ),
+        // ),
+        // SliverAppBar(
+        //   elevation: 0.0,
+        //   title: const Text(
+        //     "Shane Manga MM",
+        //     style: TextStyle(color: Colors.white),
+        //   ),
+        //   // floating: true,
+        //   expandedHeight: 350,
+
         // SliverPadding(
         //   padding: const EdgeInsets.symmetric(vertical: 10),
         //   sliver: SliverToBoxAdapter(
@@ -108,7 +104,7 @@ class HomeBody extends StatelessWidget {
         //     ),
         //   ),
         // ),
-        const GenreTitle(),
+        GenreTitle(),
         GenreList(),
         const RecentTitle(),
         RecentList(),

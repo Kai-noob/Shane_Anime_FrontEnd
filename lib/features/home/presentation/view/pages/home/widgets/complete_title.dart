@@ -19,15 +19,15 @@ class CompleteTitle extends StatelessWidget {
               "Completed Series",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-            TextButton(
-                onPressed: () {
-                  Get.to(() => CompleteAllComicView());
-                },
-                child: const Text("more",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: Colors.deepPurple,
-                        fontSize: 17)))
+            GestureDetector(
+              onTap: () {
+                Get.to(() => CompleteAllComicView());
+              },
+              child: Text(
+                "more",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
+              ),
+            )
           ],
         ),
       ),

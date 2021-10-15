@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import 'package:movie_app/features/genre/domain/entities/comic_gere.dart';
+import 'package:movie_app/features/genre/domain/entities/genre.dart';
+import 'package:movie_app/features/genre/domain/usecases/get_genre_id_usecase.dart';
+import 'package:movie_app/features/genre/domain/usecases/get_genre_usecase.dart';
 import '../../../../core/utils/show_snack_bar.dart';
 import '../../domain/entities/comic.dart';
 import '../../domain/usecases/get_completed_comic_usecase.dart';
@@ -6,7 +10,13 @@ import '../../domain/usecases/get_completed_comic_usecase.dart';
 class CompleteController extends GetxController {
   final GetCompletedComicUseCase getCompleteUseCase;
 
-  CompleteController({required this.getCompleteUseCase});
+  final GetGenreIdUsecase getGenreIdUsecase;
+  final GetGenreUsecase getGenreUseCase;
+
+  CompleteController(
+      {required this.getCompleteUseCase,
+      required this.getGenreIdUsecase,
+      required this.getGenreUseCase});
 
   final RxList<Comic> _completeComicList = RxList();
 
@@ -15,6 +25,10 @@ class CompleteController extends GetxController {
   final RxList<Comic> _allCompleteComicList = RxList();
 
   List<Comic> get allCompleteComicList => [..._allCompleteComicList];
+
+  final RxList<Genre> _completeGenreList = RxList();
+
+  List<Genre> get completeGenreList => [..._completeGenreList];
 
   final RxBool _isLoading = false.obs;
 
@@ -52,6 +66,23 @@ class CompleteController extends GetxController {
       List<Comic> _completeComics = await getCompleteUseCase.call();
 
       _allCompleteComicList.value = _completeComics;
+
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+      SnackBarUtils().showSnackBar("Complete ${e.toString()}");
+    }
+  }
+
+  Future<void> getCompleteGenre(String comicId) async {
+    try {
+      setLoading(true);
+
+      List<ComicGenre> _comicGenres = await getGenreIdUsecase.call(comicId);
+      for (var _comicGenre in _comicGenres) {
+        Genre _genres = await getGenreUseCase.call(_comicGenre.genreId);
+        _completeGenreList.add(_genres);
+      }
 
       setLoading(false);
     } catch (e) {

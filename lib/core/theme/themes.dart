@@ -1,32 +1,19 @@
 import 'package:flutter/material.dart';
 
+class AppColors {
+  String kColor = "0xfffa411b";
+}
+
 class Themes {
   static final ThemeData dark = ThemeData(
       fontFamily: "MyFont",
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Colors.black, selectedItemColor: Colors.white),
+          backgroundColor: Colors.black, selectedItemColor: Color(0xfffa411b)),
       scaffoldBackgroundColor: Colors.black,
       primaryColor: Colors.black,
       backgroundColor: Colors.black,
       colorScheme: const ColorScheme.dark(),
       appBarTheme: const AppBarTheme(backgroundColor: Colors.black),
-      buttonTheme: const ButtonThemeData(
-        buttonColor: Colors.white,
-      ),
-      // inputDecorationTheme: InputDecorationTheme(
-      //   border: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(20),
-      //     borderSide: const BorderSide(color: Colors.white),
-      //   ),
-      //   enabledBorder: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(20),
-      //     borderSide: const BorderSide(color: Colors.white),
-      //   ),
-      //   focusedBorder: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(20),
-      //     borderSide: const BorderSide(color: Colors.white),
-      //   ),
-      // ),
       iconTheme: const IconThemeData(color: Colors.white));
 
   static final ThemeData light = ThemeData(
@@ -36,24 +23,7 @@ class Themes {
       primaryColor: Colors.white,
       colorScheme: const ColorScheme.light(
           primary: Colors.white, onPrimary: Colors.black),
-      // inputDecorationTheme: InputDecorationTheme(
-      //   border: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(20),
-      //     borderSide: const BorderSide(color: Colors.black),
-      //   ),
-      //   enabledBorder: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(20),
-      //     borderSide: const BorderSide(color: Colors.black),
-      //   ),
-      //   focusedBorder: OutlineInputBorder(
-      //     borderRadius: BorderRadius.circular(20),
-      //     borderSide: const BorderSide(color: Colors.black),
-      //   ),
-      // ),
       iconTheme: const IconThemeData(color: Colors.black),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Colors.white,
-          selectedItemColor: Colors.deepPurpleAccent));
+          backgroundColor: Colors.white, selectedItemColor: Color(0xfffa411b)));
 }
-
-const String kcolor = "0xff491be0";

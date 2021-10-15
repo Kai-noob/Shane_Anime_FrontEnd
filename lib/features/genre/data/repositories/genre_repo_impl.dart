@@ -1,3 +1,5 @@
+import 'package:movie_app/features/home/domain/entities/comic.dart';
+
 import '../datasources/genre_datasource.dart';
 import '../../domain/entities/comic_by_genre.dart';
 import '../../domain/entities/comic_gere.dart';
@@ -9,17 +11,27 @@ class GenreRepoImpl implements GenreRepo {
 
   GenreRepoImpl({required this.genreDataSource});
   @override
-  Future<List<ComicGenre>> getComicGenre(String genreId) {
-    return genreDataSource.getComicGenreFromFirebase(genreId);
+  Future<List<ComicGenre>> getComicId(String genreId) {
+    return genreDataSource.getComicId(genreId);
   }
 
   @override
-  Future<List<Genre>> getGenre() {
-    return genreDataSource.getGenreFromFirebase();
+  Future<List<Genre>> getGenres() {
+    return genreDataSource.getGenres();
   }
 
   @override
-  Future<ComicByGenre> getComicByGenre(String comicId) {
-    return genreDataSource.getComicByGenreFromFirebase(comicId);
+  Future<Comic> getComics(String comicId) {
+    return genreDataSource.getComics(comicId);
+  }
+
+  @override
+  Future<List<ComicGenre>> getGenreId(String comicId) {
+    return genreDataSource.getGenreId(comicId);
+  }
+
+  @override
+  Future<Genre> getGenre(String genreId) {
+    return genreDataSource.getGenre(genreId);
   }
 }

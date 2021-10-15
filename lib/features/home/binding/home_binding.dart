@@ -1,12 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:movie_app/features/genre/domain/usecases/get_genre_id_usecase.dart';
+import 'package:movie_app/features/genre/domain/usecases/get_genre_usecase.dart';
 import '../../genre/data/datasources/genre_datasource.dart';
 import '../../genre/data/datasources/genre_datasource_imp.dart';
 import '../../genre/data/repositories/genre_repo_impl.dart';
 import '../../genre/domain/repositories/genre_repo.dart';
 import '../../genre/domain/usecases/get_comic_by_genre_usecase.dart';
-import '../../genre/domain/usecases/get_comic_genre_usecase.dart';
-import '../../genre/domain/usecases/get_genre_usecase.dart';
+import '../../genre/domain/usecases/get_comic_id_usecase.dart';
+import '../../genre/domain/usecases/get_genres_usecase.dart';
 import '../../genre/presentation/controllers/genre_controller.dart';
 import '../domain/usecases/get_completed_comic_usecase.dart';
 import '../domain/usecases/get_episodes_usecase.dart';
@@ -37,6 +39,8 @@ class HomeBinding extends Bindings {
         RecentController(getRecentUseCase: Get.find<GetRecentComicUseCase>()));
 
     Get.lazyPut<CompleteController>(() => CompleteController(
+          getGenreIdUsecase: Get.find<GetGenreIdUsecase>(),
+          getGenreUseCase: Get.find<GetGenreUsecase>(),
           getCompleteUseCase: Get.find<GetCompletedComicUseCase>(),
         ));
 
@@ -60,8 +64,10 @@ class HomeBinding extends Bindings {
         firebaseFirestore: Get.find<FirebaseFirestore>()));
 
     Get.lazyPut<GenreController>(() => GenreController(
-        getComicGenreUseCase: Get.find<GetComicGenreUseCase>(),
-        getComicByGenreUseCase: Get.find<GetComicByGenreUseCase>(),
+        getGenreIdUsecase: Get.find<GetGenreIdUsecase>(),
+        getGenresUsecase: Get.find<GetGenresUsecase>(),
+        getComicIdUseCase: Get.find<GetComicIdUseCase>(),
+        getComicsUseCase: Get.find<GetComicsUseCase>(),
         getGenreUsecase: Get.find<GetGenreUsecase>()));
 
     Get.lazyPut<GetRecentComicUseCase>(
@@ -76,14 +82,20 @@ class HomeBinding extends Bindings {
     Get.lazyPut<GetEpisodesUseCase>(
         () => GetEpisodesUseCase(comicRepo: Get.find<ComicRepo>()));
 
-    Get.lazyPut<GetComicGenreUseCase>(
-        () => GetComicGenreUseCase(genreRepo: Get.find<GenreRepo>()));
+    Get.lazyPut<GetComicIdUseCase>(
+        () => GetComicIdUseCase(genreRepo: Get.find<GenreRepo>()));
 
-    Get.lazyPut<GetComicByGenreUseCase>(
-        () => GetComicByGenreUseCase(genreRepo: Get.find<GenreRepo>()));
+    Get.lazyPut<GetComicsUseCase>(
+        () => GetComicsUseCase(genreRepo: Get.find<GenreRepo>()));
+
+    Get.lazyPut<GetGenresUsecase>(
+        () => GetGenresUsecase(genreRepo: Get.find<GenreRepo>()));
 
     Get.lazyPut<GetGenreUsecase>(
         () => GetGenreUsecase(genreRepo: Get.find<GenreRepo>()));
+
+    Get.lazyPut<GetGenreIdUsecase>(
+        () => GetGenreIdUsecase(genreRepo: Get.find<GenreRepo>()));
 
     Get.lazyPut<ComicRepo>(() =>
         ComicRepoImpl(remoteDataSource: Get.find<ComicRemoteDataSource>()));

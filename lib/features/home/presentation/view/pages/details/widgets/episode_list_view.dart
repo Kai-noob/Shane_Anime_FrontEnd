@@ -1,6 +1,6 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
 import '../../../../../../../core/global/loading_indicator.dart';
 import '../../../../controllers/episode_controller.dart';
 import '../../reading/binding/photo_binding.dart';
@@ -35,7 +35,7 @@ class EpisodeListView extends StatelessWidget {
                   binding: PhotoBinding());
             },
             leading: const Icon(
-              EvaIcons.bookOpen,
+              Ionicons.book,
               color: Colors.deepPurpleAccent,
             ),
             trailing: const Text("Free"),
