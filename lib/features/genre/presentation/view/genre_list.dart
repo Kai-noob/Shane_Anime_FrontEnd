@@ -29,9 +29,9 @@ class GenreList extends StatelessWidget {
                         label: Text(e.name),
                         labelStyle: TextStyle(color: Colors.white),
                         onPressed: () {
-                          Get.to(GenreScreen(
-                            genre: e,
-                          ));
+                          Get.to(() => GenreScreen(
+                                genre: e,
+                              ));
                         },
                         backgroundColor: Color(0xfffa411b).withOpacity(0.6)));
               },

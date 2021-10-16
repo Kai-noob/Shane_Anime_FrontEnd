@@ -27,9 +27,6 @@ class DetailsTitle extends StatelessWidget {
               style:
                   const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
           Obx(() {
-            if (_genreController.isLoading) {
-              return LoadingIndicator();
-            }
             return Row(
               children: _genreController.genreByComicList
                   .map((e) => Padding(
@@ -45,7 +42,6 @@ class DetailsTitle extends StatelessWidget {
             );
           }),
           const SizedBox(height: 10),
-          const Text("Presented by Shane Manga")
         ],
       ),
     ));

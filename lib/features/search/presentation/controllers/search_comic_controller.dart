@@ -47,4 +47,10 @@ class SearchComicController extends GetxController {
       SnackBarUtils().showSnackBar("Something Went Wrong.");
     }
   }
+
+  @override
+  void onInit() {
+    _searchComicList.clear();
+    super.onInit();
+  }
 }

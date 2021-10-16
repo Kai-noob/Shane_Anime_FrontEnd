@@ -11,13 +11,25 @@ class DetailsTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
       delegate: SliverAppBarDelegate(
-        const TabBar(
-          indicatorColor: Colors.deepPurpleAccent,
-          indicatorSize: TabBarIndicatorSize.label,
-          indicatorWeight: 1.0,
+        TabBar(
+          // indicatorColor: Colors.deepPurpleAccent,
+          // indicatorSize: TabBarIndicatorSize.label,
+          // indicatorWeight: 1.0,
           tabs: [
-            Tab(text: "Review"),
-            Tab(text: "Episodes"),
+            Tab(
+              child: Container(
+                decoration:
+                    BoxDecoration(color: Color(0xfffa411b).withOpacity(0.6)),
+                child: Text("Review"),
+              ),
+            ),
+            Tab(
+              child: Container(
+                child: Text("Chapters"),
+              ),
+            ),
+            // Tab(text: "Review"),
+            // Tab(text: "Chapters"),
           ],
         ),
       ),

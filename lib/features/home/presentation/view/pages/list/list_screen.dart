@@ -69,9 +69,9 @@ class CompleteAllComicView extends StatelessWidget {
                                     fontSize: 19,
                                     fontWeight: FontWeight.w800)),
                             Obx(() {
-                              _completeController.getCompleteGenre(
-                                  _completeController
-                                      .allCompleteComicList[index].id);
+                              // _completeController.getCompleteGenre(
+                              //     _completeController
+                              //         .allCompleteComicList[index].id);
                               return SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(

@@ -1,7 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:movie_app/features/genre/domain/usecases/get_genre_id_usecase.dart';
 import 'package:movie_app/features/genre/domain/usecases/get_genre_usecase.dart';
+import 'package:movie_app/features/userAccount/data/datasources/auth_data_source.dart';
+import 'package:movie_app/features/userAccount/data/datasources/auth_data_source_impl.dart';
+import 'package:movie_app/features/userAccount/data/repositories/auth_repo_impl.dart';
+import 'package:movie_app/features/userAccount/domain/repositories/auth_repo.dart';
+import 'package:movie_app/features/userAccount/domain/usecases/add_user_usecase.dart';
+import 'package:movie_app/features/userAccount/domain/usecases/sign_up_usecase.dart';
+import 'package:movie_app/features/userAccount/presentation/controllers/auth_controller.dart';
 import '../../genre/data/datasources/genre_datasource.dart';
 import '../../genre/data/datasources/genre_datasource_imp.dart';
 import '../../genre/data/repositories/genre_repo_impl.dart';
@@ -124,6 +132,7 @@ class HomeBinding extends Bindings {
     // //search comic
 
     final fireStore = FirebaseFirestore.instance;
+
     Get.put(fireStore, permanent: true);
   }
 }

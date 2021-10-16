@@ -104,10 +104,11 @@ class HomeBody extends StatelessWidget {
         //     ),
         //   ),
         // ),
-        GenreTitle(),
-        GenreList(),
+
         const RecentTitle(),
         RecentList(),
+        GenreTitle(),
+        GenreList(),
         const HotTitle(),
         HotList(),
         const CompleteTitle(),
