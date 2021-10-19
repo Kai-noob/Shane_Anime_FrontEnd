@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:ionicons/ionicons.dart';
+import 'package:movie_app/features/home/presentation/bloc/details/bloc/details_bloc.dart';
 import '../../../../../../../core/global/loading_indicator.dart';
-import '../../../../controllers/episode_controller.dart';
+
 import '../../reading/binding/photo_binding.dart';
 import '../../reading/reading_screen.dart';
 
 class EpisodeListView extends StatelessWidget {
-  final EpisodeController _episodeController = Get.find<EpisodeController>();
-
   final String comicId;
   EpisodeListView({
     Key? key,
@@ -17,31 +17,34 @@ class EpisodeListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _episodeController.getEpisodes(comicId);
-
-    return Obx(() {
-      if (_episodeController.isLoading) {
-        return const LoadingIndicator();
-      }
-      return ListView.builder(
-        itemCount: _episodeController.episodeList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(_episodeController.episodeList[index].episodeName),
-            onTap: () {
-              Get.to(
-                  () => ReadingScreen(
-                      photos: _episodeController.episodeList[index]),
-                  binding: PhotoBinding());
+    return BlocBuilder<DetailsBloc, DetailsState>(
+      builder: (context, state) {
+        if (state is DetailsLoading) {
+          return LoadingIndicator();
+        }
+        if (state is DetailsLoaded) {
+          return ListView.builder(
+            itemCount: state.episodes.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(state.episodes[index].episodeName),
+                onTap: () {
+                  // Get.to(
+                  //     () => ReadingScreen(
+                  //         photos: _episodeController.episodeList[index]),
+                  //     binding: PhotoBinding());
+                },
+                leading: const Icon(
+                  Ionicons.book,
+                  color: Colors.deepPurpleAccent,
+                ),
+                trailing: const Text("Free"),
+              );
             },
-            leading: const Icon(
-              Ionicons.book,
-              color: Colors.deepPurpleAccent,
-            ),
-            trailing: const Text("Free"),
           );
-        },
-      );
-    });
+        }
+        return Container();
+      },
+    );
   }
 }

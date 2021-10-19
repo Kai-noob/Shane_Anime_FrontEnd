@@ -6,6 +6,6 @@ class PhoneAuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SignUpBody());
+    return Scaffold(body: PhoneAuthBody());
   }
 }

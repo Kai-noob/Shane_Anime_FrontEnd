@@ -8,9 +8,9 @@ import '../models/comic_model.dart';
 import '../../domain/entities/comic.dart';
 
 class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
-  final FirebaseFirestore firebaseFirestore;
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
-  ComicRemoteDataSourceImpl({required this.firebaseFirestore});
+  ComicRemoteDataSourceImpl();
   @override
   Future<List<Comic>> getRecentComic() async {
     QuerySnapshot _querySnapshot =

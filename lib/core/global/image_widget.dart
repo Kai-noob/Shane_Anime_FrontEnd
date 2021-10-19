@@ -19,10 +19,10 @@ class ImageWidget extends StatelessWidget {
       imageUrl: image,
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(5),
           image: DecorationImage(
             image: imageProvider,
-            fit: BoxFit.cover,
+            fit: BoxFit.fitHeight,
           ),
         ),
       ),

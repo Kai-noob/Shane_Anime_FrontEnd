@@ -12,21 +12,15 @@ class DetailsTabBar extends StatelessWidget {
     return SliverPersistentHeader(
       delegate: SliverAppBarDelegate(
         TabBar(
-          // indicatorColor: Colors.deepPurpleAccent,
-          // indicatorSize: TabBarIndicatorSize.label,
-          // indicatorWeight: 1.0,
+          indicatorColor: Colors.red,
+          indicatorSize: TabBarIndicatorSize.label,
+          indicatorWeight: 1.0,
           tabs: [
             Tab(
-              child: Container(
-                decoration:
-                    BoxDecoration(color: Color(0xfffa411b).withOpacity(0.6)),
-                child: Text("Review"),
-              ),
+              text: "Review",
             ),
             Tab(
-              child: Container(
-                child: Text("Chapters"),
-              ),
+              text: "Chapters",
             ),
             // Tab(text: "Review"),
             // Tab(text: "Chapters"),

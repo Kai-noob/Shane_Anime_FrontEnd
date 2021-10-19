@@ -1,6 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:ionicons/ionicons.dart';
+import 'package:movie_app/core/global/image_widget.dart';
+import 'package:movie_app/features/home/presentation/bloc/home_bloc.dart';
+import 'package:movie_app/features/home/presentation/view/pages/details/widgets/detial_sliver_delegate.dart';
 import '../../../../../genre/presentation/view/genre_title.dart';
 import 'widgets/recent_title.dart';
 import '../../../../../../core/services/connection_service.dart';
@@ -30,16 +35,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(() =>
-          Get.find<NetworkController>().connectionStatus.value == 1 ||
-                  Get.find<NetworkController>().connectionStatus.value == 2
-              ? HomeBody(images: images)
-              : const NoInternetConnection()),
-    );
+        body: HomeBody(
+      images: images,
+    ));
   }
 }
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
   const HomeBody({
     Key? key,
     required this.images,
@@ -48,72 +50,72 @@ class HomeBody extends StatelessWidget {
   final List images;
 
   @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: SizedBox(
-            height: 300,
-            child: PageView.builder(
-              itemCount: images.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Stack(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(images[index]))),
-                    ),
-                    const Positioned(
-                      bottom: 0,
-                      child: Text(
-                        "Demon Slayer",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.w800),
+    return DefaultTabController(
+        length: 2,
+        child: NestedScrollView(
+          physics: const ClampingScrollPhysics(),
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                expandedHeight: 350,
+                elevation: 0.0,
+                title: Text(
+                  "Shame Manga MM",
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w600, color: Colors.white),
+                ),
+                flexibleSpace: FlexibleSpaceBar(
+                  centerTitle: true,
+                  background: Image.asset(
+                    "assets/images/manga.jpg",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SliverPersistentHeader(
+                delegate: SliverAppBarDelegate(
+                  TabBar(
+                    isScrollable: true,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorColor: Colors.black,
+                    tabs: [
+                      Tab(
+                        text: "Comic",
                       ),
-                    )
-                  ],
-                );
-              },
-            ),
+                      Tab(
+                        text: "Genres",
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ];
+          },
+          body: TabBarView(
+            children: [
+              Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      RecentTitle(),
+                      RecentList(),
+                      HotTitle(),
+                      HotList(),
+                      CompleteTitle(),
+                      CompleteList()
+                    ],
+                  ),
+                ),
+              ),
+              Container()
+            ],
           ),
-        ),
-        // SliverToBoxAdapter(
-        //   child: SizedBox(
-        //     child: CarouselSlider(
-        //       items: images.map((e) => Image.asset(e)).toList(),
-        //       options: CarouselOptions(height: 350),
-        //     ),
-        //   ),
-        // ),
-        // SliverAppBar(
-        //   elevation: 0.0,
-        //   title: const Text(
-        //     "Shane Manga MM",
-        //     style: TextStyle(color: Colors.white),
-        //   ),
-        //   // floating: true,
-        //   expandedHeight: 350,
-
-        // SliverPadding(
-        //   padding: const EdgeInsets.symmetric(vertical: 10),
-        //   sliver: SliverToBoxAdapter(
-        //     child: ImageCarouselWidget(
-        //       images: images,
-        //     ),
-        //   ),
-        // ),
-
-        const RecentTitle(),
-        RecentList(),
-        GenreTitle(),
-        GenreList(),
-        const HotTitle(),
-        HotList(),
-        const CompleteTitle(),
-        CompleteList()
-      ],
-    );
+        ));
   }
 }

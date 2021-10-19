@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../../../../../core/global/image_widget.dart';
 import '../../../../../domain/entities/comic.dart';
@@ -38,7 +37,7 @@ class DetailsBody extends StatelessWidget {
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back_ios_new),
                 onPressed: () {
-                  Get.back();
+                  Navigator.of(context).pop();
                 },
               ),
               flexibleSpace: FlexibleSpaceBar(

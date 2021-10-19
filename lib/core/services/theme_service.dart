@@ -1,22 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:get_storage/get_storage.dart';
 
-class ThemeService extends GetxController {
-  final _box = GetStorage();
+// class ThemeService extends GetxController {
+//   final _box = GetStorage();
 
-  final _key = "isDarkMode";
+//   final _key = "isDarkMode";
 
-  _saveThemeToBox(bool isDarkMode) => _box.write(_key, isDarkMode);
-  bool _loadThemeFromBox() => _box.read(_key) ?? false;
-  bool get isDark => !_loadThemeFromBox();
+//   _saveThemeToBox(bool isDarkMode) => _box.write(_key, isDarkMode);
+//   bool _loadThemeFromBox() => _box.read(_key) ?? false;
+//   bool get isDark => !_loadThemeFromBox();
 
-  ThemeMode get theme => _loadThemeFromBox() ? ThemeMode.dark : ThemeMode.light;
+//   ThemeMode get theme => _loadThemeFromBox() ? ThemeMode.dark : ThemeMode.light;
 
-  void swithTheme() {
-    Get.changeThemeMode(_loadThemeFromBox() ? ThemeMode.light : ThemeMode.dark);
-    _saveThemeToBox(!_loadThemeFromBox());
+//   void swithTheme() {
+//     Get.changeThemeMode(_loadThemeFromBox() ? ThemeMode.light : ThemeMode.dark);
+//     _saveThemeToBox(!_loadThemeFromBox());
 
 
-  }
-}
+//   }
+// }

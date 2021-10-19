@@ -260,6 +260,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.0"
+  dartz:
+    dependency: "direct main"
+    description:
+      name: dartz
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.0"
+  equatable:
+    dependency: "direct main"
+    description:
+      name: equatable
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -341,7 +355,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.3.0"
+    version: "7.3.1"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -380,20 +394,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
-  get:
+  get_it:
     dependency: "direct main"
     description:
-      name: get
+      name: get_it
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.8"
-  get_storage:
-    dependency: "direct main"
-    description:
-      name: get_storage
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3"
+    version: "7.2.0"
   glob:
     dependency: transitive
     description:

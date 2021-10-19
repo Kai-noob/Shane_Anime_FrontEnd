@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import 'package:ionicons/ionicons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:movie_app/core/services/theme_service.dart';
@@ -28,20 +28,6 @@ class UserAccountScreen extends StatelessWidget {
                   ))
             ],
           ),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ListTile(
-                      tileColor: context.theme.backgroundColor,
-                      onTap: () => ThemeService().swithTheme(),
-                      leading:
-                          Icon(Get.isDarkMode ? Ionicons.sunny : Ionicons.moon),
-                      title: Text(Get.isDarkMode ? "Dark Mode" : "Light Mode"))
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );

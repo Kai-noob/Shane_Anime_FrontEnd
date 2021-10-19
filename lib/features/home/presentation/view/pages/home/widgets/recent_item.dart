@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
 import '../../../../../../../core/global/image_widget.dart';
-import '../../../../../binding/home_binding.dart';
+
 import '../../../../../domain/entities/comic.dart';
 import '../../details/details_screen.dart';
 
@@ -21,16 +21,12 @@ class RecentItem extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              // Get.to(() => DetailsScreen(comicModel: comicModel, image: image));
-              Get.to(
-                  () => DetailsScreen(
-                        comicModel: comicModel,
-                      ),
-                  binding: HomeBinding());
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => DetailsScreen(comicModel: comicModel)));
             },
             child: SizedBox(
-              height: 130,
-              width: 150,
+              height: 240,
+              width: 140,
               child: ImageWidget(image: comicModel.coverPhoto),
             ),
           ),

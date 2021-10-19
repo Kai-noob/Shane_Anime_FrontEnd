@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/features/home/presentation/bloc/bloc/recent_bloc.dart';
+import 'package:movie_app/features/home/presentation/bloc/home_bloc.dart';
+
 import '../../../../../../../core/global/loading_indicator.dart';
-import '../../../../controllers/recent_controller.dart';
+
 import 'recent_item.dart';
 
 class RecentList extends StatelessWidget {
-  final RecentController _recentController = Get.find<RecentController>();
   RecentList({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      sliver: SliverToBoxAdapter(
-        child: Obx(() {
-          if (_recentController.isLoading) {
-            return const LoadingIndicator();
-          }
+    return BlocBuilder<RecentBloc, RecentState>(
+      builder: (context, state) {
+        if (state is RecentLoading) {
+          return LoadingIndicator();
+        }
+        if (state is RecentLoaded) {
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: _recentController.recentComicList
+              children: state.recentComics
                   .map((e) => RecentItem(comicModel: e))
                   .toList(),
             ),
           );
-        }),
-      ),
+        }
+        return Container();
+      },
     );
   }
 }
