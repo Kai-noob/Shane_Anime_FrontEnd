@@ -20,16 +20,16 @@ class FormError extends StatelessWidget {
   Row formErrorText({required String error}) {
     return Row(
       children: [
-        Icon(
+        const Icon(
           Ionicons.close,
           color: Colors.red,
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Text(
           error,
-          style: TextStyle(color: Colors.red),
+          style: const TextStyle(color: Colors.red),
         ),
       ],
     );

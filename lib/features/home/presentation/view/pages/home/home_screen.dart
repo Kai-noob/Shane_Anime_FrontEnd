@@ -1,18 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/core/global/image_widget.dart';
-import 'package:movie_app/features/home/presentation/bloc/home_bloc.dart';
-import 'package:movie_app/features/home/presentation/view/pages/details/widgets/detial_sliver_delegate.dart';
-import '../../../../../genre/presentation/view/genre_title.dart';
+import 'package:movie_app/core/global/loading_indicator.dart';
+import 'package:movie_app/features/genre/presentation/bloc/genre_bloc.dart';
+
+import '../details/widgets/detial_sliver_delegate.dart';
 import 'widgets/recent_title.dart';
-import '../../../../../../core/services/connection_service.dart';
-import '../../../../../../core/services/theme_service.dart';
-import 'no_internet_connection_widget.dart';
+
 import 'widgets/complete_list.dart';
-import '../../../../../genre/presentation/view/genre_list.dart';
 import 'widgets/complete_title.dart';
 import 'widgets/hot_list.dart';
 
@@ -57,65 +52,105 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
-        child: NestedScrollView(
-          physics: const ClampingScrollPhysics(),
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return [
-              SliverAppBar(
-                expandedHeight: 350,
-                elevation: 0.0,
-                title: Text(
-                  "Shame Manga MM",
-                  style: const TextStyle(
-                      fontWeight: FontWeight.w600, color: Colors.white),
-                ),
-                flexibleSpace: FlexibleSpaceBar(
-                  centerTitle: true,
-                  background: Image.asset(
-                    "assets/images/manga.jpg",
-                    fit: BoxFit.cover,
-                  ),
+      length: 2,
+      child: NestedScrollView(
+        physics: const ClampingScrollPhysics(),
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              expandedHeight: 350,
+              backgroundColor: Colors.black,
+              flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.pin,
+                  background: PageView.builder(
+                      itemCount: 5,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage("assets/images/manga.jpg"),
+                                  fit: BoxFit.cover)),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomRight,
+                                    colors: [
+                                  Colors.black,
+                                  Colors.black.withOpacity(.3)
+                                ])),
+                            child: Padding(
+                              padding: EdgeInsets.all(20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Text("Your Name",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 40,
+                                      )),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      })),
+            ),
+            SliverPersistentHeader(
+              delegate: SliverAppBarDelegate(
+                const TabBar(
+                  isScrollable: true,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  indicatorColor: Colors.black,
+                  tabs: [
+                    Tab(
+                      text: "Comic",
+                    ),
+                    Tab(
+                      text: "Genres",
+                    ),
+                  ],
                 ),
               ),
-              SliverPersistentHeader(
-                delegate: SliverAppBarDelegate(
-                  TabBar(
-                    isScrollable: true,
-                    indicatorSize: TabBarIndicatorSize.label,
-                    indicatorColor: Colors.black,
-                    tabs: [
-                      Tab(
-                        text: "Comic",
-                      ),
-                      Tab(
-                        text: "Genres",
-                      ),
-                    ],
-                  ),
-                ),
+            ),
+          ];
+        },
+        body: TabBarView(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                children: const [
+                  RecentTitle(),
+                  RecentList(),
+                  HotTitle(),
+                  HotList(),
+                  CompleteTitle(),
+                  CompleteList()
+                ],
               ),
-            ];
-          },
-          body: TabBarView(
-            children: [
-              Container(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      RecentTitle(),
-                      RecentList(),
-                      HotTitle(),
-                      HotList(),
-                      CompleteTitle(),
-                      CompleteList()
-                    ],
-                  ),
-                ),
-              ),
-              Container()
-            ],
-          ),
-        ));
+            ),
+            BlocBuilder<GenreBloc, GenreState>(
+              builder: (context, state) {
+                if (state is GenreLoading) {
+                  return LoadingIndicator();
+                }
+                if (state is GenreSuccess) {
+                  return ListView.builder(
+                    itemCount: state.genres.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        title: Text(state.genres[index].name),
+                      );
+                    },
+                  );
+                }
+                return Container();
+              },
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

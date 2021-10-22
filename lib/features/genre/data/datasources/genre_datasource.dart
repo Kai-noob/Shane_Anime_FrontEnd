@@ -1,6 +1,5 @@
-import 'package:movie_app/features/home/domain/entities/comic.dart';
+import '../../../home/domain/entities/comic.dart';
 
-import '../../domain/entities/comic_by_genre.dart';
 import '../../domain/entities/comic_gere.dart';
 import '../../domain/entities/genre.dart';
 

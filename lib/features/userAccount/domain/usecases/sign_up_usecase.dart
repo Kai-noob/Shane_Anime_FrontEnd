@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_app/core/error/failure.dart';
-import 'package:movie_app/features/userAccount/domain/entities/user.dart';
-import 'package:movie_app/features/userAccount/domain/repositories/auth_repo.dart';
+import '../../../../core/error/failure.dart';
+import '../entities/user.dart';
+import '../repositories/auth_repo.dart';
 
 class SignUpUseCase {
   final AuthRepo authRepo;

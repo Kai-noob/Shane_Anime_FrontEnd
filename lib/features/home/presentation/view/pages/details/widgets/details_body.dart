@@ -1,11 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:movie_app/features/home/presentation/view/pages/details/details_review_screen.dart';
+import 'package:movie_app/features/library/domain/entities/favourite_comic.dart';
+import 'package:movie_app/features/library/presentation/bloc/library_bloc.dart';
+import 'episode_list_view.dart';
 
 import '../../../../../../../core/global/image_widget.dart';
 import '../../../../../domain/entities/comic.dart';
-
-import 'details_tab_bar.dart';
-import 'details_tab_view.dart';
-import 'details_title.dart';
 
 class DetailsBody extends StatelessWidget {
   const DetailsBody({
@@ -17,42 +20,99 @@ class DetailsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: NestedScrollView(
-        physics: const ClampingScrollPhysics(),
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              expandedHeight: 200,
-              floating: true,
-              pinned: true,
-              elevation: 0.0,
-              title: Text(
-                comicModel.title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios_new),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                background: ImageWidget(
-                  image: comicModel.coverPhoto,
+    return CustomScrollView(
+      physics: const ClampingScrollPhysics(),
+      slivers: [
+        SliverAppBar(
+          expandedHeight: 350,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          backgroundColor: Colors.black,
+          flexibleSpace: FlexibleSpaceBar(
+            collapseMode: CollapseMode.pin,
+            background: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(comicModel.coverPhoto),
+                      fit: BoxFit.cover)),
+              child: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.bottomRight,
+                        colors: [Colors.black, Colors.black.withOpacity(.3)])),
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Text(comicModel.title,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 40,
+                          )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              BlocProvider.of<LibraryBloc>(context).add(
+                                  ToggleFavouriteComic(
+                                      FavouriteComic(
+                                          comicModel.id,
+                                          comicModel.title,
+                                          comicModel.coverPhoto),
+                                      comicModel.id));
+                            },
+                            icon: Icon(Ionicons.heart),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        DetailsReviewScreen(
+                                          comicModel: comicModel,
+                                        )));
+                              },
+                              icon: Icon(Ionicons.information_circle_outline)),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-            DetailsTitle(comicModel: comicModel),
-            const DetailsTabBar(),
-          ];
-        },
-        body: DetialTabView(comicModel: comicModel),
-      ),
+          ),
+        ),
+
+        SliverPadding(
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          sliver: SliverToBoxAdapter(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Chapters",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Ionicons.swap_vertical_outline,
+                      size: 23,
+                    )),
+              ],
+            ),
+          ),
+        ),
+        EpisodeListView(comicId: comicModel.id)
+        // DetailsTitle(comicModel: comicModel),
+      ],
     );
   }
 }

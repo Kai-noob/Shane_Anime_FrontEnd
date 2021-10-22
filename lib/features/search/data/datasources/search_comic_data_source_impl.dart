@@ -4,9 +4,9 @@ import '../models/searchcomicmodel.dart';
 import '../../domain/entities/searchcomic.dart';
 
 class SearchComicDataSourceImpl implements SearchComicDataSource {
-  final FirebaseFirestore firebaseFirestore;
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
-  SearchComicDataSourceImpl({required this.firebaseFirestore});
+  SearchComicDataSourceImpl();
   @override
   Future<List<SearchComic>> searchComics({required String query}) async {
     QuerySnapshot _querySnapshot = await firebaseFirestore

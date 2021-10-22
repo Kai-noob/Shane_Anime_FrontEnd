@@ -13,26 +13,27 @@ class PasswordFormBuilder extends StatefulWidget {
   final VoidCallback? submitAction;
   final FormFieldValidator<String>? validateFunction;
   final void Function(String)? onSaved;
-  final Key? key;
+
   final IconData prefix;
   final IconData suffix;
 
-  PasswordFormBuilder(
-      {required this.prefix,
-      required this.suffix,
-      this.initialValue,
-      this.enabled,
-      this.hintText,
-      this.textInputType,
-      this.controller,
-      this.textInputAction,
-      this.nextFocusNode,
-      this.focusNode,
-      this.submitAction,
-      this.obscureText = false,
-      this.validateFunction,
-      this.onSaved,
-      this.key});
+  const PasswordFormBuilder({
+    Key? key,
+    required this.prefix,
+    required this.suffix,
+    this.initialValue,
+    this.enabled,
+    this.hintText,
+    this.textInputType,
+    this.controller,
+    this.textInputAction,
+    this.nextFocusNode,
+    this.focusNode,
+    this.submitAction,
+    this.obscureText = false,
+    this.validateFunction,
+    this.onSaved,
+  }) : super(key: key);
 
   @override
   _PasswordFormBuilderState createState() => _PasswordFormBuilderState();
@@ -74,14 +75,14 @@ class _PasswordFormBuilderState extends State<PasswordFormBuilder> {
                   widget.submitAction!();
                 }
               },
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               cursorColor: Colors.black,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(vertical: 4),
+                contentPadding: const EdgeInsets.symmetric(vertical: 4),
                 border: InputBorder.none,
-                hintStyle: TextStyle(color: Colors.black),
+                hintStyle: const TextStyle(color: Colors.black),
                 hintText: widget.hintText,
-                errorStyle: TextStyle(height: 0.0, fontSize: 0.0),
+                errorStyle: const TextStyle(height: 0.0, fontSize: 0.0),
                 prefixIcon: Icon(
                   widget.prefix,
                   size: 15,

@@ -3,8 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
-import 'loading_indicator.dart';
-
 class ImageWidget extends StatelessWidget {
   const ImageWidget({
     Key? key,
@@ -22,11 +20,16 @@ class ImageWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           image: DecorationImage(
             image: imageProvider,
-            fit: BoxFit.fitHeight,
+            fit: BoxFit.cover,
           ),
         ),
       ),
-      placeholder: (context, url) => const LoadingIndicator(),
+      placeholder: (context, url) => Container(
+        decoration: BoxDecoration(
+            image: const DecorationImage(
+                image: AssetImage("assets/logo/logo.png")),
+            color: Colors.grey.shade300),
+      ),
       errorWidget: (context, url, error) =>
           const Icon(Ionicons.image, size: 35),
     );

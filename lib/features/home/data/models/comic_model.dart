@@ -1,19 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:movie_app/features/genre/domain/entities/genre.dart';
 
 import '../../domain/entities/comic.dart';
 
 class ComicModel extends Comic {
-  ComicModel({
-    String? id,
-    required String title,
-    required String coverPhoto,
-    required String review,
-    required bool editorChoice,
-    required bool published,
-    required bool completed,
-    required Timestamp created,
-  }) : super(id!, title, coverPhoto, review, editorChoice, published, completed,
-            created);
+  ComicModel(
+      {String? id,
+      required String title,
+      required String coverPhoto,
+      required String review,
+      required bool editorChoice,
+      required bool published,
+      required bool completed,
+      required Timestamp created})
+      : super(id!, title, coverPhoto, review, editorChoice, published,
+            completed, created);
 
   static ComicModel fromJson(Map<String, dynamic> json) {
     return ComicModel(

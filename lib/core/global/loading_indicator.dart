@@ -9,7 +9,9 @@ class LoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Lottie.asset("assets/animation/loading.json",
-            fit: BoxFit.cover, height: 130, width: 130));
+        child: CircularProgressIndicator(
+      backgroundColor: Colors.black,
+      color: Colors.red,
+    ));
   }
 }

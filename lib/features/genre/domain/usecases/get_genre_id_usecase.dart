@@ -1,13 +1,15 @@
-import 'package:movie_app/features/genre/domain/entities/comic_gere.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
-import 'package:movie_app/features/genre/domain/repositories/genre_repo.dart';
+import 'package:dartz/dartz.dart';
+import 'package:movie_app/core/error/failure.dart';
+
+import '../entities/comic_gere.dart';
+import '../repositories/genre_repo.dart';
 
 class GetGenreIdUsecase {
   final GenreRepo genreRepo;
 
   GetGenreIdUsecase({required this.genreRepo});
 
-  Future<List<ComicGenre>> call(String comicId) {
+  Future<Either<Failure, List<ComicGenre>>> call(String comicId) {
     return genreRepo.getGenreId(comicId);
   }
 }

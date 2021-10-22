@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_app/core/error/failure.dart';
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/error/failure.dart';
 
 import '../../domain/entities/comic.dart';
 import '../../domain/entities/episodes.dart';
@@ -17,8 +17,8 @@ class ComicRepoImpl implements ComicRepo {
     try {
       final List<Comic> recentComics = await remoteDataSource.getRecentComic();
       return Right(recentComics);
-    } on FirebaseException catch (error) {
-      return Left(FirebaseFailure(errorCode: error.code));
+    } on ServerException {
+      return Left(ServerFailure());
     }
   }
 
@@ -28,8 +28,8 @@ class ComicRepoImpl implements ComicRepo {
       final List<Comic> completeComics =
           await remoteDataSource.getCompleteComic();
       return Right(completeComics);
-    } on FirebaseException catch (error) {
-      return Left(FirebaseFailure(errorCode: error.code));
+    } on ServerException {
+      return Left(ServerFailure());
     }
   }
 
@@ -38,8 +38,8 @@ class ComicRepoImpl implements ComicRepo {
     try {
       final List<Comic> hotComics = await remoteDataSource.getHotComic();
       return Right(hotComics);
-    } on FirebaseException catch (error) {
-      return Left(FirebaseFailure(errorCode: error.code));
+    } on ServerException {
+      return Left(ServerFailure());
     }
   }
 
@@ -49,20 +49,20 @@ class ComicRepoImpl implements ComicRepo {
       final List<Episodes> episodes =
           await remoteDataSource.getEpisodes(comicId);
       return Right(episodes);
-    } on FirebaseException catch (error) {
-      return Left(FirebaseFailure(errorCode: error.code));
+    } on ServerException {
+      return Left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<Failure, List<Photos>>> getPhotos(
+  Future<Either<Failure, List<String>>> getPhotos(
       String comicId, String episodeName) async {
     try {
-      final List<Photos> episodes =
+      final List<String> episodes =
           await remoteDataSource.getPhotos(comicId, episodeName);
       return Right(episodes);
-    } on FirebaseException catch (error) {
-      return Left(FirebaseFailure(errorCode: error.code));
+    } on ServerException {
+      return Left(ServerFailure());
     }
   }
 }

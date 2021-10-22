@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/features/home/presentation/bloc/details/bloc/details_bloc.dart';
+import '../../../bloc/details_bloc.dart';
 import '../../../../../injector.dart';
 import '../../../../domain/entities/comic.dart';
 
@@ -15,11 +15,11 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DetailsBloc(sl())..add(FetchEpisode(comicModel.id)),
+      create: (context) => sl<DetailsBloc>()..add(FetchEpisode(comicModel.id)),
       child: Scaffold(
-          bottomNavigationBar: DetailsNavBar(
-            image: comicModel.coverPhoto,
-          ),
+          // bottomNavigationBar: DetailsNavBar(
+          //   image: comicModel.coverPhoto,
+          // ),
           body: DetailsBody(comicModel: comicModel)),
     );
   }

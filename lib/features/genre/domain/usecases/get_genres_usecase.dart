@@ -1,3 +1,6 @@
+import 'package:dartz/dartz.dart';
+import 'package:movie_app/core/error/failure.dart';
+
 import '../entities/genre.dart';
 import '../repositories/genre_repo.dart';
 
@@ -6,7 +9,7 @@ class GetGenresUsecase {
 
   GetGenresUsecase({required this.genreRepo});
 
-  Future<List<Genre>> call() {
+  Future<Either<Failure, List<Genre>>> call() {
     return genreRepo.getGenres();
   }
 }

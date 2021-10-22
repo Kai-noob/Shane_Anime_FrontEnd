@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:movie_app/core/global/loading_indicator.dart';
-
 import '../../../../../domain/entities/comic.dart';
-import 'package:shimmer/shimmer.dart';
 
 class DetailsTitle extends StatelessWidget {
-  DetailsTitle({
+  const DetailsTitle({
     Key? key,
     required this.comicModel,
   }) : super(key: key);

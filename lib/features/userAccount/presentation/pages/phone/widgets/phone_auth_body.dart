@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/features/userAccount/presentation/pages/phone/widgets/otp_form.dart';
+import 'otp_form.dart';
 
 import 'otp_form.dart';
 
@@ -8,29 +8,27 @@ class PhoneAuthBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-            Text(
-              "OTP Verification",
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          const Text(
+            "OTP Verification",
+          ),
+          const Text("We sent your code to +1 898 860 ***"),
+          // buildTimer(),
+          const OtpForm(),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+          GestureDetector(
+            onTap: () {
+              // OTP code resend
+            },
+            child: const Text(
+              "Resend OTP Code",
+              style: TextStyle(decoration: TextDecoration.underline),
             ),
-            Text("We sent your code to +1 898 860 ***"),
-            // buildTimer(),
-            OtpForm(),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-            GestureDetector(
-              onTap: () {
-                // OTP code resend
-              },
-              child: Text(
-                "Resend OTP Code",
-                style: TextStyle(decoration: TextDecoration.underline),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

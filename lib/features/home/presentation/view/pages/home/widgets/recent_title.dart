@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../list/list_screen.dart';
-
 class RecentTitle extends StatelessWidget {
   const RecentTitle({
     Key? key,
@@ -18,7 +16,7 @@ class RecentTitle extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {},
-          child: Text(
+          child: const Text(
             "more",
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
           ),

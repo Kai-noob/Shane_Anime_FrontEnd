@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/features/home/presentation/bloc/bloc/hot_bloc.dart';
-import 'package:movie_app/features/home/presentation/bloc/home_bloc.dart';
+import '../../../../bloc/hot_bloc.dart';
 
-import 'package:movie_app/features/home/presentation/view/pages/details/details_screen.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/recent_item.dart';
-import 'package:shimmer/shimmer.dart';
-import '../../../../../../../core/global/image_widget.dart';
-import '../../../../../../../core/global/loading_indicator.dart';
+import 'recent_item.dart';
+import 'shimmer_card.dart';
 
 class HotList extends StatelessWidget {
-  HotList({
+  const HotList({
     Key? key,
   }) : super(key: key);
 
@@ -19,7 +15,12 @@ class HotList extends StatelessWidget {
     return BlocBuilder<HotBloc, HotState>(
       builder: (context, state) {
         if (state is HotComicLoading) {
-          return LoadingIndicator();
+          return const ShimmerCard();
+        }
+        if (state is HotComicError) {
+          return Center(
+            child: Text(state.message),
+          );
         }
         if (state is HotComicLoaded) {
           return SingleChildScrollView(

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../domain/entities/comic_by_genre.dart';
 
 class ComicByGenreModel extends ComicByGenre {

@@ -11,7 +11,7 @@ class DetailsTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverPersistentHeader(
       delegate: SliverAppBarDelegate(
-        TabBar(
+        const TabBar(
           indicatorColor: Colors.red,
           indicatorSize: TabBarIndicatorSize.label,
           indicatorWeight: 1.0,

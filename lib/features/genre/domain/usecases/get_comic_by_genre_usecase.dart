@@ -1,6 +1,8 @@
-import 'package:movie_app/features/home/domain/entities/comic.dart';
+import 'package:dartz/dartz.dart';
+import 'package:movie_app/core/error/failure.dart';
 
-import '../entities/comic_by_genre.dart';
+import '../../../home/domain/entities/comic.dart';
+
 import '../repositories/genre_repo.dart';
 
 class GetComicsUseCase {
@@ -8,7 +10,7 @@ class GetComicsUseCase {
 
   GetComicsUseCase({required this.genreRepo});
 
-  Future<Comic> call(String comicId) {
+  Future<Either<Failure, Comic>> call(String comicId) {
     return genreRepo.getComics(comicId);
   }
 }

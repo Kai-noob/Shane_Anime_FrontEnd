@@ -1,7 +1,11 @@
-class Photos {
-  final String comicId;
-  final String episodeName;
+import 'package:equatable/equatable.dart';
+
+class Photos extends Equatable {
   final List<dynamic> photos;
 
-  Photos(this.comicId, this.episodeName, this.photos);
+  Photos(this.photos);
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [photos];
 }

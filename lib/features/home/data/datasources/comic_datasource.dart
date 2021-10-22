@@ -7,5 +7,5 @@ abstract class ComicRemoteDataSource {
   Future<List<Comic>> getHotComic();
   Future<List<Comic>> getCompleteComic();
   Future<List<Episodes>> getEpisodes(String comicId);
-  Future<List<Photos>> getPhotos(String comicId, String episodeName);
+  Future<List<String>> getPhotos(String comicId, String episodeName);
 }

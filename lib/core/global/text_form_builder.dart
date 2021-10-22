@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 class TextFormBuilder extends StatefulWidget {
   final String? initialValue;
@@ -13,25 +12,25 @@ class TextFormBuilder extends StatefulWidget {
   final VoidCallback? submitAction;
   final FormFieldValidator? validateFunction;
   final Function? onSaved, onChange;
-  final Key? key;
   final IconData prefix;
 
-  TextFormBuilder(
-      {required this.prefix,
-      this.initialValue,
-      this.enabled,
-      this.hintText,
-      this.textInputType,
-      this.controller,
-      this.textInputAction,
-      this.nextFocusNode,
-      this.focusNode,
-      this.submitAction,
-      this.obscureText = false,
-      this.validateFunction,
-      this.onSaved,
-      this.onChange,
-      this.key});
+  const TextFormBuilder({
+    Key? key,
+    required this.prefix,
+    this.initialValue,
+    this.enabled,
+    this.hintText,
+    this.textInputType,
+    this.controller,
+    this.textInputAction,
+    this.nextFocusNode,
+    this.focusNode,
+    this.submitAction,
+    this.obscureText = false,
+    this.validateFunction,
+    this.onSaved,
+    this.onChange,
+  }) : super(key: key);
 
   @override
   _TextFormBuilderState createState() => _TextFormBuilderState();
@@ -72,14 +71,14 @@ class _TextFormBuilderState extends State<TextFormBuilder> {
                   widget.submitAction!();
                 }
               },
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               cursorColor: Colors.black,
               decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 4),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 4),
                   border: InputBorder.none,
-                  hintStyle: TextStyle(color: Colors.black),
+                  hintStyle: const TextStyle(color: Colors.black),
                   hintText: widget.hintText,
-                  errorStyle: TextStyle(height: 0.0, fontSize: 0.0),
+                  errorStyle: const TextStyle(height: 0.0, fontSize: 0.0),
                   prefixIcon: Icon(
                     widget.prefix,
                     size: 15,

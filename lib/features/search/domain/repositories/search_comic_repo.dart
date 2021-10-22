@@ -1,5 +1,9 @@
+import 'package:dartz/dartz.dart';
+import '../../../../core/error/failure.dart';
+
 import '../entities/searchcomic.dart';
 
 abstract class SearchRepo {
-  Future<List<SearchComic>> searchComics({required String query});
+  Future<Either<Failure, List<SearchComic>>> searchComics(
+      {required String query});
 }
