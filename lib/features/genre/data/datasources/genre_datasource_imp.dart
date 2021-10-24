@@ -53,23 +53,42 @@ class GenreDataSourceImpl implements GenreDataSource {
   }
 
   @override
-  Future<Comic> getComics(String comicId) async {
+  Future<List<Comic>> getComics(String genreId) async {
     try {
-      final _querySnapshot =
-          await firebaseFirestore.collection("comics").doc(comicId).get();
+      List<ComicGenre> _comicGenres = await getComicId(genreId);
 
-      final _comic = _querySnapshot.data() as Map<String, dynamic>;
+      List<Comic> _comics = [];
+      for (var _comicGenre in _comicGenres) {
+        QuerySnapshot _episodeSnapshot = await firebaseFirestore
+            .collection("episodes")
+            .orderBy("episode_name")
+            .where("comic_id", isEqualTo: _comicGenre.comicId)
+            .get();
 
-      return ComicModel(
-          id: comicId,
-          title: _comic["title"],
-          review: _comic["review"],
-          coverPhoto: _comic["cover_photo"],
-          editorChoice: _comic["editor_choice"],
-          completed: _comic["completed"],
-          published: _comic["published"],
-          created: _comic["created"]);
+        print(_comicGenre.comicId);
+        final _querySnapshot = await firebaseFirestore
+            .collection("comics")
+            .doc(_comicGenre.comicId)
+            .get();
+
+        final _comic = _querySnapshot.data() as Map<String, dynamic>;
+
+        _comics.add(ComicModel(
+            id: _comicGenre.comicId,
+            title: _comic["title"],
+            review: _comic["review"],
+            coverPhoto: _comic["cover_photo"],
+            editorChoice: _comic["editor_choice"],
+            completed: _comic["completed"],
+            published: _comic["published"],
+            created: _comic["created"],
+            episodeCount: _episodeSnapshot.size));
+      }
+
+      print("Comics $_comics");
+      return _comics;
     } catch (e) {
+      print(e.toString());
       throw ServerException();
     }
   }
@@ -99,14 +118,23 @@ class GenreDataSourceImpl implements GenreDataSource {
   }
 
   @override
-  Future<Genre> getGenre(String genreId) async {
+  Future<List<Genre>> getGenre(String comicId) async {
     try {
-      final _querySnapshot =
-          await firebaseFirestore.collection("genres").doc(genreId).get();
+      List<Genre> _genres = [];
+      List<ComicGenre> _comicGenres = await getGenreId(comicId);
 
-      final _genre = _querySnapshot.data() as Map<String, dynamic>;
+      for (var _comicGenre in _comicGenres) {
+        final _querySnapshot = await firebaseFirestore
+            .collection("genres")
+            .doc(_comicGenre.genreId)
+            .get();
 
-      return GenreModel(id: genreId, name: _genre["name"]);
+        final _genre = _querySnapshot.data() as Map<String, dynamic>;
+
+        _genres.add(GenreModel(id: _comicGenre.genreId, name: _genre["name"]));
+      }
+
+      return _genres;
     } catch (e) {
       throw ServerException();
     }

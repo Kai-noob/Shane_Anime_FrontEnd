@@ -19,16 +19,18 @@ class CompleteList extends StatelessWidget {
         }
 
         if (state is CompleteLoaded) {
-          return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: state.completeComics
-                  .map((e) => RecentItem(comicModel: e))
-                  .toList(),
+          return SliverToBoxAdapter(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: state.completeComics
+                    .map((e) => ComicCard(comicModel: e))
+                    .toList(),
+              ),
             ),
           );
         }
-        return Container();
+        return SliverToBoxAdapter(child: Container());
       },
     );
   }

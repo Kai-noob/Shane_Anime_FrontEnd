@@ -21,7 +21,19 @@ class FavouriteComicError extends LibraryState {
   List<Object> get props => [message];
 }
 
-class AddedToFavoruite extends LibraryState {}
+class SavedToFavourite extends LibraryState {}
+
+class AddedToFavoruite extends LibraryState {
+  final bool isFavourite;
+
+  AddedToFavoruite({required this.isFavourite});
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [isFavourite];
+}
+
+class RemovedFromFavourite extends LibraryState {}
 
 class FavouriteComicSuccess extends LibraryState {
   final List<FavouriteComic> favouriteComics;

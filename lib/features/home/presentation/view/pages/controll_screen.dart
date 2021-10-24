@@ -27,6 +27,8 @@ class _ControlViewState extends State<ControlView> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         iconSize: 25,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         elevation: 0.0,
         currentIndex: currentindex,
         onTap: (index) {
@@ -35,18 +37,9 @@ class _ControlViewState extends State<ControlView> {
           });
         },
         items: const [
-          BottomNavigationBarItem(
-              activeIcon: Icon(Ionicons.home),
-              icon: Icon(Ionicons.home_outline),
-              label: "Home"),
-          BottomNavigationBarItem(
-              activeIcon: Icon(Ionicons.layers),
-              icon: Icon(Ionicons.layers_outline),
-              label: "Library"),
-          BottomNavigationBarItem(
-              activeIcon: Icon(Ionicons.person),
-              icon: Icon(Ionicons.person_outline),
-              label: "Account"),
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.layers), label: "Library"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
     );

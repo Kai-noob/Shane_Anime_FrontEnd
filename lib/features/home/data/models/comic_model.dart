@@ -12,9 +12,10 @@ class ComicModel extends Comic {
       required bool editorChoice,
       required bool published,
       required bool completed,
-      required Timestamp created})
+      required Timestamp created,
+      int? episodeCount})
       : super(id!, title, coverPhoto, review, editorChoice, published,
-            completed, created);
+            completed, created, episodeCount!);
 
   static ComicModel fromJson(Map<String, dynamic> json) {
     return ComicModel(

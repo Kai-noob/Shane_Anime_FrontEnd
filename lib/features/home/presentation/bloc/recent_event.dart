@@ -7,4 +7,4 @@ abstract class RecentEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchRecentComic extends RecentEvent {}
+class FetchRecentEpisode extends RecentEvent {}

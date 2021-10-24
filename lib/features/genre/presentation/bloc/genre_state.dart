@@ -30,3 +30,25 @@ class GenreError extends GenreState {
   // TODO: implement props
   List<Object> get props => [message];
 }
+
+class ComicsLoading extends GenreState {}
+
+class ComicsSuccess extends GenreState {
+  final List<Comic> comics;
+
+  const ComicsSuccess({required this.comics});
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [comics];
+}
+
+class ComicsError extends GenreState {
+  final String message;
+
+  ComicsError({required this.message});
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [message];
+}

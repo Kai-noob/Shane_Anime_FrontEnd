@@ -10,7 +10,7 @@ class GetComicsUseCase {
 
   GetComicsUseCase({required this.genreRepo});
 
-  Future<Either<Failure, Comic>> call(String comicId) {
-    return genreRepo.getComics(comicId);
+  Future<Either<Failure, List<Comic>>> call(String genreId) {
+    return genreRepo.getComics(genreId);
   }
 }

@@ -11,34 +11,9 @@ class SearchResultListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
-        // if (state is SearchLoading) {
-        //   return Shimmer.fromColors(
-        //     baseColor: Colors.grey.shade300,
-        //     highlightColor: Colors.grey.shade400,
-        //     child: ListView.builder(
-        //       shrinkWrap: true,
-        //       primary: false,
-        //       padding: EdgeInsets.all(10),
-        //       itemCount: 5,
-        //       itemBuilder: (BuildContext context, int index) {
-        //         return ListTile(
-        //           leading: CircleAvatar(),
-        //           title: Container(
-        //             color: Colors.grey,
-        //           ),
-        //         );
-        //       },
-        //     ),
-        //   );
-        // }
         if (state is SearchError) {
           return Center(
             child: Text(state.message),
-          );
-        }
-        if (state is SearchInitial) {
-          return const Center(
-            child: Text("Search Your Mangas"),
           );
         }
 

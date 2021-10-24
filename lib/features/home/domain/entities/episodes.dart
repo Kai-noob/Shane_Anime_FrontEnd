@@ -1,13 +1,14 @@
 import 'package:equatable/equatable.dart';
 
-class Episodes extends Equatable {
+class RecentEpisode extends Equatable {
   final String comicId;
   final String episodeName;
-  final List<dynamic> episodes;
+  final String title;
+  final String coverPhoto;
 
-  Episodes(this.comicId, this.episodeName, this.episodes);
+  RecentEpisode(this.comicId, this.episodeName, this.title, this.coverPhoto);
 
   @override
   // TODO: implement props
-  List<Object?> get props => [comicId, episodeName, episodes];
+  List<Object?> get props => [comicId, episodeName, title, coverPhoto];
 }

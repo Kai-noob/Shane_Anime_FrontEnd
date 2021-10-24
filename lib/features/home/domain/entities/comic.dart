@@ -11,9 +11,10 @@ class Comic extends Equatable {
   final bool published;
   final bool completed;
   final Timestamp created;
+  final int episodeCount;
 
   Comic(this.id, this.title, this.coverPhoto, this.review, this.editorChoice,
-      this.published, this.completed, this.created);
+      this.published, this.completed, this.created, this.episodeCount);
 
   @override
   // TODO: implement props
@@ -26,5 +27,6 @@ class Comic extends Equatable {
         published,
         completed,
         created,
+        episodeCount
       ];
 }

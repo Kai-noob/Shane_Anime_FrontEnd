@@ -51,13 +51,10 @@ class App extends StatelessWidget {
           create: (context) => CompleteBloc(sl())..add(FetchCompleteComic()),
         ),
         BlocProvider(
-          create: (context) => RecentBloc(sl())..add(FetchRecentComic()),
+          create: (context) => RecentBloc(sl())..add(FetchRecentEpisode()),
         ),
         BlocProvider(
           create: (context) => HotBloc(sl())..add(FetchHotComic()),
-        ),
-        BlocProvider(
-          create: (context) => SearchBloc(sl()),
         ),
         BlocProvider(
           create: (context) => UserBloc(sl())..add(FetchUserProfileData()),
@@ -66,9 +63,10 @@ class App extends StatelessWidget {
           create: (context) => AuthBloc(sl(), sl(), sl()),
         ),
         BlocProvider(
-          create: (context) => LibraryBloc(sl(), sl()),
+          create: (context) => LibraryBloc(sl(), sl(), sl()),
         ),
-        BlocProvider(create: (context) => GenreBloc(sl())..add(FetchGenres())),
+        BlocProvider(
+            create: (context) => GenreBloc(sl(), sl())..add(FetchGenres())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

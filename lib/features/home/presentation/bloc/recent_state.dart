@@ -12,12 +12,12 @@ class RecentInitial extends RecentState {}
 class RecentLoading extends RecentState {}
 
 class RecentLoaded extends RecentState {
-  final List<Comic> recentComics;
+  final List<RecentEpisode> recentEpisodes;
 
-  const RecentLoaded({required this.recentComics});
+  const RecentLoaded({required this.recentEpisodes});
 
   @override
-  List<Object> get props => [recentComics];
+  List<Object> get props => [recentEpisodes];
 }
 
 class RecentError extends RecentState {

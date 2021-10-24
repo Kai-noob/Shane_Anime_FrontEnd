@@ -72,7 +72,7 @@ class FavTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<LibraryBloc>(context)..add(FetchFavouriteComic());
+    BlocProvider.of<LibraryBloc>(context).add(FetchFavouriteComic());
     return BlocBuilder<LibraryBloc, LibraryState>(
       builder: (context, state) {
         if (state is FavouriteComicSuccess) {

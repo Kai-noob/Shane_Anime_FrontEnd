@@ -34,9 +34,9 @@ class GenreRepoImpl implements GenreRepo {
   }
 
   @override
-  Future<Either<Failure, Comic>> getComics(String comicId) async {
+  Future<Either<Failure, List<Comic>>> getComics(String genreId) async {
     try {
-      final result = await genreDataSource.getComics(comicId);
+      final result = await genreDataSource.getComics(genreId);
       return Right(result);
     } on ServerException {
       return Left(ServerFailure());
@@ -54,9 +54,9 @@ class GenreRepoImpl implements GenreRepo {
   }
 
   @override
-  Future<Either<Failure, Genre>> getGenre(String genreId) async {
+  Future<Either<Failure, List<Genre>>> getGenre(String comicId) async {
     try {
-      final result = await genreDataSource.getGenre(genreId);
+      final result = await genreDataSource.getGenre(comicId);
       return Right(result);
     } on ServerException {
       return Left(ServerFailure());

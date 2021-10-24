@@ -11,9 +11,9 @@ abstract class GenreRepo {
 
   Future<Either<Failure, List<Genre>>> getGenres();
 
-  Future<Either<Failure, Genre>> getGenre(String genreId);
+  Future<Either<Failure, List<Genre>>> getGenre(String comicId);
 
-  Future<Either<Failure, Comic>> getComics(String comicId);
+  Future<Either<Failure, List<Comic>>> getComics(String genreId);
 
   Future<Either<Failure, List<ComicGenre>>> getGenreId(String comicId);
 }

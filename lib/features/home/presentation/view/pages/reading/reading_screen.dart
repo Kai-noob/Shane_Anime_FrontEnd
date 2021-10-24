@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/features/home/domain/entities/episodes.dart';
 import 'package:movie_app/features/home/presentation/bloc/details_bloc.dart';
 
 import '../../../../../injector.dart';
-import '../../../../domain/entities/episodes.dart';
 
 import 'widgets/reading_view.dart';
 
 class ReadingScreen extends StatelessWidget {
-  final Episodes episodes;
+  final RecentEpisode episodes;
   ReadingScreen({Key? key, required this.episodes}) : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class ReadingScreen extends StatelessWidget {
         //     pageController: pageController, currentPage: currentPage),
         body: BlocProvider(
           create: (context) => sl<DetailsBloc>()
-            ..add(FetchImages(episodes.comicId, episodes.episodeName)),
+            ..add(CheckPdfOrImages(episodes.comicId, episodes.episodeName)),
           child: ReadingView(
             episodes: episodes,
           ),

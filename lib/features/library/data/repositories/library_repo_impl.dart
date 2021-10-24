@@ -6,7 +6,7 @@ import 'package:movie_app/features/library/domain/entities/favourite_comic.dart'
 
 import '../../domain/repositories/library_repo.dart';
 
-class FavouriteRepoImpl implements FavouriteRepo {
+class FavouriteRepoImpl implements LibraryRepo {
   final LibraryDataSource libraryDataSource;
 
   FavouriteRepoImpl({required this.libraryDataSource});
@@ -22,13 +22,39 @@ class FavouriteRepoImpl implements FavouriteRepo {
   }
 
   @override
-  Future<Either<Failure, void>> toggleFavouriteComics(
+  Future<Either<Failure, bool>> toggleFavouriteComics(
       {required String comicId, required FavouriteComic favouriteComic}) async {
     try {
-      return Right(await libraryDataSource.toggleFavouriteComics(
-          comicId: comicId, favouriteComic: favouriteComic));
+      final result = await libraryDataSource.toggleFavouriteComics(
+          comicId: comicId, favouriteComic: favouriteComic);
+      return Right(result);
+      // return Right(await libraryDataSource.toggleFavouriteComics(
+      //     comicId: comicId, favouriteComic: favouriteComic));
     } on ServerException {
       return Left(ServerFailure());
     }
+  }
+
+  @override
+  Future<bool> checkFavourite({required String comicId}) {
+    return libraryDataSource.checkFavourite(comicId: comicId);
+  }
+
+  @override
+  Future<Either<Failure, List<FavouriteComic>>> fetchComics() {
+    // TODO: implement fetchComics
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, FavouriteComic>> saveComics() {
+    // TODO: implement saveComics
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, FavouriteComic>> removeComics() {
+    // TODO: implement removeComics
+    throw UnimplementedError();
   }
 }

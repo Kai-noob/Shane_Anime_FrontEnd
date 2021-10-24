@@ -1,15 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:movie_app/core/error/failure.dart';
 import 'package:movie_app/features/library/domain/entities/favourite_comic.dart';
+import 'package:movie_app/features/library/domain/repositories/library_repo.dart';
 
-import '../repositories/library_repo.dart';
+class FetchFavComics {
+  final LibraryRepo libraryRepo;
 
-class GetFavouriteComicUseCase {
-  final LibraryRepo favouriteRepo;
-
-  GetFavouriteComicUseCase({required this.favouriteRepo});
+  FetchFavComics({required this.libraryRepo});
 
   Future<Either<Failure, List<FavouriteComic>>> call() {
-    return favouriteRepo.getFavouriteComics();
+    return libraryRepo.fetchComics();
   }
 }

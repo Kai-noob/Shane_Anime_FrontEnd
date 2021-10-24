@@ -18,21 +18,25 @@ class HotList extends StatelessWidget {
           return const ShimmerCard();
         }
         if (state is HotComicError) {
-          return Center(
-            child: Text(state.message),
-          );
-        }
-        if (state is HotComicLoaded) {
-          return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: state.hotComics
-                  .map((e) => RecentItem(comicModel: e))
-                  .toList(),
+          return SliverToBoxAdapter(
+            child: Center(
+              child: Text(state.message),
             ),
           );
         }
-        return Container();
+        if (state is HotComicLoaded) {
+          return SliverToBoxAdapter(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: state.hotComics
+                    .map((e) => ComicCard(comicModel: e))
+                    .toList(),
+              ),
+            ),
+          );
+        }
+        return SliverToBoxAdapter(child: Container());
       },
     );
   }

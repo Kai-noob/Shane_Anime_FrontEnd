@@ -9,7 +9,7 @@ class GetGenreUsecase {
 
   GetGenreUsecase({required this.genreRepo});
 
-  Future<Either<Failure, Genre>> call(String genreId) {
-    return genreRepo.getGenre(genreId);
+  Future<Either<Failure, List<Genre>>> call(String comicId) {
+    return genreRepo.getGenre(comicId);
   }
 }

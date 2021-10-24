@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:movie_app/features/home/domain/entities/episodes.dart';
+
 import '../../../../core/error/failure.dart';
 
-import '../entities/episodes.dart';
 import '../repositories/comic_repo.dart';
 
 class GetEpisodesUseCase {
@@ -9,7 +10,7 @@ class GetEpisodesUseCase {
 
   GetEpisodesUseCase({required this.comicRepo});
 
-  Future<Either<Failure, List<Episodes>>> call(String comicId) {
+  Future<Either<Failure, List<RecentEpisode>>> call(String comicId) {
     return comicRepo.getEpisodes(comicId);
   }
 }

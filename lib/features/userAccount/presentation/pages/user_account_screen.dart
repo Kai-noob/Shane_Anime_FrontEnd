@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:movie_app/core/global/loading_indicator.dart';
 import 'package:movie_app/features/userAccount/presentation/auth/auth_bloc.dart';
 import 'package:movie_app/features/userAccount/presentation/pages/sign_in_screen.dart';
 import 'package:movie_app/features/userAccount/presentation/user/user_bloc.dart';
+
+import '../../../injector.dart';
 
 class UserAccountScreen extends StatelessWidget {
   const UserAccountScreen({Key? key}) : super(key: key);

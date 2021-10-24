@@ -8,26 +8,28 @@ class CompleteTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Text(
-            "Completed Series",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => CompleteAllComicView()));
-            },
-            child: const Text(
-              "more",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              "Completed Series",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-          )
-        ],
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => CompleteAllComicView()));
+              },
+              child: const Text(
+                "more",
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

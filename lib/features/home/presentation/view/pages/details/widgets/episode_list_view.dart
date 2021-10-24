@@ -33,8 +33,15 @@ class EpisodeListView extends StatelessWidget {
                         builder: (_) =>
                             ReadingScreen(episodes: state.episodes[index])));
                   },
-                  leading: Icon(
-                    Icons.arrow_right_alt,
+                  leading: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                                state.episodes[index].coverPhoto))),
                   ),
                   trailing: IconButton(
                     onPressed: () {

@@ -3,13 +3,18 @@ import 'package:movie_app/features/genre/data/datasources/genre_datasource.dart'
 import 'package:movie_app/features/genre/data/datasources/genre_datasource_imp.dart';
 import 'package:movie_app/features/genre/data/repositories/genre_repo_impl.dart';
 import 'package:movie_app/features/genre/domain/repositories/genre_repo.dart';
+import 'package:movie_app/features/genre/domain/usecases/get_comic_by_genre_usecase.dart';
+import 'package:movie_app/features/genre/domain/usecases/get_genre_usecase.dart';
 import 'package:movie_app/features/genre/domain/usecases/get_genres_usecase.dart';
 import 'package:movie_app/features/genre/presentation/bloc/genre_bloc.dart';
-import 'package:movie_app/features/home/domain/usecases/get_phoots_usecase.dart';
+import 'package:movie_app/features/home/domain/usecases/check_pdf_or_images_usecase.dart';
+import 'package:movie_app/features/home/domain/usecases/get_images_usecase.dart';
+import 'package:movie_app/features/home/domain/usecases/get_pdf_usecase.dart';
 import 'package:movie_app/features/library/data/datasources/library_data_source.dart';
 import 'package:movie_app/features/library/data/datasources/library_data_source_impl.dart';
 import 'package:movie_app/features/library/data/repositories/library_repo_impl.dart';
 import 'package:movie_app/features/library/domain/repositories/library_repo.dart';
+import 'package:movie_app/features/library/domain/usecases/check_fav_comic.dart';
 
 import 'package:movie_app/features/library/domain/usecases/get_fav_comic.dart';
 import 'package:movie_app/features/library/domain/usecases/toggle_fav_comic.dart';
@@ -66,17 +71,20 @@ Future<void> initializeDependencies() async {
 
   sl.registerFactory(() => UserBloc(sl()));
 
-  sl.registerFactory(() => GenreBloc(sl()));
+  sl.registerFactory(() => GenreBloc(sl(), sl()));
 
-  sl.registerFactory(() => LibraryBloc(sl(), sl()));
+  sl.registerFactory(() => LibraryBloc(sl(), sl(), sl()));
 
   sl.registerLazySingleton<GetFavouriteComicUseCase>(
       () => GetFavouriteComicUseCase(favouriteRepo: sl()));
 
+  sl.registerLazySingleton<CheckFavComiUseCase>(
+      () => CheckFavComiUseCase(favouriteRepo: sl()));
+
   sl.registerLazySingleton<ToggleFavouriteComicsUseCase>(
       () => ToggleFavouriteComicsUseCase(sl()));
 
-  sl.registerLazySingleton<FavouriteRepo>(
+  sl.registerLazySingleton<LibraryRepo>(
       () => FavouriteRepoImpl(libraryDataSource: sl()));
 
   sl.registerLazySingleton<LibraryDataSource>(() => LibraryDataSourceImpl());
@@ -85,7 +93,7 @@ Future<void> initializeDependencies() async {
 
   sl.registerFactory(() => HotBloc(sl()));
 
-  sl.registerFactory(() => DetailsBloc(sl(), sl()));
+  sl.registerFactory(() => DetailsBloc(sl(), sl(), sl(), sl(), sl()));
 
   sl.registerFactory(() => SearchBloc(sl()));
 
@@ -104,14 +112,25 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<GetEpisodesUseCase>(
       () => GetEpisodesUseCase(comicRepo: sl()));
 
-  sl.registerLazySingleton<GetPhotosUseCase>(
-      () => GetPhotosUseCase(comicRepo: sl()));
+  sl.registerLazySingleton<GetImagesUseCase>(
+      () => GetImagesUseCase(comicRepo: sl()));
+
+  sl.registerLazySingleton<GetPdfUseCase>(() => GetPdfUseCase(comicRepo: sl()));
+
+  sl.registerLazySingleton<CheckPdfOrImagesUseCase>(
+      () => CheckPdfOrImagesUseCase(comicRepo: sl()));
 
   sl.registerLazySingleton<GetHotComicUseCase>(
       () => GetHotComicUseCase(comicRepo: sl()));
 
   sl.registerLazySingleton<GetGenresUsecase>(
       () => GetGenresUsecase(genreRepo: sl()));
+
+  sl.registerLazySingleton<GetGenreUsecase>(
+      () => GetGenreUsecase(genreRepo: sl()));
+
+  sl.registerLazySingleton<GetComicsUseCase>(
+      () => GetComicsUseCase(genreRepo: sl()));
 
   sl.registerLazySingleton<GetRecentComicUseCase>(
       () => GetRecentComicUseCase(comicRepo: sl()));

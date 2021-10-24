@@ -18,6 +18,25 @@ class ImagesLoaded extends DetailsState {
   List<Object> get props => [images];
 }
 
+class PdfLoaded extends DetailsState {
+  final String pdf;
+
+  PdfLoaded({required this.pdf});
+
+  @override
+  List<Object> get props => [pdf];
+}
+
+class PdfError extends DetailsState {
+  final String message;
+
+  PdfError({required this.message});
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [message];
+}
+
 class ImagesLoading extends DetailsState {}
 
 class ImagesError extends DetailsState {
@@ -31,7 +50,7 @@ class ImagesError extends DetailsState {
 }
 
 class EpisodeLoaded extends DetailsState {
-  final List<Episodes> episodes;
+  final List<RecentEpisode> episodes;
 
   const EpisodeLoaded({required this.episodes});
 
@@ -45,6 +64,26 @@ class EpisodeError extends DetailsState {
   final String message;
 
   const EpisodeError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class DetailsGenreLoaded extends DetailsState {
+  final List<Genre> genres;
+
+  const DetailsGenreLoaded({required this.genres});
+
+  @override
+  List<Object> get props => [genres];
+}
+
+class GenreLoading extends DetailsState {}
+
+class GenreError extends DetailsState {
+  final String message;
+
+  const GenreError({required this.message});
 
   @override
   List<Object> get props => [message];

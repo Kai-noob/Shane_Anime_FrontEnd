@@ -8,9 +8,9 @@ abstract class GenreDataSource {
 
   Future<List<Genre>> getGenres();
 
-  Future<Genre> getGenre(String genreId);
+  Future<List<Genre>> getGenre(String comicId);
 
-  Future<Comic> getComics(String comicId);
+  Future<List<Comic>> getComics(String genreId);
 
   Future<List<ComicGenre>> getGenreId(String comicId);
 }

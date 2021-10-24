@@ -13,10 +13,11 @@ class ComicRepoImpl implements ComicRepo {
 
   ComicRepoImpl({required this.remoteDataSource});
   @override
-  Future<Either<Failure, List<Comic>>> getRecentComics() async {
+  Future<Either<Failure, List<RecentEpisode>>> getRecentComics() async {
     try {
-      final List<Comic> recentComics = await remoteDataSource.getRecentComic();
-      return Right(recentComics);
+      final List<RecentEpisode> recentEpisodes =
+          await remoteDataSource.getRecentEpisodes();
+      return Right(recentEpisodes);
     } on ServerException {
       return Left(ServerFailure());
     }
@@ -44,9 +45,10 @@ class ComicRepoImpl implements ComicRepo {
   }
 
   @override
-  Future<Either<Failure, List<Episodes>>> getEpisodes(String comicId) async {
+  Future<Either<Failure, List<RecentEpisode>>> getEpisodes(
+      String comicId) async {
     try {
-      final List<Episodes> episodes =
+      final List<RecentEpisode> episodes =
           await remoteDataSource.getEpisodes(comicId);
       return Right(episodes);
     } on ServerException {
@@ -55,14 +57,31 @@ class ComicRepoImpl implements ComicRepo {
   }
 
   @override
-  Future<Either<Failure, List<String>>> getPhotos(
+  Future<Either<Failure, List<String>>> getImages(
       String comicId, String episodeName) async {
     try {
-      final List<String> episodes =
-          await remoteDataSource.getPhotos(comicId, episodeName);
-      return Right(episodes);
+      final List<String> images =
+          await remoteDataSource.getImages(comicId, episodeName);
+      return Right(images);
     } on ServerException {
       return Left(ServerFailure());
     }
+  }
+
+  @override
+  Future<Either<Failure, String>> getPdf(
+      String comicId, String episodeName) async {
+    try {
+      final String pdfFile =
+          await remoteDataSource.getPdf(comicId, episodeName);
+      return Right(pdfFile);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<bool> checkPdforImages(String comicId, String episodeName) {
+    return remoteDataSource.checkPdfOrImage(comicId, episodeName);
   }
 }

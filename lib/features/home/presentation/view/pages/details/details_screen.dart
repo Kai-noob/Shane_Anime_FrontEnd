@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/features/library/presentation/bloc/library_bloc.dart';
 import '../../../bloc/details_bloc.dart';
 import '../../../../../injector.dart';
 import '../../../../domain/entities/comic.dart';

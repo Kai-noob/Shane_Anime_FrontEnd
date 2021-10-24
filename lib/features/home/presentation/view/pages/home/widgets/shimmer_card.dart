@@ -8,34 +8,36 @@ class ShimmerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-      baseColor: Colors.grey.shade300,
-      highlightColor: Colors.grey.shade400,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5), color: Colors.grey),
-              height: 240,
-              width: 140,
-            ),
-            const SizedBox(width: 8),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5), color: Colors.grey),
-              height: 240,
-              width: 140,
-            ),
-            const SizedBox(width: 20),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5), color: Colors.grey),
-              height: 240,
-              width: 140,
-            ),
-          ],
+    return SliverToBoxAdapter(
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey.shade300,
+        highlightColor: Colors.grey.shade400,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5), color: Colors.grey),
+                height: 240,
+                width: 140,
+              ),
+              const SizedBox(width: 8),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5), color: Colors.grey),
+                height: 240,
+                width: 140,
+              ),
+              const SizedBox(width: 20),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5), color: Colors.grey),
+                height: 240,
+                width: 140,
+              ),
+            ],
+          ),
         ),
       ),
     );

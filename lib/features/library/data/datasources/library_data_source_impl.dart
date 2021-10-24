@@ -4,6 +4,7 @@ import 'package:movie_app/core/error/exceptions.dart';
 import 'package:movie_app/features/library/data/datasources/library_data_source.dart';
 import 'package:movie_app/features/library/data/models/favourite_comic_model.dart';
 import 'package:movie_app/features/library/domain/entities/favourite_comic.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LibraryDataSourceImpl implements LibraryDataSource {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
@@ -34,7 +35,7 @@ class LibraryDataSourceImpl implements LibraryDataSource {
   }
 
   @override
-  Future<void> toggleFavouriteComics(
+  Future<bool> toggleFavouriteComics(
       {required String comicId, required FavouriteComic favouriteComic}) async {
     List<FavouriteComic> favourtiteComics = await getFavouriteComics();
 
@@ -42,18 +43,20 @@ class LibraryDataSourceImpl implements LibraryDataSource {
 
     if (isFavourite) {
       try {
-        return await _firebaseFirestore
+        await _firebaseFirestore
             .collection("users")
             .doc(_firebaseAuth.currentUser!.uid)
             .collection("favourite")
             .doc(comicId)
             .delete();
+
+        return true;
       } catch (e) {
         throw ServerException();
       }
     } else {
       try {
-        return await _firebaseFirestore
+        await _firebaseFirestore
             .collection("users")
             .doc(_firebaseAuth.currentUser!.uid)
             .collection("favourite")
@@ -63,9 +66,17 @@ class LibraryDataSourceImpl implements LibraryDataSource {
           "title": favouriteComic.title,
           "cover_photo": favouriteComic.coverPhoto,
         });
+        return false;
       } catch (e) {
         throw ServerException();
       }
     }
+  }
+
+  @override
+  Future<bool> checkFavourite({required String comicId}) async {
+    List<FavouriteComic> _favouriteComics = await getFavouriteComics();
+    bool isFavourite = _favouriteComics.any((element) => element.id == comicId);
+    return isFavourite;
   }
 }

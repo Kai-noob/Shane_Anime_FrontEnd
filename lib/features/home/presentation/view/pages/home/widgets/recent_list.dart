@@ -18,16 +18,18 @@ class RecentList extends StatelessWidget {
           return const ShimmerCard();
         }
         if (state is RecentLoaded) {
-          return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: state.recentComics
-                  .map((e) => RecentItem(comicModel: e))
-                  .toList(),
+          return SliverToBoxAdapter(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: state.recentEpisodes
+                    .map((e) => RecentCard(episodes: e))
+                    .toList(),
+              ),
             ),
           );
         }
-        return Container();
+        return SliverToBoxAdapter(child: Container());
       },
     );
   }

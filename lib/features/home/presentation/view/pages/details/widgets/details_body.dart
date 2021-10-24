@@ -5,18 +5,39 @@ import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/features/home/presentation/view/pages/details/details_review_screen.dart';
 import 'package:movie_app/features/library/domain/entities/favourite_comic.dart';
 import 'package:movie_app/features/library/presentation/bloc/library_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../../../injector.dart';
 import 'episode_list_view.dart';
 
 import '../../../../../../../core/global/image_widget.dart';
 import '../../../../../domain/entities/comic.dart';
 
-class DetailsBody extends StatelessWidget {
+class DetailsBody extends StatefulWidget {
   const DetailsBody({
     Key? key,
     required this.comicModel,
   }) : super(key: key);
 
   final Comic comicModel;
+
+  @override
+  State<DetailsBody> createState() => _DetailsBodyState();
+}
+
+class _DetailsBodyState extends State<DetailsBody> {
+  // @override
+  // void initState() {
+  //   WidgetsBinding.instance!.addPostFrameCallback(((_) {
+  //     final state = BlocProvider.of<LibraryBloc>(context).state;
+  //     if (state is AddedToFavoruite) {
+  //       isFavourite = true;
+  //     } else {
+  //       isFavourite = false;
+  //     }
+  //   }));
+
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +58,7 @@ class DetailsBody extends StatelessWidget {
             background: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: NetworkImage(comicModel.coverPhoto),
+                      image: NetworkImage(widget.comicModel.coverPhoto),
                       fit: BoxFit.cover)),
               child: Container(
                 decoration: BoxDecoration(
@@ -50,33 +71,44 @@ class DetailsBody extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(comicModel.title,
+                      Text(widget.comicModel.title,
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 40,
+                            fontSize: 30,
                           )),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          IconButton(
-                            onPressed: () {
-                              BlocProvider.of<LibraryBloc>(context).add(
-                                  ToggleFavouriteComic(
-                                      FavouriteComic(
-                                          comicModel.id,
-                                          comicModel.title,
-                                          comicModel.coverPhoto),
-                                      comicModel.id));
+                          IconButton(onPressed: () {
+                            // BlocProvider(
+                            //     create: (context) => sl<LibraryBloc>()
+                            //       ..add(CheckFavouriteComic(
+                            //           widget.comicModel.id)));
+                            BlocProvider.of<LibraryBloc>(context).add(
+                                ToggleFavouriteComic(
+                                    FavouriteComic(
+                                        widget.comicModel.id,
+                                        widget.comicModel.title,
+                                        widget.comicModel.coverPhoto),
+                                    widget.comicModel.id));
+                          }, icon: BlocBuilder<LibraryBloc, LibraryState>(
+                            builder: (context, state) {
+                              if (state is AddedToFavoruite) {
+                                return Icon(state.isFavourite
+                                    ? Ionicons.heart
+                                    : Ionicons.heart_outline);
+                              }
+
+                              return SizedBox();
                             },
-                            icon: Icon(Ionicons.heart),
-                          ),
+                          )),
                           IconButton(
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         DetailsReviewScreen(
-                                          comicModel: comicModel,
+                                          comicModel: widget.comicModel,
                                         )));
                               },
                               icon: Icon(Ionicons.information_circle_outline)),
@@ -110,7 +142,7 @@ class DetailsBody extends StatelessWidget {
             ),
           ),
         ),
-        EpisodeListView(comicId: comicModel.id)
+        EpisodeListView(comicId: widget.comicModel.id)
         // DetailsTitle(comicModel: comicModel),
       ],
     );
