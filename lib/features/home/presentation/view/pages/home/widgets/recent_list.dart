@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../bloc/recent_bloc.dart';
+import 'package:movie_app/core/global/error_widget.dart';
+import '../../../../bloc/recent_episode/recent_bloc.dart';
 import 'shimmer_card.dart';
 
-import 'recent_item.dart';
+import 'comic_card.dart';
 
 class RecentList extends StatelessWidget {
   const RecentList({
@@ -16,6 +17,12 @@ class RecentList extends StatelessWidget {
       builder: (context, state) {
         if (state is RecentLoading) {
           return const ShimmerCard();
+        }
+        if (state is RecentError) {
+          return ErrorMessage(
+            message: state.message,
+            isSliver: true,
+          );
         }
         if (state is RecentLoaded) {
           return SliverToBoxAdapter(

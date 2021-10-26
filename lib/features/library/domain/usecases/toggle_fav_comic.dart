@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/core/error/failure.dart';
-import 'package:movie_app/features/library/domain/entities/favourite_comic.dart';
+import '../../../../core/error/failure.dart';
+import '../entities/favourite_comic.dart';
 
 import '../repositories/library_repo.dart';
 

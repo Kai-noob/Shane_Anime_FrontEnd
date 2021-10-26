@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/core/error/failure.dart';
-import 'package:movie_app/features/home/domain/repositories/comic_repo.dart';
+import '../../../../core/error/failure.dart';
+import '../repositories/comic_repo.dart';
 
 class GetPdfUseCase {
   final ComicRepo comicRepo;

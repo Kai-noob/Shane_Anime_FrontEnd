@@ -1,24 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/features/genre/presentation/bloc/genre_bloc.dart';
-import 'package:movie_app/features/home/presentation/view/pages/controll_screen.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/home_screen.dart';
-import 'package:movie_app/features/userAccount/presentation/pages/image_upload.dart';
-import 'package:movie_app/features/userAccount/presentation/pages/phone/widgets/test_scrren.dart';
-import 'package:movie_app/features/userAccount/presentation/pages/sign_in_screen.dart';
-import 'package:movie_app/features/userAccount/presentation/pages/test_sign_in_screen.dart';
+import 'features/genre/presentation/bloc/genre_bloc.dart';
+import 'controll_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'features/home/presentation/bloc/complete_bloc.dart';
+import 'features/home/presentation/bloc/complete_comic/complete_bloc.dart';
 
-import 'features/home/presentation/bloc/hot_bloc.dart';
-import 'features/home/presentation/bloc/recent_bloc.dart';
+import 'features/home/presentation/bloc/hot_comic/hot_bloc.dart';
+import 'features/home/presentation/bloc/recent_episode/recent_bloc.dart';
 
 import 'features/library/presentation/bloc/library_bloc.dart';
-import 'features/search/presentation/bloc/search_bloc.dart';
 import 'features/userAccount/presentation/auth/auth_bloc.dart';
 
-import 'package:movie_app/features/userAccount/presentation/pages/sign_up_screen.dart';
+import 'features/userAccount/presentation/pages/sign_up_screen.dart';
 
 import 'core/theme/themes.dart';
 import 'features/injector.dart' as di;
@@ -51,7 +45,8 @@ class App extends StatelessWidget {
           create: (context) => CompleteBloc(sl())..add(FetchCompleteComic()),
         ),
         BlocProvider(
-          create: (context) => RecentBloc(sl())..add(FetchRecentEpisode()),
+          create: (context) =>
+              RecentBloc(sl(), sl())..add(FetchRecentEpisode()),
         ),
         BlocProvider(
           create: (context) => HotBloc(sl())..add(FetchHotComic()),
@@ -63,7 +58,10 @@ class App extends StatelessWidget {
           create: (context) => AuthBloc(sl(), sl(), sl()),
         ),
         BlocProvider(
-          create: (context) => LibraryBloc(sl(), sl(), sl()),
+          create: (context) => LibraryBloc(
+            sl(),
+            sl(),
+          ),
         ),
         BlocProvider(
             create: (context) => GenreBloc(sl(), sl())..add(FetchGenres())),
@@ -74,7 +72,7 @@ class App extends StatelessWidget {
 
         theme: Themes.dark,
         // home: SignUpScreen(),
-        home: isLogined != null ? ControlView() : SignUpScreen(),
+        home: isLogined != null ? const ControlView() : const SignUpScreen(),
       ),
     );
   }

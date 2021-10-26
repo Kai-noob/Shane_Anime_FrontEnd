@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/features/home/presentation/view/pages/controll_screen.dart';
-import 'package:movie_app/features/userAccount/presentation/auth/auth_bloc.dart';
-import 'package:movie_app/features/userAccount/presentation/pages/sign_up_screen.dart';
+import '../../../../controll_screen.dart';
+import '../auth/auth_bloc.dart';
+import 'sign_up_screen.dart';
 import '../../../../core/global/form_error.dart';
 import '../../../../core/global/loading_indicator.dart';
 import '../../../../core/strings/constants.dart';
-import '../../../home/presentation/view/pages/home/home_screen.dart';
 
 import '../../../injector.dart';
 
@@ -53,7 +52,7 @@ class _SignInScreenState extends State<SignInScreen> {
             listener: (context, state) {
               if (state is SignInSuccess) {
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => ControlView()));
+                    MaterialPageRoute(builder: (_) => const ControlView()));
               }
               if (state is SignInError) {
                 ScaffoldMessenger.of(context)
@@ -72,9 +71,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Align(
+                        const Align(
                           alignment: Alignment.center,
-                          child: const Text(
+                          child: Text(
                             "Sign In",
                             style: TextStyle(fontSize: 30),
                           ),
@@ -188,7 +187,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            SignUpScreen()));
+                                            const SignUpScreen()));
                               },
                               child: const Text(
                                 "SignUp",

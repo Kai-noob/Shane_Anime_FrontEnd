@@ -1,5 +1,5 @@
-import '../../domain/entities/searchcomic.dart';
+import 'package:movie_app/features/home/domain/entities/comic.dart';
 
 abstract class SearchComicDataSource {
-  Future<List<SearchComic>> searchComics({required String query});
+  Future<List<Comic>> searchComics({required String query});
 }

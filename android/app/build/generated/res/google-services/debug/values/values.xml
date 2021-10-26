@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">435592925303-st5c67r71gfa9lku5g6ql2qpk9ncsp9d.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">435592925303</string>
+    <string name="google_api_key" translatable="false">AIzaSyDhODfi7JNQNbfn_IYbbjqKIOUydTGB2HQ</string>
+    <string name="google_app_id" translatable="false">1:435592925303:android:9debbb99f61349e8683672</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDhODfi7JNQNbfn_IYbbjqKIOUydTGB2HQ</string>
+    <string name="google_storage_bucket" translatable="false">shanemanga-fdfef.appspot.com</string>
+    <string name="project_id" translatable="false">shanemanga-fdfef</string>
+</resources>

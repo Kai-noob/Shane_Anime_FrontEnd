@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failure.dart';
-import '../entities/user.dart';
 import '../repositories/auth_repo.dart';
 
 class SignInUseCase {

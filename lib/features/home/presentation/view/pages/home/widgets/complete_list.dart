@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../bloc/complete_bloc.dart';
+import 'package:movie_app/core/global/error_widget.dart';
+import '../../../../bloc/complete_comic/complete_bloc.dart';
 
-import 'recent_item.dart';
+import 'comic_card.dart';
 import 'shimmer_card.dart';
 
 class CompleteList extends StatelessWidget {
@@ -14,6 +15,12 @@ class CompleteList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CompleteBloc, CompleteState>(
       builder: (context, state) {
+        if (state is CompleterError) {
+          return ErrorMessage(
+            message: state.message,
+            isSliver: true,
+          );
+        }
         if (state is CompleteLoading) {
           return const ShimmerCard();
         }

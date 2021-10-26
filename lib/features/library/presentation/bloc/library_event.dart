@@ -12,20 +12,18 @@ class FetchFavouriteComic extends LibraryEvent {}
 class CheckFavouriteComic extends LibraryEvent {
   final String comicId;
 
-  CheckFavouriteComic(this.comicId);
+  const CheckFavouriteComic(this.comicId);
 
   @override
-  // TODO: implement props
   List<Object> get props => [comicId];
 }
 
 class SaveFavComic extends LibraryEvent {
   final FavouriteComic favouriteComic;
 
-  SaveFavComic({required this.favouriteComic});
+  const SaveFavComic({required this.favouriteComic});
 
   @override
-  // TODO: implement props
   List<Object> get props => [favouriteComic];
 }
 
@@ -34,5 +32,5 @@ class ToggleFavouriteComic extends LibraryEvent {
 
   final String comicId;
 
-  ToggleFavouriteComic(this.favouriteComic, this.comicId);
+  const ToggleFavouriteComic(this.favouriteComic, this.comicId);
 }

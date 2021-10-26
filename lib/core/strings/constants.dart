@@ -14,6 +14,8 @@ const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
 const kTextColor = Color(0xFF757575);
 
+const String serverMessage = "Something went wrong";
+
 final otpInputDecoration = InputDecoration(
   contentPadding: const EdgeInsets.symmetric(vertical: 15),
   border: outlineInputBorder(),

@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/features/home/presentation/view/pages/controll_screen.dart';
+import '../../../../controll_screen.dart';
 import '../../../../core/global/form_error.dart';
 import '../../../../core/global/loading_indicator.dart';
 import '../../../../core/strings/constants.dart';
 import '../auth/auth_bloc.dart';
-import 'phone/phone_auth_screen.dart';
 import 'sign_in_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -22,6 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String? name;
   String? email;
   String? password;
+  // ignore: non_constant_identifier_names
   String? conform_password;
   bool remember = false;
   final List<String?> errors = [];
@@ -69,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Align(
+                      const Align(
                         alignment: Alignment.center,
                         child: Text(
                           "Sign Up",
@@ -81,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         //     backgroundImage:
                         //         AssetImage("assets/logo/logo.png")),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       TextFormField(
                         onSaved: (value) => name = value,
                         onChanged: (value) {

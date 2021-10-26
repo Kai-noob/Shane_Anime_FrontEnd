@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_app/core/error/exceptions.dart';
-import 'package:movie_app/features/library/data/datasources/library_data_source.dart';
-import 'package:movie_app/features/library/data/models/favourite_comic_model.dart';
-import 'package:movie_app/features/library/domain/entities/favourite_comic.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/error/exceptions.dart';
+import 'library_data_source.dart';
+import '../models/favourite_comic_model.dart';
+import '../../domain/entities/favourite_comic.dart';
 
 class LibraryDataSourceImpl implements LibraryDataSource {
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;

@@ -2,9 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
-import '../../../../core/global/connectivity.dart';
 import '../datasources/auth_data_source.dart';
-import '../models/user_model.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repo.dart';
 

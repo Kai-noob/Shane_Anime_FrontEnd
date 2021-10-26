@@ -1,4 +1,4 @@
-import 'package:movie_app/features/home/domain/repositories/comic_repo.dart';
+import '../repositories/comic_repo.dart';
 
 class CheckPdfOrImagesUseCase {
   final ComicRepo comicRepo;

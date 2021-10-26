@@ -22,7 +22,7 @@ class SignInWithEmail extends AuthEvent {
   final String email;
   final String password;
 
-  SignInWithEmail(this.email, this.password);
+  const SignInWithEmail(this.email, this.password);
 
   @override
   List<Object> get props => [email, password];

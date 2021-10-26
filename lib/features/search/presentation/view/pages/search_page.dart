@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/features/search/presentation/bloc/search_bloc.dart';
-import 'package:movie_app/features/search/presentation/view/pages/widgets/search_result_list_view.dart';
+import '../../bloc/search_bloc.dart';
+import 'widgets/search_result_list_view.dart';
 
 import '../../../../injector.dart';
 import 'widgets/search_text_field.dart';
@@ -39,13 +39,16 @@ class SearchScreen extends StatelessWidget {
                           onTap: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text(
+                          child: const Text(
                             "Cancel",
-                            style: TextStyle(color: Colors.red),
+                            style: TextStyle(
+                                color: Color(0xFF188DFA),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
                           )))
                 ],
               ),
-              SearchResultListView()
+              const SearchResultListView()
             ],
           ),
         )),

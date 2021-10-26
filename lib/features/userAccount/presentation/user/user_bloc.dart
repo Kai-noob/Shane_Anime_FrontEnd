@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/core/error/failure.dart';
-import 'package:movie_app/features/userAccount/data/models/user_model.dart';
-import 'package:movie_app/features/userAccount/domain/entities/user.dart';
-import 'package:movie_app/features/userAccount/domain/usecases/get_user_usecase.dart';
+import '../../../../core/error/failure.dart';
+import '../../domain/entities/user.dart';
+import '../../domain/usecases/get_user_usecase.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';

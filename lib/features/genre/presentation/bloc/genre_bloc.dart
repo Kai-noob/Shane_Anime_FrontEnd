@@ -1,16 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/core/error/failure.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_comic_by_genre_usecase.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_genres_usecase.dart';
-import 'package:movie_app/features/home/domain/entities/comic.dart';
+import 'package:movie_app/core/strings/constants.dart';
+import '../../../../core/error/failure.dart';
+import '../../domain/entities/genre.dart';
+import '../../domain/usecases/get_comics_usecase.dart';
+import '../../domain/usecases/get_genres_usecase.dart';
+import '../../../home/domain/entities/comic.dart';
 
 part 'genre_event.dart';
 part 'genre_state.dart';
-
-const String serverMessage = "Server Error";
 
 class GenreBloc extends Bloc<GenreEvent, GenreState> {
   final GetGenresUsecase _genresUsecase;
@@ -24,7 +23,7 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
     if (event is FetchGenres) {
       yield GenreLoading();
       final failureOrSuccess = await _genresUsecase.call();
-      yield* _eitherSuccessOrErrorState(failureOrSuccess);
+      yield* _eitherGenreOrErrorState(failureOrSuccess);
     }
     if (event is FetchComics) {
       yield ComicsLoading();
@@ -33,7 +32,7 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
     }
   }
 
-  Stream<GenreState> _eitherSuccessOrErrorState(
+  Stream<GenreState> _eitherGenreOrErrorState(
     Either<Failure, List<Genre>> failureOrSuccess,
   ) async* {
     yield failureOrSuccess.fold(

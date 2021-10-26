@@ -14,10 +14,9 @@ class FavouriteComicLoading extends LibraryState {}
 class FavouriteComicError extends LibraryState {
   final String message;
 
-  FavouriteComicError({required this.message});
+  const FavouriteComicError({required this.message});
 
   @override
-  // TODO: implement props
   List<Object> get props => [message];
 }
 
@@ -26,10 +25,9 @@ class SavedToFavourite extends LibraryState {}
 class AddedToFavoruite extends LibraryState {
   final bool isFavourite;
 
-  AddedToFavoruite({required this.isFavourite});
+  const AddedToFavoruite({required this.isFavourite});
 
   @override
-  // TODO: implement props
   List<Object> get props => [isFavourite];
 }
 
@@ -38,9 +36,8 @@ class RemovedFromFavourite extends LibraryState {}
 class FavouriteComicSuccess extends LibraryState {
   final List<FavouriteComic> favouriteComics;
 
-  FavouriteComicSuccess({required this.favouriteComics});
+  const FavouriteComicSuccess({required this.favouriteComics});
 
   @override
-  // TODO: implement props
   List<Object> get props => [favouriteComics];
 }

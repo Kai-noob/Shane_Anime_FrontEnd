@@ -17,7 +17,7 @@ class SearchTextField extends StatelessWidget {
     return Container(
       height: 40,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: Colors.grey.shade300),
+          borderRadius: BorderRadius.circular(10), color: Colors.white),
       child: TextField(
         style: const TextStyle(color: Colors.black),
         textInputAction: TextInputAction.search,
@@ -26,7 +26,7 @@ class SearchTextField extends StatelessWidget {
         onSubmitted: (value) {
           BlocProvider.of<SearchBloc>(context).add(SearchComicEvent(value));
 
-          // textEditingController.clear();
+          textEditingController.clear();
         },
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 4),

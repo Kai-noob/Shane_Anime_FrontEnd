@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 
-class AppColors {
-  String kColor = "0xfffa411b";
-}
-
 class Themes {
   static final ThemeData dark = ThemeData(
       fontFamily: "MyFont",
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Colors.black, selectedItemColor: Color(0xfffa411b)),
+          backgroundColor: Colors.black, selectedItemColor: Color(0xFF188DFA)),
       scaffoldBackgroundColor: Colors.black,
       primaryColor: Colors.black,
       backgroundColor: Colors.black,

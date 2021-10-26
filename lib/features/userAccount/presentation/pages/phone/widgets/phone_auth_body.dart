@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'otp_form.dart';
 
-import 'otp_form.dart';
-
 class PhoneAuthBody extends StatelessWidget {
   const PhoneAuthBody({Key? key}) : super(key: key);
 

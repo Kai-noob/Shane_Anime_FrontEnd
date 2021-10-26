@@ -17,17 +17,15 @@ class GenreSuccess extends GenreState {
   const GenreSuccess({required this.genres});
 
   @override
-  // TODO: implement props
   List<Object> get props => [genres];
 }
 
 class GenreError extends GenreState {
   final String message;
 
-  GenreError({required this.message});
+  const GenreError({required this.message});
 
   @override
-  // TODO: implement props
   List<Object> get props => [message];
 }
 
@@ -39,16 +37,14 @@ class ComicsSuccess extends GenreState {
   const ComicsSuccess({required this.comics});
 
   @override
-  // TODO: implement props
   List<Object> get props => [comics];
 }
 
 class ComicsError extends GenreState {
   final String message;
 
-  ComicsError({required this.message});
+  const ComicsError({required this.message});
 
   @override
-  // TODO: implement props
   List<Object> get props => [message];
 }

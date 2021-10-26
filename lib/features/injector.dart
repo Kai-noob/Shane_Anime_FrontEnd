@@ -1,27 +1,28 @@
 import 'package:get_it/get_it.dart';
-import 'package:movie_app/features/genre/data/datasources/genre_datasource.dart';
-import 'package:movie_app/features/genre/data/datasources/genre_datasource_imp.dart';
-import 'package:movie_app/features/genre/data/repositories/genre_repo_impl.dart';
-import 'package:movie_app/features/genre/domain/repositories/genre_repo.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_comic_by_genre_usecase.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_genre_usecase.dart';
-import 'package:movie_app/features/genre/domain/usecases/get_genres_usecase.dart';
-import 'package:movie_app/features/genre/presentation/bloc/genre_bloc.dart';
-import 'package:movie_app/features/home/domain/usecases/check_pdf_or_images_usecase.dart';
-import 'package:movie_app/features/home/domain/usecases/get_images_usecase.dart';
-import 'package:movie_app/features/home/domain/usecases/get_pdf_usecase.dart';
-import 'package:movie_app/features/library/data/datasources/library_data_source.dart';
-import 'package:movie_app/features/library/data/datasources/library_data_source_impl.dart';
-import 'package:movie_app/features/library/data/repositories/library_repo_impl.dart';
-import 'package:movie_app/features/library/domain/repositories/library_repo.dart';
-import 'package:movie_app/features/library/domain/usecases/check_fav_comic.dart';
+import 'package:movie_app/features/home/domain/usecases/filter_episodes_usecase.dart';
+import 'genre/data/datasources/genre_datasource.dart';
+import 'genre/data/datasources/genre_datasource_impl.dart';
+import 'genre/data/repositories/genre_repo_impl.dart';
+import 'genre/domain/repositories/genre_repo.dart';
+import 'genre/domain/usecases/get_comics_usecase.dart';
+import 'genre/domain/usecases/get_genre_usecase.dart';
+import 'genre/domain/usecases/get_genres_usecase.dart';
+import 'genre/presentation/bloc/genre_bloc.dart';
+import 'home/domain/usecases/check_pdf_or_images_usecase.dart';
+import 'home/domain/usecases/get_images_usecase.dart';
+import 'home/domain/usecases/get_pdf_usecase.dart';
+import 'library/data/datasources/library_data_source.dart';
+import 'library/data/datasources/library_data_source_impl.dart';
+import 'library/data/repositories/library_repo_impl.dart';
+import 'library/domain/repositories/library_repo.dart';
+import 'library/domain/usecases/check_fav_comic.dart';
 
-import 'package:movie_app/features/library/domain/usecases/get_fav_comic.dart';
-import 'package:movie_app/features/library/domain/usecases/toggle_fav_comic.dart';
-import 'package:movie_app/features/library/presentation/bloc/library_bloc.dart';
-import 'package:movie_app/features/userAccount/domain/usecases/get_user_usecase.dart';
-import 'package:movie_app/features/userAccount/domain/usecases/sign_out_usecase.dart';
-import 'package:movie_app/features/userAccount/presentation/user/user_bloc.dart';
+import 'library/domain/usecases/get_fav_comic.dart';
+import 'library/domain/usecases/toggle_fav_comic.dart';
+import 'library/presentation/bloc/library_bloc.dart';
+import 'userAccount/domain/usecases/get_user_usecase.dart';
+import 'userAccount/domain/usecases/sign_out_usecase.dart';
+import 'userAccount/presentation/user/user_bloc.dart';
 import 'home/data/datasources/comic_datasource.dart';
 import 'home/data/datasources/comic_datasource_impl.dart';
 import 'home/data/repositories/comic_repository_impl.dart';
@@ -29,11 +30,11 @@ import 'home/domain/repositories/comic_repo.dart';
 import 'home/domain/usecases/get_completed_comic_usecase.dart';
 import 'home/domain/usecases/get_episodes_usecase.dart';
 import 'home/domain/usecases/get_hot_comic_usecase.dart';
-import 'home/domain/usecases/get_recent_usecase.dart';
-import 'home/presentation/bloc/complete_bloc.dart';
-import 'home/presentation/bloc/hot_bloc.dart';
-import 'home/presentation/bloc/recent_bloc.dart';
-import 'home/presentation/bloc/details_bloc.dart';
+import 'home/domain/usecases/get_recent_episode_usecase.dart';
+import 'home/presentation/bloc/complete_comic/complete_bloc.dart';
+import 'home/presentation/bloc/hot_comic/hot_bloc.dart';
+import 'home/presentation/bloc/recent_episode/recent_bloc.dart';
+import 'home/presentation/bloc/details/details_bloc.dart';
 import 'search/data/datasources/search_comic_data_source.dart';
 import 'search/data/datasources/search_comic_data_source_impl.dart';
 import 'search/data/repositories/search_comic_repo_impl.dart';
@@ -73,7 +74,7 @@ Future<void> initializeDependencies() async {
 
   sl.registerFactory(() => GenreBloc(sl(), sl()));
 
-  sl.registerFactory(() => LibraryBloc(sl(), sl(), sl()));
+  sl.registerFactory(() => LibraryBloc(sl(), sl()));
 
   sl.registerLazySingleton<GetFavouriteComicUseCase>(
       () => GetFavouriteComicUseCase(favouriteRepo: sl()));
@@ -89,7 +90,7 @@ Future<void> initializeDependencies() async {
 
   sl.registerLazySingleton<LibraryDataSource>(() => LibraryDataSourceImpl());
 
-  sl.registerFactory(() => RecentBloc(sl()));
+  sl.registerFactory(() => RecentBloc(sl(), sl()));
 
   sl.registerFactory(() => HotBloc(sl()));
 
@@ -112,6 +113,9 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<GetEpisodesUseCase>(
       () => GetEpisodesUseCase(comicRepo: sl()));
 
+  sl.registerLazySingleton<FilterEpisodeUseCase>(
+      () => FilterEpisodeUseCase(comicRepo: sl()));
+
   sl.registerLazySingleton<GetImagesUseCase>(
       () => GetImagesUseCase(comicRepo: sl()));
 
@@ -132,8 +136,8 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<GetComicsUseCase>(
       () => GetComicsUseCase(genreRepo: sl()));
 
-  sl.registerLazySingleton<GetRecentComicUseCase>(
-      () => GetRecentComicUseCase(comicRepo: sl()));
+  sl.registerLazySingleton<GetRecentEpisodeUseCase>(
+      () => GetRecentEpisodeUseCase(comicRepo: sl()));
 
   sl.registerLazySingleton<ComicRepo>(
       () => ComicRepoImpl(remoteDataSource: sl()));

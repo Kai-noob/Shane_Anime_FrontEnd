@@ -28,10 +28,10 @@ class ImageWidget extends StatelessWidget {
         decoration: BoxDecoration(
             image: const DecorationImage(
                 image: AssetImage("assets/logo/logo.png")),
-            color: Colors.grey.shade300),
+            color: Colors.grey.shade100),
       ),
       errorWidget: (context, url, error) =>
-          const Icon(Ionicons.image, size: 35),
+          const Icon(Ionicons.warning_outline, size: 35),
     );
   }
 }

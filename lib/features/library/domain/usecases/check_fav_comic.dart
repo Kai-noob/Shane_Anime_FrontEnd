@@ -1,4 +1,4 @@
-import 'package:movie_app/features/library/domain/repositories/library_repo.dart';
+import '../repositories/library_repo.dart';
 
 class CheckFavComiUseCase {
   final LibraryRepo favouriteRepo;

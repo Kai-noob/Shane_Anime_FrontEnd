@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/features/userAccount/domain/usecases/sign_in_usecase.dart';
-import 'package:movie_app/features/userAccount/domain/usecases/sign_out_usecase.dart';
+import '../../domain/usecases/sign_in_usecase.dart';
+import '../../domain/usecases/sign_out_usecase.dart';
 import '../../../../core/error/failure.dart';
-import '../../domain/entities/user.dart';
 import '../../domain/usecases/sign_up_usecase.dart';
 
 part 'auth_event.dart';

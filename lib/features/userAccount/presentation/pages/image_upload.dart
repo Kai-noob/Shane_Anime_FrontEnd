@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/features/userAccount/presentation/pages/user_form_page.dart';
 
 class ImageUpload extends StatelessWidget {
   final String userName;
@@ -12,12 +11,12 @@ class ImageUpload extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Choose Profile"),
+        title: const Text("Choose Profile"),
         elevation: 0.0,
       ),
       body: GridView.builder(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             mainAxisSpacing: 20,
             childAspectRatio: 0.9,
             crossAxisSpacing: 20,
@@ -32,7 +31,7 @@ class ImageUpload extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red.shade400,
         onPressed: () {},
-        child: Icon(Ionicons.arrow_forward),
+        child: const Icon(Ionicons.arrow_forward),
       ),
       // bottomNavigationBar: Container(
       //   child: ElevatedButton(

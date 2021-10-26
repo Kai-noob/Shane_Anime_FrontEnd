@@ -1,5 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movie_app/features/library/domain/entities/favourite_comic.dart';
+import '../../domain/entities/favourite_comic.dart';
 
 class FavouriteComicModel extends FavouriteComic {
   FavouriteComicModel({

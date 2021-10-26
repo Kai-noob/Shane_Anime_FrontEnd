@@ -1,7 +1,7 @@
 import '../../domain/entities/comic_gere.dart';
 
 class ComicGenreModel extends ComicGenre {
-  ComicGenreModel({required String comicId, required String genreId})
+  const ComicGenreModel({required String comicId, required String genreId})
       : super(comicId, genreId);
 
   static ComicGenreModel fromJson(Map<String, dynamic> json) {

@@ -12,7 +12,7 @@ class SearchInitial extends SearchState {}
 class SearchLoading extends SearchState {}
 
 class SearchLoaded extends SearchState {
-  final List<SearchComic> searchComics;
+  final List<Comic> searchComics;
 
   const SearchLoaded({required this.searchComics});
 

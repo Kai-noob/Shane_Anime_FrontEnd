@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../bloc/hot_bloc.dart';
+import 'package:movie_app/core/global/error_widget.dart';
+import '../../../../bloc/hot_comic/hot_bloc.dart';
 
-import 'recent_item.dart';
+import 'comic_card.dart';
 import 'shimmer_card.dart';
 
 class HotList extends StatelessWidget {
@@ -18,10 +19,9 @@ class HotList extends StatelessWidget {
           return const ShimmerCard();
         }
         if (state is HotComicError) {
-          return SliverToBoxAdapter(
-            child: Center(
-              child: Text(state.message),
-            ),
+          return ErrorMessage(
+            message: state.message,
+            isSliver: true,
           );
         }
         if (state is HotComicLoaded) {

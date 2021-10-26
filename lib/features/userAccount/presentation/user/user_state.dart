@@ -12,7 +12,7 @@ class UserInitial extends UserState {}
 class UserProfileSuccess extends UserState {
   final UserEntity user;
 
-  UserProfileSuccess({required this.user});
+  const UserProfileSuccess({required this.user});
 
   @override
   List<Object> get props => [user];
@@ -21,7 +21,7 @@ class UserProfileSuccess extends UserState {
 class UserProfileError extends UserState {
   final String message;
 
-  UserProfileError({required this.message});
+  const UserProfileError({required this.message});
 
   @override
   List<Object> get props => [message];

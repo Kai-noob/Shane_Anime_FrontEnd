@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:ionicons/ionicons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:movie_app/core/strings/strings.dart';
-import 'package:movie_app/features/home/presentation/view/pages/reading/reading_screen.dart';
-import '../../../../bloc/details_bloc.dart';
+import 'package:movie_app/core/global/error_widget.dart';
+import '../../../../../../../core/strings/strings.dart';
+import '../../reading/reading_screen.dart';
+import '../../../../bloc/details/details_bloc.dart';
 import '../../../../../../../core/global/loading_indicator.dart';
 
 class EpisodeListView extends StatelessWidget {
@@ -21,6 +22,12 @@ class EpisodeListView extends StatelessWidget {
       builder: (context, state) {
         if (state is EpisodeLoading) {
           return const SliverToBoxAdapter(child: LoadingIndicator());
+        }
+        if (state is EpisodeError) {
+          return ErrorMessage(
+            message: state.message,
+            isSliver: true,
+          );
         }
         if (state is EpisodeLoaded) {
           return SliverList(
@@ -106,7 +113,7 @@ class EpisodeListView extends StatelessWidget {
                                 ));
                           });
                     },
-                    icon: Icon(Ionicons.chatbubbles_outline),
+                    icon: const Icon(Ionicons.chatbubbles_outline),
                   ));
             }, childCount: state.episodes.length),
           );

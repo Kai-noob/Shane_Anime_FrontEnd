@@ -12,9 +12,8 @@ class FetchGenres extends GenreEvent {}
 class FetchComics extends GenreEvent {
   final String genreId;
 
-  FetchComics(this.genreId);
+  const FetchComics(this.genreId);
 
   @override
-  // TODO: implement props
   List<Object> get props => [genreId];
 }

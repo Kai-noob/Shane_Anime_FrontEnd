@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class LoadingIndicator extends StatelessWidget {
   const LoadingIndicator({
@@ -9,9 +8,12 @@ class LoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: CircularProgressIndicator(
-      backgroundColor: Colors.black,
-      color: Colors.red,
+        child: Transform.scale(
+      scale: 0.7,
+      child: CircularProgressIndicator(
+          strokeWidth: 2.0,
+          backgroundColor: Colors.black,
+          color: Color(0xFF188DFA)),
     ));
   }
 }

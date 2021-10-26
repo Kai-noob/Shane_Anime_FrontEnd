@@ -1,15 +1,15 @@
-import 'package:movie_app/features/home/domain/entities/episodes.dart';
+import '../../domain/entities/episodes.dart';
 
-class RecentEpisodeModel extends RecentEpisode {
-  RecentEpisodeModel({
+class EpisodeModel extends Episode {
+  EpisodeModel({
     required String comicId,
     required String episodeName,
     String? title,
     String? coverPhoto,
   }) : super(comicId, episodeName, title!, coverPhoto!);
 
-  static RecentEpisodeModel fromJson(Map<String, dynamic> json) {
-    return RecentEpisodeModel(
+  static EpisodeModel fromJson(Map<String, dynamic> json) {
+    return EpisodeModel(
       comicId: json['comic_id'],
       episodeName: json['episode_name'],
     );

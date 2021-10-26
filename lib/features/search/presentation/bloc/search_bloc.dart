@@ -1,16 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_app/core/strings/constants.dart';
+import 'package:movie_app/features/home/domain/entities/comic.dart';
+
 import '../../../../core/error/failure.dart';
-import '../../domain/entities/searchcomic.dart';
+
 import '../../domain/usecases/search_comic_usecase.dart';
 
 part 'search_event.dart';
 part 'search_state.dart';
-
-const String serverFalilure = "Something went FJSDLKJ";
-
-const String searchFailure = "No Comics Found";
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final SearchComicUseCase _searchComicUseCase;
@@ -32,7 +31,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   Stream<SearchState> _eitherSuccessOrErrorState(
-    Either<Failure, List<SearchComic>> failureOrSuccess,
+    Either<Failure, List<Comic>> failureOrSuccess,
   ) async* {
     yield failureOrSuccess.fold(
       (failure) => SearchError(message: _mapFailureToMessage(failure)),
@@ -43,9 +42,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   String _mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return serverFalilure;
-      case SearchFailure:
-        return searchFailure;
+        return serverMessage;
 
       default:
         return 'Unexpected Error';

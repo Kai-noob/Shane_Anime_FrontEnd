@@ -38,7 +38,7 @@ class SignOutSuccess extends AuthState {}
 class SignOutError extends AuthState {
   final String message;
 
-  SignOutError({required this.message});
+  const SignOutError({required this.message});
 
   @override
   List<Object> get props => [message];

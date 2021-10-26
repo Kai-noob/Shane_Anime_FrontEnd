@@ -1,10 +1,10 @@
+import 'package:cloud_firestore_platform_interface/src/timestamp.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
 
 import '../../domain/entities/comic.dart';
 import '../../domain/entities/episodes.dart';
-import '../../domain/entities/photos.dart';
 import '../../domain/repositories/comic_repo.dart';
 import '../datasources/comic_datasource.dart';
 
@@ -13,9 +13,9 @@ class ComicRepoImpl implements ComicRepo {
 
   ComicRepoImpl({required this.remoteDataSource});
   @override
-  Future<Either<Failure, List<RecentEpisode>>> getRecentComics() async {
+  Future<Either<Failure, List<Episode>>> getRecentEpisodes() async {
     try {
-      final List<RecentEpisode> recentEpisodes =
+      final List<Episode> recentEpisodes =
           await remoteDataSource.getRecentEpisodes();
       return Right(recentEpisodes);
     } on ServerException {
@@ -45,10 +45,9 @@ class ComicRepoImpl implements ComicRepo {
   }
 
   @override
-  Future<Either<Failure, List<RecentEpisode>>> getEpisodes(
-      String comicId) async {
+  Future<Either<Failure, List<Episode>>> getEpisodes(String comicId) async {
     try {
-      final List<RecentEpisode> episodes =
+      final List<Episode> episodes =
           await remoteDataSource.getEpisodes(comicId);
       return Right(episodes);
     } on ServerException {
@@ -83,5 +82,17 @@ class ComicRepoImpl implements ComicRepo {
   @override
   Future<bool> checkPdforImages(String comicId, String episodeName) {
     return remoteDataSource.checkPdfOrImage(comicId, episodeName);
+  }
+
+  @override
+  Future<Either<Failure, List<Episode>>> getFilteredEpisodes(
+      DateTime datetime) async {
+    try {
+      final List<Episode> filteredEpisodes =
+          await remoteDataSource.getFilteredEpisodes(datetime);
+      return Right(filteredEpisodes);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
   }
 }
