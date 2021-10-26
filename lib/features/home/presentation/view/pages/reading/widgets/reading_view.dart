@@ -1,7 +1,7 @@
 import 'package:advance_pdf_viewer_fork/advance_pdf_viewer_fork.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/error_widget.dart';
+import 'package:movie_app/core/global/error_message.dart';
 
 import '../../../../../domain/entities/episodes.dart';
 

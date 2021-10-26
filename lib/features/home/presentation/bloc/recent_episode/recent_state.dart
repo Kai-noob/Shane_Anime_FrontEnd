@@ -11,6 +11,8 @@ class RecentInitial extends RecentState {}
 
 class RecentLoading extends RecentState {}
 
+class FilterLoading extends RecentState {}
+
 class RecentLoaded extends RecentState {
   final List<Episode> recentEpisodes;
 

@@ -26,6 +26,7 @@ class RecentBloc extends Bloc<RecentEvent, RecentState> {
       yield* _eitherSuccessOrErrorState(failureOrSuccess);
     }
     if (event is FilterEpisode) {
+      yield FilterLoading();
       final failureOrSuccess = await _filterEpisodeUseCase.call(event.dateTime);
       yield* _eitherFilteredEpisodesOrErrorState(failureOrSuccess);
     }

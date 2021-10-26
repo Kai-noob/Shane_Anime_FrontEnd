@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:movie_app/features/library/data/models/favourite_comic_model.dart';
-import 'package:movie_app/features/library/domain/entities/favourite_comic.dart';
+
 import '../../domain/entities/episodes.dart';
 import '../../../../core/error/exceptions.dart';
 import '../models/recent_episode_model.dart';
@@ -209,7 +208,8 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
       print(datetime);
       QuerySnapshot _querySnapshot = await firebaseFirestore
           .collection("episodes")
-          .where("created", isGreaterThan: datetime)
+          .where("created", isLessThan: datetime)
+          .where("created", isGreaterThanOrEqualTo: datetime)
           .get();
 
       List<Episode> _filteredEpisodeList = [];

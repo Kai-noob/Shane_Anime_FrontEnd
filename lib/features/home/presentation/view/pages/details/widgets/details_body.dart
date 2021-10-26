@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import '../screens/details_review_screen.dart';
-import '../../../../../../library/domain/entities/favourite_comic.dart';
-import '../../../../../../library/presentation/bloc/library_bloc.dart';
+
 import 'episode_list_view.dart';
 
 import '../../../../../domain/entities/comic.dart';
@@ -76,21 +75,6 @@ class _DetailsBodyState extends State<DetailsBody> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              IconButton(
-                                  onPressed: () {
-                                    // BlocProvider(
-                                    //     create: (context) => sl<LibraryBloc>()
-                                    //       ..add(CheckFavouriteComic(
-                                    //           widget.comicModel.id)));
-                                    BlocProvider.of<LibraryBloc>(context).add(
-                                        ToggleFavouriteComic(
-                                            FavouriteComic(
-                                                widget.comicModel.id,
-                                                widget.comicModel.title,
-                                                widget.comicModel.coverPhoto),
-                                            widget.comicModel.id));
-                                  },
-                                  icon: Icon(Ionicons.heart_outline)),
                               IconButton(
                                   onPressed: () {
                                     Navigator.of(context).push(

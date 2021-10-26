@@ -122,8 +122,12 @@ import 'dart:collection';
 
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:movie_app/core/global/loading_indicator.dart';
+import 'package:movie_app/features/home/presentation/bloc/recent_episode/recent_bloc.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/screens/utils.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -385,41 +389,64 @@ class _TableBasicsExampleState extends State<TableBasicsExample> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: TableCalendar(
-          daysOfWeekHeight: 80,
-          firstDay: kFirstDay,
-          lastDay: kLastDay,
-          focusedDay: _focusedDay,
-          calendarFormat: _calendarFormat,
-          selectedDayPredicate: (day) {
-            // Use `selectedDayPredicate` to determine which day is currently selected.
-            // If this returns true, then `day` will be marked as selected.
-
-            // Using `isSameDay` is recommended to disregard
-            // the time-part of compared DateTime objects.
-            return isSameDay(_selectedDay, day);
-          },
-          onDaySelected: (selectedDay, focusedDay) {
-            if (!isSameDay(_selectedDay, selectedDay)) {
-              // Call `setState()` when updating the selected day
-              setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay = focusedDay;
-              });
-            }
-          },
-          onFormatChanged: (format) {
-            if (_calendarFormat != format) {
-              // Call `setState()` when updating calendar format
-              setState(() {
-                _calendarFormat = format;
-              });
-            }
-          },
-          onPageChanged: (focusedDay) {
-            // No need to call `setState()` here
-            _focusedDay = focusedDay;
-          },
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                child: TableCalendar(
+                  daysOfWeekHeight: 80,
+                  firstDay: kFirstDay,
+                  lastDay: kLastDay,
+                  focusedDay: _focusedDay,
+                  calendarFormat: _calendarFormat,
+                  selectedDayPredicate: (day) {
+                    return isSameDay(_selectedDay, day);
+                  },
+                  onDaySelected: (selectedDay, focusedDay) {
+                    if (!isSameDay(_selectedDay, selectedDay)) {
+                      setState(() {
+                        _selectedDay = selectedDay;
+                        _focusedDay = focusedDay;
+                      });
+                    }
+                    Timestamp timestamp = Timestamp.fromDate(selectedDay);
+                    BlocProvider.of<RecentBloc>(context)
+                        .add(FilterEpisode(timestamp.toDate()));
+                  },
+                  onFormatChanged: (format) {
+                    if (_calendarFormat != format) {
+                      setState(() {
+                        _calendarFormat = format;
+                      });
+                    }
+                  },
+                  onPageChanged: (focusedDay) {
+                    _focusedDay = focusedDay;
+                  },
+                ),
+              ),
+              BlocBuilder<RecentBloc, RecentState>(
+                builder: (context, state) {
+                  if (state is FilterLoading) {
+                    return LoadingIndicator();
+                  }
+                  if (state is FilteredEpisodesLoaded) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: ClampingScrollPhysics(),
+                      itemCount: state.filterEpisodes.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                            title:
+                                Text(state.filterEpisodes[index].episodeName));
+                      },
+                    );
+                  }
+                  return Container();
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+const String userNotFoundFirebaseException = 'user-not-found';
+const String userPasswordFirebaseException = 'wrong-password';
+const String invalidEmailFirebaseException = 'invalid-email';
+const String userDisabledFirebaseException = 'user-disabled';
+const String tooManyRequestFirebaseException = 'too-many-requests';
+const String offlineFirebaseException = 'network-request-failed';
+const String objectNotFoundFirebaseException = 'object-not-found';
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 const String kNameNullError = "Please Enter your name";

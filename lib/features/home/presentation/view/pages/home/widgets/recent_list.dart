@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/error_widget.dart';
+import 'package:movie_app/core/global/error_message.dart';
 import '../../../../bloc/recent_episode/recent_bloc.dart';
 import 'shimmer_card.dart';
 

@@ -42,7 +42,7 @@ class SearchScreen extends StatelessWidget {
                           child: const Text(
                             "Cancel",
                             style: TextStyle(
-                                color: Color(0xFF188DFA),
+                                color: Colors.grey,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold),
                           )))

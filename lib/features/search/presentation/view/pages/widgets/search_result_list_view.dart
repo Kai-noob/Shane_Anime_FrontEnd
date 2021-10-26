@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/error_widget.dart';
+import 'package:movie_app/core/global/error_message.dart';
 import 'package:movie_app/core/global/loading_indicator.dart';
 import 'package:movie_app/features/home/presentation/view/pages/details/screens/details_screen.dart';
 import '../../../bloc/search_bloc.dart';

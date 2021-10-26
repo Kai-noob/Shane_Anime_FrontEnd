@@ -11,9 +11,7 @@ class LoadingIndicator extends StatelessWidget {
         child: Transform.scale(
       scale: 0.7,
       child: CircularProgressIndicator(
-          strokeWidth: 2.0,
-          backgroundColor: Colors.black,
-          color: Color(0xFF188DFA)),
+          strokeWidth: 2.0, backgroundColor: Colors.black, color: Colors.white),
     ));
   }
 }

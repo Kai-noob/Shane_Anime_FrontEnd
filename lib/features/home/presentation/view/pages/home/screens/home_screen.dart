@@ -2,15 +2,24 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:movie_app/core/global/image_widget.dart';
 import 'package:movie_app/core/global/loading_indicator.dart';
+import 'package:movie_app/features/home/presentation/bloc/complete_comic/complete_bloc.dart';
 import 'package:movie_app/features/home/presentation/bloc/hot_comic/hot_bloc.dart';
+import 'package:movie_app/features/home/presentation/bloc/recent_episode/recent_bloc.dart';
 import 'package:movie_app/features/home/presentation/view/pages/details/screens/details_screen.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/screens/recent_episode_screen.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/widgets/shimmer_app_bar.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/widgets/shimmer_card.dart';
+import 'package:movie_app/features/search/presentation/view/pages/search_page.dart';
 
 import '../../../../../../genre/presentation/view/genre_list.dart';
+import 'dart:async';
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import '../widgets/complete_list.dart';
 import '../widgets/home_title_widget.dart';
@@ -23,33 +32,16 @@ import 'hot_comic_screen.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final List images = [
-    "assets/images/manga.jpg",
-    "assets/images/manga.jpg",
-    "assets/images/manga.jpg",
-    "assets/images/manga.jpg",
-    "assets/images/manga.jpg",
-    "assets/images/manga.jpg",
-
-    // "assets/images/animethree.jpeg",
-    // "assets/images/animethree.jpeg",
-  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: HomeBody(
-      images: images,
-    ));
+    return Scaffold(body: HomeBody());
   }
 }
 
 class HomeBody extends StatefulWidget {
   const HomeBody({
     Key? key,
-    required this.images,
   }) : super(key: key);
-
-  final List images;
 
   @override
   State<HomeBody> createState() => _HomeBodyState();
@@ -63,7 +55,18 @@ class _HomeBodyState extends State<HomeBody> {
       slivers: [
         SliverAppBar(
           expandedHeight: 350,
+          title: Text("Shane Manga MM"),
           backgroundColor: Colors.black,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => SearchScreen()));
+                },
+                icon: Icon(
+                  Ionicons.search_outline,
+                ))
+          ],
           flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.pin,
               background: BlocBuilder<HotBloc, HotState>(
@@ -201,39 +204,3 @@ class _HomeBodyState extends State<HomeBody> {
     );
   }
 }
-
-// class GenreList extends StatelessWidget {
-//   const GenreList({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     BlocProvider.of<GenreBloc>(context).add(FetchGenres());
-//     return BlocBuilder<GenreBloc, GenreState>(
-//       builder: (context, state) {
-//         if (state is GenreLoading) {
-//           return LoadingIndicator();
-//         }
-//         if (state is GenreSuccess) {
-//           return ListView.builder(
-//             itemCount: state.genres.length,
-//             itemBuilder: (BuildContext context, int index) {
-//               return ListTile(
-//                 onTap: () {
-//                   Navigator.of(context).push(MaterialPageRoute(
-//                       builder: (_) =>
-//                           GenreListScreen(genre: state.genres[index])));
-//                 },
-//                 title: Text(state.genres[index].name),
-//               );
-//             },
-//           );
-//         }
-//         return Container();
-//       },
-//     );
-//   }
-// }
-
-

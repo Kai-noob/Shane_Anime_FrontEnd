@@ -11,18 +11,7 @@ import 'genre/presentation/bloc/genre_bloc.dart';
 import 'home/domain/usecases/check_pdf_or_images_usecase.dart';
 import 'home/domain/usecases/get_images_usecase.dart';
 import 'home/domain/usecases/get_pdf_usecase.dart';
-import 'library/data/datasources/library_data_source.dart';
-import 'library/data/datasources/library_data_source_impl.dart';
-import 'library/data/repositories/library_repo_impl.dart';
-import 'library/domain/repositories/library_repo.dart';
-import 'library/domain/usecases/check_fav_comic.dart';
 
-import 'library/domain/usecases/get_fav_comic.dart';
-import 'library/domain/usecases/toggle_fav_comic.dart';
-import 'library/presentation/bloc/library_bloc.dart';
-import 'userAccount/domain/usecases/get_user_usecase.dart';
-import 'userAccount/domain/usecases/sign_out_usecase.dart';
-import 'userAccount/presentation/user/user_bloc.dart';
 import 'home/data/datasources/comic_datasource.dart';
 import 'home/data/datasources/comic_datasource_impl.dart';
 import 'home/data/repositories/comic_repository_impl.dart';
@@ -41,54 +30,13 @@ import 'search/data/repositories/search_comic_repo_impl.dart';
 import 'search/domain/repositories/search_comic_repo.dart';
 import 'search/domain/usecases/search_comic_usecase.dart';
 import 'search/presentation/bloc/search_bloc.dart';
-import 'userAccount/data/datasources/auth_data_source.dart';
-import 'userAccount/data/datasources/auth_data_source_impl.dart';
-import 'userAccount/data/repositories/auth_repo_impl.dart';
-import 'userAccount/domain/repositories/auth_repo.dart';
-import 'userAccount/domain/usecases/sign_in_usecase.dart';
-import 'userAccount/domain/usecases/sign_up_usecase.dart';
-import 'userAccount/presentation/auth/auth_bloc.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
-  sl.registerFactory(() => AuthBloc(sl(), sl(), sl()));
-
-  sl.registerLazySingleton<SignUpUseCase>(() => SignUpUseCase(authRepo: sl()));
-
-  sl.registerLazySingleton<SignOutUseCase>(
-      () => SignOutUseCase(authRepo: sl()));
-
-  sl.registerLazySingleton<GetUserUseCase>(
-      () => GetUserUseCase(authRepo: sl()));
-
-  sl.registerLazySingleton<SignInUseCase>(() => SignInUseCase(authRepo: sl()));
-
-  sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(authDataSource: sl()));
-
-  sl.registerLazySingleton<AuthDataSource>(() => AuthDataSourceImpl());
-
   sl.registerFactory(() => CompleteBloc(sl()));
 
-  sl.registerFactory(() => UserBloc(sl()));
-
   sl.registerFactory(() => GenreBloc(sl(), sl()));
-
-  sl.registerFactory(() => LibraryBloc(sl(), sl()));
-
-  sl.registerLazySingleton<GetFavouriteComicUseCase>(
-      () => GetFavouriteComicUseCase(favouriteRepo: sl()));
-
-  sl.registerLazySingleton<CheckFavComiUseCase>(
-      () => CheckFavComiUseCase(favouriteRepo: sl()));
-
-  sl.registerLazySingleton<ToggleFavouriteComicsUseCase>(
-      () => ToggleFavouriteComicsUseCase(sl()));
-
-  sl.registerLazySingleton<LibraryRepo>(
-      () => FavouriteRepoImpl(libraryDataSource: sl()));
-
-  sl.registerLazySingleton<LibraryDataSource>(() => LibraryDataSourceImpl());
 
   sl.registerFactory(() => RecentBloc(sl(), sl()));
 

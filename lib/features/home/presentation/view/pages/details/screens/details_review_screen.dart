@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/core/global/error_widget.dart';
+import 'package:movie_app/core/global/error_message.dart';
 import '../../../../../domain/entities/comic.dart';
 import '../../../../bloc/details/details_bloc.dart';
 

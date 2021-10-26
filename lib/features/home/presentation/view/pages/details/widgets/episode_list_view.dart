@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:ionicons/ionicons.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:movie_app/core/global/error_widget.dart';
-import '../../../../../../../core/strings/strings.dart';
+import 'package:movie_app/core/global/error_message.dart';
+
 import '../../reading/reading_screen.dart';
 import '../../../../bloc/details/details_bloc.dart';
 import '../../../../../../../core/global/loading_indicator.dart';
@@ -34,87 +34,23 @@ class EpisodeListView extends StatelessWidget {
             delegate:
                 SliverChildBuilderDelegate((BuildContext context, int index) {
               return ListTile(
-                  title: Text(state.episodes[index].episodeName),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) =>
-                            ReadingScreen(episodes: state.episodes[index])));
-                  },
-                  leading: Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                                state.episodes[index].coverPhoto))),
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {
-                      showMaterialModalBottomSheet(
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15))),
-                          context: context,
-                          builder: (BuildContext context) {
-                            return SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.8,
-                                child: Column(
-                                  children: [
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      height: 4,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    const Text(
-                                      "Comments",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    Expanded(
-                                      child: ListView.builder(
-                                        itemCount: 50,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return ListTile(
-                                            leading: const CircleAvatar(
-                                                backgroundImage:
-                                                    AssetImage(image5)),
-                                            title: const Text(
-                                                "Nice Commic . Good Job Bro"),
-                                            subtitle: Row(
-                                              children: const [
-                                                Icon(
-                                                  Icons
-                                                      .subdirectory_arrow_right,
-                                                  color: Colors.grey,
-                                                ),
-                                                Text("Nay Yair Linn"),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ));
-                          });
-                    },
-                    icon: const Icon(Ionicons.chatbubbles_outline),
-                  ));
+                title: Text(state.episodes[index].episodeName),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) =>
+                          ReadingScreen(episodes: state.episodes[index])));
+                },
+                leading: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image:
+                              NetworkImage(state.episodes[index].coverPhoto))),
+                ),
+              );
             }, childCount: state.episodes.length),
           );
         }
