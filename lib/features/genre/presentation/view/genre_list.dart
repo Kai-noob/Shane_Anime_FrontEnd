@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/global/error_message.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/widgets/shimmer_genre.dart';
 import '../bloc/genre_bloc.dart';
-import '../../../home/presentation/view/pages/home/widgets/shimmer_card.dart';
 import 'widgets/genre_item.dart';
 
 class GenreList extends StatelessWidget {

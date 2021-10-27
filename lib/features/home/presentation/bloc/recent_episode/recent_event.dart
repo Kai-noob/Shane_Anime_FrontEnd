@@ -9,10 +9,10 @@ abstract class RecentEvent extends Equatable {
 
 class FetchRecentEpisode extends RecentEvent {}
 
-class FilterEpisode extends RecentEvent {
+class FilterEpisodeEvent extends RecentEvent {
   final DateTime dateTime;
 
-  FilterEpisode(this.dateTime);
+  const FilterEpisodeEvent(this.dateTime);
 
   @override
   List<Object> get props => [dateTime];

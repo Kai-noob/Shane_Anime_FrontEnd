@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import '../screens/details_review_screen.dart';
 
@@ -57,7 +56,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                         gradient: LinearGradient(
                             begin: Alignment.bottomRight,
                             colors: [
-                          Colors.black,
+                          Color(0xff212121),
                           Colors.black.withOpacity(.3)
                         ])),
                     child: Padding(
@@ -66,27 +65,56 @@ class _DetailsBodyState extends State<DetailsBody> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          Text(widget.comicModel.title,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 30,
-                              )),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              IconButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                DetailsReviewScreen(
-                                                  comicModel: widget.comicModel,
-                                                )));
-                                  },
-                                  icon: const Icon(
-                                      Ionicons.information_circle_outline)),
+                              Expanded(
+                                child: Text(widget.comicModel.title,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 30,
+                                    )),
+                              ),
+                              Expanded(
+                                child: IconButton(
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  DetailsReviewScreen(
+                                                    comicModel:
+                                                        widget.comicModel,
+                                                  )));
+                                    },
+                                    icon: const Icon(
+                                        Ionicons.information_circle_outline)),
+                              ),
                             ],
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Wrap(
+                              children: widget.comicModel.genres
+                                  .map((e) => Container(
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 2),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 2),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            border: Border.all(
+                                                color: Colors.white,
+                                                width: 1.3)),
+                                        child: Text(
+                                          e.name,
+                                          style: const TextStyle(fontSize: 13),
+                                        ),
+                                      ))
+                                  .toList(),
+                            ),
                           )
                         ],
                       ),

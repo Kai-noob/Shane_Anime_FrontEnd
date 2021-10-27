@@ -7,4 +7,6 @@ abstract class CompleteEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchCompleteComic extends CompleteEvent {}
+class FetchAllCompleteComic extends CompleteEvent {}
+
+class FetchLimitCompleteComic extends CompleteEvent {}

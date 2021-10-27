@@ -71,7 +71,7 @@ class GenreDataSourceImpl implements GenreDataSource {
             .get();
 
         final _comic = _querySnapshot.data() as Map<String, dynamic>;
-
+        List<Genre> _genres = await getGenre(_comicGenre.comicId);
         _comics.add(ComicModel(
             id: _comicGenre.comicId,
             title: _comic["title"],
@@ -81,7 +81,8 @@ class GenreDataSourceImpl implements GenreDataSource {
             completed: _comic["completed"],
             published: _comic["published"],
             created: _comic["created"],
-            episodeCount: _episodeSnapshot.size));
+            episodeCount: _episodeSnapshot.size,
+            genres: _genres));
       }
 
       return _comics;

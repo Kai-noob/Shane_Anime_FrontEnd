@@ -12,7 +12,7 @@ class ShimmerAppBar extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          image: DecorationImage(
+          image: const DecorationImage(
             image: AssetImage("assets/logo/logo.png"),
             fit: BoxFit.cover,
           ),

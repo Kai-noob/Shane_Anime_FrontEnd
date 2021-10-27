@@ -7,23 +7,41 @@ abstract class CompleteState extends Equatable {
   List<Object> get props => [];
 }
 
-class CompleteInitial extends CompleteState {}
-
-class CompleteLoaded extends CompleteState {
+class AllCompleteLoaded extends CompleteState {
   final List<Comic> completeComics;
 
-  const CompleteLoaded({required this.completeComics});
+  const AllCompleteLoaded({required this.completeComics});
 
   @override
   List<Object> get props => [completeComics];
 }
 
-class CompleteLoading extends CompleteState {}
+class AllCompleteLoading extends CompleteState {}
 
-class CompleterError extends CompleteState {
+class AllCompleteError extends CompleteState {
   final String message;
 
-  const CompleterError({required this.message});
+  const AllCompleteError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class LimitCompleteLoaded extends CompleteState {
+  final List<Comic> completeComics;
+
+  const LimitCompleteLoaded({required this.completeComics});
+
+  @override
+  List<Object> get props => [completeComics];
+}
+
+class LimitCompleteLoading extends CompleteState {}
+
+class LimitCompleteError extends CompleteState {
+  final String message;
+
+  const LimitCompleteError({required this.message});
 
   @override
   List<Object> get props => [message];

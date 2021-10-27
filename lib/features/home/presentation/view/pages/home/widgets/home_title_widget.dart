@@ -19,13 +19,13 @@ class HomeTitleWidget extends StatelessWidget {
           children: [
             Text(
               label,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 20, fontFamily: "HeaderFont"),
             ),
             GestureDetector(
               onTap: onTap,
               child: const Text(
                 "See all",
-                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 17),
+                style: TextStyle(fontSize: 17, fontFamily: "HeaderFont"),
               ),
             )
           ],

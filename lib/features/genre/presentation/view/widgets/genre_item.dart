@@ -24,20 +24,18 @@ class GenreItem extends StatelessWidget {
             child: CircleAvatar(
               radius: 40,
               backgroundColor: Colors.white.withOpacity(0.2),
-
               child: Image.network(
                 genre.icon,
-                height: 50,
                 color: Colors.white,
+                height: 40,
               ),
-              // child: const Icon(
-              //   Icons.theater_comedy,
-              //   size: 35,
-              //   color: Colors.white,
-              // ),
             ),
           ),
-          Text(genre.name)
+          SizedBox(height: 8),
+          Text(
+            genre.name,
+            style: TextStyle(fontFamily: "HeaderFont"),
+          )
         ],
       ),
     );

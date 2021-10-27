@@ -6,21 +6,21 @@ import '../../../../genre/domain/entities/genre.dart';
 import '../../../../genre/domain/usecases/get_genre_usecase.dart';
 
 import '../../../domain/entities/episodes.dart';
-import '../../../domain/usecases/check_pdf_or_images_usecase.dart';
-import '../../../domain/usecases/get_images_usecase.dart';
-import '../../../domain/usecases/get_pdf_usecase.dart';
+import '../../../domain/usecases/check_pdf_or_images.dart';
+import '../../../domain/usecases/get_images.dart';
+import '../../../domain/usecases/get_pdf.dart';
 import '../../../../../core/error/failure.dart';
 
-import '../../../domain/usecases/get_episodes_usecase.dart';
+import '../../../domain/usecases/get_episodes.dart';
 
 part 'details_event.dart';
 part 'details_state.dart';
 
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
-  final GetEpisodesUseCase _getEpisodesUseCase;
-  final GetImagesUseCase _getPhotosUseCase;
-  final CheckPdfOrImagesUseCase _checkUseCase;
-  final GetPdfUseCase _getPdfUseCase;
+  final GetEpisodes _getEpisodesUseCase;
+  final GetImages _getPhotosUseCase;
+  final CheckPdfOrImages _checkUseCase;
+  final GetPdf _getPdfUseCase;
   final GetGenreUsecase _genreUsecase;
   DetailsBloc(this._getEpisodesUseCase, this._getPhotosUseCase,
       this._checkUseCase, this._getPdfUseCase, this._genreUsecase)
@@ -37,7 +37,7 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
       final failureOrSuccess = await _genreUsecase.call(event.comicId);
       yield* _eitherGenreOrErrorState(failureOrSuccess);
     }
-    if (event is CheckPdfOrImages) {
+    if (event is CheckPdfOrImagesEvent) {
       bool checked = await _checkUseCase.call(event.comicId, event.episodeName);
       if (checked) {
         yield ImagesLoading();

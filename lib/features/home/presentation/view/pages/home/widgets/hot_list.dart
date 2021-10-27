@@ -15,16 +15,16 @@ class HotList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<HotBloc, HotState>(
       builder: (context, state) {
-        if (state is HotComicLoading) {
+        if (state is HotLimitComicLoading) {
           return const ShimmerCard();
         }
-        if (state is HotComicError) {
+        if (state is HotLimitComicError) {
           return ErrorMessage(
             message: state.message,
             isSliver: true,
           );
         }
-        if (state is HotComicLoaded) {
+        if (state is HotLimitComicLoaded) {
           return SliverToBoxAdapter(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,

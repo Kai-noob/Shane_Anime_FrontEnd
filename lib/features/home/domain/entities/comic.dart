@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movie_app/features/genre/domain/entities/genre.dart';
 
 class Comic extends Equatable {
   final String id;
@@ -11,29 +12,33 @@ class Comic extends Equatable {
   final bool completed;
   final Timestamp created;
   final int episodeCount;
+  final List<Genre> genres;
 
   const Comic(
-    this.id,
-    this.title,
-    this.coverPhoto,
-    this.review,
-    this.editorChoice,
-    this.published,
-    this.completed,
-    this.created,
-    this.episodeCount,
-  );
+      this.id,
+      this.title,
+      this.coverPhoto,
+      this.review,
+      this.editorChoice,
+      this.published,
+      this.completed,
+      this.created,
+      this.episodeCount,
+      this.genres);
 
   @override
-  List<Object?> get props => [
-        id,
-        title,
-        coverPhoto,
-        review,
-        editorChoice,
-        published,
-        completed,
-        created,
-        episodeCount,
-      ];
+  List<Object> get props {
+    return [
+      id,
+      title,
+      coverPhoto,
+      review,
+      editorChoice,
+      published,
+      completed,
+      created,
+      episodeCount,
+      genres,
+    ];
+  }
 }

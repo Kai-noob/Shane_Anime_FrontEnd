@@ -1,7 +1,8 @@
-import 'package:advance_pdf_viewer_fork/advance_pdf_viewer_fork.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:movie_app/core/global/error_message.dart';
+import 'package:movie_app/core/global/pdf_transform.dart';
 
 import '../../../../../domain/entities/episodes.dart';
 
@@ -16,9 +17,11 @@ class ReadingView extends StatefulWidget {
   const ReadingView({
     Key? key,
     required this.episodes,
+    required this.isDarkMode,
   }) : super(key: key);
 
   final Episode episodes;
+  final bool isDarkMode;
 
   @override
   State<ReadingView> createState() => _ReadingViewState();
@@ -28,6 +31,15 @@ class _ReadingViewState extends State<ReadingView> {
   @override
   void initState() {
     super.initState();
+  }
+
+  late PDFViewController controller;
+  int pages = 0;
+  int indexPage = 0;
+
+  Future<String> loadPDf(String url) async {
+    final file = await PDFApi.loadNetwork(url);
+    return file.path;
   }
 
   @override
@@ -40,7 +52,26 @@ class _ReadingViewState extends State<ReadingView> {
         if (state is PDFLoading) {
           return const LoadingIndicator();
         }
-        if (state is PdfLoaded) {}
+        if (state is PdfLoaded) {
+          return FutureBuilder<String>(
+              future: loadPDf(state.pdf),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return LoadingIndicator();
+                }
+                if (snapshot.hasError) {
+                  return ErrorMessage(
+                      message: "Something wrong.", isSliver: false);
+                }
+                if (snapshot.hasData) {
+                  return PDFView(
+                    filePath: snapshot.data,
+                    nightMode: widget.isDarkMode,
+                  );
+                }
+                return SizedBox();
+              });
+        }
         if (state is ImagesLoading) {
           return const LoadingIndicator();
         }
@@ -58,6 +89,7 @@ class _ReadingViewState extends State<ReadingView> {
               },
               builder: (BuildContext context, int index) {
                 return PhotoViewGalleryPageOptions(
+                    tightMode: false,
                     errorBuilder: (
                       BuildContext context,
                       Object error,

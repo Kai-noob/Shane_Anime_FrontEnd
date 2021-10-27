@@ -13,14 +13,16 @@ class ErrorMessage extends StatelessWidget {
         ? SliverToBoxAdapter(
             child: Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Ionicons.warning_outline,
                     size: 40,
                   ),
                   Text(
                     message,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w500),
                   )
                 ],
               ),
@@ -28,14 +30,16 @@ class ErrorMessage extends StatelessWidget {
           )
         : Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Ionicons.warning_outline,
                   size: 40,
                 ),
                 Text(
                   message,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w500),
                 )
               ],
             ),

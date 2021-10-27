@@ -7,4 +7,6 @@ abstract class HotEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchHotComic extends HotEvent {}
+class FetchAllHotComic extends HotEvent {}
+
+class FetchLimitHotComic extends HotEvent {}

@@ -21,6 +21,7 @@ class GenreListView extends StatelessWidget {
       create: (context) => GenreBloc(sl(), sl())..add(FetchComics(genre.id)),
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios),
             onPressed: () {

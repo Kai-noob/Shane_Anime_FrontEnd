@@ -1,4 +1,3 @@
-import 'package:cloud_firestore_platform_interface/src/timestamp.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
@@ -13,10 +12,10 @@ class ComicRepoImpl implements ComicRepo {
 
   ComicRepoImpl({required this.remoteDataSource});
   @override
-  Future<Either<Failure, List<Episode>>> getRecentEpisodes() async {
+  Future<Either<Failure, List<Episode>>> getAllRecentEpisodes() async {
     try {
       final List<Episode> recentEpisodes =
-          await remoteDataSource.getRecentEpisodes();
+          await remoteDataSource.getRecentAllEpisodes();
       return Right(recentEpisodes);
     } on ServerException {
       return Left(ServerFailure());
@@ -24,10 +23,10 @@ class ComicRepoImpl implements ComicRepo {
   }
 
   @override
-  Future<Either<Failure, List<Comic>>> getCompletedComics() async {
+  Future<Either<Failure, List<Comic>>> getAllCompleteComics() async {
     try {
       final List<Comic> completeComics =
-          await remoteDataSource.getCompleteComic();
+          await remoteDataSource.getCompleteAllComic();
       return Right(completeComics);
     } on ServerException {
       return Left(ServerFailure());
@@ -35,9 +34,9 @@ class ComicRepoImpl implements ComicRepo {
   }
 
   @override
-  Future<Either<Failure, List<Comic>>> getHotComics() async {
+  Future<Either<Failure, List<Comic>>> getAllHotComics() async {
     try {
-      final List<Comic> hotComics = await remoteDataSource.getHotComic();
+      final List<Comic> hotComics = await remoteDataSource.getHotAllComic();
       return Right(hotComics);
     } on ServerException {
       return Left(ServerFailure());
@@ -91,6 +90,38 @@ class ComicRepoImpl implements ComicRepo {
       final List<Episode> filteredEpisodes =
           await remoteDataSource.getFilteredEpisodes(datetime);
       return Right(filteredEpisodes);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Comic>>> getLimitCompletedComics() async {
+    try {
+      final List<Comic> completeComics =
+          await remoteDataSource.getCompleteLimitComic();
+      return Right(completeComics);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Comic>>> getLimitHotComics() async {
+    try {
+      final List<Comic> hotComics = await remoteDataSource.getHotLimitComic();
+      return Right(hotComics);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Episode>>> getLimitRecentEpisodes() async {
+    try {
+      final List<Episode> recentEpisodes =
+          await remoteDataSource.getRecentLimitEpisode();
+      return Right(recentEpisodes);
     } on ServerException {
       return Left(ServerFailure());
     }

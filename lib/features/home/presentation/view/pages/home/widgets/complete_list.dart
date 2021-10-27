@@ -15,17 +15,17 @@ class CompleteList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CompleteBloc, CompleteState>(
       builder: (context, state) {
-        if (state is CompleterError) {
+        if (state is LimitCompleteError) {
           return ErrorMessage(
             message: state.message,
             isSliver: true,
           );
         }
-        if (state is CompleteLoading) {
+        if (state is LimitCompleteLoading) {
           return const ShimmerCard();
         }
 
-        if (state is CompleteLoaded) {
+        if (state is LimitCompleteLoaded) {
           return SliverToBoxAdapter(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/screens/home_screen.dart';
 import 'features/genre/presentation/bloc/genre_bloc.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'features/home/presentation/bloc/complete_comic/complete_bloc.dart';
 
 import 'features/home/presentation/bloc/hot_comic/hot_bloc.dart';
@@ -20,7 +19,7 @@ Future<void> main() async {
 
   await di.initializeDependencies();
 
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
@@ -33,14 +32,15 @@ class App extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => CompleteBloc(sl())..add(FetchCompleteComic()),
+          create: (context) =>
+              CompleteBloc(sl(), sl())..add(FetchLimitCompleteComic()),
         ),
         BlocProvider(
           create: (context) =>
               RecentBloc(sl(), sl())..add(FetchRecentEpisode()),
         ),
         BlocProvider(
-          create: (context) => HotBloc(sl())..add(FetchHotComic()),
+          create: (context) => HotBloc(sl(), sl())..add(FetchLimitHotComic()),
         ),
         BlocProvider(
             create: (context) => GenreBloc(sl(), sl())..add(FetchGenres())),
@@ -48,7 +48,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: Themes.dark,
-        home: HomeScreen(),
+        home: const HomeScreen(),
       ),
     );
   }

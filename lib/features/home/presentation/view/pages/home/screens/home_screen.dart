@@ -2,24 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
-import 'package:movie_app/core/global/image_widget.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/home/presentation/bloc/complete_comic/complete_bloc.dart';
 import 'package:movie_app/features/home/presentation/bloc/hot_comic/hot_bloc.dart';
-import 'package:movie_app/features/home/presentation/bloc/recent_episode/recent_bloc.dart';
 import 'package:movie_app/features/home/presentation/view/pages/details/screens/details_screen.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/screens/recent_episode_screen.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/widgets/shimmer_app_bar.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/shimmer_card.dart';
 import 'package:movie_app/features/search/presentation/view/pages/search_page.dart';
 
 import '../../../../../../genre/presentation/view/genre_list.dart';
-import 'dart:async';
-import 'dart:math';
-
-import 'package:flutter/material.dart';
-import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import '../widgets/complete_list.dart';
 import '../widgets/home_title_widget.dart';
@@ -30,11 +19,11 @@ import 'complete_comic_screen.dart';
 import 'hot_comic_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: HomeBody());
+    return const Scaffold(body: HomeBody());
   }
 }
 
@@ -55,7 +44,10 @@ class _HomeBodyState extends State<HomeBody> {
       slivers: [
         SliverAppBar(
           expandedHeight: 350,
-          title: Text("Shane Manga MM"),
+          title: const Text(
+            "Shane Manga MM",
+            style: TextStyle(fontFamily: "HeaderFont"),
+          ),
           backgroundColor: Colors.black,
           actions: [
             IconButton(
@@ -63,7 +55,7 @@ class _HomeBodyState extends State<HomeBody> {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => SearchScreen()));
                 },
-                icon: Icon(
+                icon: const Icon(
                   Ionicons.search_outline,
                 ))
           ],
@@ -71,10 +63,10 @@ class _HomeBodyState extends State<HomeBody> {
               collapseMode: CollapseMode.pin,
               background: BlocBuilder<HotBloc, HotState>(
                 builder: (context, state) {
-                  if (state is HotComicLoading) {
-                    return ShimmerAppBar();
+                  if (state is HotLimitComicLoading) {
+                    return const ShimmerAppBar();
                   }
-                  if (state is HotComicLoaded) {
+                  if (state is HotLimitComicLoaded) {
                     return PageView.builder(
                         onPageChanged: (value) {
                           setState(() {
@@ -106,8 +98,8 @@ class _HomeBodyState extends State<HomeBody> {
                                       gradient: LinearGradient(
                                           begin: Alignment.bottomRight,
                                           colors: [
-                                        Colors.black,
-                                        Colors.black.withOpacity(.3)
+                                        Color(0xff212121),
+                                        Color(0xff212121).withOpacity(.3)
                                       ])),
                                   child: Padding(
                                     padding: const EdgeInsets.all(20),
@@ -117,11 +109,13 @@ class _HomeBodyState extends State<HomeBody> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: <Widget>[
                                         Text(state.hotComics[index].title,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 30,
-                                            )),
+                                            style: const TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "HeaderFont",
+                                                fontSize: 30,
+                                                overflow:
+                                                    TextOverflow.ellipsis)),
                                         const SizedBox(
                                           height: 8,
                                         ),
@@ -159,8 +153,8 @@ class _HomeBodyState extends State<HomeBody> {
         ),
         HomeTitleWidget(
           label: "Daily Update",
-          onTap: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => TableBasicsExample())),
+          onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const TableBasicsExample())),
         ),
         const RecentList(),
         const SliverPadding(
@@ -168,7 +162,7 @@ class _HomeBodyState extends State<HomeBody> {
           sliver: SliverToBoxAdapter(
             child: Text(
               "Genres",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 20, fontFamily: "HeaderFont"),
             ),
           ),
         ),
