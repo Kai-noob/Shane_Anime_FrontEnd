@@ -1,12 +1,11 @@
 import 'package:dartz/dartz.dart';
+
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
-
 import '../../../home/domain/entities/comic.dart';
-
-import '../datasources/genre_datasource.dart';
 import '../../domain/entities/genre.dart';
 import '../../domain/repositories/genre_repo.dart';
+import '../datasources/genre_datasource.dart';
 
 class GenreRepoImpl implements GenreRepo {
   final GenreDataSource genreDataSource;

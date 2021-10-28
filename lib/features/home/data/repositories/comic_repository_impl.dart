@@ -11,16 +11,6 @@ class ComicRepoImpl implements ComicRepo {
   final ComicRemoteDataSource remoteDataSource;
 
   ComicRepoImpl({required this.remoteDataSource});
-  @override
-  Future<Either<Failure, List<Episode>>> getAllRecentEpisodes() async {
-    try {
-      final List<Episode> recentEpisodes =
-          await remoteDataSource.getRecentAllEpisodes();
-      return Right(recentEpisodes);
-    } on ServerException {
-      return Left(ServerFailure());
-    }
-  }
 
   @override
   Future<Either<Failure, List<Comic>>> getAllCompleteComics() async {
@@ -85,7 +75,7 @@ class ComicRepoImpl implements ComicRepo {
 
   @override
   Future<Either<Failure, List<Episode>>> getFilteredEpisodes(
-      DateTime datetime) async {
+      String datetime) async {
     try {
       final List<Episode> filteredEpisodes =
           await remoteDataSource.getFilteredEpisodes(datetime);

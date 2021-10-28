@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/features/home/domain/entities/comic.dart';
+import '../../../home/domain/entities/comic.dart';
 import '../../../../core/error/failure.dart';
 
 abstract class SearchRepo {

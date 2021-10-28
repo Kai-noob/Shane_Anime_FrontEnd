@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/core/strings/constants.dart';
-import 'package:movie_app/features/home/domain/entities/comic.dart';
+import '../../../../core/strings/constants.dart';
+import '../../../home/domain/entities/comic.dart';
 
 import '../../../../core/error/failure.dart';
 

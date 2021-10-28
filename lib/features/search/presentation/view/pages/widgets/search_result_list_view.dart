@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/error_message.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/home/presentation/view/pages/details/screens/details_screen.dart';
+import '../../../../../../core/global/error_message.dart';
+import '../../../../../../core/global/loading_indicator.dart';
+import '../../../../../home/presentation/view/pages/details/screens/details_screen.dart';
 import '../../../bloc/search_bloc.dart';
 
 class SearchResultListView extends StatelessWidget {
@@ -33,6 +33,8 @@ class SearchResultListView extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             itemCount: state.searchComics.length,
             itemBuilder: (BuildContext context, int index) {
+              String genre =
+                  state.searchComics[index].genres.map((e) => e.name).join(",");
               return ListTile(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -54,8 +56,7 @@ class SearchResultListView extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.w500),
                 ),
-                subtitle:
-                    Text("${state.searchComics[index].episodeCount} Episodes"),
+                subtitle: Text(genre),
               );
             },
           );

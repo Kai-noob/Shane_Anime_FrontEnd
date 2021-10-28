@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../../domain/entities/episodes.dart';
-import '../../reading/reading_screen.dart';
 
 import '../../../../../../../core/global/image_widget.dart';
 
@@ -37,48 +35,6 @@ class ComicCard extends StatelessWidget {
           ),
           Text(
             comicModel.title,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 5),
-        ],
-      ),
-    );
-  }
-}
-
-class RecentCard extends StatelessWidget {
-  final Episode episodes;
-
-  const RecentCard({
-    Key? key,
-    required this.episodes,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => ReadingScreen(episodes: episodes)));
-            },
-            child: SizedBox(
-              height: 240,
-              width: 140,
-              child: ImageWidget(image: episodes.coverPhoto),
-            ),
-          ),
-          Text(
-            episodes.title,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
-            episodes.episodeName,
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             overflow: TextOverflow.ellipsis,
           ),

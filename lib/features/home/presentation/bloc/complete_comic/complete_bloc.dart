@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/core/strings/constants.dart';
-import 'package:movie_app/features/home/domain/usecases/get_limit_completed_comic.dart';
+import '../../../../../core/strings/constants.dart';
+import '../../../domain/usecases/get_limit_completed_comic.dart';
 import '../../../../../core/error/failure.dart';
 import '../../../domain/entities/comic.dart';
 import '../../../domain/usecases/get_all_completed_comic.dart';

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/date_time_transform.dart';
-import 'package:movie_app/core/global/error_message.dart';
-import 'package:movie_app/core/global/image_widget.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
-import 'package:movie_app/features/genre/presentation/bloc/genre_bloc.dart';
-import 'package:movie_app/features/home/presentation/view/pages/details/screens/details_screen.dart';
+import '../../../../../core/global/error_message.dart';
+import '../../../../../core/global/image_widget.dart';
+import '../../../../../core/global/loading_indicator.dart';
+import '../../../domain/entities/genre.dart';
+import '../../bloc/genre_bloc.dart';
+import '../../../../home/presentation/view/pages/details/screens/details_screen.dart';
 
 import '../../../../injector.dart';
 
@@ -16,7 +15,6 @@ class GenreListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // BlocProvider.of<GenreBloc>(context).add(FetchComics(genre.id));
     return BlocProvider(
       create: (context) => GenreBloc(sl(), sl())..add(FetchComics(genre.id)),
       child: Scaffold(
@@ -50,25 +48,53 @@ class GenreListView extends StatelessWidget {
               return ListView.builder(
                 itemCount: state.comics.length,
                 itemBuilder: (BuildContext context, int index) {
+                  String genre =
+                      state.comics[index].genres.map((e) => e.name).join(",");
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                            height: 200,
-                            width: MediaQuery.of(context).size.width * 0.45,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        DetailsScreen(
-                                            comicModel: state.comics[index])));
-                              },
-                              child: ImageWidget(
-                                image: state.comics[index].coverPhoto,
+                        Stack(
+                          children: [
+                            SizedBox(
+                                height: 200,
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                DetailsScreen(
+                                                    comicModel:
+                                                        state.comics[index])));
+                                  },
+                                  child: ImageWidget(
+                                    image: state.comics[index].coverPhoto,
+                                  ),
+                                )),
+                            Positioned(
+                              left: -36,
+                              top: 10,
+                              child: RotationTransition(
+                                turns: const AlwaysStoppedAnimation(-45 / 360),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 4, horizontal: 32),
+                                  color: Colors.black,
+                                  child: Text(
+                                    state.comics[index].completed
+                                        ? "Completed"
+                                        : "On going",
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
                               ),
-                            )),
+                            )
+                          ],
+                        ),
                         Expanded(
                           child: Padding(
                             padding:
@@ -81,29 +107,12 @@ class GenreListView extends StatelessWidget {
                                         overflow: TextOverflow.ellipsis,
                                         fontSize: 19,
                                         fontWeight: FontWeight.w800)),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 5, vertical: 5),
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: state.comics[index].completed
-                                            ? Colors.green
-                                            : Colors.red,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Text(
-                                    state.comics[index].completed
-                                        ? "Completed"
-                                        : "On going",
-                                    style: const TextStyle(
-                                      fontSize: 10,
-                                    ),
-                                  ),
+                                Text(
+                                  genre,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                                 Text(
                                     "${state.comics[index].episodeCount} Episodes"),
-                                Text(DateTimeTransfrom().formatTimestamp(
-                                    state.comics[index].created.seconds))
                               ],
                             ),
                           ),

@@ -56,7 +56,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                         gradient: LinearGradient(
                             begin: Alignment.bottomRight,
                             colors: [
-                          Color(0xff212121),
+                          const Color(0xff212121),
                           Colors.black.withOpacity(.3)
                         ])),
                     child: Padding(
@@ -69,6 +69,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
+                                flex: 6,
                                 child: Text(widget.comicModel.title,
                                     style: const TextStyle(
                                       color: Colors.white,

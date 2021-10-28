@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movie_app/features/genre/data/models/comic_genre_model.dart';
-import 'package:movie_app/features/genre/data/models/genre_model.dart';
-import 'package:movie_app/features/genre/domain/entities/comic_gere.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
+import '../../../genre/data/models/comic_genre_model.dart';
+import '../../../genre/data/models/genre_model.dart';
+import '../../../genre/domain/entities/comic_gere.dart';
+import '../../../genre/domain/entities/genre.dart';
 
 import '../../domain/entities/episodes.dart';
 import '../../../../core/error/exceptions.dart';
@@ -16,35 +16,6 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
 
   ComicRemoteDataSourceImpl();
-
-  @override
-  Future<List<Episode>> getRecentAllEpisodes() async {
-    try {
-      QuerySnapshot _querySnapshot = await firebaseFirestore
-          .collection("episodes")
-          .orderBy("created", descending: true)
-          .get();
-
-      List<Episode> _recentAllEpisodesList = [];
-
-      for (QueryDocumentSnapshot _recentAllEpisode in _querySnapshot.docs) {
-        final _comicSnapshot = await firebaseFirestore
-            .collection("comics")
-            .doc(_recentAllEpisode.get("comic_id"))
-            .get();
-
-        final _comic = _comicSnapshot.data() as Map<String, dynamic>;
-        _recentAllEpisodesList.add(EpisodeModel(
-            comicId: _recentAllEpisode.get("comic_id"),
-            episodeName: _recentAllEpisode.get("episode_name"),
-            coverPhoto: _comic["cover_photo"],
-            title: _comic['title']));
-      }
-      return _recentAllEpisodesList;
-    } catch (e) {
-      throw ServerException();
-    }
-  }
 
   @override
   Future<List<Comic>> getCompleteAllComic() async {
@@ -209,12 +180,11 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
   }
 
   @override
-  Future<List<Episode>> getFilteredEpisodes(DateTime datetime) async {
+  Future<List<Episode>> getFilteredEpisodes(String datetime) async {
     try {
       QuerySnapshot _querySnapshot = await firebaseFirestore
           .collection("episodes")
-          .where("created", isLessThan: datetime)
-          .where("created", isGreaterThanOrEqualTo: datetime)
+          .where("created", isEqualTo: datetime)
           .get();
 
       List<Episode> _filteredEpisodeList = [];
@@ -232,7 +202,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             coverPhoto: _comic["cover_photo"],
             title: _comic['title']));
       }
-      print(_filteredEpisodeList.length);
+
       return _filteredEpisodeList;
     } catch (e) {
       throw ServerException();
@@ -319,9 +289,8 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
     try {
       QuerySnapshot _querySnapshot = await firebaseFirestore
           .collection("episodes")
-          .limit(5)
+          .limit(8)
           .orderBy("created", descending: true)
-          .where("published", isEqualTo: true)
           .get();
 
       List<Episode> _recentLimitEpisodesList = [];

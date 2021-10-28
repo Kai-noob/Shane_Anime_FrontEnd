@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
+import '../../../domain/entities/genre.dart';
 
 import 'genre_list_view.dart';
 
@@ -31,10 +31,10 @@ class GenreItem extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             genre.name,
-            style: TextStyle(fontFamily: "HeaderFont"),
+            style: const TextStyle(fontFamily: "HeaderFont"),
           )
         ],
       ),

@@ -7,8 +7,8 @@ class ShimmerAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.white30,
-      highlightColor: Colors.white24,
+      baseColor: const Color(0xff212121),
+      highlightColor: const Color(0xff212121),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),

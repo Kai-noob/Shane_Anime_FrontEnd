@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:movie_app/core/global/error_message.dart';
+import '../../../../../../../core/global/error_message.dart';
 
 import '../../reading/reading_screen.dart';
 import '../../../../bloc/details/details_bloc.dart';

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/features/genre/domain/entities/genre.dart';
+import '../../../genre/domain/entities/genre.dart';
 
 class Comic extends Equatable {
   final String id;

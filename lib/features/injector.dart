@@ -1,7 +1,9 @@
 import 'package:get_it/get_it.dart';
-import 'package:movie_app/features/home/domain/usecases/filter_episode.dart';
-import 'package:movie_app/features/home/domain/usecases/get_limit_completed_comic.dart';
-import 'package:movie_app/features/home/domain/usecases/get_limit_hot_comic.dart';
+import 'package:movie_app/features/home/domain/usecases/get_limit_recent_episode.dart';
+import 'home/domain/usecases/filter_episode.dart';
+import 'home/domain/usecases/get_limit_completed_comic.dart';
+import 'home/domain/usecases/get_limit_hot_comic.dart';
+import 'home/presentation/bloc/filter_episode/filterepisode_bloc.dart';
 import 'genre/data/datasources/genre_datasource.dart';
 import 'genre/data/datasources/genre_datasource_impl.dart';
 import 'genre/data/repositories/genre_repo_impl.dart';
@@ -21,11 +23,12 @@ import 'home/domain/repositories/comic_repo.dart';
 import 'home/domain/usecases/get_all_completed_comic.dart';
 import 'home/domain/usecases/get_episodes.dart';
 import 'home/domain/usecases/get_all_hot_comic.dart';
-import 'home/domain/usecases/get_all_recent_episode.dart';
+
 import 'home/presentation/bloc/complete_comic/complete_bloc.dart';
-import 'home/presentation/bloc/hot_comic/hot_bloc.dart';
-import 'home/presentation/bloc/recent_episode/recent_bloc.dart';
+
+import 'home/presentation/bloc/daily_update/daily_update_bloc.dart';
 import 'home/presentation/bloc/details/details_bloc.dart';
+import 'home/presentation/bloc/hot_comic/hot_bloc.dart';
 import 'search/data/datasources/search_comic_data_source.dart';
 import 'search/data/datasources/search_comic_data_source_impl.dart';
 import 'search/data/repositories/search_comic_repo_impl.dart';
@@ -36,26 +39,8 @@ import 'search/presentation/bloc/search_bloc.dart';
 final sl = GetIt.instance;
 
 Future<void> initializeDependencies() async {
-  sl.registerFactory(() => CompleteBloc(sl(), sl()));
-
-  sl.registerFactory(() => GenreBloc(sl(), sl()));
-
-  sl.registerFactory(() => RecentBloc(sl(), sl()));
-
-  sl.registerFactory(() => HotBloc(sl(), sl()));
-
-  sl.registerFactory(() => DetailsBloc(sl(), sl(), sl(), sl(), sl()));
-
-  sl.registerFactory(() => SearchBloc(sl()));
-
-  sl.registerLazySingleton<SearchComicUseCase>(
-      () => SearchComicUseCase(searchRepo: sl()));
-
-  sl.registerLazySingleton<SearchRepo>(
-      () => SearchComicRepoImpl(searchComicDataSource: sl()));
-
-  sl.registerLazySingleton<SearchComicDataSource>(
-      () => SearchComicDataSourceImpl());
+  //complete Episodes
+  sl.registerFactory<CompleteBloc>(() => CompleteBloc(sl(), sl()));
 
   sl.registerLazySingleton<GetCompletedComic>(
       () => GetCompletedComic(comicRepo: sl()));
@@ -63,21 +48,9 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<GetLimitComplteeComic>(
       () => GetLimitComplteeComic(comicRepo: sl()));
 
-  sl.registerLazySingleton<GetEpisodes>(() => GetEpisodes(comicRepo: sl()));
+  //genres
 
-  sl.registerLazySingleton<FilterEpisode>(() => FilterEpisode(comicRepo: sl()));
-
-  sl.registerLazySingleton<GetImages>(() => GetImages(comicRepo: sl()));
-
-  sl.registerLazySingleton<GetPdf>(() => GetPdf(comicRepo: sl()));
-
-  sl.registerLazySingleton<CheckPdfOrImages>(
-      () => CheckPdfOrImages(comicRepo: sl()));
-
-  sl.registerLazySingleton<GetHotComic>(() => GetHotComic(comicRepo: sl()));
-
-  sl.registerLazySingleton<GetLimitHotComic>(
-      () => GetLimitHotComic(comicRepo: sl()));
+  sl.registerFactory<GenreBloc>(() => GenreBloc(sl(), sl()));
 
   sl.registerLazySingleton<GetGenresUsecase>(
       () => GetGenresUsecase(genreRepo: sl()));
@@ -88,8 +61,54 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<GetComicsUseCase>(
       () => GetComicsUseCase(genreRepo: sl()));
 
-  sl.registerLazySingleton<GetRecentEpisode>(
-      () => GetRecentEpisode(comicRepo: sl()));
+  //daily update
+  sl.registerFactory<DailyUpdateBloc>(() => DailyUpdateBloc(sl()));
+
+  sl.registerLazySingleton<GetLimitRecentEpisodes>(
+      () => GetLimitRecentEpisodes(comicRepo: sl()));
+  //filter Episodes
+
+  sl.registerFactory<FilterepisodeBloc>(() => FilterepisodeBloc(sl()));
+
+  sl.registerLazySingleton<FilterEpisodeUseCase>(
+      () => FilterEpisodeUseCase(comicRepo: sl()));
+
+  //hot comics
+
+  sl.registerFactory<HotBloc>(() => HotBloc(sl(), sl()));
+
+  sl.registerLazySingleton<GetHotComic>(() => GetHotComic(comicRepo: sl()));
+
+  sl.registerLazySingleton<GetLimitHotComic>(
+      () => GetLimitHotComic(comicRepo: sl()));
+
+  //details comics
+
+  sl.registerFactory(() => DetailsBloc(sl(), sl(), sl(), sl(), sl()));
+
+  sl.registerLazySingleton<GetEpisodes>(() => GetEpisodes(comicRepo: sl()));
+
+  sl.registerLazySingleton<GetImages>(() => GetImages(comicRepo: sl()));
+
+  sl.registerLazySingleton<GetPdf>(() => GetPdf(comicRepo: sl()));
+
+  sl.registerLazySingleton<CheckPdfOrImages>(
+      () => CheckPdfOrImages(comicRepo: sl()));
+
+  //search comics
+
+  sl.registerFactory<SearchBloc>(() => SearchBloc(sl()));
+
+  sl.registerLazySingleton<SearchComicUseCase>(
+      () => SearchComicUseCase(searchRepo: sl()));
+
+//repo register
+
+  sl.registerLazySingleton<SearchRepo>(
+      () => SearchComicRepoImpl(searchComicDataSource: sl()));
+
+  sl.registerLazySingleton<SearchComicDataSource>(
+      () => SearchComicDataSourceImpl());
 
   sl.registerLazySingleton<ComicRepo>(
       () => ComicRepoImpl(remoteDataSource: sl()));

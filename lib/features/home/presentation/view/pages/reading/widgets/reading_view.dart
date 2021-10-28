@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:movie_app/core/global/error_message.dart';
-import 'package:movie_app/core/global/pdf_transform.dart';
+import '../../../../../../../core/global/error_message.dart';
+import '../../../../../../../core/global/pdf_transform.dart';
 
 import '../../../../../domain/entities/episodes.dart';
 
@@ -17,11 +17,9 @@ class ReadingView extends StatefulWidget {
   const ReadingView({
     Key? key,
     required this.episodes,
-    required this.isDarkMode,
   }) : super(key: key);
 
   final Episode episodes;
-  final bool isDarkMode;
 
   @override
   State<ReadingView> createState() => _ReadingViewState();
@@ -33,14 +31,12 @@ class _ReadingViewState extends State<ReadingView> {
     super.initState();
   }
 
-  late PDFViewController controller;
-  int pages = 0;
-  int indexPage = 0;
-
   Future<String> loadPDf(String url) async {
     final file = await PDFApi.loadNetwork(url);
     return file.path;
   }
+
+  bool isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -57,19 +53,32 @@ class _ReadingViewState extends State<ReadingView> {
               future: loadPDf(state.pdf),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return LoadingIndicator();
+                  return const LoadingIndicator();
                 }
                 if (snapshot.hasError) {
-                  return ErrorMessage(
+                  return const ErrorMessage(
                       message: "Something wrong.", isSliver: false);
                 }
                 if (snapshot.hasData) {
-                  return PDFView(
-                    filePath: snapshot.data,
-                    nightMode: widget.isDarkMode,
+                  return Scaffold(
+                    floatingActionButton: FloatingActionButton(
+                      elevation: 0.0,
+                      backgroundColor: Colors.red,
+                      onPressed: () {
+                        setState(() {
+                          isDarkMode = !isDarkMode;
+                        });
+                      },
+                      child: Icon(
+                        isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                        color: Colors.white,
+                      ),
+                    ),
+                    body:
+                        PDFView(filePath: snapshot.data, nightMode: isDarkMode),
                   );
                 }
-                return SizedBox();
+                return const SizedBox();
               });
         }
         if (state is ImagesLoading) {

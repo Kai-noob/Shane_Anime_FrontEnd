@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/date_time_transform.dart';
-import 'package:movie_app/core/global/error_message.dart';
-import 'package:movie_app/core/global/image_widget.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/home/presentation/bloc/complete_comic/complete_bloc.dart';
-import 'package:movie_app/features/home/presentation/view/pages/details/screens/details_screen.dart';
+import '../../../../../../../core/global/error_message.dart';
+import '../../../../../../../core/global/image_widget.dart';
+import '../../../../../../../core/global/loading_indicator.dart';
+import '../../../../bloc/complete_comic/complete_bloc.dart';
+import '../../details/screens/details_screen.dart';
 
 import '../../../../../../injector.dart';
 
@@ -43,6 +42,9 @@ class CompleteAllComicView extends StatelessWidget {
                 return ListView.builder(
                   itemCount: state.completeComics.length,
                   itemBuilder: (BuildContext context, int index) {
+                    String genre = state.completeComics[index].genres
+                        .map((e) => e.name)
+                        .join(",");
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -76,9 +78,11 @@ class CompleteAllComicView extends StatelessWidget {
                                           fontSize: 19,
                                           fontWeight: FontWeight.w800)),
                                   Text(
+                                    genre,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Text(
                                       "${state.completeComics[index].episodeCount} Episodes"),
-                                  Text(DateTimeTransfrom().formatTimestamp(state
-                                      .completeComics[index].created.seconds))
                                 ],
                               ),
                             ),

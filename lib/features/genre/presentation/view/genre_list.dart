@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/error_message.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/shimmer_genre.dart';
+import '../../../../core/global/error_message.dart';
+import '../../../home/presentation/view/pages/home/widgets/shimmer_genre.dart';
 import '../bloc/genre_bloc.dart';
 import 'widgets/genre_item.dart';
 

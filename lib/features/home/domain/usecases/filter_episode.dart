@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/core/error/failure.dart';
-import 'package:movie_app/features/home/domain/entities/episodes.dart';
-import 'package:movie_app/features/home/domain/repositories/comic_repo.dart';
+import '../../../../core/error/failure.dart';
+import '../entities/episodes.dart';
+import '../repositories/comic_repo.dart';
 
-class FilterEpisode {
+class FilterEpisodeUseCase {
   final ComicRepo comicRepo;
 
-  FilterEpisode({required this.comicRepo});
+  FilterEpisodeUseCase({required this.comicRepo});
 
-  Future<Either<Failure, List<Episode>>> call(DateTime datetime) {
+  Future<Either<Failure, List<Episode>>> call(String datetime) {
     return comicRepo.getFilteredEpisodes(datetime);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/error_message.dart';
+import '../../../../../../../core/global/error_message.dart';
 import '../../../../bloc/complete_comic/complete_bloc.dart';
 
 import 'comic_card.dart';

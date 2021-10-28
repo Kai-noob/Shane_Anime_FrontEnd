@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/core/strings/constants.dart';
+import '../../../../../core/strings/constants.dart';
 import '../../../../genre/domain/entities/genre.dart';
 import '../../../../genre/domain/usecases/get_genre_usecase.dart';
 

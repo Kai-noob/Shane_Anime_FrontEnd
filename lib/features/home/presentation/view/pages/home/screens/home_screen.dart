@@ -2,19 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/features/home/presentation/bloc/hot_comic/hot_bloc.dart';
-import 'package:movie_app/features/home/presentation/view/pages/details/screens/details_screen.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/screens/recent_episode_screen.dart';
-import 'package:movie_app/features/home/presentation/view/pages/home/widgets/shimmer_app_bar.dart';
-import 'package:movie_app/features/search/presentation/view/pages/search_page.dart';
+import '../../../../bloc/filter_episode/filterepisode_bloc.dart';
+import '../../../../bloc/hot_comic/hot_bloc.dart';
+import '../../details/screens/details_screen.dart';
+import 'daily_update_screen.dart';
+import '../widgets/shimmer_app_bar.dart';
+import '../../../../../../search/presentation/view/pages/search_page.dart';
 
 import '../../../../../../genre/presentation/view/genre_list.dart';
 
+import '../../../../../../injector.dart';
 import '../widgets/complete_list.dart';
 import '../widgets/home_title_widget.dart';
 import '../widgets/hot_list.dart';
 
-import '../widgets/recent_list.dart';
+import '../widgets/daily_update_list.dart';
 import 'complete_comic_screen.dart';
 import 'hot_comic_screen.dart';
 
@@ -98,8 +100,8 @@ class _HomeBodyState extends State<HomeBody> {
                                       gradient: LinearGradient(
                                           begin: Alignment.bottomRight,
                                           colors: [
-                                        Color(0xff212121),
-                                        Color(0xff212121).withOpacity(.3)
+                                        const Color(0xff212121),
+                                        const Color(0xff212121).withOpacity(.3)
                                       ])),
                                   child: Padding(
                                     padding: const EdgeInsets.all(20),
@@ -153,12 +155,15 @@ class _HomeBodyState extends State<HomeBody> {
         ),
         HomeTitleWidget(
           label: "Daily Update",
-          onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const TableBasicsExample())),
+          onTap: () => Navigator.of(context).push(MaterialPageRoute(
+              builder: (_) => BlocProvider(
+                    create: (context) => FilterepisodeBloc(sl()),
+                    child: const DailyUpdateScreen(),
+                  ))),
         ),
-        const RecentList(),
+        const DailyUpdateList(),
         const SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           sliver: SliverToBoxAdapter(
             child: Text(
               "Genres",
@@ -192,8 +197,7 @@ class _HomeBodyState extends State<HomeBody> {
         width: currentIndex == index ? 20 : 8,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
-            color:
-                currentIndex == index ? const Color(0xFF188DFA) : Colors.white),
+            color: currentIndex == index ? Colors.red : Colors.white),
       ),
     );
   }

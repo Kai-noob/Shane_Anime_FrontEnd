@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/global/date_time_transform.dart';
-import 'package:movie_app/core/global/error_message.dart';
-import 'package:movie_app/core/global/image_widget.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
-import 'package:movie_app/features/home/presentation/bloc/hot_comic/hot_bloc.dart';
-import 'package:movie_app/features/home/presentation/view/pages/details/screens/details_screen.dart';
-import 'package:movie_app/features/injector.dart';
+import '../../../../../../../core/global/error_message.dart';
+import '../../../../../../../core/global/image_widget.dart';
+import '../../../../../../../core/global/loading_indicator.dart';
+import '../../../../bloc/hot_comic/hot_bloc.dart';
+import '../../details/screens/details_screen.dart';
+import '../../../../../../injector.dart';
 
 class HotAllComicView extends StatelessWidget {
   const HotAllComicView({Key? key}) : super(key: key);
@@ -42,6 +41,9 @@ class HotAllComicView extends StatelessWidget {
                 return ListView.builder(
                   itemCount: state.hotComics.length,
                   itemBuilder: (BuildContext context, int index) {
+                    String genre = state.hotComics[index].genres
+                        .map((e) => e.name)
+                        .join(",");
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -70,16 +72,17 @@ class HotAllComicView extends StatelessWidget {
                                 left: -36,
                                 top: 10,
                                 child: RotationTransition(
-                                  turns: AlwaysStoppedAnimation(-45 / 360),
+                                  turns:
+                                      const AlwaysStoppedAnimation(-45 / 360),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         vertical: 4, horizontal: 32),
                                     color: Colors.black,
                                     child: Text(
                                       state.hotComics[index].completed
                                           ? "Completed"
                                           : "On going",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                       ),
                                     ),
@@ -100,16 +103,12 @@ class HotAllComicView extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis,
                                           fontSize: 19,
                                           fontWeight: FontWeight.w800)),
-                                  Wrap(
-                                      children: state.hotComics[index].genres
-                                          .map((e) => Text(e.name))
-                                          .toList()),
-                                  SizedBox(height: 8),
-
+                                  Text(
+                                    genre,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                   Text(
                                       "${state.hotComics[index].episodeCount} Episodes"),
-                                  // Text(DateTimeTransfrom().formatTimestamp(
-                                  //     state.hotComics[index].created.seconds)),
                                 ],
                               ),
                             ),
