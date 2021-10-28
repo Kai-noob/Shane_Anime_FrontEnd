@@ -77,14 +77,13 @@ class HotAllComicView extends StatelessWidget {
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 4, horizontal: 32),
-                                    color: Colors.black,
+                                    color: Color(0xff212121),
                                     child: Text(
                                       state.hotComics[index].completed
                                           ? "Completed"
                                           : "On going",
                                       style: const TextStyle(
-                                        color: Colors.white,
-                                      ),
+                                          color: Colors.white, fontSize: 10),
                                     ),
                                   ),
                                 ),
