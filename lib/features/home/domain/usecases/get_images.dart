@@ -9,9 +9,7 @@ class GetImages {
   GetImages({required this.comicRepo});
 
   Future<Either<Failure, List<String>>> call(
-    String comicId,
-    String episodeName,
-  ) {
-    return comicRepo.getImages(comicId, episodeName);
+      String comicId, String episodeName, int episodeNumber) {
+    return comicRepo.getImages(comicId, episodeName, episodeNumber);
   }
 }

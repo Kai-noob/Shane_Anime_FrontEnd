@@ -17,12 +17,13 @@ class SearchTextField extends StatelessWidget {
     return Container(
       height: 40,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: Colors.white),
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.black54.withOpacity(0.6)),
       child: TextField(
-        style: const TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.white),
         textInputAction: TextInputAction.search,
         controller: textEditingController,
-        cursorColor: Colors.black,
+        cursorColor: Colors.white,
         onSubmitted: (value) {
           BlocProvider.of<SearchBloc>(context).add(SearchComicEvent(value));
 
@@ -31,11 +32,11 @@ class SearchTextField extends StatelessWidget {
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 4),
           border: InputBorder.none,
-          hintStyle: TextStyle(color: Colors.black),
+          hintStyle: TextStyle(color: Colors.white),
           hintText: "Search",
           prefixIcon: Icon(
             Ionicons.search,
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
       ),

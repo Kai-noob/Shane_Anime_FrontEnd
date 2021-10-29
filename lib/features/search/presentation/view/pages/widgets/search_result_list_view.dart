@@ -17,7 +17,9 @@ class SearchResultListView extends StatelessWidget {
         if (state is SearchError) {
           return ErrorMessage(message: state.message, isSliver: false);
         }
-
+        if (state is SearchQueryEmpty) {
+          return Container();
+        }
         if (state is SearchLoading) {
           return const LoadingIndicator();
         }

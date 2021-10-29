@@ -16,17 +16,11 @@ abstract class ComicRepo {
 
   Future<Either<Failure, List<Episode>>> getFilteredEpisodes(String datetime);
   Future<Either<Failure, List<String>>> getImages(
-    String comicId,
-    String episodeName,
-  );
+      String comicId, String episodeName, int episodeNumber);
 
   Future<Either<Failure, String>> getPdf(
-    String comicId,
-    String episodeName,
-  );
+      String comicId, String episodeName, int episodeNumber);
 
   Future<bool> checkPdforImages(
-    String comicId,
-    String episodeName,
-  );
+      String comicId, String episodeName, int episodeNumber);
 }

@@ -45,14 +45,15 @@ class HotAllComicView extends StatelessWidget {
                         .map((e) => e.name)
                         .join(",");
                     return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 18.0, horizontal: 8),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Stack(
                             children: [
                               SizedBox(
-                                  height: 200,
+                                  height: 180,
                                   width:
                                       MediaQuery.of(context).size.width * 0.45,
                                   child: GestureDetector(
@@ -77,7 +78,7 @@ class HotAllComicView extends StatelessWidget {
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 4, horizontal: 32),
-                                    color: Color(0xff212121),
+                                    color: const Color(0xff212121),
                                     child: Text(
                                       state.hotComics[index].completed
                                           ? "Completed"

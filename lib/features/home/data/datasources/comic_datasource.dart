@@ -7,11 +7,13 @@ abstract class ComicRemoteDataSource {
   Future<List<Comic>> getHotAllComic();
   Future<List<Comic>> getCompleteAllComic();
   Future<List<Episode>> getEpisodes(String comicId);
-  Future<List<String>> getImages(String comicId, String episodeName);
+  Future<List<String>> getImages(
+      String comicId, String episodeName, int episodeNumber);
 
-  Future<String> getPdf(String comicId, String episodeName);
+  Future<String> getPdf(String comicId, String episodeName, int episodeNumber);
 
-  Future<bool> checkPdfOrImage(String comicId, String episodeName);
+  Future<bool> checkPdfOrImage(
+      String comicId, String episodeName, int episodeNumber);
 
   Future<List<Comic>> getHotLimitComic();
   Future<List<Comic>> getCompleteLimitComic();

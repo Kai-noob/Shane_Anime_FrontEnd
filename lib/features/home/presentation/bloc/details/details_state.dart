@@ -88,3 +88,12 @@ class GenreError extends DetailsState {
   @override
   List<Object> get props => [message];
 }
+
+class CheckPdFOrImages extends DetailsState {
+  final bool check;
+
+  CheckPdFOrImages({required this.check});
+
+  @override
+  List<Object> get props => [check];
+}

@@ -37,17 +37,72 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
       final failureOrSuccess = await _genreUsecase.call(event.comicId);
       yield* _eitherGenreOrErrorState(failureOrSuccess);
     }
+    if (event is ReadNextChapter) {
+      bool next = event.next;
+      bool initial = event.initial;
+      bool prev = event.prev;
+
+      if (initial && !next && !prev) {
+        bool checked = await _checkUseCase.call(
+            event.comicId, event.episodeName, event.episodeNumber);
+        if (checked) {
+          yield ImagesLoading();
+          final failureOrSuccess = await _getPdfUseCase.call(
+              event.comicId, event.episodeName, event.episodeNumber);
+          yield* _eitherPdfOrErrorState(failureOrSuccess);
+        } else {
+          yield PDFLoading();
+          final failureOrSuccess = await _getPhotosUseCase.call(
+              event.comicId, event.episodeName, event.episodeNumber);
+          yield* _eitherImagesOrErrorState(failureOrSuccess);
+        }
+      }
+
+      if (next && !initial && !prev) {
+        bool checked = await _checkUseCase.call(
+            event.comicId, event.episodeName, event.episodeNumber + 1);
+        if (checked) {
+          yield ImagesLoading();
+          final failureOrSuccess = await _getPdfUseCase.call(
+              event.comicId, event.episodeName, event.episodeNumber + 1);
+          yield* _eitherPdfOrErrorState(failureOrSuccess);
+        } else {
+          yield PDFLoading();
+          final failureOrSuccess = await _getPhotosUseCase.call(
+              event.comicId, event.episodeName, event.episodeNumber + 1);
+          yield* _eitherImagesOrErrorState(failureOrSuccess);
+        }
+      } else if (prev && !initial && !next) {
+        bool checked = await _checkUseCase.call(
+            event.comicId, event.episodeName, event.episodeNumber - 1);
+        if (checked) {
+          yield ImagesLoading();
+          final failureOrSuccess = await _getPdfUseCase.call(
+              event.comicId, event.episodeName, event.episodeNumber - 1);
+          yield* _eitherPdfOrErrorState(failureOrSuccess);
+        } else {
+          yield PDFLoading();
+          final failureOrSuccess = await _getPhotosUseCase.call(
+              event.comicId, event.episodeName, event.episodeNumber - 1);
+          yield* _eitherImagesOrErrorState(failureOrSuccess);
+        }
+      }
+    }
+
     if (event is CheckPdfOrImagesEvent) {
-      bool checked = await _checkUseCase.call(event.comicId, event.episodeName);
+      print(event.episodeNumber);
+      bool checked = await _checkUseCase.call(
+          event.comicId, event.episodeName, event.episodeNumber);
+
       if (checked) {
         yield ImagesLoading();
-        final failureOrSuccess =
-            await _getPdfUseCase.call(event.comicId, event.episodeName);
+        final failureOrSuccess = await _getPdfUseCase.call(
+            event.comicId, event.episodeName, event.episodeNumber);
         yield* _eitherPdfOrErrorState(failureOrSuccess);
       } else {
         yield PDFLoading();
-        final failureOrSuccess =
-            await _getPhotosUseCase.call(event.comicId, event.episodeName);
+        final failureOrSuccess = await _getPhotosUseCase.call(
+            event.comicId, event.episodeName, event.episodeNumber);
         yield* _eitherImagesOrErrorState(failureOrSuccess);
       }
     }

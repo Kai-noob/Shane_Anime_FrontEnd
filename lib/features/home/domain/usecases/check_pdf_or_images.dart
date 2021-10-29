@@ -5,10 +5,7 @@ class CheckPdfOrImages {
 
   CheckPdfOrImages({required this.comicRepo});
 
-  Future<bool> call(
-    String comicId,
-    String episodeName,
-  ) {
-    return comicRepo.checkPdforImages(comicId, episodeName);
+  Future<bool> call(String comicId, String episodeName, int episodeNumber) {
+    return comicRepo.checkPdforImages(comicId, episodeName, episodeNumber);
   }
 }

@@ -48,11 +48,11 @@ class _HomeBodyState extends State<HomeBody> {
   GlobalKey refreshkey = GlobalKey<RefreshIndicatorState>();
 
   Future<void> refresh() async {
-    await Future.delayed(Duration(seconds: 2));
-    context.read<HotBloc>()..add(FetchLimitHotComic());
-    context.read<CompleteBloc>()..add(FetchLimitCompleteComic());
-    context.read<DailyUpdateBloc>()..add(FetchDailyEpisode());
-    context.read<GenreBloc>()..add(FetchGenres());
+    await Future.delayed(const Duration(seconds: 2));
+    context.read<HotBloc>().add(FetchLimitHotComic());
+    context.read<CompleteBloc>().add(FetchLimitCompleteComic());
+    context.read<DailyUpdateBloc>().add(FetchDailyEpisode());
+    context.read<GenreBloc>().add(FetchGenres());
   }
 
   @override
@@ -197,8 +197,8 @@ class _HomeBodyState extends State<HomeBody> {
           const GenreList(),
           HomeTitleWidget(
             label: "Hot Mangas",
-            onTap: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => HotAllComicView())),
+            onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const HotAllComicView())),
           ),
           const HotList(),
           HomeTitleWidget(

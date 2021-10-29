@@ -8,9 +8,7 @@ class GetPdf {
   GetPdf({required this.comicRepo});
 
   Future<Either<Failure, String>> call(
-    String comicId,
-    String episodeName,
-  ) {
-    return comicRepo.getPdf(comicId, episodeName);
+      String comicId, String episodeName, int episodeNumber) {
+    return comicRepo.getPdf(comicId, episodeName, episodeNumber);
   }
 }

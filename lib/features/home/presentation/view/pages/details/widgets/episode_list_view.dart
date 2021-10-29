@@ -32,7 +32,12 @@ class EpisodeListView extends StatelessWidget {
             delegate:
                 SliverChildBuilderDelegate((BuildContext context, int index) {
               return ListTile(
-                title: Text(state.episodes[index].episodeName),
+                title: Row(
+                  children: [
+                    Text(state.episodes[index].episodeName),
+                    Text(state.episodes[index].episodeNumber.toString()),
+                  ],
+                ),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (_) =>

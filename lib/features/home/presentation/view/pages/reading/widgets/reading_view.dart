@@ -60,23 +60,25 @@ class _ReadingViewState extends State<ReadingView> {
                       message: "Something wrong.", isSliver: false);
                 }
                 if (snapshot.hasData) {
-                  return Scaffold(
-                    floatingActionButton: FloatingActionButton(
-                      elevation: 0.0,
-                      backgroundColor: Colors.red,
-                      onPressed: () {
-                        setState(() {
-                          isDarkMode = !isDarkMode;
-                        });
-                      },
-                      child: Icon(
-                        isDarkMode ? Icons.light_mode : Icons.dark_mode,
-                        color: Colors.white,
-                      ),
-                    ),
-                    body:
-                        PDFView(filePath: snapshot.data, nightMode: isDarkMode),
-                  );
+                  return PDFView(
+                      filePath: snapshot.data, nightMode: isDarkMode);
+                  // return Scaffold(
+                  //   // floatingActionButton: FloatingActionButton(
+                  //   //   elevation: 0.0,
+                  //   //   backgroundColor: Colors.red,
+                  //   //   onPressed: () {
+                  //   //     setState(() {
+                  //   //       isDarkMode = !isDarkMode;
+                  //   //     });
+                  //   //   },
+                  //   //   child: Icon(
+                  //   //     isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                  //   //     color: Colors.white,
+                  //   //   ),
+                  //   // ),
+                  //   body:
+
+                  // );
                 }
                 return const SizedBox();
               });

@@ -20,7 +20,7 @@ class GenreList extends StatelessWidget {
         if (state is GenreError) {
           return ErrorMessage(
             message: state.message,
-            isSliver: false,
+            isSliver: true,
           );
         }
         if (state is GenreSuccess) {

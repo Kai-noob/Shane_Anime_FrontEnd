@@ -25,14 +25,32 @@ class FetchGenre extends DetailsEvent {
   List<Object> get props => [comicId];
 }
 
+class ReadNextChapter extends DetailsEvent {
+  final String comicId;
+  final String episodeName;
+  final int episodeNumber;
+  final bool next;
+  final bool initial;
+  final bool prev;
+
+  const ReadNextChapter(this.comicId, this.episodeName, this.episodeNumber,
+      this.next, this.initial, this.prev);
+
+  @override
+  List<Object> get props =>
+      [comicId, episodeName, episodeNumber, next, initial, prev];
+}
+
 class CheckPdfOrImagesEvent extends DetailsEvent {
   final String comicId;
   final String episodeName;
+  final int episodeNumber;
 
-  const CheckPdfOrImagesEvent(this.comicId, this.episodeName);
+  const CheckPdfOrImagesEvent(
+      this.comicId, this.episodeName, this.episodeNumber);
 
   @override
-  List<Object> get props => [comicId, episodeName];
+  List<Object> get props => [comicId, episodeName, episodeNumber];
 }
 
 class FetchImages extends DetailsEvent {

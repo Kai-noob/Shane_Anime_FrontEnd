@@ -46,10 +46,10 @@ class ComicRepoImpl implements ComicRepo {
 
   @override
   Future<Either<Failure, List<String>>> getImages(
-      String comicId, String episodeName) async {
+      String comicId, String episodeName, int episodeNumber) async {
     try {
       final List<String> images =
-          await remoteDataSource.getImages(comicId, episodeName);
+          await remoteDataSource.getImages(comicId, episodeName, episodeNumber);
       return Right(images);
     } on ServerException {
       return Left(ServerFailure());
@@ -58,10 +58,10 @@ class ComicRepoImpl implements ComicRepo {
 
   @override
   Future<Either<Failure, String>> getPdf(
-      String comicId, String episodeName) async {
+      String comicId, String episodeName, int episodeNumber) async {
     try {
       final String pdfFile =
-          await remoteDataSource.getPdf(comicId, episodeName);
+          await remoteDataSource.getPdf(comicId, episodeName, episodeNumber);
       return Right(pdfFile);
     } on ServerException {
       return Left(ServerFailure());
@@ -69,8 +69,10 @@ class ComicRepoImpl implements ComicRepo {
   }
 
   @override
-  Future<bool> checkPdforImages(String comicId, String episodeName) {
-    return remoteDataSource.checkPdfOrImage(comicId, episodeName);
+  Future<bool> checkPdforImages(
+      String comicId, String episodeName, int episodeNumber) {
+    return remoteDataSource.checkPdfOrImage(
+        comicId, episodeName, episodeNumber);
   }
 
   @override
