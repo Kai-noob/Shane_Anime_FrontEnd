@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/features/home/presentation/bloc/daily_update/daily_update_bloc.dart';
 import '../../../../domain/entities/episodes.dart';
 import '../../../bloc/details/details_bloc.dart';
-
-import '../../../../../injector.dart';
 
 import 'widgets/reading_view.dart';
 
@@ -18,26 +15,7 @@ class ReadingScreen extends StatefulWidget {
 
 class _ReadingScreenState extends State<ReadingScreen> {
   @override
-  void didUpdateWidget(covariant ReadingScreen oldWidget) {
-    BlocProvider.of<DetailsBloc>(context).add(ReadNextChapter(
-        widget.episodes.comicId,
-        widget.episodes.episodeName,
-        widget.episodes.episodeNumber,
-        false,
-        true,
-        false));
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DetailsBloc>(context).add(ReadNextChapter(
-        widget.episodes.comicId,
-        widget.episodes.episodeName,
-        widget.episodes.episodeNumber,
-        false,
-        true,
-        false));
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
@@ -53,7 +31,7 @@ class _ReadingScreenState extends State<ReadingScreen> {
         episodes: widget.episodes,
       ),
       bottomNavigationBar: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
+        margin: const EdgeInsets.symmetric(vertical: 10),
         height: 50,
         child: Center(
           child: Row(
@@ -65,21 +43,13 @@ class _ReadingScreenState extends State<ReadingScreen> {
                 ),
                 child: TextButton(
                   onPressed: () {
-                    BlocProvider.of<DetailsBloc>(context).add(ReadNextChapter(
-                        widget.episodes.comicId,
-                        widget.episodes.episodeName,
-                        widget.episodes.episodeNumber,
-                        false,
-                        false,
-                        true));
-                    // BlocProvider.of<DetailsBloc>(context)
-                    //     .add(CheckPdfOrImagesEvent(
-                    //   widget.episodes.comicId,
-                    //   widget.episodes.episodeName,
-                    //   widget.episodes.episodeNumber - 1,
-                    // ));
+                    BlocProvider.of<DetailsBloc>(context).add(ReadPrevChapter(
+                      widget.episodes.comicId,
+                      widget.episodes.episodeName,
+                      widget.episodes.episodeNumber,
+                    ));
                   },
-                  child: Text(
+                  child: const Text(
                     "Prev",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -92,12 +62,10 @@ class _ReadingScreenState extends State<ReadingScreen> {
                 child: TextButton(
                   onPressed: () {
                     BlocProvider.of<DetailsBloc>(context).add(ReadNextChapter(
-                        widget.episodes.comicId,
-                        widget.episodes.episodeName,
-                        widget.episodes.episodeNumber,
-                        true,
-                        false,
-                        false));
+                      widget.episodes.comicId,
+                      widget.episodes.episodeName,
+                      widget.episodes.episodeNumber,
+                    ));
 
                     // BlocProvider.of<DetailsBloc>(context)
                     //     .add(CheckPdfOrImagesEvent(
@@ -106,7 +74,7 @@ class _ReadingScreenState extends State<ReadingScreen> {
                     //   widget.episodes.episodeNumber + 1,
                     // ));
                   },
-                  child: Text("Next",
+                  child: const Text("Next",
                       style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
               )

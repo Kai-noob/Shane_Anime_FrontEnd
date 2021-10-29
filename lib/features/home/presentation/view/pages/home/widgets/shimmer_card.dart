@@ -18,36 +18,21 @@ class ShimmerCard extends StatelessWidget {
             children: [
               Container(
                 decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage("assets/logo/logo.png"),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.grey),
+                    borderRadius: BorderRadius.circular(5), color: Colors.grey),
                 height: 240,
                 width: 140,
               ),
               const SizedBox(width: 8),
               Container(
                 decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage("assets/logo/logo.png"),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.grey),
+                    borderRadius: BorderRadius.circular(5), color: Colors.grey),
                 height: 240,
                 width: 140,
               ),
               const SizedBox(width: 8),
               Container(
                 decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage("assets/logo/logo.png"),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.grey),
+                    borderRadius: BorderRadius.circular(5), color: Colors.grey),
                 height: 240,
                 width: 140,
               ),

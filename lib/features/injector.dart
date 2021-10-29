@@ -1,5 +1,8 @@
 import 'package:get_it/get_it.dart';
+import 'package:movie_app/features/home/domain/usecases/get_all_comics.dart';
+import 'package:movie_app/features/home/domain/usecases/get_all_limit_comics.dart';
 import 'package:movie_app/features/home/domain/usecases/get_limit_recent_episode.dart';
+import 'package:movie_app/features/home/presentation/bloc/all_comic/allcomic_bloc.dart';
 import 'home/domain/usecases/filter_episode.dart';
 import 'home/domain/usecases/get_limit_completed_comic.dart';
 import 'home/domain/usecases/get_limit_hot_comic.dart';
@@ -81,6 +84,13 @@ Future<void> initializeDependencies() async {
 
   sl.registerLazySingleton<GetLimitHotComic>(
       () => GetLimitHotComic(comicRepo: sl()));
+
+  //all comics
+  sl.registerFactory<AllcomicBloc>(() => AllcomicBloc(sl(), sl()));
+
+  sl.registerLazySingleton<GetAllComics>(() => GetAllComics(comicRepo: sl()));
+  sl.registerLazySingleton<GetLimitAllComics>(
+      () => GetLimitAllComics(comicRepo: sl()));
 
   //details comics
 

@@ -31,7 +31,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
       for (QueryDocumentSnapshot _completeAllComic in _querySnapshot.docs) {
         QuerySnapshot _episodeSnapshot = await firebaseFirestore
             .collection("episodes")
-            .orderBy("episode_name")
+            .orderBy("episode_number")
             .where("comic_id", isEqualTo: _completeAllComic.id)
             .get();
 
@@ -68,6 +68,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
       for (QueryDocumentSnapshot _hotAllComic in _querySnapshot.docs) {
         QuerySnapshot _episodeSnapshot = await firebaseFirestore
             .collection("episodes")
+            .orderBy("episode_number")
             .where("comic_id", isEqualTo: _hotAllComic.id)
             .get();
         List<Genre> _genres = await getGenre(_hotAllComic.id);
@@ -233,10 +234,10 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
       for (QueryDocumentSnapshot _completeLimitComic in _querySnapshot.docs) {
         QuerySnapshot _episodeSnapshot = await firebaseFirestore
             .collection("episodes")
+            .orderBy("episode_number")
             .where("comic_id", isEqualTo: _completeLimitComic.id)
             .get();
         List<Genre> _genres = await getGenre(_completeLimitComic.id);
-        List<Episode> _episodes = await getEpisodes(_completeLimitComic.id);
         _completeLimitComicList.add(ComicModel(
           id: _completeLimitComic.id,
           title: _completeLimitComic.get("title"),
@@ -268,24 +269,23 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
 
       List<Comic> _hotLimitComicList = [];
 
-      for (QueryDocumentSnapshot _hotAllComic in _querySnapshot.docs) {
+      for (QueryDocumentSnapshot _hotLimitComic in _querySnapshot.docs) {
         QuerySnapshot _episodeSnapshot = await firebaseFirestore
             .collection("episodes")
-            .where("comic_id", isEqualTo: _hotAllComic.id)
+            .orderBy("episode_number")
+            .where("comic_id", isEqualTo: _hotLimitComic.id)
             .get();
-        List<Genre> _genres = await getGenre(_hotAllComic.id);
-
-        List<Episode> _episodes = await getEpisodes(_hotAllComic.id);
+        List<Genre> _genres = await getGenre(_hotLimitComic.id);
 
         _hotLimitComicList.add(ComicModel(
-          id: _hotAllComic.id,
-          title: _hotAllComic.get("title"),
-          coverPhoto: _hotAllComic.get("cover_photo"),
-          review: _hotAllComic.get("review"),
-          editorChoice: _hotAllComic.get("editor_choice"),
-          published: _hotAllComic.get("published"),
-          completed: _hotAllComic.get("completed"),
-          created: _hotAllComic.get("created"),
+          id: _hotLimitComic.id,
+          title: _hotLimitComic.get("title"),
+          coverPhoto: _hotLimitComic.get("cover_photo"),
+          review: _hotLimitComic.get("review"),
+          editorChoice: _hotLimitComic.get("editor_choice"),
+          published: _hotLimitComic.get("published"),
+          completed: _hotLimitComic.get("completed"),
+          created: _hotLimitComic.get("created"),
           episodeCount: _episodeSnapshot.size,
           genres: _genres,
         ));
@@ -370,6 +370,77 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
         );
       }
       return _comicGenres;
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<Comic>> getAllComic() async {
+    try {
+      QuerySnapshot _querySnapshot = await firebaseFirestore
+          .collection("comics")
+          .where("published", isEqualTo: true)
+          .get();
+
+      List<Comic> _allComicList = [];
+
+      for (QueryDocumentSnapshot _allComic in _querySnapshot.docs) {
+        QuerySnapshot _episodeSnapshot = await firebaseFirestore
+            .collection("episodes")
+            .orderBy("episode_number")
+            .where("comic_id", isEqualTo: _allComic.id)
+            .get();
+        List<Genre> _genres = await getGenre(_allComic.id);
+        _allComicList.add(ComicModel(
+            id: _allComic.id,
+            title: _allComic.get("title"),
+            coverPhoto: _allComic.get("cover_photo"),
+            review: _allComic.get("review"),
+            editorChoice: _allComic.get("editor_choice"),
+            published: _allComic.get("published"),
+            completed: _allComic.get("completed"),
+            created: _allComic.get("created"),
+            episodeCount: _episodeSnapshot.size,
+            genres: _genres));
+      }
+      return _allComicList;
+    } catch (e) {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<Comic>> getAllLimitComic() async {
+    try {
+      QuerySnapshot _querySnapshot = await firebaseFirestore
+          .collection("comics")
+          .limit(8)
+          .where("published", isEqualTo: true)
+          .get();
+
+      List<Comic> _allLimitComicList = [];
+
+      for (QueryDocumentSnapshot _allLimitComic in _querySnapshot.docs) {
+        QuerySnapshot _episodeSnapshot = await firebaseFirestore
+            .collection("episodes")
+            .orderBy("episode_number")
+            .where("comic_id", isEqualTo: _allLimitComic.id)
+            .get();
+        List<Genre> _genres = await getGenre(_allLimitComic.id);
+        _allLimitComicList.add(ComicModel(
+            id: _allLimitComic.id,
+            title: _allLimitComic.get("title"),
+            coverPhoto: _allLimitComic.get("cover_photo"),
+            review: _allLimitComic.get("review"),
+            editorChoice: _allLimitComic.get("editor_choice"),
+            published: _allLimitComic.get("published"),
+            completed: _allLimitComic.get("completed"),
+            created: _allLimitComic.get("created"),
+            episodeCount: _episodeSnapshot.size,
+            genres: _genres));
+      }
+      return _allLimitComicList;
     } catch (e) {
       throw ServerException();
     }

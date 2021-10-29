@@ -29,16 +29,30 @@ class ReadNextChapter extends DetailsEvent {
   final String comicId;
   final String episodeName;
   final int episodeNumber;
-  final bool next;
-  final bool initial;
-  final bool prev;
 
-  const ReadNextChapter(this.comicId, this.episodeName, this.episodeNumber,
-      this.next, this.initial, this.prev);
+  const ReadNextChapter(
+    this.comicId,
+    this.episodeName,
+    this.episodeNumber,
+  );
 
   @override
-  List<Object> get props =>
-      [comicId, episodeName, episodeNumber, next, initial, prev];
+  List<Object> get props => [comicId, episodeName, episodeNumber];
+}
+
+class ReadPrevChapter extends DetailsEvent {
+  final String comicId;
+  final String episodeName;
+  final int episodeNumber;
+
+  const ReadPrevChapter(
+    this.comicId,
+    this.episodeName,
+    this.episodeNumber,
+  );
+
+  @override
+  List<Object> get props => [comicId, episodeName, episodeNumber];
 }
 
 class CheckPdfOrImagesEvent extends DetailsEvent {

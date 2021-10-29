@@ -5,6 +5,8 @@ import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/features/genre/presentation/bloc/genre_bloc.dart';
 import 'package:movie_app/features/home/presentation/bloc/complete_comic/complete_bloc.dart';
 import 'package:movie_app/features/home/presentation/bloc/daily_update/daily_update_bloc.dart';
+import 'package:movie_app/features/home/presentation/view/pages/home/screens/all_comic_screen.dart';
+import 'package:movie_app/features/home/presentation/view/pages/home/widgets/all_comic_list.dart';
 import '../../../../bloc/filter_episode/filterepisode_bloc.dart';
 import '../../../../bloc/hot_comic/hot_bloc.dart';
 import '../../details/screens/details_screen.dart';
@@ -98,6 +100,9 @@ class _HomeBodyState extends State<HomeBody> {
                           },
                           itemCount: state.hotComics.length,
                           itemBuilder: (BuildContext context, int index) {
+                            String genre = state.hotComics[index].genres
+                                .map((e) => e.name)
+                                .join(".");
                             return GestureDetector(
                               onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
@@ -133,6 +138,13 @@ class _HomeBodyState extends State<HomeBody> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
                                         children: <Widget>[
+                                          Text(genre,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: "HeaderFont",
+                                                  fontSize: 14,
+                                                  overflow:
+                                                      TextOverflow.ellipsis)),
                                           Text(state.hotComics[index].title,
                                               style: const TextStyle(
                                                   color: Colors.white,
@@ -206,7 +218,13 @@ class _HomeBodyState extends State<HomeBody> {
             onTap: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => const CompleteAllComicView())),
           ),
-          const CompleteList()
+          const CompleteList(),
+          HomeTitleWidget(
+            label: "All Mangas",
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => const AllComicView())),
+          ),
+          const AllComicList(),
         ],
       ),
     );

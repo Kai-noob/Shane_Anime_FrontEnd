@@ -26,8 +26,6 @@ class SearchTextField extends StatelessWidget {
         cursorColor: Colors.white,
         onSubmitted: (value) {
           BlocProvider.of<SearchBloc>(context).add(SearchComicEvent(value));
-
-          textEditingController.clear();
         },
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 4),

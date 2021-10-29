@@ -89,10 +89,21 @@ class GenreError extends DetailsState {
   List<Object> get props => [message];
 }
 
+class TappedNextButton extends DetailsState {}
+
+class CheckEvent extends DetailsState {
+  final bool checked;
+
+  const CheckEvent({required this.checked});
+
+  @override
+  List<Object> get props => [checked];
+}
+
 class CheckPdFOrImages extends DetailsState {
   final bool check;
 
-  CheckPdFOrImages({required this.check});
+  const CheckPdFOrImages({required this.check});
 
   @override
   List<Object> get props => [check];

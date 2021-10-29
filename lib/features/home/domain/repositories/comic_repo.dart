@@ -9,8 +9,10 @@ abstract class ComicRepo {
   Future<Either<Failure, List<Episode>>> getLimitRecentEpisodes();
   Future<Either<Failure, List<Comic>>> getLimitCompletedComics();
   Future<Either<Failure, List<Comic>>> getLimitHotComics();
+  Future<Either<Failure, List<Comic>>> getLimitAllComics();
 
   Future<Either<Failure, List<Comic>>> getAllCompleteComics();
+  Future<Either<Failure, List<Comic>>> getAllComics();
   Future<Either<Failure, List<Comic>>> getAllHotComics();
   Future<Either<Failure, List<Episode>>> getEpisodes(String comicId);
 

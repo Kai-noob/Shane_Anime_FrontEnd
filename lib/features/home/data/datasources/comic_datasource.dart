@@ -5,6 +5,7 @@ import '../../domain/entities/comic.dart';
 abstract class ComicRemoteDataSource {
   Future<List<Episode>> getFilteredEpisodes(String datetime);
   Future<List<Comic>> getHotAllComic();
+  Future<List<Comic>> getAllComic();
   Future<List<Comic>> getCompleteAllComic();
   Future<List<Episode>> getEpisodes(String comicId);
   Future<List<String>> getImages(
@@ -16,6 +17,7 @@ abstract class ComicRemoteDataSource {
       String comicId, String episodeName, int episodeNumber);
 
   Future<List<Comic>> getHotLimitComic();
+  Future<List<Comic>> getAllLimitComic();
   Future<List<Comic>> getCompleteLimitComic();
   Future<List<Episode>> getRecentLimitEpisode();
 }

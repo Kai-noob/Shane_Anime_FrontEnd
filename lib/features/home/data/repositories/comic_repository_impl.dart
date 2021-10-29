@@ -118,4 +118,25 @@ class ComicRepoImpl implements ComicRepo {
       return Left(ServerFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, List<Comic>>> getAllComics() async {
+    try {
+      final List<Comic> allComics = await remoteDataSource.getAllComic();
+      return Right(allComics);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Comic>>> getLimitAllComics() async {
+    try {
+      final List<Comic> allLimitComics =
+          await remoteDataSource.getAllLimitComic();
+      return Right(allLimitComics);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 }
