@@ -25,7 +25,10 @@ class SearchTextField extends StatelessWidget {
         controller: textEditingController,
         cursorColor: Colors.white,
         onSubmitted: (value) {
-          BlocProvider.of<SearchBloc>(context).add(SearchComicEvent(value));
+          textEditingController.text.isNotEmpty
+              ? BlocProvider.of<SearchBloc>(context)
+                  .add(SearchComicEvent(value))
+              : null;
         },
         decoration: const InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 4),

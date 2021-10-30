@@ -9,6 +9,6 @@ class GenreModel extends Genre {
   }
 
   Map<String, dynamic> toJson() {
-    return {"name": name};
+    return {"name": name, "icon": icon};
   }
 }

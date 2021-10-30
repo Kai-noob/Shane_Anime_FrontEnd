@@ -16,7 +16,7 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
   final GetComicsUseCase _getComicsUseCase;
 
   GenreBloc(this._genresUsecase, this._getComicsUseCase)
-      : super(GenreInitial());
+      : super(GenreLoading());
 
   @override
   Stream<GenreState> mapEventToState(GenreEvent event) async* {

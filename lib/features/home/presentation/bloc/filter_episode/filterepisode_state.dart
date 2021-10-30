@@ -9,7 +9,7 @@ abstract class FilterepisodeState extends Equatable {
 
 class FilterepisodeInitial extends FilterepisodeState {}
 
-
+class FilterepisodeLoading extends FilterepisodeState {}
 
 class FilteredEpisodesLoaded extends FilterepisodeState {
   final List<Episode> filterEpisodes;

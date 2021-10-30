@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/features/genre/presentation/bloc/genre_bloc.dart';
+import 'package:movie_app/features/home/presentation/bloc/all_comic/allcomic_bloc.dart';
 import 'package:movie_app/features/home/presentation/bloc/complete_comic/complete_bloc.dart';
 import 'package:movie_app/features/home/presentation/bloc/daily_update/daily_update_bloc.dart';
 import 'package:movie_app/features/home/presentation/view/pages/home/screens/all_comic_screen.dart';
@@ -55,6 +56,7 @@ class _HomeBodyState extends State<HomeBody> {
     context.read<CompleteBloc>().add(FetchLimitCompleteComic());
     context.read<DailyUpdateBloc>().add(FetchDailyEpisode());
     context.read<GenreBloc>().add(FetchGenres());
+    context.read<AllcomicBloc>().add(FetchAllLimitComic());
   }
 
   @override

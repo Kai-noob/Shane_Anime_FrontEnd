@@ -54,7 +54,7 @@ class App extends StatelessWidget {
               AllcomicBloc(sl(), sl())..add(FetchAllLimitComic()),
         ),
         BlocProvider(
-          create: (context) => DetailsBloc(sl(), sl(), sl(), sl(), sl()),
+          create: (context) => DetailsBloc(sl(), sl(), sl(), sl()),
         ),
         BlocProvider(
             create: (context) => GenreBloc(sl(), sl())..add(FetchGenres())),

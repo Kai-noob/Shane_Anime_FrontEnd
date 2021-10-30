@@ -16,6 +16,7 @@ class FilterepisodeBloc extends Bloc<FilterepisodeEvent, FilterepisodeState> {
   @override
   Stream<FilterepisodeState> mapEventToState(FilterepisodeEvent event) async* {
     if (event is FilterEpisode) {
+      yield FilterepisodeLoading();
       final failureOrSuccess = await _filterEpisodeUseCase.call(event.dateTime);
       yield* _eitherFilteredEpisodesOrErrorState(failureOrSuccess);
     }

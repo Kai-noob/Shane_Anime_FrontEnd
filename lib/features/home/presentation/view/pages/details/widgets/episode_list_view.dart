@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionicons/ionicons.dart';
 
 import '../../../../../../../core/global/error_message.dart';
 
@@ -46,12 +48,18 @@ class EpisodeListView extends StatelessWidget {
                 leading: Container(
                   height: 50,
                   width: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image:
-                              NetworkImage(state.episodes[index].coverPhoto))),
+                  child: CachedNetworkImage(
+                    imageUrl: state.episodes[index].coverPhoto,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Container(
+                      decoration: BoxDecoration(
+                          image: const DecorationImage(
+                              image: AssetImage("assets/logo/logo.png")),
+                          color: Colors.grey.shade200),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Ionicons.warning_outline, size: 35),
+                  ),
                 ),
               );
             }, childCount: state.episodes.length),

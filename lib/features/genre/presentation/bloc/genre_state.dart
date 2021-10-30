@@ -7,8 +7,6 @@ abstract class GenreState extends Equatable {
   List<Object> get props => [];
 }
 
-class GenreInitial extends GenreState {}
-
 class GenreLoading extends GenreState {}
 
 class GenreSuccess extends GenreState {

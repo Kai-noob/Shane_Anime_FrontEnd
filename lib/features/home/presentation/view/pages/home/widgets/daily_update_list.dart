@@ -74,22 +74,7 @@ class DailyUpdateCard extends StatelessWidget {
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
             overflow: TextOverflow.ellipsis,
           ),
-          Row(
-            children: [
-              Text(
-                episodes.episodeName,
-                style:
-                    const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                episodes.episodeNumber.toString(),
-                style:
-                    const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
-          ),
+          Text("${episodes.episodeName}${episodes.episodeNumber.toString()}"),
           const SizedBox(height: 5),
         ],
       ),

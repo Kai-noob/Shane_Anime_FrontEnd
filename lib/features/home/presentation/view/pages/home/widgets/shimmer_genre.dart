@@ -19,7 +19,7 @@ class ShimmerGenre extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundColor: Colors.white.withOpacity(0.2),
+                    backgroundColor: Colors.grey,
                   ),
                 ],
               ),
@@ -30,7 +30,7 @@ class ShimmerGenre extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundColor: Colors.white.withOpacity(0.2),
+                    backgroundColor: Colors.grey,
                   ),
                 ],
               ),
@@ -41,7 +41,7 @@ class ShimmerGenre extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundColor: Colors.white.withOpacity(0.2),
+                    backgroundColor: Colors.grey,
                   ),
                 ],
               ),
@@ -52,7 +52,7 @@ class ShimmerGenre extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundColor: Colors.white.withOpacity(0.2),
+                    backgroundColor: Colors.grey,
                   ),
                 ],
               ),
@@ -63,7 +63,7 @@ class ShimmerGenre extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 40,
-                    backgroundColor: Colors.white.withOpacity(0.2),
+                    backgroundColor: Colors.grey,
                   ),
                 ],
               ),

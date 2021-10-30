@@ -94,7 +94,7 @@ Future<void> initializeDependencies() async {
 
   //details comics
 
-  sl.registerFactory(() => DetailsBloc(sl(), sl(), sl(), sl(), sl()));
+  sl.registerFactory(() => DetailsBloc(sl(), sl(), sl(), sl()));
 
   sl.registerLazySingleton<GetEpisodes>(() => GetEpisodes(comicRepo: sl()));
 

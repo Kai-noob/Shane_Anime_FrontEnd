@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:movie_app/core/global/loading_indicator.dart';
 import '../../../../../../../core/strings/constants.dart';
 import '../../../../bloc/filter_episode/filterepisode_bloc.dart';
 
@@ -68,27 +69,26 @@ class _DailyUpdateScreenState extends State<DailyUpdateScreen> {
               const SizedBox(height: 50),
               BlocBuilder<FilterepisodeBloc, FilterepisodeState>(
                 builder: (context, state) {
+                  if (state is FilterepisodeLoading) {
+                    return LoadingIndicator();
+                  }
                   if (state is FilterepisodeInitial) {
-                    return Center(
-                      child: Column(
-                        children: const [
-                          Icon(Ionicons.time),
-                          Text("Please Selects a date"),
-                        ],
-                      ),
+                    return Column(
+                      children: const [
+                        Icon(Ionicons.time),
+                        Text("Please Selects a date"),
+                      ],
                     );
                   }
 
                   if (state is FilteredEpisodesLoaded) {
                     if (state.filterEpisodes.isEmpty) {
-                      return Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(Ionicons.information_circle_outline),
-                            Text("No comics with Your selected Date"),
-                          ],
-                        ),
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Ionicons.information_circle_outline),
+                          Text("No comics with Your selected Date"),
+                        ],
                       );
                     }
                     return ListView.builder(

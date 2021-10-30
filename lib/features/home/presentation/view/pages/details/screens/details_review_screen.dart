@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import '../../../../../domain/entities/comic.dart';
@@ -34,11 +35,18 @@ class DetailsReviewScreen extends StatelessWidget {
               Container(
                 height: 250,
                 width: 230,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                        fit: BoxFit.fitHeight,
-                        image: NetworkImage(comicModel.coverPhoto))),
+                child: CachedNetworkImage(
+                  imageUrl: comicModel.coverPhoto,
+                  fit: BoxFit.fitHeight,
+                  placeholder: (context, url) => Container(
+                    decoration: BoxDecoration(
+                        image: const DecorationImage(
+                            image: AssetImage("assets/logo/logo.png")),
+                        color: Colors.grey.shade200),
+                  ),
+                  errorWidget: (context, url, error) =>
+                      const Icon(Ionicons.warning_outline, size: 35),
+                ),
               ),
               const SizedBox(
                 height: 40,

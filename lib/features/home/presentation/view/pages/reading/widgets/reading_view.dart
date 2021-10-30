@@ -40,11 +40,6 @@ class _ReadingViewState extends State<ReadingView> {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DetailsBloc>(context).add(CheckPdfOrImagesEvent(
-      widget.episodes.comicId,
-      widget.episodes.episodeName,
-      widget.episodes.episodeNumber,
-    ));
     return BlocBuilder<DetailsBloc, DetailsState>(
       builder: (context, state) {
         if (state is PdfError) {
@@ -65,25 +60,22 @@ class _ReadingViewState extends State<ReadingView> {
                       message: "Something wrong.", isSliver: false);
                 }
                 if (snapshot.hasData) {
-                  return PDFView(
-                      filePath: snapshot.data, nightMode: isDarkMode);
-                  // return Scaffold(
-                  //   // floatingActionButton: FloatingActionButton(
-                  //   //   elevation: 0.0,
-                  //   //   backgroundColor: Colors.red,
-                  //   //   onPressed: () {
-                  //   //     setState(() {
-                  //   //       isDarkMode = !isDarkMode;
-                  //   //     });
-                  //   //   },
-                  //   //   child: Icon(
-                  //   //     isDarkMode ? Icons.light_mode : Icons.dark_mode,
-                  //   //     color: Colors.white,
-                  //   //   ),
-                  //   // ),
-                  //   body:
-
-                  // );
+                  return Scaffold(
+                      floatingActionButton: FloatingActionButton(
+                        elevation: 0.0,
+                        backgroundColor: Colors.red,
+                        onPressed: () {
+                          setState(() {
+                            isDarkMode = !isDarkMode;
+                          });
+                        },
+                        child: Icon(
+                          isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                          color: Colors.white,
+                        ),
+                      ),
+                      body: PDFView(
+                          filePath: snapshot.data, nightMode: isDarkMode));
                 }
                 return const SizedBox();
               });

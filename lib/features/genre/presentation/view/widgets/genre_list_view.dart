@@ -125,9 +125,7 @@ class GenreListView extends StatelessWidget {
               );
             }
             if (state is ComicsError) {
-              return Center(
-                child: Text(state.message),
-              );
+              return ErrorMessage(message: state.message, isSliver: false);
             }
             return Container();
           },

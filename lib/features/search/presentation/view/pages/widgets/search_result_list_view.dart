@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionicons/ionicons.dart';
 import '../../../../../../core/global/error_message.dart';
 import '../../../../../../core/global/loading_indicator.dart';
 import '../../../../../home/presentation/view/pages/details/screens/details_screen.dart';
@@ -46,12 +48,18 @@ class SearchResultListView extends StatelessWidget {
                 leading: Container(
                   height: 50,
                   width: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                              state.searchComics[index].coverPhoto))),
+                  child: CachedNetworkImage(
+                    imageUrl: state.searchComics[index].coverPhoto,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Container(
+                      decoration: BoxDecoration(
+                          image: const DecorationImage(
+                              image: AssetImage("assets/logo/logo.png")),
+                          color: Colors.grey.shade200),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Ionicons.warning_outline, size: 35),
+                  ),
                 ),
                 title: Text(
                   state.searchComics[index].title,
