@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/core/global/loading_indicator.dart';
+import '../../../../../../../core/global/loading_indicator.dart';
 import '../../../../../../../core/strings/constants.dart';
 import '../../../../bloc/filter_episode/filterepisode_bloc.dart';
 
@@ -70,7 +70,7 @@ class _DailyUpdateScreenState extends State<DailyUpdateScreen> {
               BlocBuilder<FilterepisodeBloc, FilterepisodeState>(
                 builder: (context, state) {
                   if (state is FilterepisodeLoading) {
-                    return LoadingIndicator();
+                    return const LoadingIndicator();
                   }
                   if (state is FilterepisodeInitial) {
                     return Column(
@@ -98,8 +98,8 @@ class _DailyUpdateScreenState extends State<DailyUpdateScreen> {
                       itemBuilder: (BuildContext context, int index) {
                         return ListTile(
                           title: Text(state.filterEpisodes[index].title),
-                          subtitle:
-                              Text(state.filterEpisodes[index].episodeName),
+                          subtitle: Text(
+                              "${state.filterEpisodes[index].title}${state.filterEpisodes[index].episodeNumber.toString()}"),
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (_) => ReadingScreen(
