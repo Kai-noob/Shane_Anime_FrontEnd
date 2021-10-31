@@ -20,8 +20,6 @@ class SearchLoaded extends SearchState {
   List<Object> get props => [searchComics];
 }
 
-class SearchQueryEmpty extends SearchState {}
-
 class SearchError extends SearchState {
   final String message;
 

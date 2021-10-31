@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/core/error/failure.dart';
-import 'package:movie_app/features/home/domain/entities/comic.dart';
-import 'package:movie_app/features/home/domain/repositories/comic_repo.dart';
+import '../../../../core/error/failure.dart';
+import '../entities/comic.dart';
+import '../repositories/comic_repo.dart';
 
 class GetAllComics {
   final ComicRepo comicRepo;

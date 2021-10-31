@@ -2,8 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import '../../../../../core/strings/constants.dart';
-import '../../../../genre/domain/entities/genre.dart';
-import '../../../../genre/domain/usecases/get_genre_usecase.dart';
 
 import '../../../domain/entities/episodes.dart';
 import '../../../domain/usecases/check_pdf_or_images.dart';
@@ -23,7 +21,7 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   final GetPdf _getPdfUseCase;
   DetailsBloc(this._getEpisodesUseCase, this._getPhotosUseCase,
       this._checkUseCase, this._getPdfUseCase)
-      : super(CheckEvent());
+      : super(DetailsInitial());
 
   @override
   Stream<DetailsState> mapEventToState(DetailsEvent event) async* {

@@ -13,6 +13,8 @@ class EpisodeModel extends Episode {
     return EpisodeModel(
         comicId: json['comic_id'],
         episodeName: json['episode_name'],
+        title: json['title'],
+        coverPhoto: json['cover_photo'],
         episodeNumber: json['episode_number']);
   }
 
@@ -20,6 +22,9 @@ class EpisodeModel extends Episode {
     return {
       "comic_id": comicId,
       "episode_name": episodeName,
+      'episode_number': episodeNumber,
+      'title': title,
+      'cover_photo': coverPhoto
     };
   }
 }

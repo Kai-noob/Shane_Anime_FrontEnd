@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:movie_app/core/error/failure.dart';
-import 'package:movie_app/core/strings/constants.dart';
-import 'package:movie_app/features/home/domain/entities/comic.dart';
-import 'package:movie_app/features/home/domain/usecases/get_all_comics.dart';
-import 'package:movie_app/features/home/domain/usecases/get_all_limit_comics.dart';
+import '../../../../../core/error/failure.dart';
+import '../../../../../core/strings/constants.dart';
+import '../../../domain/entities/comic.dart';
+import '../../../domain/usecases/get_all_comics.dart';
+import '../../../domain/usecases/get_all_limit_comics.dart';
 
 part 'allcomic_event.dart';
 part 'allcomic_state.dart';

@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/features/home/presentation/bloc/all_comic/allcomic_bloc.dart';
-import 'package:movie_app/features/home/presentation/bloc/details/details_bloc.dart';
+import 'package:movie_app/core/local/shared_pref_helper.dart';
+import 'package:provider/provider.dart';
+import 'features/home/presentation/bloc/all_comic/allcomic_bloc.dart';
+import 'features/home/presentation/bloc/details/details_bloc.dart';
 import 'features/home/presentation/view/pages/home/screens/home_screen.dart';
 import 'features/genre/presentation/bloc/genre_bloc.dart';
 
@@ -59,10 +61,13 @@ class App extends StatelessWidget {
         BlocProvider(
             create: (context) => GenreBloc(sl(), sl())..add(FetchGenres())),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: Themes.dark,
-        home: const HomeScreen(),
+      child: ChangeNotifierProvider(
+        create: (BuildContext context) => SharedPrefHelper(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: Themes.dark,
+          home: const HomeScreen(),
+        ),
       ),
     );
   }

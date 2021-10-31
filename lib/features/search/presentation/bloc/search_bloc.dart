@@ -19,12 +19,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   Stream<SearchState> mapEventToState(SearchEvent event) async* {
     if (event is SearchComicEvent) {
       yield SearchLoading();
-      if (event.query.isEmpty) {
-        yield SearchQueryEmpty();
-      }
+
       final failureOrSuccess =
           await _searchComicUseCase.call(query: event.query);
-      // final failureOrSuccess2 = await _getRecentComic.call();
 
       yield* _eitherSuccessOrErrorState(failureOrSuccess);
     }

@@ -68,36 +68,3 @@ class EpisodeError extends DetailsState {
   @override
   List<Object> get props => [message];
 }
-
-class DetailsGenreLoaded extends DetailsState {
-  final List<Genre> genres;
-
-  const DetailsGenreLoaded({required this.genres});
-
-  @override
-  List<Object> get props => [genres];
-}
-
-class DetailsGenreLoading extends DetailsState {}
-
-class GenreError extends DetailsState {
-  final String message;
-
-  const GenreError({required this.message});
-
-  @override
-  List<Object> get props => [message];
-}
-
-class TappedNextButton extends DetailsState {}
-
-class CheckEvent extends DetailsState {}
-
-class CheckPdFOrImages extends DetailsState {
-  final bool check;
-
-  const CheckPdFOrImages({required this.check});
-
-  @override
-  List<Object> get props => [check];
-}

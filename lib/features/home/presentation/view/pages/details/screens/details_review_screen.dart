@@ -32,7 +32,7 @@ class DetailsReviewScreen extends StatelessWidget {
                       )),
                 ),
               ),
-              Container(
+              SizedBox(
                 height: 250,
                 width: 230,
                 child: CachedNetworkImage(

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/features/home/presentation/bloc/all_comic/allcomic_bloc.dart';
+import '../../../../bloc/all_comic/allcomic_bloc.dart';
 import '../../../../../../../core/global/error_message.dart';
 import '../../../../../../../core/global/image_widget.dart';
 import '../../../../../../../core/global/loading_indicator.dart';
-import '../../../../bloc/hot_comic/hot_bloc.dart';
 import '../../details/screens/details_screen.dart';
 import '../../../../../../injector.dart';
 
