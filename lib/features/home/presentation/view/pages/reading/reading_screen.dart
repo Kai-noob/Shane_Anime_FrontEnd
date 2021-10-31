@@ -24,16 +24,13 @@ class _ReadingScreenState extends State<ReadingScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (_key.currentState!.canPop()) {
-          _key.currentState!.pop();
-          Provider.of<SharedPrefHelper>(context, listen: false).addToLocal(
-              EpisodeModel(
-                  comicId: widget.episodes.comicId,
-                  episodeName: widget.episodes.episodeName,
-                  episodeNumber: widget.episodes.episodeNumber));
-
-          return false;
-        }
+        Provider.of<SharedPrefHelper>(context, listen: false).addToLocal(
+            EpisodeModel(
+                comicId: widget.episodes.comicId,
+                episodeName: widget.episodes.episodeName,
+                title: widget.episodes.title,
+                coverPhoto: widget.episodes.coverPhoto,
+                episodeNumber: widget.episodes.episodeNumber));
         return true;
       },
       child: Scaffold(

@@ -48,6 +48,13 @@ class DetailsReviewScreen extends StatelessWidget {
                       const Icon(Ionicons.warning_outline, size: 35),
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                comicModel.title,
+                style: TextStyle(fontFamily: "HeaderFont", fontSize: 22),
+              ),
               const SizedBox(
                 height: 40,
               ),

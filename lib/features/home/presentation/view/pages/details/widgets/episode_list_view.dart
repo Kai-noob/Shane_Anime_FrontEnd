@@ -14,7 +14,7 @@ import '../../../../../../../core/global/loading_indicator.dart';
 
 class EpisodeListView extends StatelessWidget {
   final String comicId;
-  EpisodeListView({
+  const EpisodeListView({
     Key? key,
     required this.comicId,
   }) : super(key: key);
@@ -44,24 +44,41 @@ class EpisodeListView extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
-                  // contentPadding: EdgeInsets.all(5),
-                  // tileColor: episodes.contains(state.episodes[index])
-                  //     ? Colors.red.withOpacity(0.2)
-                  //     : null,
-                  title: Row(
-                    children: [
-                      Text(state.episodes[index].episodeName),
-                      Text(state.episodes[index].episodeNumber.toString()),
-                    ],
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                  tileColor: episodes.contains(state.episodes[index])
+                      ? Colors.grey.withOpacity(0.1)
+                      : null,
+                  title: Text(
+                    " ${state.episodes[index].episodeName}"
+                    "${state.episodes[index].episodeNumber.toString()}",
+                    style: TextStyle(
+                        color: episodes.contains(state.episodes[index])
+                            ? Colors.grey.shade50
+                            : Colors.white,
+                        fontWeight: episodes.contains(state.episodes[index])
+                            ? FontWeight.w100
+                            : null),
                   ),
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) =>
                             ReadingScreen(episodes: state.episodes[index])));
                   },
-                  trailing: episodes.contains(state.episodes[index])
-                      ? Visibility(visible: true, child: Icon(Icons.done))
-                      : Visibility(visible: false, child: Icon(Icons.done)),
+                  // trailing: episodes.last == state.episodes[index]
+                  //     ? const Visibility(visible: true, child: Icon(Icons.done))
+                  //     : const Visibility(
+                  //         visible: false, child: Icon(Icons.done)),
+                  trailing: episodes.isEmpty
+                      ? null
+                      : episodes.last == state.episodes[index]
+                          ? Visibility(
+                              visible: true, child: Icon(Ionicons.eye_outline))
+                          : Visibility(
+                              visible: false,
+                              child: Icon(Ionicons.eye_outline)),
                   leading: SizedBox(
                     height: 50,
                     width: 50,

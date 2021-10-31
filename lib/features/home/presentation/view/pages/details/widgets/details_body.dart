@@ -22,6 +22,7 @@ class DetailsBody extends StatefulWidget {
 class _DetailsBodyState extends State<DetailsBody> {
   @override
   Widget build(BuildContext context) {
+    String genre = widget.comicModel.genres.map((e) => e.name).join(".");
     return CustomScrollView(
       physics: const ClampingScrollPhysics(),
       slivers: [
@@ -65,6 +66,12 @@ class _DetailsBodyState extends State<DetailsBody> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
+                          Text(genre,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "HeaderFont",
+                                  fontSize: 14,
+                                  overflow: TextOverflow.ellipsis)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -75,6 +82,7 @@ class _DetailsBodyState extends State<DetailsBody> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                       overflow: TextOverflow.ellipsis,
+                                      fontFamily: "HeaderFont",
                                       fontSize: 30,
                                     )),
                               ),
@@ -94,29 +102,6 @@ class _DetailsBodyState extends State<DetailsBody> {
                               ),
                             ],
                           ),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Wrap(
-                              children: widget.comicModel.genres
-                                  .map((e) => Container(
-                                        margin: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 2),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 2),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            border: Border.all(
-                                                color: Colors.white,
-                                                width: 1.3)),
-                                        child: Text(
-                                          e.name,
-                                          style: const TextStyle(fontSize: 13),
-                                        ),
-                                      ))
-                                  .toList(),
-                            ),
-                          )
                         ],
                       ),
                     ),

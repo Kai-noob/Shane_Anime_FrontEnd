@@ -73,22 +73,18 @@ class _DailyUpdateScreenState extends State<DailyUpdateScreen> {
                     return const LoadingIndicator();
                   }
                   if (state is FilterepisodeInitial) {
-                    return Column(
-                      children: const [
-                        Icon(Ionicons.time),
-                        Text("Please Selects a date"),
-                      ],
+                    return Text(
+                      "Please Selects a date",
+                      style: TextStyle(fontSize: 23),
                     );
                   }
 
                   if (state is FilteredEpisodesLoaded) {
                     if (state.filterEpisodes.isEmpty) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(Ionicons.information_circle_outline),
-                          Text("No comics with Your selected Date"),
-                        ],
+                      return Text(
+                        "No Results Found",
+                        style: TextStyle(fontSize: 23),
+                        textAlign: TextAlign.center,
                       );
                     }
                     return ListView.builder(

@@ -12,8 +12,6 @@ class SharedPrefHelper extends ChangeNotifier {
         episodeList.map((e) => json.encode(e.toJson())).toList();
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setStringList('episodes', episodes);
-
-    print(episodes.length);
   }
 
   void addToLocal(EpisodeModel episode) {

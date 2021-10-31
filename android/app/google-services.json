@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "435592925303",
-    "project_id": "shanemanga-fdfef",
-    "storage_bucket": "shanemanga-fdfef.appspot.com"
+    "project_number": "1083688049259",
+    "project_id": "shanemanga-e59fb",
+    "storage_bucket": "shanemanga-e59fb.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:435592925303:android:9debbb99f61349e8683672",
+        "mobilesdk_app_id": "1:1083688049259:android:a5b4c798887f048549af2e",
         "android_client_info": {
           "package_name": "com.example.movie_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "435592925303-st5c67r71gfa9lku5g6ql2qpk9ncsp9d.apps.googleusercontent.com",
+          "client_id": "1083688049259-v6mmav124u8fpd5k19k0bejcsd50lru1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDhODfi7JNQNbfn_IYbbjqKIOUydTGB2HQ"
+          "current_key": "AIzaSyAG7CYDT6G3UvTGOBGJayj-KmAGu4DfN8s"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "435592925303-st5c67r71gfa9lku5g6ql2qpk9ncsp9d.apps.googleusercontent.com",
+              "client_id": "1083688049259-v6mmav124u8fpd5k19k0bejcsd50lru1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
