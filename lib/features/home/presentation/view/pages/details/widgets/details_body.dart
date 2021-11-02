@@ -23,7 +23,8 @@ class _DetailsBodyState extends State<DetailsBody> {
   @override
   Widget build(BuildContext context) {
     String genre = widget.comicModel.genres.map((e) => e.name).join(".");
-    return CustomScrollView(
+    return SafeArea(
+        child: CustomScrollView(
       physics: const ClampingScrollPhysics(),
       slivers: [
         SliverAppBar(
@@ -75,7 +76,6 @@ class _DetailsBodyState extends State<DetailsBody> {
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.ellipsis,
                                 fontFamily: "HeaderFont",
                                 fontSize: 30,
                               )),
@@ -126,6 +126,6 @@ class _DetailsBodyState extends State<DetailsBody> {
         EpisodeListView(comicId: widget.comicModel.id)
         // DetailsTitle(comicModel: comicModel),
       ],
-    );
+    ));
   }
 }

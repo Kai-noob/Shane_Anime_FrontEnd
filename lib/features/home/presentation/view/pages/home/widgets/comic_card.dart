@@ -33,10 +33,15 @@ class ComicCard extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Text(
-            comicModel.title,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            overflow: TextOverflow.ellipsis,
+          Container(
+            constraints: BoxConstraints(maxWidth: 150),
+            child: Text(
+              comicModel.title,
+              style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  overflow: TextOverflow.ellipsis),
+            ),
           ),
           const SizedBox(height: 5),
         ],

@@ -69,10 +69,13 @@ class DailyUpdateCard extends StatelessWidget {
               child: ImageWidget(image: episodes.coverPhoto),
             ),
           ),
-          Text(
-            episodes.title,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            overflow: TextOverflow.ellipsis,
+          Container(
+            constraints: BoxConstraints(maxWidth: 150),
+            child: Text(
+              episodes.title,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
           Text("${episodes.episodeName}${episodes.episodeNumber.toString()}"),
           const SizedBox(height: 5),

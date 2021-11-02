@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import '../../../domain/entities/genre.dart';
 
+import '../../../domain/entities/genre.dart';
 import 'genre_list_view.dart';
 
 class GenreItem extends StatelessWidget {

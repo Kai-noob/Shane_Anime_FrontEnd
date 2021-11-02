@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/local/shared_pref_helper.dart';
+import 'core/local/shared_pref_helper.dart';
 import 'package:provider/provider.dart';
 import 'features/home/presentation/bloc/all_comic/allcomic_bloc.dart';
 import 'features/home/presentation/bloc/details/details_bloc.dart';

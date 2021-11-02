@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../genre/domain/entities/genre.dart';
 
+import '../../../genre/domain/entities/genre.dart';
 import '../../domain/entities/comic.dart';
 
 class ComicModel extends Comic {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/local/shared_pref_helper.dart';
-import 'package:movie_app/features/home/data/models/recent_episode_model.dart';
+import '../../../../../../core/local/shared_pref_helper.dart';
+import '../../../../data/models/recent_episode_model.dart';
 import 'package:provider/provider.dart';
 import '../../../../../injector.dart';
 import '../../../../domain/entities/episodes.dart';

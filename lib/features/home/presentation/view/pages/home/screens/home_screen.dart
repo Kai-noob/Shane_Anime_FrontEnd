@@ -67,167 +67,163 @@ class _HomeBodyState extends State<HomeBody> {
       backgroundColor: Colors.white,
       key: refreshkey,
       onRefresh: refresh,
-      child: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight: 350,
-            title: const Text(
-              "Shane Manga MM",
-              style: TextStyle(fontFamily: "HeaderFont"),
-            ),
-            backgroundColor: Colors.black,
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => SearchScreen()));
-                  },
-                  icon: const Icon(
-                    Ionicons.search_outline,
-                  ))
-            ],
-            flexibleSpace: FlexibleSpaceBar(
-                collapseMode: CollapseMode.pin,
-                background: BlocBuilder<HotBloc, HotState>(
-                  builder: (context, state) {
-                    if (state is HotLimitComicLoading) {
-                      return const ShimmerAppBar();
-                    }
-                    if (state is HotLimitComicLoaded) {
-                      return PageView.builder(
-                          onPageChanged: (value) {
-                            setState(() {
-                              currentIndex = value;
-                            });
-                          },
-                          itemCount: state.hotComics.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            String genre = state.hotComics[index].genres
-                                .map((e) => e.name)
-                                .join(".");
-                            return GestureDetector(
-                              onTap: () => Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          DetailsScreen(
-                                              comicModel:
-                                                  state.hotComics[index]))),
-                              child: CachedNetworkImage(
-                                imageUrl: state.hotComics[index].coverPhoto,
-                                imageBuilder: (context, imageProvider) =>
-                                    Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    image: DecorationImage(
-                                      image: imageProvider,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  child: Container(
+      child: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              expandedHeight: MediaQuery.of(context).size.height * 0.5,
+              backgroundColor: Colors.black,
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) => SearchScreen()));
+                    },
+                    icon: const Icon(
+                      Ionicons.search_outline,
+                    ))
+              ],
+              flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.pin,
+                  background: BlocBuilder<HotBloc, HotState>(
+                    builder: (context, state) {
+                      if (state is HotLimitComicLoading) {
+                        return const ShimmerAppBar();
+                      }
+                      if (state is HotLimitComicLoaded) {
+                        return PageView.builder(
+                            onPageChanged: (value) {
+                              setState(() {
+                                currentIndex = value;
+                              });
+                            },
+                            itemCount: state.hotComics.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              String genre = state.hotComics[index].genres
+                                  .map((e) => e.name)
+                                  .join(".");
+                              return GestureDetector(
+                                onTap: () => Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            DetailsScreen(
+                                                comicModel:
+                                                    state.hotComics[index]))),
+                                child: CachedNetworkImage(
+                                  imageUrl: state.hotComics[index].coverPhoto,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
                                     decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                            begin: Alignment.bottomRight,
-                                            colors: [
-                                          const Color(0xff212121),
-                                          const Color(0xff212121)
-                                              .withOpacity(.3)
-                                        ])),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(20),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: <Widget>[
-                                          Text(genre,
-                                              style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: "HeaderFont",
-                                                  fontSize: 14,
-                                                  overflow:
-                                                      TextOverflow.ellipsis)),
-                                          Text(state.hotComics[index].title,
-                                              style: const TextStyle(
+                                      borderRadius: BorderRadius.circular(5),
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          gradient: LinearGradient(
+                                              begin: Alignment.bottomRight,
+                                              colors: [
+                                            const Color(0xff212121),
+                                            const Color(0xff212121)
+                                                .withOpacity(.3)
+                                          ])),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(20),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: <Widget>[
+                                            Text(genre,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 14,
+                                                    overflow:
+                                                        TextOverflow.ellipsis)),
+                                            Text(state.hotComics[index].title,
+                                                style: const TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "HeaderFont",
                                                   fontSize: 30,
-                                                  overflow:
-                                                      TextOverflow.ellipsis)),
-                                          const SizedBox(
-                                            height: 8,
-                                          ),
-                                          SingleChildScrollView(
-                                            scrollDirection: Axis.horizontal,
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: List.generate(
-                                                    state.hotComics.length,
-                                                    (index) => buildDots(
-                                                        index: index))),
-                                          )
-                                        ],
+                                                )),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            SingleChildScrollView(
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: List.generate(
+                                                      state.hotComics.length,
+                                                      (index) => buildDots(
+                                                          index: index))),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
+                                  placeholder: (context, url) => Container(
+                                    decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                            image: AssetImage(
+                                                "assets/logo/logo.png")),
+                                        color: Colors.grey.shade300),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Ionicons.image, size: 35),
                                 ),
-                                placeholder: (context, url) => Container(
-                                  decoration: BoxDecoration(
-                                      image: const DecorationImage(
-                                          image: AssetImage(
-                                              "assets/logo/logo.png")),
-                                      color: Colors.grey.shade300),
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Ionicons.image, size: 35),
-                              ),
-                            );
-                          });
-                    }
-                    return Container();
-                  },
-                )),
-          ),
-          HomeTitleWidget(
-            label: "Daily Update",
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => BlocProvider(
-                      create: (context) => FilterepisodeBloc(sl()),
-                      child: const DailyUpdateScreen(),
-                    ))),
-          ),
-          const DailyUpdateList(),
-          const SliverPadding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            sliver: SliverToBoxAdapter(
-              child: Text(
-                "Genres",
-                style: TextStyle(fontSize: 20, fontFamily: "HeaderFont"),
+                              );
+                            });
+                      }
+                      return Container();
+                    },
+                  )),
+            ),
+            HomeTitleWidget(
+              label: "Daily Update",
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => BlocProvider(
+                        create: (context) => FilterepisodeBloc(sl()),
+                        child: const DailyUpdateScreen(),
+                      ))),
+            ),
+            const DailyUpdateList(),
+            const SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  "Genres",
+                  style: TextStyle(fontSize: 20, fontFamily: "HeaderFont"),
+                ),
               ),
             ),
-          ),
-          const GenreList(),
-          HomeTitleWidget(
-            label: "Hot Mangas",
-            onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const HotAllComicView())),
-          ),
-          const HotList(),
-          HomeTitleWidget(
-            label: "Completed Series",
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (_) => const CompleteAllComicView())),
-          ),
-          const CompleteList(),
-          HomeTitleWidget(
-            label: "All Mangas",
-            onTap: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => const AllComicView())),
-          ),
-          const AllComicList(),
-        ],
+            const GenreList(),
+            HomeTitleWidget(
+              label: "Hot Mangas",
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const HotAllComicView())),
+            ),
+            const HotList(),
+            HomeTitleWidget(
+              label: "Completed Series",
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => const CompleteAllComicView())),
+            ),
+            const CompleteList(),
+            HomeTitleWidget(
+              label: "All Mangas",
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const AllComicView())),
+            ),
+            const AllComicList(),
+          ],
+        ),
       ),
     );
   }

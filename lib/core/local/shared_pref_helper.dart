@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/features/home/data/models/recent_episode_model.dart';
+import '../../features/home/data/models/recent_episode_model.dart';
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';

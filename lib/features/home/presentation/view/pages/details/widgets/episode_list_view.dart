@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/core/local/shared_pref_helper.dart';
-import 'package:movie_app/features/home/domain/entities/episodes.dart';
+import '../../../../../../../core/local/shared_pref_helper.dart';
+import '../../../../../domain/entities/episodes.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../../../core/global/error_message.dart';
