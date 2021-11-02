@@ -45,22 +45,15 @@ dependencies:
   ionicons: ^0.1.2
   photo_view: null
   provider: ^6.0.1
+  readmore:
   shared_preferences: ^2.0.8
   shimmer: ^2.0.0
   table_calendar: ^3.0.3
 
 dev_dependencies:
-  build_runner: ^2.1.4
   flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
-  hive_generator: ^1.1.1
-
-flutter_native_splash:
-  color: "#212121"
-  image: assets/logo/splash.png
-  android: true
-  ios: true
 
 flutter_icons:
   image_path: "assets/logo/splash.jpeg"

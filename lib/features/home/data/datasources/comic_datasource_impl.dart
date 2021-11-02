@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../genre/data/models/comic_genre_model.dart';
 import '../../../genre/data/models/genre_model.dart';
@@ -294,7 +292,6 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
       }
       return _hotLimitComicList;
     } catch (e) {
-      print("Hot ${e.toString()}");
       throw ServerException();
     }
   }
@@ -445,7 +442,6 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
       }
       return _allLimitComicList;
     } catch (e) {
-      print("All Comic ${e.toString()}");
       throw ServerException();
     }
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:ionicons/ionicons.dart';
 import '../../../../../../../core/global/loading_indicator.dart';
 import '../../../../../../../core/strings/constants.dart';
 import '../../../../bloc/filter_episode/filterepisode_bloc.dart';
@@ -73,7 +72,7 @@ class _DailyUpdateScreenState extends State<DailyUpdateScreen> {
                     return const LoadingIndicator();
                   }
                   if (state is FilterepisodeInitial) {
-                    return Text(
+                    return const Text(
                       "Please Selects a date",
                       style: TextStyle(fontSize: 23),
                     );
@@ -81,7 +80,7 @@ class _DailyUpdateScreenState extends State<DailyUpdateScreen> {
 
                   if (state is FilteredEpisodesLoaded) {
                     if (state.filterEpisodes.isEmpty) {
-                      return Text(
+                      return const Text(
                         "No Results Found",
                         style: TextStyle(fontSize: 23),
                         textAlign: TextAlign.center,

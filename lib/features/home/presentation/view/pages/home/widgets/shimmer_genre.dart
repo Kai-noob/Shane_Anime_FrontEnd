@@ -67,6 +67,28 @@ class ShimmerGenre extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Column(
+                children: const [
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.grey,
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Column(
+                children: const [
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.grey,
+                  ),
+                ],
+              ),
             )
           ]),
         ),

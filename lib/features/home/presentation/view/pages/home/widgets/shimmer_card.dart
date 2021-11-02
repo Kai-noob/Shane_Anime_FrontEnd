@@ -20,21 +20,28 @@ class ShimmerCard extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5), color: Colors.grey),
                 height: 240,
-                width: 140,
+                width: MediaQuery.of(context).size.width * 0.4,
               ),
               const SizedBox(width: 8),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5), color: Colors.grey),
                 height: 240,
-                width: 140,
+                width: MediaQuery.of(context).size.width * 0.4,
               ),
               const SizedBox(width: 8),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5), color: Colors.grey),
                 height: 240,
-                width: 140,
+                width: MediaQuery.of(context).size.width * 0.4,
+              ),
+              const SizedBox(width: 8),
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5), color: Colors.grey),
+                height: 240,
+                width: MediaQuery.of(context).size.width * 0.4,
               ),
             ],
           ),

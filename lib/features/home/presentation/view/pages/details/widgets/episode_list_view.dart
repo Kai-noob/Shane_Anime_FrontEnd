@@ -47,7 +47,7 @@ class EpisodeListView extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                   tileColor: episodes.contains(state.episodes[index])
                       ? Colors.grey.withOpacity(0.1)
                       : null,
@@ -74,9 +74,9 @@ class EpisodeListView extends StatelessWidget {
                   trailing: episodes.isEmpty
                       ? null
                       : episodes.last == state.episodes[index]
-                          ? Visibility(
+                          ? const Visibility(
                               visible: true, child: Icon(Ionicons.eye_outline))
-                          : Visibility(
+                          : const Visibility(
                               visible: false,
                               child: Icon(Ionicons.eye_outline)),
                   leading: SizedBox(

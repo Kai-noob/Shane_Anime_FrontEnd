@@ -18,8 +18,6 @@ class ReadingScreen extends StatefulWidget {
 }
 
 class _ReadingScreenState extends State<ReadingScreen> {
-  final GlobalKey<NavigatorState> _key = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(

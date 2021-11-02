@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import '../screens/details_review_screen.dart';
 
 import 'episode_list_view.dart';
+import 'package:readmore/readmore.dart';
 
 import '../../../../../domain/entities/comic.dart';
 
@@ -69,39 +69,16 @@ class _DetailsBodyState extends State<DetailsBody> {
                           Text(genre,
                               style: const TextStyle(
                                   color: Colors.white,
-                                  fontFamily: "HeaderFont",
                                   fontSize: 14,
                                   overflow: TextOverflow.ellipsis)),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                flex: 6,
-                                child: Text(widget.comicModel.title,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      overflow: TextOverflow.ellipsis,
-                                      fontFamily: "HeaderFont",
-                                      fontSize: 30,
-                                    )),
-                              ),
-                              Expanded(
-                                child: IconButton(
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (BuildContext context) =>
-                                                  DetailsReviewScreen(
-                                                    comicModel:
-                                                        widget.comicModel,
-                                                  )));
-                                    },
-                                    icon: const Icon(
-                                        Ionicons.information_circle_outline)),
-                              ),
-                            ],
-                          ),
+                          Text(widget.comicModel.title,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                overflow: TextOverflow.ellipsis,
+                                fontFamily: "HeaderFont",
+                                fontSize: 30,
+                              )),
                         ],
                       ),
                     ),
@@ -119,7 +96,24 @@ class _DetailsBodyState extends State<DetailsBody> {
             ),
           ),
         ),
-
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          sliver: SliverToBoxAdapter(
+            child: ReadMoreText(
+              widget.comicModel.review,
+              trimLines: 3,
+              style: const TextStyle(height: 2, fontSize: 15),
+              textAlign: TextAlign.justify,
+              trimMode: TrimMode.Line,
+              trimCollapsedText: 'See More',
+              trimExpandedText: 'See less',
+              lessStyle: const TextStyle(
+                  fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red),
+              moreStyle: const TextStyle(
+                  fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red),
+            ),
+          ),
+        ),
         const SliverPadding(
           padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           sliver: SliverToBoxAdapter(
