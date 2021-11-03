@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'episodes.dart';
 import '../../../genre/domain/entities/genre.dart';
 
 class Comic extends Equatable {
@@ -13,6 +14,7 @@ class Comic extends Equatable {
   final Timestamp created;
   final int episodeCount;
   final List<Genre> genres;
+  final List<Episode> episodes;
 
   const Comic(
     this.id,
@@ -25,6 +27,7 @@ class Comic extends Equatable {
     this.created,
     this.episodeCount,
     this.genres,
+    this.episodes,
   );
 
   @override
@@ -40,6 +43,7 @@ class Comic extends Equatable {
       created,
       episodeCount,
       genres,
+      episodes
     ];
   }
 }

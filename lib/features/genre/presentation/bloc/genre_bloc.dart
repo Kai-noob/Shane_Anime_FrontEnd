@@ -1,12 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import '../../../../core/strings/constants.dart';
+
 import '../../../../core/error/failure.dart';
+import '../../../../core/strings/constants.dart';
+import '../../../home/domain/entities/comic.dart';
 import '../../domain/entities/genre.dart';
 import '../../domain/usecases/get_comics_usecase.dart';
 import '../../domain/usecases/get_genres_usecase.dart';
-import '../../../home/domain/entities/comic.dart';
 
 part 'genre_event.dart';
 part 'genre_state.dart';

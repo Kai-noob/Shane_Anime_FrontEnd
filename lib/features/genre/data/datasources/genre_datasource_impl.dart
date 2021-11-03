@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../../../core/error/exceptions.dart';
 import '../../../home/data/models/comic_model.dart';
 import '../../../home/domain/entities/comic.dart';
-import 'genre_datasource.dart';
-import '../models/comic_genre_model.dart';
-import '../models/genre_model.dart';
 import '../../domain/entities/comic_gere.dart';
 import '../../domain/entities/genre.dart';
+import '../models/comic_genre_model.dart';
+import '../models/genre_model.dart';
+import 'genre_datasource.dart';
 
 class GenreDataSourceImpl implements GenreDataSource {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;

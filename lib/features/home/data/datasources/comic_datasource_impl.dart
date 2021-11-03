@@ -36,6 +36,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             .get();
 
         List<Genre> _genres = await getGenre(_completeAllComic.id);
+        List<Episode> _episodes = await getEpisodes(_completeAllComic.id);
         _completeAllComicList.add(ComicModel(
             id: _completeAllComic.id,
             title: _completeAllComic.get("title"),
@@ -46,7 +47,8 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             completed: _completeAllComic.get("completed"),
             created: _completeAllComic.get("created"),
             episodeCount: _episodeSnapshot.size,
-            genres: _genres));
+            genres: _genres,
+            episodes: _episodes));
       }
       return _completeAllComicList;
     } catch (e) {
@@ -72,6 +74,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             .where("comic_id", isEqualTo: _hotAllComic.id)
             .get();
         List<Genre> _genres = await getGenre(_hotAllComic.id);
+        List<Episode> _episodes = await getEpisodes(_hotAllComic.id);
         _hotAllComicList.add(ComicModel(
             id: _hotAllComic.id,
             title: _hotAllComic.get("title"),
@@ -82,7 +85,8 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             completed: _hotAllComic.get("completed"),
             created: _hotAllComic.get("created"),
             episodeCount: _episodeSnapshot.size,
-            genres: _genres));
+            genres: _genres,
+            episodes: _episodes));
       }
       return _hotAllComicList;
     } catch (e) {
@@ -238,18 +242,20 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             .where("comic_id", isEqualTo: _completeLimitComic.id)
             .get();
         List<Genre> _genres = await getGenre(_completeLimitComic.id);
+        List<Episode> _episodes = await getEpisodes(_completeLimitComic.id);
+
         _completeLimitComicList.add(ComicModel(
-          id: _completeLimitComic.id,
-          title: _completeLimitComic.get("title"),
-          coverPhoto: _completeLimitComic.get("cover_photo"),
-          review: _completeLimitComic.get("review"),
-          editorChoice: _completeLimitComic.get("editor_choice"),
-          published: _completeLimitComic.get("published"),
-          completed: _completeLimitComic.get("completed"),
-          created: _completeLimitComic.get("created"),
-          episodeCount: _episodeSnapshot.size,
-          genres: _genres,
-        ));
+            id: _completeLimitComic.id,
+            title: _completeLimitComic.get("title"),
+            coverPhoto: _completeLimitComic.get("cover_photo"),
+            review: _completeLimitComic.get("review"),
+            editorChoice: _completeLimitComic.get("editor_choice"),
+            published: _completeLimitComic.get("published"),
+            completed: _completeLimitComic.get("completed"),
+            created: _completeLimitComic.get("created"),
+            episodeCount: _episodeSnapshot.size,
+            genres: _genres,
+            episodes: _episodes));
       }
       return _completeLimitComicList;
     } catch (e) {
@@ -276,19 +282,20 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             .where("comic_id", isEqualTo: _hotLimitComic.id)
             .get();
         List<Genre> _genres = await getGenre(_hotLimitComic.id);
+        List<Episode> _episodes = await getEpisodes(_hotLimitComic.id);
 
         _hotLimitComicList.add(ComicModel(
-          id: _hotLimitComic.id,
-          title: _hotLimitComic.get("title"),
-          coverPhoto: _hotLimitComic.get("cover_photo"),
-          review: _hotLimitComic.get("review"),
-          editorChoice: _hotLimitComic.get("editor_choice"),
-          published: _hotLimitComic.get("published"),
-          completed: _hotLimitComic.get("completed"),
-          created: _hotLimitComic.get("created"),
-          episodeCount: _episodeSnapshot.size,
-          genres: _genres,
-        ));
+            id: _hotLimitComic.id,
+            title: _hotLimitComic.get("title"),
+            coverPhoto: _hotLimitComic.get("cover_photo"),
+            review: _hotLimitComic.get("review"),
+            editorChoice: _hotLimitComic.get("editor_choice"),
+            published: _hotLimitComic.get("published"),
+            completed: _hotLimitComic.get("completed"),
+            created: _hotLimitComic.get("created"),
+            episodeCount: _episodeSnapshot.size,
+            genres: _genres,
+            episodes: _episodes));
       }
       return _hotLimitComicList;
     } catch (e) {
@@ -392,6 +399,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             .where("comic_id", isEqualTo: _allComic.id)
             .get();
         List<Genre> _genres = await getGenre(_allComic.id);
+        List<Episode> _episodes = await getEpisodes(_allComic.id);
         _allComicList.add(ComicModel(
             id: _allComic.id,
             title: _allComic.get("title"),
@@ -402,7 +410,8 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             completed: _allComic.get("completed"),
             created: _allComic.get("created"),
             episodeCount: _episodeSnapshot.size,
-            genres: _genres));
+            genres: _genres,
+            episodes: _episodes));
       }
       return _allComicList;
     } catch (e) {
@@ -422,6 +431,7 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
       List<Comic> _allLimitComicList = [];
 
       for (QueryDocumentSnapshot _allLimitComic in _querySnapshot.docs) {
+        List<Episode> episodes = await getEpisodes(_allLimitComic.id);
         QuerySnapshot _episodeSnapshot = await firebaseFirestore
             .collection("episodes")
             .orderBy("episode_number")
@@ -438,7 +448,8 @@ class ComicRemoteDataSourceImpl implements ComicRemoteDataSource {
             completed: _allLimitComic.get("completed"),
             created: _allLimitComic.get("created"),
             episodeCount: _episodeSnapshot.size,
-            genres: _genres));
+            genres: _genres,
+            episodes: episodes));
       }
       return _allLimitComicList;
     } catch (e) {

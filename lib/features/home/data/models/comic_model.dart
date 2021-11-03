@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../domain/entities/episodes.dart';
 
 import '../../../genre/domain/entities/genre.dart';
 import '../../domain/entities/comic.dart';
@@ -14,9 +15,10 @@ class ComicModel extends Comic {
       required bool completed,
       required Timestamp created,
       int? episodeCount,
-      List<Genre>? genres})
+      List<Genre>? genres,
+      List<Episode>? episodes})
       : super(id!, title, coverPhoto, review, editorChoice, published,
-            completed, created, episodeCount!, genres!);
+            completed, created, episodeCount!, genres!, episodes!);
 
   static ComicModel fromJson(Map<String, dynamic> json) {
     return ComicModel(

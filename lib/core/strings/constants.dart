@@ -1,4 +1,4 @@
-const String serverMessage = "Something went wrong";
+const String serverMessage = "အဆင်မပြေမှုအတွက် တောင်းပန်ပါတယ်ဗျ.";
 
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);

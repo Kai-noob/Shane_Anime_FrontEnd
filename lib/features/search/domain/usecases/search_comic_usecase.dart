@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../../../home/domain/entities/comic.dart';
-import '../../../../core/error/failure.dart';
 
+import '../../../../core/error/failure.dart';
+import '../../../home/domain/entities/comic.dart';
 import '../repositories/search_comic_repo.dart';
 
 class SearchComicUseCase {

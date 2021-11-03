@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../domain/entities/episodes.dart';
 
 import '../../../../../../../core/global/image_widget.dart';
 
@@ -15,6 +16,7 @@ class ComicCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Episode lastChapter = comicModel.episodes.last;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0),
       child: Column(
@@ -34,11 +36,22 @@ class ComicCard extends StatelessWidget {
             height: 10,
           ),
           Container(
-            constraints: BoxConstraints(maxWidth: 150),
+            constraints: const BoxConstraints(maxWidth: 150),
             child: Text(
               comicModel.title,
               style: const TextStyle(
                   fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  overflow: TextOverflow.ellipsis),
+            ),
+          ),
+          Container(
+            constraints: const BoxConstraints(maxWidth: 150),
+            child: Text(
+              "${lastChapter.episodeName}${lastChapter.episodeNumber}",
+              style: const TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey,
                   fontWeight: FontWeight.w500,
                   overflow: TextOverflow.ellipsis),
             ),

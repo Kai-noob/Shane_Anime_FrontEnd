@@ -70,7 +70,7 @@ class DailyUpdateCard extends StatelessWidget {
             ),
           ),
           Container(
-            constraints: BoxConstraints(maxWidth: 150),
+            constraints: const BoxConstraints(maxWidth: 150),
             child: Text(
               episodes.title,
               style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
