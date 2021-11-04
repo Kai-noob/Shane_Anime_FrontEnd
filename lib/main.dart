@@ -17,10 +17,12 @@ import 'features/home/presentation/bloc/hot_comic/hot_bloc.dart';
 import 'core/theme/themes.dart';
 import 'features/injector.dart' as di;
 import 'features/injector.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  MobileAds.instance.initialize();
 
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
