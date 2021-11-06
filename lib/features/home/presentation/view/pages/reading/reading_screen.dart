@@ -24,7 +24,6 @@ class ReadingScreen extends StatefulWidget {
 class _ReadingScreenState extends State<ReadingScreen> {
   // Banner ads
   late BannerAd _bannerAd;
-  bool _isBannerAdReady = false;
 
   // Add _interstitialAd
   InterstitialAd? _interstitialAd;
@@ -34,10 +33,10 @@ class _ReadingScreenState extends State<ReadingScreen> {
   void _loadInterstitialAd() {
     InterstitialAd.load(
       adUnitId: AdHelper.interstitialAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
-          this._interstitialAd = ad;
+          _interstitialAd = ad;
 
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {},
@@ -57,17 +56,14 @@ class _ReadingScreenState extends State<ReadingScreen> {
     //Initialize _bannerAd
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
-          setState(() {
-            _isBannerAdReady = true;
-          });
+          setState(() {});
         },
         onAdFailedToLoad: (ad, err) {
           print('Failed to load a banner ad: ${err.message}');
-          _isBannerAdReady = false;
           ad.dispose();
         },
       ),
@@ -134,7 +130,7 @@ class _ReadingScreenState extends State<ReadingScreen> {
           color: Colors.white,
           child: Align(
             alignment: Alignment.topCenter,
-            child: Container(
+            child: SizedBox(
               width: _bannerAd.size.width.toDouble(),
               height: _bannerAd.size.height.toDouble(),
               child: AdWidget(ad: _bannerAd),

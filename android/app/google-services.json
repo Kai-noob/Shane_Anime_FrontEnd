@@ -33,6 +33,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083688049259:android:29a2d940f306819849af2e",
+        "android_client_info": {
+          "package_name": "com.shanemangareader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1083688049259-v6mmav124u8fpd5k19k0bejcsd50lru1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG7CYDT6G3UvTGOBGJayj-KmAGu4DfN8s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1083688049259-v6mmav124u8fpd5k19k0bejcsd50lru1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
