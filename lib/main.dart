@@ -1,22 +1,15 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/core/local/shared_pref_helper.dart';
-import 'package:provider/provider.dart';
-import 'features/home/presentation/bloc/all_comic/allcomic_bloc.dart';
-import 'features/home/presentation/bloc/details/details_bloc.dart';
-import 'features/home/presentation/view/pages/home/screens/home_screen.dart';
-import 'features/genre/presentation/bloc/genre_bloc.dart';
 
-import 'features/home/presentation/bloc/complete_comic/complete_bloc.dart';
+import 'package:injectable/injectable.dart';
 
-import 'features/home/presentation/bloc/daily_update/daily_update_bloc.dart';
-import 'features/home/presentation/bloc/hot_comic/hot_bloc.dart';
+import 'package:movie_app/injection.dart';
 
-import 'core/theme/themes.dart';
-import 'features/injector.dart' as di;
-import 'features/injector.dart';
+import 'presentation/app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,50 +18,12 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  await di.initializeDependencies();
+  configureInjection(Environment.prod);
 
-  runApp(const App());
-}
-
-class App extends StatelessWidget {
-  const App({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              CompleteBloc(sl(), sl())..add(FetchLimitCompleteComic()),
-        ),
-        BlocProvider(
-          create: (context) => DailyUpdateBloc(
-            sl(),
-          )..add(FetchDailyEpisode()),
-        ),
-        BlocProvider(
-          create: (context) => HotBloc(sl(), sl())..add(FetchLimitHotComic()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              AllcomicBloc(sl(), sl())..add(FetchAllLimitComic()),
-        ),
-        BlocProvider(
-          create: (context) => DetailsBloc(sl(), sl(), sl(), sl()),
-        ),
-        BlocProvider(
-            create: (context) => GenreBloc(sl(), sl())..add(FetchGenres())),
-      ],
-      child: ChangeNotifierProvider(
-        create: (BuildContext context) => SharedPrefHelper(),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: Themes.dark,
-          home: const HomeScreen(),
-        ),
-      ),
-    );
-  }
+  runZonedGuarded(
+    () => runApp(App()),
+    (error, stackTrace) {
+      log(error.toString(), stackTrace: stackTrace);
+    },
+  );
 }
