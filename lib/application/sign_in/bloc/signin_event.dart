@@ -10,4 +10,5 @@ class SigninEvent with _$SigninEvent {
   const factory SigninEvent.signInWithEmailAndPassword() =
       SignInWithEmailAndPassword;
   const factory SigninEvent.signInWithGoogle() = SignInWithGoogle;
+  const factory SigninEvent.signInWithFacebook() = SignInWithFacebook;
 }

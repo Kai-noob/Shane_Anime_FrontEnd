@@ -22,14 +22,16 @@ class _$ComicTearOff {
   const _$ComicTearOff();
 
   _Comic call(
-      {required String id,
+      {@JsonKey(ignore: true) String? id,
       required String title,
-      required String coverPhoto,
+      @JsonKey(name: "cover_photo") required String coverPhoto,
       required String review,
-      required bool editorChoice,
+      @JsonKey(name: "editor_choice") required bool editorChoice,
       required bool published,
       required bool completed,
-      @TimestampConverter() required DateTime created}) {
+      @TimestampConverter() required DateTime created,
+      @JsonKey(ignore: true) List<Genre>? genres,
+      @JsonKey(ignore: true) List<Episodes>? episodes}) {
     return _Comic(
       id: id,
       title: title,
@@ -39,6 +41,8 @@ class _$ComicTearOff {
       published: published,
       completed: completed,
       created: created,
+      genres: genres,
+      episodes: episodes,
     );
   }
 
@@ -52,15 +56,22 @@ const $Comic = _$ComicTearOff();
 
 /// @nodoc
 mixin _$Comic {
-  String get id => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  String? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: "cover_photo")
   String get coverPhoto => throw _privateConstructorUsedError;
   String get review => throw _privateConstructorUsedError;
+  @JsonKey(name: "editor_choice")
   bool get editorChoice => throw _privateConstructorUsedError;
   bool get published => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime get created => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  List<Genre>? get genres => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  List<Episodes>? get episodes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -72,14 +83,16 @@ abstract class $ComicCopyWith<$Res> {
   factory $ComicCopyWith(Comic value, $Res Function(Comic) then) =
       _$ComicCopyWithImpl<$Res>;
   $Res call(
-      {String id,
+      {@JsonKey(ignore: true) String? id,
       String title,
-      String coverPhoto,
+      @JsonKey(name: "cover_photo") String coverPhoto,
       String review,
-      bool editorChoice,
+      @JsonKey(name: "editor_choice") bool editorChoice,
       bool published,
       bool completed,
-      @TimestampConverter() DateTime created});
+      @TimestampConverter() DateTime created,
+      @JsonKey(ignore: true) List<Genre>? genres,
+      @JsonKey(ignore: true) List<Episodes>? episodes});
 }
 
 /// @nodoc
@@ -100,12 +113,14 @@ class _$ComicCopyWithImpl<$Res> implements $ComicCopyWith<$Res> {
     Object? published = freezed,
     Object? completed = freezed,
     Object? created = freezed,
+    Object? genres = freezed,
+    Object? episodes = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -134,6 +149,14 @@ class _$ComicCopyWithImpl<$Res> implements $ComicCopyWith<$Res> {
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      genres: genres == freezed
+          ? _value.genres
+          : genres // ignore: cast_nullable_to_non_nullable
+              as List<Genre>?,
+      episodes: episodes == freezed
+          ? _value.episodes
+          : episodes // ignore: cast_nullable_to_non_nullable
+              as List<Episodes>?,
     ));
   }
 }
@@ -144,14 +167,16 @@ abstract class _$ComicCopyWith<$Res> implements $ComicCopyWith<$Res> {
       __$ComicCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
+      {@JsonKey(ignore: true) String? id,
       String title,
-      String coverPhoto,
+      @JsonKey(name: "cover_photo") String coverPhoto,
       String review,
-      bool editorChoice,
+      @JsonKey(name: "editor_choice") bool editorChoice,
       bool published,
       bool completed,
-      @TimestampConverter() DateTime created});
+      @TimestampConverter() DateTime created,
+      @JsonKey(ignore: true) List<Genre>? genres,
+      @JsonKey(ignore: true) List<Episodes>? episodes});
 }
 
 /// @nodoc
@@ -173,12 +198,14 @@ class __$ComicCopyWithImpl<$Res> extends _$ComicCopyWithImpl<$Res>
     Object? published = freezed,
     Object? completed = freezed,
     Object? created = freezed,
+    Object? genres = freezed,
+    Object? episodes = freezed,
   }) {
     return _then(_Comic(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -207,6 +234,14 @@ class __$ComicCopyWithImpl<$Res> extends _$ComicCopyWithImpl<$Res>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      genres: genres == freezed
+          ? _value.genres
+          : genres // ignore: cast_nullable_to_non_nullable
+              as List<Genre>?,
+      episodes: episodes == freezed
+          ? _value.episodes
+          : episodes // ignore: cast_nullable_to_non_nullable
+              as List<Episodes>?,
     ));
   }
 }
@@ -215,27 +250,32 @@ class __$ComicCopyWithImpl<$Res> extends _$ComicCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Comic implements _Comic {
   const _$_Comic(
-      {required this.id,
+      {@JsonKey(ignore: true) this.id,
       required this.title,
-      required this.coverPhoto,
+      @JsonKey(name: "cover_photo") required this.coverPhoto,
       required this.review,
-      required this.editorChoice,
+      @JsonKey(name: "editor_choice") required this.editorChoice,
       required this.published,
       required this.completed,
-      @TimestampConverter() required this.created});
+      @TimestampConverter() required this.created,
+      @JsonKey(ignore: true) this.genres,
+      @JsonKey(ignore: true) this.episodes});
 
   factory _$_Comic.fromJson(Map<String, dynamic> json) =>
       _$$_ComicFromJson(json);
 
   @override
-  final String id;
+  @JsonKey(ignore: true)
+  final String? id;
   @override
   final String title;
   @override
+  @JsonKey(name: "cover_photo")
   final String coverPhoto;
   @override
   final String review;
   @override
+  @JsonKey(name: "editor_choice")
   final bool editorChoice;
   @override
   final bool published;
@@ -244,10 +284,16 @@ class _$_Comic implements _Comic {
   @override
   @TimestampConverter()
   final DateTime created;
+  @override
+  @JsonKey(ignore: true)
+  final List<Genre>? genres;
+  @override
+  @JsonKey(ignore: true)
+  final List<Episodes>? episodes;
 
   @override
   String toString() {
-    return 'Comic(id: $id, title: $title, coverPhoto: $coverPhoto, review: $review, editorChoice: $editorChoice, published: $published, completed: $completed, created: $created)';
+    return 'Comic(id: $id, title: $title, coverPhoto: $coverPhoto, review: $review, editorChoice: $editorChoice, published: $published, completed: $completed, created: $created, genres: $genres, episodes: $episodes)';
   }
 
   @override
@@ -266,12 +312,24 @@ class _$_Comic implements _Comic {
                 other.published == published) &&
             (identical(other.completed, completed) ||
                 other.completed == completed) &&
-            (identical(other.created, created) || other.created == created));
+            (identical(other.created, created) || other.created == created) &&
+            const DeepCollectionEquality().equals(other.genres, genres) &&
+            const DeepCollectionEquality().equals(other.episodes, episodes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, coverPhoto, review,
-      editorChoice, published, completed, created);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      coverPhoto,
+      review,
+      editorChoice,
+      published,
+      completed,
+      created,
+      const DeepCollectionEquality().hash(genres),
+      const DeepCollectionEquality().hash(episodes));
 
   @JsonKey(ignore: true)
   @override
@@ -286,26 +344,31 @@ class _$_Comic implements _Comic {
 
 abstract class _Comic implements Comic {
   const factory _Comic(
-      {required String id,
+      {@JsonKey(ignore: true) String? id,
       required String title,
-      required String coverPhoto,
+      @JsonKey(name: "cover_photo") required String coverPhoto,
       required String review,
-      required bool editorChoice,
+      @JsonKey(name: "editor_choice") required bool editorChoice,
       required bool published,
       required bool completed,
-      @TimestampConverter() required DateTime created}) = _$_Comic;
+      @TimestampConverter() required DateTime created,
+      @JsonKey(ignore: true) List<Genre>? genres,
+      @JsonKey(ignore: true) List<Episodes>? episodes}) = _$_Comic;
 
   factory _Comic.fromJson(Map<String, dynamic> json) = _$_Comic.fromJson;
 
   @override
-  String get id;
+  @JsonKey(ignore: true)
+  String? get id;
   @override
   String get title;
   @override
+  @JsonKey(name: "cover_photo")
   String get coverPhoto;
   @override
   String get review;
   @override
+  @JsonKey(name: "editor_choice")
   bool get editorChoice;
   @override
   bool get published;
@@ -314,6 +377,12 @@ abstract class _Comic implements Comic {
   @override
   @TimestampConverter()
   DateTime get created;
+  @override
+  @JsonKey(ignore: true)
+  List<Genre>? get genres;
+  @override
+  @JsonKey(ignore: true)
+  List<Episodes>? get episodes;
   @override
   @JsonKey(ignore: true)
   _$ComicCopyWith<_Comic> get copyWith => throw _privateConstructorUsedError;

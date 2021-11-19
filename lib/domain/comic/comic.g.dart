@@ -7,11 +7,10 @@ part of 'comic.dart';
 // **************************************************************************
 
 _$_Comic _$$_ComicFromJson(Map<String, dynamic> json) => _$_Comic(
-      id: json['id'] as String,
       title: json['title'] as String,
-      coverPhoto: json['coverPhoto'] as String,
+      coverPhoto: json['cover_photo'] as String,
       review: json['review'] as String,
-      editorChoice: json['editorChoice'] as bool,
+      editorChoice: json['editor_choice'] as bool,
       published: json['published'] as bool,
       completed: json['completed'] as bool,
       created:
@@ -19,11 +18,10 @@ _$_Comic _$$_ComicFromJson(Map<String, dynamic> json) => _$_Comic(
     );
 
 Map<String, dynamic> _$$_ComicToJson(_$_Comic instance) => <String, dynamic>{
-      'id': instance.id,
       'title': instance.title,
-      'coverPhoto': instance.coverPhoto,
+      'cover_photo': instance.coverPhoto,
       'review': instance.review,
-      'editorChoice': instance.editorChoice,
+      'editor_choice': instance.editorChoice,
       'published': instance.published,
       'completed': instance.completed,
       'created': const TimestampConverter().toJson(instance.created),

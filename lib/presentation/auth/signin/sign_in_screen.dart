@@ -1,3 +1,4 @@
+// ignore: implementation_imports
 import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,10 +6,8 @@ import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
 
 import 'package:movie_app/application/sign_in/bloc/signin_bloc.dart';
-import 'package:movie_app/injection.dart';
 
 import 'package:movie_app/presentation/auth/signup/sign_up_screen.dart';
-import 'package:movie_app/presentation/layout/bottom_navigation.dart';
 import 'package:movie_app/presentation/routes/router.gr.dart';
 
 class SignInScreen extends StatelessWidget {

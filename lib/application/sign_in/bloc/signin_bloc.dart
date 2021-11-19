@@ -21,6 +21,7 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
     on<RegisterWithEmailAndPassword>(_onRegisterWithCredentials);
     on<SignInWithEmailAndPassword>(_onSignInWithCredentials);
     on<SignInWithGoogle>(_onSignInWithGoogle);
+    on<SignInWithFacebook>(_onSignInWithFacebook);
   }
 
   void _onEmailChanged(EmailChanged event, Emitter<SigninState> emit) {
@@ -88,6 +89,19 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
       authFailureOrSuccessOption: none(),
     ));
     final failureOrSuccess = await _authFacade.signInWithGoogle();
+    emit(state.copyWith(
+      isSubmitting: false,
+      authFailureOrSuccessOption: some(failureOrSuccess),
+    ));
+  }
+
+  void _onSignInWithFacebook(
+      SignInWithFacebook event, Emitter<SigninState> emit) async {
+    emit(state.copyWith(
+      isSubmitting: true,
+      authFailureOrSuccessOption: none(),
+    ));
+    final failureOrSuccess = await _authFacade.signInWithFacebook();
     emit(state.copyWith(
       isSubmitting: false,
       authFailureOrSuccessOption: some(failureOrSuccess),

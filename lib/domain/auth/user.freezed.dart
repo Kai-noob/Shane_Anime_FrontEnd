@@ -13,14 +13,27 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+AppUser _$AppUserFromJson(Map<String, dynamic> json) {
+  return _AppUser.fromJson(json);
+}
+
 /// @nodoc
 class _$AppUserTearOff {
   const _$AppUserTearOff();
 
-  _AppUser call({required UniqueId id}) {
+  _AppUser call(
+      {required String id,
+      required String username,
+      required String photoUrl}) {
     return _AppUser(
       id: id,
+      username: username,
+      photoUrl: photoUrl,
     );
+  }
+
+  AppUser fromJson(Map<String, Object?> json) {
+    return AppUser.fromJson(json);
   }
 }
 
@@ -29,8 +42,11 @@ const $AppUser = _$AppUserTearOff();
 
 /// @nodoc
 mixin _$AppUser {
-  UniqueId get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get photoUrl => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AppUserCopyWith<AppUser> get copyWith => throw _privateConstructorUsedError;
 }
@@ -39,7 +55,7 @@ mixin _$AppUser {
 abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res>;
-  $Res call({UniqueId id});
+  $Res call({String id, String username, String photoUrl});
 }
 
 /// @nodoc
@@ -53,12 +69,22 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? username = freezed,
+    Object? photoUrl = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as String,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -68,7 +94,7 @@ abstract class _$AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   factory _$AppUserCopyWith(_AppUser value, $Res Function(_AppUser) then) =
       __$AppUserCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id});
+  $Res call({String id, String username, String photoUrl});
 }
 
 /// @nodoc
@@ -83,27 +109,45 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? username = freezed,
+    Object? photoUrl = freezed,
   }) {
     return _then(_AppUser(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as UniqueId,
+              as String,
+      username: username == freezed
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      photoUrl: photoUrl == freezed
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_AppUser implements _AppUser {
-  const _$_AppUser({required this.id});
+  const _$_AppUser(
+      {required this.id, required this.username, required this.photoUrl});
+
+  factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
+      _$$_AppUserFromJson(json);
 
   @override
-  final UniqueId id;
+  final String id;
+  @override
+  final String username;
+  @override
+  final String photoUrl;
 
   @override
   String toString() {
-    return 'AppUser(id: $id)';
+    return 'AppUser(id: $id, username: $username, photoUrl: $photoUrl)';
   }
 
   @override
@@ -111,23 +155,41 @@ class _$_AppUser implements _AppUser {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AppUser &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, id, username, photoUrl);
 
   @JsonKey(ignore: true)
   @override
   _$AppUserCopyWith<_AppUser> get copyWith =>
       __$AppUserCopyWithImpl<_AppUser>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_AppUserToJson(this);
+  }
 }
 
 abstract class _AppUser implements AppUser {
-  const factory _AppUser({required UniqueId id}) = _$_AppUser;
+  const factory _AppUser(
+      {required String id,
+      required String username,
+      required String photoUrl}) = _$_AppUser;
+
+  factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
 
   @override
-  UniqueId get id;
+  String get id;
+  @override
+  String get username;
+  @override
+  String get photoUrl;
   @override
   @JsonKey(ignore: true)
   _$AppUserCopyWith<_AppUser> get copyWith =>

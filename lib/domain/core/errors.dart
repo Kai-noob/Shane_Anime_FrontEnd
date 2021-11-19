@@ -10,3 +10,5 @@ class UnexceptedError extends Error {
     return Error.safeToString("Failure was $valueFailure");
   }
 }
+
+class NotAuthenticatedError extends Error {}

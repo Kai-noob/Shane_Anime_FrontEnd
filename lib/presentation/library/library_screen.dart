@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/presentation/library/save_screen.dart';
 
 import 'components/sliver_delegate.dart';
 
@@ -9,44 +10,46 @@ class LibraryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
-      child: NestedScrollView(
-        physics: const ClampingScrollPhysics(),
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return [
-            const SliverAppBar(
-              pinned: true,
-              floating: true,
-              elevation: 0.0,
-              title: Text(
-                "Library",
-                style:
-                    TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
-              ),
-            ),
-            SliverPersistentHeader(
-              delegate: SliverAppBarDelegate(
-                const TabBar(
-                  isScrollable: true,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicatorColor: Colors.white,
-                  tabs: [
-                    Tab(
-                      text: "Recent",
-                    ),
-                    Tab(
-                      text: "Saved",
-                    ),
-                    Tab(
-                      text: "Notification",
-                    ),
-                  ],
+      child: Scaffold(
+        body: NestedScrollView(
+          physics: const ClampingScrollPhysics(),
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return [
+              const SliverAppBar(
+                pinned: true,
+                floating: true,
+                elevation: 0.0,
+                title: Text(
+                  "Library",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600, color: Colors.white),
                 ),
               ),
-            ),
-          ];
-        },
-        body: TabBarView(
-          children: [Container(), Container(), Container()],
+              SliverPersistentHeader(
+                delegate: SliverAppBarDelegate(
+                  const TabBar(
+                    isScrollable: true,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    indicatorColor: Colors.white,
+                    tabs: [
+                      Tab(
+                        text: "Recent",
+                      ),
+                      Tab(
+                        text: "Saved",
+                      ),
+                      Tab(
+                        text: "Notification",
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ];
+          },
+          body: TabBarView(
+            children: [Container(), const SaveScreen(), Container()],
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+// ignore: implementation_imports
 import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,8 +7,6 @@ import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
 import 'package:movie_app/application/sign_in/bloc/signin_bloc.dart';
 import 'package:movie_app/injection.dart';
 
-import 'package:movie_app/presentation/auth/signin/sign_in_screen.dart';
-import 'package:movie_app/presentation/layout/bottom_navigation.dart';
 import 'package:movie_app/presentation/routes/router.gr.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -226,12 +225,12 @@ class SignUpScreen extends StatelessWidget {
                 Container(
                   height: double.infinity,
                   width: double.infinity,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.fitHeight,
                           image: AssetImage("assets/images/signup.jpeg"))),
                 ),
-                Positioned(
+                const Positioned(
                     left: 50,
                     top: 50,
                     child: Text(
@@ -254,7 +253,7 @@ class SignUpScreen extends StatelessWidget {
                         onTap: () => context.read<SigninBloc>()
                           ..add(const SigninEvent.signInWithGoogle()),
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
                           height: 60,
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -262,7 +261,7 @@ class SignUpScreen extends StatelessWidget {
                               color: Colors.red),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
+                            children: const [
                               Icon(
                                 Ionicons.logo_google,
                                 size: 30,
@@ -276,32 +275,36 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 20),
-                        height: 60,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.blue),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Ionicons.logo_facebook,
-                              size: 35,
-                            ),
-                            Text(
-                              "Sign In With Facebook",
-                              style: TextStyle(
-                                  fontSize: 19, fontWeight: FontWeight.w600),
-                            ),
-                          ],
+                      InkWell(
+                        onTap: () => context.read<SigninBloc>()
+                          ..add(const SigninEvent.signInWithFacebook()),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20),
+                          height: 60,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.blue),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: const [
+                              Icon(
+                                Ionicons.logo_facebook,
+                                size: 35,
+                              ),
+                              Text(
+                                "Sign In With Facebook",
+                                style: TextStyle(
+                                    fontSize: 19, fontWeight: FontWeight.w600),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                     ],

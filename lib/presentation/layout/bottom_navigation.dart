@@ -1,4 +1,4 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/presentation/home/home_screen.dart';
@@ -24,26 +24,33 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        body: TabBarView(
-          children: [HomeScreen(), LibraryScreen(), ProfileScreen()],
-        ),
-        bottomNavigationBar: TabBar(
-          indicatorColor: Colors.transparent,
-          tabs: [
-            Tab(
-              icon: Icon(Ionicons.heart_circle_outline),
-            ),
-            Tab(
-              icon: Icon(Ionicons.layers_outline),
-            ),
-            Tab(
-              icon: Icon(Ionicons.list_outline),
-            )
-          ],
-        ),
+    return Scaffold(
+      body: PageTransitionSwitcher(
+          duration: const Duration(milliseconds: 400),
+          transitionBuilder: (child, primaryAnimation, secondaryAnimation) {
+            return FadeThroughTransition(
+                secondaryAnimation: secondaryAnimation,
+                animation: primaryAnimation,
+                child: child);
+          },
+          child: _pages[_currrentIndex]),
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 0.0,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currrentIndex,
+        onTap: (value) {
+          setState(() {
+            _currrentIndex = value;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Ionicons.home_outline), label: "Home"),
+          BottomNavigationBarItem(
+              icon: Icon(Ionicons.layers_outline), label: "Library"),
+          BottomNavigationBarItem(
+              icon: Icon(Ionicons.menu_outline), label: "More"),
+        ],
       ),
     );
   }

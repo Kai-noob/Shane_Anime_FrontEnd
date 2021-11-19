@@ -6,4 +6,5 @@ part 'comic_failure.freezed.dart';
 class ComicFailure with _$ComicFailure {
   const factory ComicFailure.unexcepted() = _Unexcepted;
   const factory ComicFailure.notFound() = _NotFound;
+  const factory ComicFailure.permissionDenied() = _PermissionDenied;
 }

@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
 
-import 'package:movie_app/application/sign_in/bloc/signin_bloc.dart';
 import 'package:movie_app/helper/theme/themes.dart';
 import 'package:flutter/material.dart';
 import '../injection.dart';
@@ -20,7 +19,7 @@ class App extends StatelessWidget {
       providers: [
         BlocProvider(
             create: (context) =>
-                getIt<AuthBloc>()..add(AuthEvent.authCheckRequested())),
+                getIt<AuthBloc>()..add(const AuthEvent.authCheckRequested())),
       ],
       child: MaterialApp.router(
         routeInformationParser: _router.defaultRouteParser(),

@@ -1,15 +1,16 @@
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:movie_app/domain/auth/value_objects.dart';
-import 'package:movie_app/domain/core/failures.dart';
-import 'package:movie_app/domain/core/value_objects.dart';
-import 'package:uuid/uuid.dart';
 
 part 'user.freezed.dart';
+part 'user.g.dart';
 
 @freezed
 abstract class AppUser with _$AppUser {
   const factory AppUser({
-    required UniqueId id,
+    required String id,
+    required String username,
+    required String photoUrl,
   }) = _AppUser;
+
+  factory AppUser.fromJson(Map<String, dynamic> json) =>
+      _$AppUserFromJson(json);
 }

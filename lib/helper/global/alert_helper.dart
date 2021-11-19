@@ -7,14 +7,12 @@ class AlertHelper {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            content: Container(
-              child: TextField(
-                decoration: InputDecoration(hintText: "Enter Your New Name"),
-              ),
+            content: const TextField(
+              decoration: InputDecoration(hintText: "Enter Your New Name"),
             ),
             actions: [
-              TextButton(onPressed: () {}, child: Text("Cancle")),
-              TextButton(onPressed: () {}, child: Text("Update"))
+              TextButton(onPressed: () {}, child: const Text("Cancle")),
+              TextButton(onPressed: () {}, child: const Text("Update"))
             ],
           );
         });

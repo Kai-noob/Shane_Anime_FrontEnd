@@ -24,6 +24,10 @@ class _$ComicFailureTearOff {
   _NotFound notFound() {
     return const _NotFound();
   }
+
+  _PermissionDenied permissionDenied() {
+    return const _PermissionDenied();
+  }
 }
 
 /// @nodoc
@@ -35,18 +39,21 @@ mixin _$ComicFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() unexcepted,
     required TResult Function() notFound,
+    required TResult Function() permissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexcepted,
     TResult Function()? notFound,
+    TResult Function()? permissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexcepted,
     TResult Function()? notFound,
+    TResult Function()? permissionDenied,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -54,18 +61,21 @@ mixin _$ComicFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexcepted value) unexcepted,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_PermissionDenied value) permissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexcepted value)? unexcepted,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_PermissionDenied value)? permissionDenied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexcepted value)? unexcepted,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_PermissionDenied value)? permissionDenied,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,6 +139,7 @@ class _$_Unexcepted implements _Unexcepted {
   TResult when<TResult extends Object?>({
     required TResult Function() unexcepted,
     required TResult Function() notFound,
+    required TResult Function() permissionDenied,
   }) {
     return unexcepted();
   }
@@ -138,6 +149,7 @@ class _$_Unexcepted implements _Unexcepted {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexcepted,
     TResult Function()? notFound,
+    TResult Function()? permissionDenied,
   }) {
     return unexcepted?.call();
   }
@@ -147,6 +159,7 @@ class _$_Unexcepted implements _Unexcepted {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexcepted,
     TResult Function()? notFound,
+    TResult Function()? permissionDenied,
     required TResult orElse(),
   }) {
     if (unexcepted != null) {
@@ -160,6 +173,7 @@ class _$_Unexcepted implements _Unexcepted {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexcepted value) unexcepted,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_PermissionDenied value) permissionDenied,
   }) {
     return unexcepted(this);
   }
@@ -169,6 +183,7 @@ class _$_Unexcepted implements _Unexcepted {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexcepted value)? unexcepted,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_PermissionDenied value)? permissionDenied,
   }) {
     return unexcepted?.call(this);
   }
@@ -178,6 +193,7 @@ class _$_Unexcepted implements _Unexcepted {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexcepted value)? unexcepted,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_PermissionDenied value)? permissionDenied,
     required TResult orElse(),
   }) {
     if (unexcepted != null) {
@@ -231,6 +247,7 @@ class _$_NotFound implements _NotFound {
   TResult when<TResult extends Object?>({
     required TResult Function() unexcepted,
     required TResult Function() notFound,
+    required TResult Function() permissionDenied,
   }) {
     return notFound();
   }
@@ -240,6 +257,7 @@ class _$_NotFound implements _NotFound {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? unexcepted,
     TResult Function()? notFound,
+    TResult Function()? permissionDenied,
   }) {
     return notFound?.call();
   }
@@ -249,6 +267,7 @@ class _$_NotFound implements _NotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexcepted,
     TResult Function()? notFound,
+    TResult Function()? permissionDenied,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -262,6 +281,7 @@ class _$_NotFound implements _NotFound {
   TResult map<TResult extends Object?>({
     required TResult Function(_Unexcepted value) unexcepted,
     required TResult Function(_NotFound value) notFound,
+    required TResult Function(_PermissionDenied value) permissionDenied,
   }) {
     return notFound(this);
   }
@@ -271,6 +291,7 @@ class _$_NotFound implements _NotFound {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Unexcepted value)? unexcepted,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_PermissionDenied value)? permissionDenied,
   }) {
     return notFound?.call(this);
   }
@@ -280,6 +301,7 @@ class _$_NotFound implements _NotFound {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Unexcepted value)? unexcepted,
     TResult Function(_NotFound value)? notFound,
+    TResult Function(_PermissionDenied value)? permissionDenied,
     required TResult orElse(),
   }) {
     if (notFound != null) {
@@ -291,4 +313,115 @@ class _$_NotFound implements _NotFound {
 
 abstract class _NotFound implements ComicFailure {
   const factory _NotFound() = _$_NotFound;
+}
+
+/// @nodoc
+abstract class _$PermissionDeniedCopyWith<$Res> {
+  factory _$PermissionDeniedCopyWith(
+          _PermissionDenied value, $Res Function(_PermissionDenied) then) =
+      __$PermissionDeniedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$PermissionDeniedCopyWithImpl<$Res>
+    extends _$ComicFailureCopyWithImpl<$Res>
+    implements _$PermissionDeniedCopyWith<$Res> {
+  __$PermissionDeniedCopyWithImpl(
+      _PermissionDenied _value, $Res Function(_PermissionDenied) _then)
+      : super(_value, (v) => _then(v as _PermissionDenied));
+
+  @override
+  _PermissionDenied get _value => super._value as _PermissionDenied;
+}
+
+/// @nodoc
+
+class _$_PermissionDenied implements _PermissionDenied {
+  const _$_PermissionDenied();
+
+  @override
+  String toString() {
+    return 'ComicFailure.permissionDenied()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _PermissionDenied);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexcepted,
+    required TResult Function() notFound,
+    required TResult Function() permissionDenied,
+  }) {
+    return permissionDenied();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexcepted,
+    TResult Function()? notFound,
+    TResult Function()? permissionDenied,
+  }) {
+    return permissionDenied?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexcepted,
+    TResult Function()? notFound,
+    TResult Function()? permissionDenied,
+    required TResult orElse(),
+  }) {
+    if (permissionDenied != null) {
+      return permissionDenied();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Unexcepted value) unexcepted,
+    required TResult Function(_NotFound value) notFound,
+    required TResult Function(_PermissionDenied value) permissionDenied,
+  }) {
+    return permissionDenied(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Unexcepted value)? unexcepted,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_PermissionDenied value)? permissionDenied,
+  }) {
+    return permissionDenied?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Unexcepted value)? unexcepted,
+    TResult Function(_NotFound value)? notFound,
+    TResult Function(_PermissionDenied value)? permissionDenied,
+    required TResult orElse(),
+  }) {
+    if (permissionDenied != null) {
+      return permissionDenied(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PermissionDenied implements ComicFailure {
+  const factory _PermissionDenied() = _$_PermissionDenied;
 }

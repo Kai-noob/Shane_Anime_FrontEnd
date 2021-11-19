@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
@@ -14,8 +16,9 @@ import './firebase_user_mapper.dart';
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final FirebaseFirestore _firestore;
 
-  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+  FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn, this._firestore);
 
   @override
   Future<Option<AppUser>> getSignedInUser() async =>
@@ -28,9 +31,9 @@ class FirebaseAuthFacade implements IAuthFacade {
     final passwordStr = password.getOrCrash();
 
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
           email: emailStr, password: passwordStr);
-
+      await _saveUserDocToDatabase(credential);
       return right(unit);
     } on PlatformException catch (e) {
       if (e.code == "email-already-in-use") {
@@ -48,8 +51,9 @@ class FirebaseAuthFacade implements IAuthFacade {
     final passwordStr = password.getOrCrash();
 
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      final credential = await _firebaseAuth.signInWithEmailAndPassword(
           email: emailStr, password: passwordStr);
+      await _saveUserDocToDatabase(credential);
       return right(unit);
     } on PlatformException catch (e) {
       if (e.code == 'user-not-found' && e.code == "wrong-password") {
@@ -72,34 +76,60 @@ class FirebaseAuthFacade implements IAuthFacade {
       final authCredential = GoogleAuthProvider.credential(
           idToken: googleAuthentication.idToken,
           accessToken: googleAuthentication.accessToken);
-      return _firebaseAuth
-          .signInWithCredential(authCredential)
-          .then((r) => right(unit));
+      final credential =
+          await _firebaseAuth.signInWithCredential(authCredential);
+      await _saveUserDocToDatabase(credential);
+      return right(unit);
     } on PlatformException catch (_) {
       return left(const AuthFailure.serverError());
     }
   }
 
-  @override
-  Future<void> signOut() {
-    return Future.wait([_googleSignIn.signOut(), _firebaseAuth.signOut()]);
+  Future<void> _saveUserDocToDatabase(UserCredential credential) async {
+    final firebaseUser = credential.user!;
+    final userDomain = firebaseUser.toDomain();
+    Map<String, dynamic> userJson = userDomain.toJson();
+
+    final doc =
+        await _firestore.collection("users").doc(firebaseUser.uid).get();
+    if (doc.exists) userJson = doc.data()!;
+
+    await _firestore.collection("users").doc(userDomain.id).set(userJson);
   }
 
-  // @override
-  // Future<Either<AuthFailure, Unit>> signInWithFacebook() async{
-  //   try{
-  //     FacebookAuth facebookAuth=FacebookAuth.instance;
-  //     bool isLogged=await facebookAuth.accessToken!=null;
-  //     if(!isLogged){
-  //       LoginResult result=await facebookAuth.login();
-  //       if(result.status==LoginStatus.success){
-  //         AccessToken? token=await facebookAuth.accessToken;
-  //       UserCredential userCredential=await _firebaseAuth.signInWithCredential(FacebookAuthProvider.credential(token!.token));
-  //       return userCredential.user;
-  //       }
-  //     }
-  //   }on PlatformException catch(_){
-  //     return left(const AuthFailure.serverError());
-  //   }
-  // }
+  @override
+  Future<void> signOut() {
+    return Future.wait([
+      _googleSignIn.signOut(),
+      _firebaseAuth.signOut(),
+      FacebookAuth.instance.logOut()
+    ]);
+  }
+
+  @override
+  Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
+    try {
+      FacebookAuth facebookAuth = FacebookAuth.instance;
+      bool isLogged = await facebookAuth.accessToken != null;
+      if (!isLogged) {
+        LoginResult result = await facebookAuth.login();
+        if (result.status == LoginStatus.success) {
+          AccessToken? token = await facebookAuth.accessToken;
+          final UserCredential credential =
+              await _firebaseAuth.signInWithCredential(
+                  FacebookAuthProvider.credential(token!.token));
+          _saveUserDocToDatabase(credential);
+        } else {
+          AccessToken? token = await facebookAuth.accessToken;
+          final UserCredential credential =
+              await _firebaseAuth.signInWithCredential(
+                  FacebookAuthProvider.credential(token!.token));
+          _saveUserDocToDatabase(credential);
+        }
+      }
+      return right(unit);
+    } on PlatformException catch (_) {
+      return left(const AuthFailure.serverError());
+    }
+  }
 }

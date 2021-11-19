@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
             authenticated: (_) =>
                 context.replaceRoute(const BottomNavigationScreenRoute()));
       },
-      child: Scaffold(
+      child: const Scaffold(
         body: Center(
           child: LoadingIndicator(),
         ),
