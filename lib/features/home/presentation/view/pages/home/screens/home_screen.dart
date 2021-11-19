@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final status = await newVersion.getVersionStatus();
 
       newVersion.showUpdateDialog(
-          allowDismissal: false,
+          allowDismissal: true,
           context: context,
           versionStatus: status!,
           dialogTitle: "Shane Manga MM Version 2",
