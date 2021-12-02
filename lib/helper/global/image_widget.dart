@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ImageWidget extends StatelessWidget {
   const ImageWidget({
@@ -17,7 +17,7 @@ class ImageWidget extends StatelessWidget {
       imageUrl: image,
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(5.r),
           image: DecorationImage(
             image: imageProvider,
             fit: BoxFit.cover,
@@ -31,7 +31,7 @@ class ImageWidget extends StatelessWidget {
             color: Colors.grey.shade200),
       ),
       errorWidget: (context, url, error) =>
-          const Icon(Ionicons.warning_outline, size: 35),
+          Icon(Icons.warning_outlined, size: 35.w),
     );
   }
 }

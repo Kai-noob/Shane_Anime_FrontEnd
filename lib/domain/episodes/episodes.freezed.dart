@@ -22,17 +22,27 @@ class _$EpisodesTearOff {
   const _$EpisodesTearOff();
 
   _Episodes call(
-      {@JsonKey(name: "comic_id") required String comicId,
+      {@JsonKey(ignore: true) String? id,
+      @JsonKey(name: "comic_id") required String comicId,
       @JsonKey(name: "episode_name") required String episodeName,
+      @JsonKey(name: "episode_number") required int episodeNumber,
+      @JsonKey(name: "pdf_file") required String? pdfFile,
+      @JsonKey(name: "drive_link") required String? driveLink,
+      @JsonKey(ignore: true) int? episodeCount,
       @JsonKey(ignore: true) String? title,
       @JsonKey(ignore: true) String? coverPhoto,
-      @JsonKey(name: "episode_number") required int episodeNumber}) {
+      required Map<String, bool> like}) {
     return _Episodes(
+      id: id,
       comicId: comicId,
       episodeName: episodeName,
+      episodeNumber: episodeNumber,
+      pdfFile: pdfFile,
+      driveLink: driveLink,
+      episodeCount: episodeCount,
       title: title,
       coverPhoto: coverPhoto,
-      episodeNumber: episodeNumber,
+      like: like,
     );
   }
 
@@ -46,16 +56,33 @@ const $Episodes = _$EpisodesTearOff();
 
 /// @nodoc
 mixin _$Episodes {
-  @JsonKey(name: "comic_id")
-  String get comicId => throw _privateConstructorUsedError;
-  @JsonKey(name: "episode_name")
-  String get episodeName => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  String? get title => throw _privateConstructorUsedError;
+  String? get id =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(name: "comic_id")
+  String get comicId =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(name: "episode_name")
+  String get episodeName =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(name: "episode_number")
+  int get episodeNumber =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(name: "pdf_file")
+  String? get pdfFile =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(name: "drive_link")
+  String? get driveLink =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(ignore: true)
+  int? get episodeCount =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(ignore: true)
+  String? get title =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   String? get coverPhoto => throw _privateConstructorUsedError;
-  @JsonKey(name: "episode_number")
-  int get episodeNumber => throw _privateConstructorUsedError;
+  Map<String, bool> get like => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -68,11 +95,16 @@ abstract class $EpisodesCopyWith<$Res> {
   factory $EpisodesCopyWith(Episodes value, $Res Function(Episodes) then) =
       _$EpisodesCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "comic_id") String comicId,
+      {@JsonKey(ignore: true) String? id,
+      @JsonKey(name: "comic_id") String comicId,
       @JsonKey(name: "episode_name") String episodeName,
+      @JsonKey(name: "episode_number") int episodeNumber,
+      @JsonKey(name: "pdf_file") String? pdfFile,
+      @JsonKey(name: "drive_link") String? driveLink,
+      @JsonKey(ignore: true) int? episodeCount,
       @JsonKey(ignore: true) String? title,
       @JsonKey(ignore: true) String? coverPhoto,
-      @JsonKey(name: "episode_number") int episodeNumber});
+      Map<String, bool> like});
 }
 
 /// @nodoc
@@ -85,13 +117,22 @@ class _$EpisodesCopyWithImpl<$Res> implements $EpisodesCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? comicId = freezed,
     Object? episodeName = freezed,
+    Object? episodeNumber = freezed,
+    Object? pdfFile = freezed,
+    Object? driveLink = freezed,
+    Object? episodeCount = freezed,
     Object? title = freezed,
     Object? coverPhoto = freezed,
-    Object? episodeNumber = freezed,
+    Object? like = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       comicId: comicId == freezed
           ? _value.comicId
           : comicId // ignore: cast_nullable_to_non_nullable
@@ -100,6 +141,22 @@ class _$EpisodesCopyWithImpl<$Res> implements $EpisodesCopyWith<$Res> {
           ? _value.episodeName
           : episodeName // ignore: cast_nullable_to_non_nullable
               as String,
+      episodeNumber: episodeNumber == freezed
+          ? _value.episodeNumber
+          : episodeNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      pdfFile: pdfFile == freezed
+          ? _value.pdfFile
+          : pdfFile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driveLink: driveLink == freezed
+          ? _value.driveLink
+          : driveLink // ignore: cast_nullable_to_non_nullable
+              as String?,
+      episodeCount: episodeCount == freezed
+          ? _value.episodeCount
+          : episodeCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -108,10 +165,10 @@ class _$EpisodesCopyWithImpl<$Res> implements $EpisodesCopyWith<$Res> {
           ? _value.coverPhoto
           : coverPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
-      episodeNumber: episodeNumber == freezed
-          ? _value.episodeNumber
-          : episodeNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+      like: like == freezed
+          ? _value.like
+          : like // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
     ));
   }
 }
@@ -122,11 +179,16 @@ abstract class _$EpisodesCopyWith<$Res> implements $EpisodesCopyWith<$Res> {
       __$EpisodesCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "comic_id") String comicId,
+      {@JsonKey(ignore: true) String? id,
+      @JsonKey(name: "comic_id") String comicId,
       @JsonKey(name: "episode_name") String episodeName,
+      @JsonKey(name: "episode_number") int episodeNumber,
+      @JsonKey(name: "pdf_file") String? pdfFile,
+      @JsonKey(name: "drive_link") String? driveLink,
+      @JsonKey(ignore: true) int? episodeCount,
       @JsonKey(ignore: true) String? title,
       @JsonKey(ignore: true) String? coverPhoto,
-      @JsonKey(name: "episode_number") int episodeNumber});
+      Map<String, bool> like});
 }
 
 /// @nodoc
@@ -140,13 +202,22 @@ class __$EpisodesCopyWithImpl<$Res> extends _$EpisodesCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? comicId = freezed,
     Object? episodeName = freezed,
+    Object? episodeNumber = freezed,
+    Object? pdfFile = freezed,
+    Object? driveLink = freezed,
+    Object? episodeCount = freezed,
     Object? title = freezed,
     Object? coverPhoto = freezed,
-    Object? episodeNumber = freezed,
+    Object? like = freezed,
   }) {
     return _then(_Episodes(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       comicId: comicId == freezed
           ? _value.comicId
           : comicId // ignore: cast_nullable_to_non_nullable
@@ -155,6 +226,22 @@ class __$EpisodesCopyWithImpl<$Res> extends _$EpisodesCopyWithImpl<$Res>
           ? _value.episodeName
           : episodeName // ignore: cast_nullable_to_non_nullable
               as String,
+      episodeNumber: episodeNumber == freezed
+          ? _value.episodeNumber
+          : episodeNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      pdfFile: pdfFile == freezed
+          ? _value.pdfFile
+          : pdfFile // ignore: cast_nullable_to_non_nullable
+              as String?,
+      driveLink: driveLink == freezed
+          ? _value.driveLink
+          : driveLink // ignore: cast_nullable_to_non_nullable
+              as String?,
+      episodeCount: episodeCount == freezed
+          ? _value.episodeCount
+          : episodeCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -163,10 +250,10 @@ class __$EpisodesCopyWithImpl<$Res> extends _$EpisodesCopyWithImpl<$Res>
           ? _value.coverPhoto
           : coverPhoto // ignore: cast_nullable_to_non_nullable
               as String?,
-      episodeNumber: episodeNumber == freezed
-          ? _value.episodeNumber
-          : episodeNumber // ignore: cast_nullable_to_non_nullable
-              as int,
+      like: like == freezed
+          ? _value.like
+          : like // ignore: cast_nullable_to_non_nullable
+              as Map<String, bool>,
     ));
   }
 }
@@ -175,34 +262,53 @@ class __$EpisodesCopyWithImpl<$Res> extends _$EpisodesCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Episodes implements _Episodes {
   const _$_Episodes(
-      {@JsonKey(name: "comic_id") required this.comicId,
+      {@JsonKey(ignore: true) this.id,
+      @JsonKey(name: "comic_id") required this.comicId,
       @JsonKey(name: "episode_name") required this.episodeName,
+      @JsonKey(name: "episode_number") required this.episodeNumber,
+      @JsonKey(name: "pdf_file") required this.pdfFile,
+      @JsonKey(name: "drive_link") required this.driveLink,
+      @JsonKey(ignore: true) this.episodeCount,
       @JsonKey(ignore: true) this.title,
       @JsonKey(ignore: true) this.coverPhoto,
-      @JsonKey(name: "episode_number") required this.episodeNumber});
+      required this.like});
 
   factory _$_Episodes.fromJson(Map<String, dynamic> json) =>
       _$$_EpisodesFromJson(json);
 
   @override
+  @JsonKey(ignore: true)
+  final String? id;
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "comic_id")
   final String comicId;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "episode_name")
   final String episodeName;
-  @override
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: "episode_number")
+  final int episodeNumber;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: "pdf_file")
+  final String? pdfFile;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: "drive_link")
+  final String? driveLink;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(ignore: true)
+  final int? episodeCount;
+  @override // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   final String? title;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   final String? coverPhoto;
   @override
-  @JsonKey(name: "episode_number")
-  final int episodeNumber;
+  final Map<String, bool> like;
 
   @override
   String toString() {
-    return 'Episodes(comicId: $comicId, episodeName: $episodeName, title: $title, coverPhoto: $coverPhoto, episodeNumber: $episodeNumber)';
+    return 'Episodes(id: $id, comicId: $comicId, episodeName: $episodeName, episodeNumber: $episodeNumber, pdfFile: $pdfFile, driveLink: $driveLink, episodeCount: $episodeCount, title: $title, coverPhoto: $coverPhoto, like: $like)';
   }
 
   @override
@@ -210,19 +316,36 @@ class _$_Episodes implements _Episodes {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Episodes &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.comicId, comicId) || other.comicId == comicId) &&
             (identical(other.episodeName, episodeName) ||
                 other.episodeName == episodeName) &&
+            (identical(other.episodeNumber, episodeNumber) ||
+                other.episodeNumber == episodeNumber) &&
+            (identical(other.pdfFile, pdfFile) || other.pdfFile == pdfFile) &&
+            (identical(other.driveLink, driveLink) ||
+                other.driveLink == driveLink) &&
+            (identical(other.episodeCount, episodeCount) ||
+                other.episodeCount == episodeCount) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.coverPhoto, coverPhoto) ||
                 other.coverPhoto == coverPhoto) &&
-            (identical(other.episodeNumber, episodeNumber) ||
-                other.episodeNumber == episodeNumber));
+            const DeepCollectionEquality().equals(other.like, like));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, comicId, episodeName, title, coverPhoto, episodeNumber);
+      runtimeType,
+      id,
+      comicId,
+      episodeName,
+      episodeNumber,
+      pdfFile,
+      driveLink,
+      episodeCount,
+      title,
+      coverPhoto,
+      const DeepCollectionEquality().hash(like));
 
   @JsonKey(ignore: true)
   @override
@@ -237,30 +360,48 @@ class _$_Episodes implements _Episodes {
 
 abstract class _Episodes implements Episodes {
   const factory _Episodes(
-          {@JsonKey(name: "comic_id") required String comicId,
-          @JsonKey(name: "episode_name") required String episodeName,
-          @JsonKey(ignore: true) String? title,
-          @JsonKey(ignore: true) String? coverPhoto,
-          @JsonKey(name: "episode_number") required int episodeNumber}) =
-      _$_Episodes;
+      {@JsonKey(ignore: true) String? id,
+      @JsonKey(name: "comic_id") required String comicId,
+      @JsonKey(name: "episode_name") required String episodeName,
+      @JsonKey(name: "episode_number") required int episodeNumber,
+      @JsonKey(name: "pdf_file") required String? pdfFile,
+      @JsonKey(name: "drive_link") required String? driveLink,
+      @JsonKey(ignore: true) int? episodeCount,
+      @JsonKey(ignore: true) String? title,
+      @JsonKey(ignore: true) String? coverPhoto,
+      required Map<String, bool> like}) = _$_Episodes;
 
   factory _Episodes.fromJson(Map<String, dynamic> json) = _$_Episodes.fromJson;
 
   @override
+  @JsonKey(ignore: true)
+  String? get id;
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "comic_id")
   String get comicId;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "episode_name")
   String get episodeName;
-  @override
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: "episode_number")
+  int get episodeNumber;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: "pdf_file")
+  String? get pdfFile;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: "drive_link")
+  String? get driveLink;
+  @override // ignore: invalid_annotation_target
+  @JsonKey(ignore: true)
+  int? get episodeCount;
+  @override // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   String? get title;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   String? get coverPhoto;
   @override
-  @JsonKey(name: "episode_number")
-  int get episodeNumber;
+  Map<String, bool> get like;
   @override
   @JsonKey(ignore: true)
   _$EpisodesCopyWith<_Episodes> get copyWith =>

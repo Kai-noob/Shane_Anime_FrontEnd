@@ -17,25 +17,25 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SaveComicEventTearOff {
   const _$SaveComicEventTearOff();
 
-  SaveComic saveComic(String comicId) {
-    return SaveComic(
+  _SaveComic saveComic(String comicId) {
+    return _SaveComic(
       comicId,
     );
   }
 
-  RemoveComic removeComic(String comicId) {
-    return RemoveComic(
+  _RemoveComic removeComic(String comicId) {
+    return _RemoveComic(
       comicId,
     );
   }
 
-  WatchSaved watchSaved() {
-    return const WatchSaved();
+  _WatchSaved watchSaved() {
+    return const _WatchSaved();
   }
 
-  SavedComicsReceived savedComicsReceived(
+  _SavedComicsReceived savedComicsReceived(
       Either<ComicFailure, List<SaveComics>> failureOrComics) {
-    return SavedComicsReceived(
+    return _SavedComicsReceived(
       failureOrComics,
     );
   }
@@ -77,26 +77,26 @@ mixin _$SaveComicEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SaveComic value) saveComic,
-    required TResult Function(RemoveComic value) removeComic,
-    required TResult Function(WatchSaved value) watchSaved,
-    required TResult Function(SavedComicsReceived value) savedComicsReceived,
+    required TResult Function(_SaveComic value) saveComic,
+    required TResult Function(_RemoveComic value) removeComic,
+    required TResult Function(_WatchSaved value) watchSaved,
+    required TResult Function(_SavedComicsReceived value) savedComicsReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,26 +120,27 @@ class _$SaveComicEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $SaveComicCopyWith<$Res> {
-  factory $SaveComicCopyWith(SaveComic value, $Res Function(SaveComic) then) =
-      _$SaveComicCopyWithImpl<$Res>;
+abstract class _$SaveComicCopyWith<$Res> {
+  factory _$SaveComicCopyWith(
+          _SaveComic value, $Res Function(_SaveComic) then) =
+      __$SaveComicCopyWithImpl<$Res>;
   $Res call({String comicId});
 }
 
 /// @nodoc
-class _$SaveComicCopyWithImpl<$Res> extends _$SaveComicEventCopyWithImpl<$Res>
-    implements $SaveComicCopyWith<$Res> {
-  _$SaveComicCopyWithImpl(SaveComic _value, $Res Function(SaveComic) _then)
-      : super(_value, (v) => _then(v as SaveComic));
+class __$SaveComicCopyWithImpl<$Res> extends _$SaveComicEventCopyWithImpl<$Res>
+    implements _$SaveComicCopyWith<$Res> {
+  __$SaveComicCopyWithImpl(_SaveComic _value, $Res Function(_SaveComic) _then)
+      : super(_value, (v) => _then(v as _SaveComic));
 
   @override
-  SaveComic get _value => super._value as SaveComic;
+  _SaveComic get _value => super._value as _SaveComic;
 
   @override
   $Res call({
     Object? comicId = freezed,
   }) {
-    return _then(SaveComic(
+    return _then(_SaveComic(
       comicId == freezed
           ? _value.comicId
           : comicId // ignore: cast_nullable_to_non_nullable
@@ -150,8 +151,8 @@ class _$SaveComicCopyWithImpl<$Res> extends _$SaveComicEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SaveComic implements SaveComic {
-  const _$SaveComic(this.comicId);
+class _$_SaveComic implements _SaveComic {
+  const _$_SaveComic(this.comicId);
 
   @override
   final String comicId;
@@ -165,7 +166,7 @@ class _$SaveComic implements SaveComic {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SaveComic &&
+            other is _SaveComic &&
             (identical(other.comicId, comicId) || other.comicId == comicId));
   }
 
@@ -174,8 +175,8 @@ class _$SaveComic implements SaveComic {
 
   @JsonKey(ignore: true)
   @override
-  $SaveComicCopyWith<SaveComic> get copyWith =>
-      _$SaveComicCopyWithImpl<SaveComic>(this, _$identity);
+  _$SaveComicCopyWith<_SaveComic> get copyWith =>
+      __$SaveComicCopyWithImpl<_SaveComic>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -221,10 +222,10 @@ class _$SaveComic implements SaveComic {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SaveComic value) saveComic,
-    required TResult Function(RemoveComic value) removeComic,
-    required TResult Function(WatchSaved value) watchSaved,
-    required TResult Function(SavedComicsReceived value) savedComicsReceived,
+    required TResult Function(_SaveComic value) saveComic,
+    required TResult Function(_RemoveComic value) removeComic,
+    required TResult Function(_WatchSaved value) watchSaved,
+    required TResult Function(_SavedComicsReceived value) savedComicsReceived,
   }) {
     return saveComic(this);
   }
@@ -232,10 +233,10 @@ class _$SaveComic implements SaveComic {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
   }) {
     return saveComic?.call(this);
   }
@@ -243,10 +244,10 @@ class _$SaveComic implements SaveComic {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
     required TResult orElse(),
   }) {
     if (saveComic != null) {
@@ -256,38 +257,39 @@ class _$SaveComic implements SaveComic {
   }
 }
 
-abstract class SaveComic implements SaveComicEvent {
-  const factory SaveComic(String comicId) = _$SaveComic;
+abstract class _SaveComic implements SaveComicEvent {
+  const factory _SaveComic(String comicId) = _$_SaveComic;
 
   String get comicId;
   @JsonKey(ignore: true)
-  $SaveComicCopyWith<SaveComic> get copyWith =>
+  _$SaveComicCopyWith<_SaveComic> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RemoveComicCopyWith<$Res> {
-  factory $RemoveComicCopyWith(
-          RemoveComic value, $Res Function(RemoveComic) then) =
-      _$RemoveComicCopyWithImpl<$Res>;
+abstract class _$RemoveComicCopyWith<$Res> {
+  factory _$RemoveComicCopyWith(
+          _RemoveComic value, $Res Function(_RemoveComic) then) =
+      __$RemoveComicCopyWithImpl<$Res>;
   $Res call({String comicId});
 }
 
 /// @nodoc
-class _$RemoveComicCopyWithImpl<$Res> extends _$SaveComicEventCopyWithImpl<$Res>
-    implements $RemoveComicCopyWith<$Res> {
-  _$RemoveComicCopyWithImpl(
-      RemoveComic _value, $Res Function(RemoveComic) _then)
-      : super(_value, (v) => _then(v as RemoveComic));
+class __$RemoveComicCopyWithImpl<$Res>
+    extends _$SaveComicEventCopyWithImpl<$Res>
+    implements _$RemoveComicCopyWith<$Res> {
+  __$RemoveComicCopyWithImpl(
+      _RemoveComic _value, $Res Function(_RemoveComic) _then)
+      : super(_value, (v) => _then(v as _RemoveComic));
 
   @override
-  RemoveComic get _value => super._value as RemoveComic;
+  _RemoveComic get _value => super._value as _RemoveComic;
 
   @override
   $Res call({
     Object? comicId = freezed,
   }) {
-    return _then(RemoveComic(
+    return _then(_RemoveComic(
       comicId == freezed
           ? _value.comicId
           : comicId // ignore: cast_nullable_to_non_nullable
@@ -298,8 +300,8 @@ class _$RemoveComicCopyWithImpl<$Res> extends _$SaveComicEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RemoveComic implements RemoveComic {
-  const _$RemoveComic(this.comicId);
+class _$_RemoveComic implements _RemoveComic {
+  const _$_RemoveComic(this.comicId);
 
   @override
   final String comicId;
@@ -313,7 +315,7 @@ class _$RemoveComic implements RemoveComic {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is RemoveComic &&
+            other is _RemoveComic &&
             (identical(other.comicId, comicId) || other.comicId == comicId));
   }
 
@@ -322,8 +324,8 @@ class _$RemoveComic implements RemoveComic {
 
   @JsonKey(ignore: true)
   @override
-  $RemoveComicCopyWith<RemoveComic> get copyWith =>
-      _$RemoveComicCopyWithImpl<RemoveComic>(this, _$identity);
+  _$RemoveComicCopyWith<_RemoveComic> get copyWith =>
+      __$RemoveComicCopyWithImpl<_RemoveComic>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -369,10 +371,10 @@ class _$RemoveComic implements RemoveComic {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SaveComic value) saveComic,
-    required TResult Function(RemoveComic value) removeComic,
-    required TResult Function(WatchSaved value) watchSaved,
-    required TResult Function(SavedComicsReceived value) savedComicsReceived,
+    required TResult Function(_SaveComic value) saveComic,
+    required TResult Function(_RemoveComic value) removeComic,
+    required TResult Function(_WatchSaved value) watchSaved,
+    required TResult Function(_SavedComicsReceived value) savedComicsReceived,
   }) {
     return removeComic(this);
   }
@@ -380,10 +382,10 @@ class _$RemoveComic implements RemoveComic {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
   }) {
     return removeComic?.call(this);
   }
@@ -391,10 +393,10 @@ class _$RemoveComic implements RemoveComic {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
     required TResult orElse(),
   }) {
     if (removeComic != null) {
@@ -404,36 +406,37 @@ class _$RemoveComic implements RemoveComic {
   }
 }
 
-abstract class RemoveComic implements SaveComicEvent {
-  const factory RemoveComic(String comicId) = _$RemoveComic;
+abstract class _RemoveComic implements SaveComicEvent {
+  const factory _RemoveComic(String comicId) = _$_RemoveComic;
 
   String get comicId;
   @JsonKey(ignore: true)
-  $RemoveComicCopyWith<RemoveComic> get copyWith =>
+  _$RemoveComicCopyWith<_RemoveComic> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WatchSavedCopyWith<$Res> {
-  factory $WatchSavedCopyWith(
-          WatchSaved value, $Res Function(WatchSaved) then) =
-      _$WatchSavedCopyWithImpl<$Res>;
+abstract class _$WatchSavedCopyWith<$Res> {
+  factory _$WatchSavedCopyWith(
+          _WatchSaved value, $Res Function(_WatchSaved) then) =
+      __$WatchSavedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WatchSavedCopyWithImpl<$Res> extends _$SaveComicEventCopyWithImpl<$Res>
-    implements $WatchSavedCopyWith<$Res> {
-  _$WatchSavedCopyWithImpl(WatchSaved _value, $Res Function(WatchSaved) _then)
-      : super(_value, (v) => _then(v as WatchSaved));
+class __$WatchSavedCopyWithImpl<$Res> extends _$SaveComicEventCopyWithImpl<$Res>
+    implements _$WatchSavedCopyWith<$Res> {
+  __$WatchSavedCopyWithImpl(
+      _WatchSaved _value, $Res Function(_WatchSaved) _then)
+      : super(_value, (v) => _then(v as _WatchSaved));
 
   @override
-  WatchSaved get _value => super._value as WatchSaved;
+  _WatchSaved get _value => super._value as _WatchSaved;
 }
 
 /// @nodoc
 
-class _$WatchSaved implements WatchSaved {
-  const _$WatchSaved();
+class _$_WatchSaved implements _WatchSaved {
+  const _$_WatchSaved();
 
   @override
   String toString() {
@@ -443,7 +446,7 @@ class _$WatchSaved implements WatchSaved {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is WatchSaved);
+        (other.runtimeType == runtimeType && other is _WatchSaved);
   }
 
   @override
@@ -493,10 +496,10 @@ class _$WatchSaved implements WatchSaved {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SaveComic value) saveComic,
-    required TResult Function(RemoveComic value) removeComic,
-    required TResult Function(WatchSaved value) watchSaved,
-    required TResult Function(SavedComicsReceived value) savedComicsReceived,
+    required TResult Function(_SaveComic value) saveComic,
+    required TResult Function(_RemoveComic value) removeComic,
+    required TResult Function(_WatchSaved value) watchSaved,
+    required TResult Function(_SavedComicsReceived value) savedComicsReceived,
   }) {
     return watchSaved(this);
   }
@@ -504,10 +507,10 @@ class _$WatchSaved implements WatchSaved {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
   }) {
     return watchSaved?.call(this);
   }
@@ -515,10 +518,10 @@ class _$WatchSaved implements WatchSaved {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
     required TResult orElse(),
   }) {
     if (watchSaved != null) {
@@ -528,34 +531,34 @@ class _$WatchSaved implements WatchSaved {
   }
 }
 
-abstract class WatchSaved implements SaveComicEvent {
-  const factory WatchSaved() = _$WatchSaved;
+abstract class _WatchSaved implements SaveComicEvent {
+  const factory _WatchSaved() = _$_WatchSaved;
 }
 
 /// @nodoc
-abstract class $SavedComicsReceivedCopyWith<$Res> {
-  factory $SavedComicsReceivedCopyWith(
-          SavedComicsReceived value, $Res Function(SavedComicsReceived) then) =
-      _$SavedComicsReceivedCopyWithImpl<$Res>;
+abstract class _$SavedComicsReceivedCopyWith<$Res> {
+  factory _$SavedComicsReceivedCopyWith(_SavedComicsReceived value,
+          $Res Function(_SavedComicsReceived) then) =
+      __$SavedComicsReceivedCopyWithImpl<$Res>;
   $Res call({Either<ComicFailure, List<SaveComics>> failureOrComics});
 }
 
 /// @nodoc
-class _$SavedComicsReceivedCopyWithImpl<$Res>
+class __$SavedComicsReceivedCopyWithImpl<$Res>
     extends _$SaveComicEventCopyWithImpl<$Res>
-    implements $SavedComicsReceivedCopyWith<$Res> {
-  _$SavedComicsReceivedCopyWithImpl(
-      SavedComicsReceived _value, $Res Function(SavedComicsReceived) _then)
-      : super(_value, (v) => _then(v as SavedComicsReceived));
+    implements _$SavedComicsReceivedCopyWith<$Res> {
+  __$SavedComicsReceivedCopyWithImpl(
+      _SavedComicsReceived _value, $Res Function(_SavedComicsReceived) _then)
+      : super(_value, (v) => _then(v as _SavedComicsReceived));
 
   @override
-  SavedComicsReceived get _value => super._value as SavedComicsReceived;
+  _SavedComicsReceived get _value => super._value as _SavedComicsReceived;
 
   @override
   $Res call({
     Object? failureOrComics = freezed,
   }) {
-    return _then(SavedComicsReceived(
+    return _then(_SavedComicsReceived(
       failureOrComics == freezed
           ? _value.failureOrComics
           : failureOrComics // ignore: cast_nullable_to_non_nullable
@@ -566,8 +569,8 @@ class _$SavedComicsReceivedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SavedComicsReceived implements SavedComicsReceived {
-  const _$SavedComicsReceived(this.failureOrComics);
+class _$_SavedComicsReceived implements _SavedComicsReceived {
+  const _$_SavedComicsReceived(this.failureOrComics);
 
   @override
   final Either<ComicFailure, List<SaveComics>> failureOrComics;
@@ -581,7 +584,7 @@ class _$SavedComicsReceived implements SavedComicsReceived {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SavedComicsReceived &&
+            other is _SavedComicsReceived &&
             (identical(other.failureOrComics, failureOrComics) ||
                 other.failureOrComics == failureOrComics));
   }
@@ -591,8 +594,9 @@ class _$SavedComicsReceived implements SavedComicsReceived {
 
   @JsonKey(ignore: true)
   @override
-  $SavedComicsReceivedCopyWith<SavedComicsReceived> get copyWith =>
-      _$SavedComicsReceivedCopyWithImpl<SavedComicsReceived>(this, _$identity);
+  _$SavedComicsReceivedCopyWith<_SavedComicsReceived> get copyWith =>
+      __$SavedComicsReceivedCopyWithImpl<_SavedComicsReceived>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -638,10 +642,10 @@ class _$SavedComicsReceived implements SavedComicsReceived {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(SaveComic value) saveComic,
-    required TResult Function(RemoveComic value) removeComic,
-    required TResult Function(WatchSaved value) watchSaved,
-    required TResult Function(SavedComicsReceived value) savedComicsReceived,
+    required TResult Function(_SaveComic value) saveComic,
+    required TResult Function(_RemoveComic value) removeComic,
+    required TResult Function(_WatchSaved value) watchSaved,
+    required TResult Function(_SavedComicsReceived value) savedComicsReceived,
   }) {
     return savedComicsReceived(this);
   }
@@ -649,10 +653,10 @@ class _$SavedComicsReceived implements SavedComicsReceived {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
   }) {
     return savedComicsReceived?.call(this);
   }
@@ -660,10 +664,10 @@ class _$SavedComicsReceived implements SavedComicsReceived {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(SaveComic value)? saveComic,
-    TResult Function(RemoveComic value)? removeComic,
-    TResult Function(WatchSaved value)? watchSaved,
-    TResult Function(SavedComicsReceived value)? savedComicsReceived,
+    TResult Function(_SaveComic value)? saveComic,
+    TResult Function(_RemoveComic value)? removeComic,
+    TResult Function(_WatchSaved value)? watchSaved,
+    TResult Function(_SavedComicsReceived value)? savedComicsReceived,
     required TResult orElse(),
   }) {
     if (savedComicsReceived != null) {
@@ -673,14 +677,14 @@ class _$SavedComicsReceived implements SavedComicsReceived {
   }
 }
 
-abstract class SavedComicsReceived implements SaveComicEvent {
-  const factory SavedComicsReceived(
+abstract class _SavedComicsReceived implements SaveComicEvent {
+  const factory _SavedComicsReceived(
           Either<ComicFailure, List<SaveComics>> failureOrComics) =
-      _$SavedComicsReceived;
+      _$_SavedComicsReceived;
 
   Either<ComicFailure, List<SaveComics>> get failureOrComics;
   @JsonKey(ignore: true)
-  $SavedComicsReceivedCopyWith<SavedComicsReceived> get copyWith =>
+  _$SavedComicsReceivedCopyWith<_SavedComicsReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

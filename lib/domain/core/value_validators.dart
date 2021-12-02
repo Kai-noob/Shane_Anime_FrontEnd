@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/domain/core/failures.dart';
+import 'failures.dart';
 
 Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   String emailRegex =

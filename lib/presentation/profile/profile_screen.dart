@@ -1,12 +1,17 @@
+// ignore: implementation_imports
 import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
 import 'package:movie_app/application/user_actions/user_actions_bloc.dart';
 import 'package:movie_app/helper/global/loading_indicator.dart';
 import 'package:movie_app/injection.dart';
+import 'package:movie_app/presentation/profile/components/change_image_screen.dart';
 import 'package:movie_app/presentation/routes/router.gr.dart';
+
+import 'components/change_name_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -19,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             elevation: 0.0,
-            title: const Text("My Account"),
+            title: const Text("More"),
           ),
           body: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) => state.maybeMap(
@@ -27,87 +32,89 @@ class ProfileScreen extends StatelessWidget {
                 unauthenticated: (_) =>
                     context.replaceRoute(const SignUpScreenRoute())),
             child: BlocBuilder<UserActionsBloc, UserActionsState>(
+                buildWhen: (previous, current) => previous != current,
                 builder: (context, state) => state.maybeMap(
                     error: (_) => const Text("Error"),
                     orElse: () => const LoadingIndicator(),
-                    loaded: (state) => ListView(
+                    profileLoaded: (state) => ListView(
                           children: [
                             Row(
                               children: [
-                                Stack(
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 45,
-                                      backgroundImage: NetworkImage(
-                                          state.profile.user.photoUrl),
-                                    ),
-                                    Positioned(
-                                        right: 0,
-                                        top: 30,
-                                        left: 50,
-                                        bottom: 0,
-                                        child: IconButton(
-                                          icon: const Icon(Icons.edit),
-                                          onPressed: () {},
-                                        ))
-                                  ],
+                                CircleAvatar(
+                                  radius: 45.r,
+                                  backgroundImage:
+                                      NetworkImage(state.profile.photoUrl),
                                 ),
-                                const SizedBox(
-                                  width: 10,
+                                SizedBox(
+                                  width: 10.w,
                                 ),
-                                Text(
-                                  state.profile.user.username,
-                                  style: const TextStyle(fontSize: 18),
+                                Expanded(
+                                  child: Text(
+                                    state.profile.username,
+                                    style: TextStyle(fontSize: 18.sp),
+                                  ),
                                 )
                               ],
                             ),
-                            const SizedBox(
-                              height: 35,
+                            SizedBox(
+                              height: 35.h,
                             ),
                             Card(
-                              margin: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
+                              color: const Color(0xff1B2C3B),
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10.h, horizontal: 10.w),
                               elevation: 10.0,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10.r)),
                               child: Column(
-                                children: const [
+                                children: [
                                   ListTile(
-                                    leading: Icon(Ionicons.bookmark_outline),
-                                    title: Text("Saved"),
+                                    onTap: () => Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                BlocProvider(
+                                                  create: (context) =>
+                                                      getIt<UserActionsBloc>(),
+                                                  child:
+                                                      const ChangeImageScreen(),
+                                                ))),
+                                    leading: const Icon(Icons.emoji_emotions),
+                                    title: const Text("Change Avatar"),
                                   ),
-                                  Divider(
+                                  const Divider(
                                     indent: 20,
                                     endIndent: 20,
                                     color: Colors.white54,
                                   ),
                                   ListTile(
-                                      leading: Icon(
-                                          Ionicons.chatbox_ellipses_outline),
-                                      title: Text("My Comments")),
-                                  Divider(
-                                    indent: 20,
-                                    endIndent: 20,
-                                    color: Colors.white54,
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  BlocProvider(
+                                                    create: (context) => getIt<
+                                                        UserActionsBloc>(),
+                                                    child:
+                                                        const ChangeNameScreen(),
+                                                  )));
+                                    },
+                                    leading: const Icon(Icons.edit),
+                                    title: const Text("Change Your Name"),
                                   ),
-                                  ListTile(
-                                      leading:
-                                          Icon(Ionicons.notifications_outline),
-                                      title: Text("Notifications")),
                                 ],
                               ),
                             ),
                             Card(
-                              margin: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
+                              color: const Color(0xff1B2C3B),
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10.h, horizontal: 10.w),
                               elevation: 10.0,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
+                                  borderRadius: BorderRadius.circular(10.r)),
                               child: Column(
                                 children: const [
                                   ListTile(
-                                      leading: Icon(
-                                          Ionicons.shield_checkmark_outline),
+                                      leading: Icon(Icons.shield_outlined),
                                       title: Text("Privacy")),
                                   Divider(
                                     indent: 20,
@@ -115,7 +122,7 @@ class ProfileScreen extends StatelessWidget {
                                     color: Colors.white54,
                                   ),
                                   ListTile(
-                                      leading: Icon(Ionicons.apps_outline),
+                                      leading: Icon(Icons.apps_outlined),
                                       title: Text("Family Apps")),
                                   Divider(
                                     indent: 20,
@@ -123,15 +130,15 @@ class ProfileScreen extends StatelessWidget {
                                     color: Colors.white54,
                                   ),
                                   ListTile(
-                                      leading:
-                                          Icon(Ionicons.share_social_outline),
+                                      leading: Icon(Icons.share_outlined),
                                       title: Text("Share")),
                                 ],
                               ),
                             ),
                             Card(
-                              margin: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 10),
+                              color: const Color(0xff1B2C3B),
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 10.h, horizontal: 10.w),
                               elevation: 10.0,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
@@ -140,7 +147,7 @@ class ProfileScreen extends StatelessWidget {
                                     BlocProvider.of<AuthBloc>(context)
                                         .add(const AuthEvent.signOut());
                                   },
-                                  leading: const Icon(Ionicons.log_out_outline),
+                                  leading: const Icon(Icons.logout_outlined),
                                   title: const Text("Sign Out")),
                             ),
                           ],

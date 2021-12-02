@@ -2,8 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movie_app/domain/comic/comic_failure.dart';
-import 'package:movie_app/domain/comic/i_comic_repository.dart';
+import 'package:movie_app/domain/episodes/episodes.dart';
+import '../../domain/comic/comic_failure.dart';
+import '../../domain/comic/i_comic_repository.dart';
 
 part 'comic_reader_event.dart';
 part 'comic_reader_state.dart';
@@ -14,13 +15,38 @@ class ComicReaderBloc extends Bloc<ComicReaderEvent, ComicReaderState> {
   final IComicRepository _comicRepo;
 
   ComicReaderBloc(this._comicRepo) : super(const ComicReaderState.loading()) {
-    on<GetPdf>(_getComicDetails);
+    on<ComicReaderEvent>(_getPdfEvent);
   }
 
-  void _getComicDetails(GetPdf event, Emitter<ComicReaderState> emit) async {
-    final Either<ComicFailure, String> failureOrSuccess = await _comicRepo
-        .getPdf(event.comicId, event.episodeName, event.episodeNumber);
-    emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
-        (r) => ComicReaderState.loaded(r)));
+  Future<void> _getPdfEvent(
+      ComicReaderEvent event, Emitter<ComicReaderState> emit) async {
+    await event.map(getPdf: (e) async {
+      final Either<ComicFailure, Episodes> failureOrSuccess =
+          await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
+      emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
+          (r) => ComicReaderState.pdfLoaded(r)));
+    }, checkPdf: (e) async {
+      bool checked =
+          await _comicRepo.checkPdf(e.comicId, e.episodeName, e.episodeNumber);
+
+      if (checked) {
+        emit(const ComicReaderState.loading());
+        final failureOrSuccess =
+            await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
+        emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
+            (r) => ComicReaderState.pdfLoaded(r)));
+      } else {
+        emit(const ComicReaderState.loading());
+        final failureOrSuccess =
+            await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
+        emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
+            (r) => ComicReaderState.driveLoaded(r)));
+      }
+    }, changePdf: (e) async {
+      final Either<ComicFailure, Episodes> failureOrSuccess =
+          await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
+      emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
+          (r) => ComicReaderState.chgEpisodeSuccess(r)));
+    });
   }
 }

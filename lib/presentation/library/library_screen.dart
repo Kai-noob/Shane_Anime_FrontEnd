@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/presentation/library/save_screen.dart';
+import 'components/save_screen.dart';
+import 'components/user_comments_screen.dart';
 
+import 'components/notification_screen.dart';
 import 'components/sliver_delegate.dart';
 
 class LibraryScreen extends StatelessWidget {
@@ -9,7 +11,7 @@ class LibraryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         body: NestedScrollView(
           physics: const ClampingScrollPhysics(),
@@ -33,13 +35,10 @@ class LibraryScreen extends StatelessWidget {
                     indicatorColor: Colors.white,
                     tabs: [
                       Tab(
-                        text: "Recent",
-                      ),
-                      Tab(
                         text: "Saved",
                       ),
                       Tab(
-                        text: "Notification",
+                        text: "My Comments",
                       ),
                     ],
                   ),
@@ -47,8 +46,8 @@ class LibraryScreen extends StatelessWidget {
               ),
             ];
           },
-          body: TabBarView(
-            children: [Container(), const SaveScreen(), Container()],
+          body: const TabBarView(
+            children: [SaveScreen(), UserCommentsScreen()],
           ),
         ),
       ),

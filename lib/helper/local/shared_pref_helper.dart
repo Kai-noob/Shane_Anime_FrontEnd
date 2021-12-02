@@ -33,3 +33,14 @@
 //     notifyListeners();
 //   }
 // }
+
+// import 'package:shared_preferences/shared_preferences.dart';
+
+// class LocalService{
+
+
+//   Future<void> insertLocalDatat() async{
+//     SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+//     sharedPreferences.setBool("key", value)
+//   }
+// }

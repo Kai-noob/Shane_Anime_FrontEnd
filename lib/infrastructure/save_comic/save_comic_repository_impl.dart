@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movie_app/domain/comic/comic_failure.dart';
-import 'package:movie_app/domain/save_comic/i_save_comic_repository.dart';
-import 'package:movie_app/domain/save_comic/save_comic.dart';
-import 'package:movie_app/infrastructure/core/firestore_helper.dart';
+import '../../domain/comic/comic_failure.dart';
+import '../../domain/save_comic/i_save_comic_repository.dart';
+import '../../domain/save_comic/save_comic.dart';
+import '../core/firestore_helper.dart';
 
 @LazySingleton(as: ISaveComicRepository)
 class SaveComicRepositoryImpl implements ISaveComicRepository {
@@ -18,8 +18,9 @@ class SaveComicRepositoryImpl implements ISaveComicRepository {
     yield* userDoc
         .collection("saved")
         .snapshots()
-        .map((snapshot) => right<ComicFailure, List<SaveComics>>(
-            snapshot.docs.map((doc) => SaveComics.fromFirebase(doc)).toList()))
+        .map((snapshot) => right<ComicFailure, List<SaveComics>>(snapshot.docs
+            .map((doc) => SaveComics.fromJson(doc.data()))
+            .toList()))
         .handleError((e) {
       if (e is FirebaseException && e.code == 'permission-denied') {
         return left(const ComicFailure.permissionDenied());

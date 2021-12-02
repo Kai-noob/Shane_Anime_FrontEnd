@@ -1,62 +1,56 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/domain/episodes/episodes.dart';
-import 'package:movie_app/presentation/reader/reading_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../domain/episodes/episodes.dart';
+import '../../reader/reading_screen.dart';
 
 class EpisodeListView extends StatelessWidget {
   final List<Episodes> episodes;
+  final bool isDecending;
   const EpisodeListView({
     Key? key,
     required this.episodes,
+    required this.isDecending,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
+        final sortEpisodes =
+            isDecending ? episodes.reversed.toList() : episodes;
+        final episode = sortEpisodes[index];
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-            // tileColor: episodes.contains(state.episodes[index])
-            //     ? Colors.grey.withOpacity(0.1)
-            //     : null,
-            title: Text(
-              " ${episodes[index].episodeName}"
-              "${episodes[index].episodeNumber.toString()}",
-              style: TextStyle(
-                  color: episodes.contains(episodes[index])
-                      ? Colors.grey.shade50
-                      : Colors.white,
-                  fontWeight: episodes.contains(episodes[index])
-                      ? FontWeight.w100
-                      : null),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.r)),
+            title: Row(
+              children: [
+                Text(
+                  episode.episodeName,
+                  style: TextStyle(
+                      color: Colors.grey.shade50, fontWeight: FontWeight.w100),
+                ),
+                Text(
+                  episode.episodeNumber.toString(),
+                  style: TextStyle(
+                      color: Colors.grey.shade50, fontWeight: FontWeight.w100),
+                ),
+              ],
             ),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => ReadingScreen(episode: episodes[index])));
+                  builder: (_) => ReadingScreen(
+                        episode: sortEpisodes[index],
+                      )));
             },
-            // trailing: episodes.last == state.episodes[index]
-            //     ? const Visibility(visible: true, child: Icon(Icons.done))
-            //     : const Visibility(
-            //         visible: false, child: Icon(Icons.done)),
-            // trailing: episodes.isEmpty
-            //     ? null
-            //     : episodes.last == state.episodes[index]
-            //         ? const Visibility(
-            //             visible: true, child: Icon(Ionicons.eye_outline))
-            //         : const Visibility(
-            //             visible: false,
-            //             child: Icon(Ionicons.eye_outline)),
             leading: SizedBox(
-              height: 50,
-              width: 50,
+              height: 50.h,
+              width: 50.w,
               child: CachedNetworkImage(
-                imageUrl: episodes[index].coverPhoto!,
+                imageUrl: episode.coverPhoto!,
                 fit: BoxFit.cover,
                 placeholder: (context, url) => Container(
                   decoration: BoxDecoration(
@@ -65,7 +59,7 @@ class EpisodeListView extends StatelessWidget {
                       color: Colors.grey.shade200),
                 ),
                 errorWidget: (context, url, error) =>
-                    const Icon(Ionicons.warning_outline, size: 35),
+                    const Icon(Icons.warning_outlined, size: 35),
               ),
             ),
           ),

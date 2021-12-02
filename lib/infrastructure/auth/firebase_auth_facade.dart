@@ -6,11 +6,11 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movie_app/domain/auth/auth_failures.dart';
-import 'package:movie_app/domain/auth/i_auth_facade.dart';
-import 'package:movie_app/domain/auth/user.dart';
-import 'package:movie_app/domain/auth/value_objects.dart';
-import './firebase_user_mapper.dart';
+import '../../domain/auth/auth_failures.dart';
+import '../../domain/auth/i_auth_facade.dart';
+import '../../domain/auth/user.dart';
+import '../../domain/auth/value_objects.dart';
+import 'firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FirebaseAuthFacade implements IAuthFacade {
@@ -21,8 +21,15 @@ class FirebaseAuthFacade implements IAuthFacade {
   FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn, this._firestore);
 
   @override
-  Future<Option<AppUser>> getSignedInUser() async =>
-      optionOf(_firebaseAuth.currentUser?.toDomain());
+  Future<Option<AppUser>> getSignedInUser() async {
+    final firebaseUser = _firebaseAuth.currentUser;
+    if (firebaseUser == null) return none();
+    final doc =
+        await _firestore.collection("users").doc(firebaseUser.uid).get();
+    final user = AppUser.fromJson(doc.data()!);
+    // return optionOf(firebaseUser?.toDomain());
+    return some(user);
+  }
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
@@ -80,7 +87,7 @@ class FirebaseAuthFacade implements IAuthFacade {
           await _firebaseAuth.signInWithCredential(authCredential);
       await _saveUserDocToDatabase(credential);
       return right(unit);
-    } on PlatformException catch (_) {
+    } on PlatformException catch (e) {
       return left(const AuthFailure.serverError());
     }
   }
@@ -120,11 +127,7 @@ class FirebaseAuthFacade implements IAuthFacade {
                   FacebookAuthProvider.credential(token!.token));
           _saveUserDocToDatabase(credential);
         } else {
-          AccessToken? token = await facebookAuth.accessToken;
-          final UserCredential credential =
-              await _firebaseAuth.signInWithCredential(
-                  FacebookAuthProvider.credential(token!.token));
-          _saveUserDocToDatabase(credential);
+          return left(const AuthFailure.cancelledByUser());
         }
       }
       return right(unit);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeTitleWidget extends StatelessWidget {
   final String label;
@@ -12,20 +13,20 @@ class HomeTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 5),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
       sliver: SliverToBoxAdapter(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               label,
-              style: const TextStyle(fontSize: 20, fontFamily: "HeaderFont"),
+              style: TextStyle(fontSize: 20.sp),
             ),
             GestureDetector(
               onTap: onTap,
-              child: const Text(
+              child: Text(
                 "More",
-                style: TextStyle(fontSize: 17, fontFamily: "HeaderFont"),
+                style: TextStyle(fontSize: 17.sp),
               ),
             )
           ],

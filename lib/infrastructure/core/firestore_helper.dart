@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:movie_app/domain/auth/i_auth_facade.dart';
-import 'package:movie_app/domain/core/errors.dart';
+import '../../domain/auth/i_auth_facade.dart';
+import '../../domain/core/errors.dart';
 
 import '../../injection.dart';
 

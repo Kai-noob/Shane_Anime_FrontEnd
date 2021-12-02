@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/application/comic_details/comic_details_bloc.dart';
-import 'package:movie_app/helper/global/error_message.dart';
-import 'package:movie_app/helper/global/loading_indicator.dart';
-import 'package:movie_app/injection.dart';
-import 'package:movie_app/presentation/details/components/details_body.dart';
+import '../../application/comic_details/comic_details_bloc.dart';
+import '../../helper/global/error_message.dart';
+import '../../helper/global/loading_indicator.dart';
+import '../../injection.dart';
+import 'components/details_body.dart';
 
 class DetailsScreen extends StatelessWidget {
   final String comicId;
@@ -23,7 +23,6 @@ class DetailsScreen extends StatelessWidget {
                     const ErrorMessage(message: "error", isSliver: false),
                 loaded: (state) => DetailsBody(
                       comic: state.comic,
-                      comicId: comicId,
                     ))),
       ),
     );

@@ -58,18 +58,22 @@ const $Comic = _$ComicTearOff();
 mixin _$Comic {
   @JsonKey(ignore: true)
   String? get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  String get title =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "cover_photo")
   String get coverPhoto => throw _privateConstructorUsedError;
-  String get review => throw _privateConstructorUsedError;
+  String get review =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: "editor_choice")
   bool get editorChoice => throw _privateConstructorUsedError;
   bool get published => throw _privateConstructorUsedError;
   bool get completed => throw _privateConstructorUsedError;
   @TimestampConverter()
-  DateTime get created => throw _privateConstructorUsedError;
+  DateTime get created =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
-  List<Genre>? get genres => throw _privateConstructorUsedError;
+  List<Genre>? get genres =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   List<Episodes>? get episodes => throw _privateConstructorUsedError;
 
@@ -269,12 +273,12 @@ class _$_Comic implements _Comic {
   final String? id;
   @override
   final String title;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "cover_photo")
   final String coverPhoto;
   @override
   final String review;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "editor_choice")
   final bool editorChoice;
   @override
@@ -284,10 +288,10 @@ class _$_Comic implements _Comic {
   @override
   @TimestampConverter()
   final DateTime created;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   final List<Genre>? genres;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   final List<Episodes>? episodes;
 
@@ -362,12 +366,12 @@ abstract class _Comic implements Comic {
   String? get id;
   @override
   String get title;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "cover_photo")
   String get coverPhoto;
   @override
   String get review;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: "editor_choice")
   bool get editorChoice;
   @override
@@ -377,10 +381,10 @@ abstract class _Comic implements Comic {
   @override
   @TimestampConverter()
   DateTime get created;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   List<Genre>? get genres;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   List<Episodes>? get episodes;
   @override

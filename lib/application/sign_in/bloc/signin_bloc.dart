@@ -3,9 +3,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movie_app/domain/auth/auth_failures.dart';
-import 'package:movie_app/domain/auth/i_auth_facade.dart';
-import 'package:movie_app/domain/auth/value_objects.dart';
+import '../../../domain/auth/auth_failures.dart';
+import '../../../domain/auth/i_auth_facade.dart';
+import '../../../domain/auth/value_objects.dart';
 
 part 'signin_event.dart';
 part 'signin_state.dart';

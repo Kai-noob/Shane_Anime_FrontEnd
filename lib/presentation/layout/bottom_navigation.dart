@@ -1,10 +1,13 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/presentation/home/home_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:movie_app/presentation/library/library_screen.dart';
-import 'package:movie_app/presentation/profile/profile_screen.dart';
+import '../home/home_screen.dart';
+
+import '../library/library_screen.dart';
+import '../profile/profile_screen.dart';
+import '../upcoming/upcoming_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({Key? key}) : super(key: key);
@@ -16,6 +19,7 @@ class BottomNavigationScreen extends StatefulWidget {
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   final List<Widget> _pages = [
     const HomeScreen(),
+    UpcomingScreen(),
     const LibraryScreen(),
     const ProfileScreen(),
   ];
@@ -43,13 +47,35 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             _currrentIndex = value;
           });
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(Ionicons.home_outline), label: "Home"),
+              icon: SvgPicture.asset(
+                "assets/logo/home.svg",
+                color: Colors.white,
+                height: 22.h,
+              ),
+              label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Ionicons.layers_outline), label: "Library"),
+              icon: SvgPicture.asset(
+                "assets/logo/upcoming.svg",
+                color: Colors.white,
+                height: 22.h,
+              ),
+              label: "Coming"),
           BottomNavigationBarItem(
-              icon: Icon(Ionicons.menu_outline), label: "More"),
+              icon: SvgPicture.asset(
+                "assets/logo/library.svg",
+                color: Colors.white,
+                height: 22.h,
+              ),
+              label: "Library"),
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                "assets/logo/more.svg",
+                color: Colors.white,
+                height: 22.h,
+              ),
+              label: "More"),
         ],
       ),
     );

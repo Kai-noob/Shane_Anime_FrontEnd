@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/application/save_comic/save_comic_bloc.dart';
-import 'package:movie_app/domain/comic/comic.dart';
-import 'package:movie_app/helper/global/loading_indicator.dart';
-import 'package:movie_app/injection.dart';
-import 'dart:developer' as dev;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:readmore/readmore.dart';
+
+import '../../../application/save_comic/save_comic_bloc.dart';
+import '../../../domain/comic/comic.dart';
+import '../../../injection.dart';
 
 import 'episodes_list_view.dart';
 
@@ -14,17 +14,16 @@ class DetailsBody extends StatefulWidget {
   const DetailsBody({
     Key? key,
     required this.comic,
-    required this.comicId,
   }) : super(key: key);
 
   final Comic comic;
-  final String comicId;
 
   @override
   State<DetailsBody> createState() => _DetailsBodyState();
 }
 
 class _DetailsBodyState extends State<DetailsBody> {
+  bool isDecending = false;
   @override
   Widget build(BuildContext context) {
     String genre = widget.comic.genres!.map((e) => e.name).join(".");
@@ -43,11 +42,7 @@ class _DetailsBodyState extends State<DetailsBody> {
               Navigator.of(context).pop();
             },
           ),
-          actions: [
-            FavButton(
-              comicId: widget.comic.id!,
-            )
-          ],
+          actions: [FavButton(comicId: widget.comic.id!)],
           flexibleSpace: FlexibleSpaceBar(
             collapseMode: CollapseMode.pin,
             background: Container(
@@ -80,16 +75,16 @@ class _DetailsBodyState extends State<DetailsBody> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Text(genre,
-                              style: const TextStyle(
+                              style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 14,
+                                  fontSize: 14.sp,
                                   overflow: TextOverflow.ellipsis)),
                           Text(widget.comic.title,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "HeaderFont",
-                                fontSize: 30,
+                                fontSize: 30.sp,
                               )),
                         ],
                       ),
@@ -103,39 +98,51 @@ class _DetailsBodyState extends State<DetailsBody> {
                       color: Colors.grey.shade300),
                 ),
                 errorWidget: (context, url, error) =>
-                    const Icon(Ionicons.image, size: 35),
+                    const Icon(Icons.image_outlined, size: 35),
               ),
             ),
           ),
         ),
-        // SliverPadding(
-        //   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        //   sliver: SliverToBoxAdapter(
-        //     child: ReadMoreText(
-        //       widget.comic.review,
-        //       trimLines: 3,
-        //       style: const TextStyle(height: 2, fontSize: 15),
-        //       textAlign: TextAlign.justify,
-        //       trimMode: TrimMode.Line,
-        //       trimCollapsedText: 'See More',
-        //       trimExpandedText: 'See less',
-        //       lessStyle: const TextStyle(
-        //           fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red),
-        //       moreStyle: const TextStyle(
-        //           fontSize: 15, fontWeight: FontWeight.bold, color: Colors.red),
-        //     ),
-        //   ),
-        // ),
-        const SliverPadding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           sliver: SliverToBoxAdapter(
-            child: Text(
-              "Chapters",
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+            child: ReadMoreText(
+              widget.comic.review,
+              style: TextStyle(height: 2, fontSize: 15.sp),
+              textAlign: TextAlign.justify,
+              trimLength: 100,
+              trimCollapsedText: 'See More',
+              trimExpandedText: 'See less',
             ),
           ),
         ),
-        EpisodeListView(episodes: widget.comic.episodes!)
+        SliverPadding(
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+          sliver: SliverToBoxAdapter(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Chapters",
+                  style:
+                      TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w800),
+                ),
+                TextButton.icon(
+                    label: const Text("Sort"),
+                    onPressed: () {
+                      setState(() {
+                        isDecending = !isDecending;
+                      });
+                    },
+                    icon: const Icon(Icons.swap_vert))
+              ],
+            ),
+          ),
+        ),
+        EpisodeListView(
+          episodes: widget.comic.episodes!,
+          isDecending: isDecending,
+        )
         // DetailsTitle(comicModel: comicModel),
       ],
     ));
@@ -143,11 +150,12 @@ class _DetailsBodyState extends State<DetailsBody> {
 }
 
 class FavButton extends StatelessWidget {
-  final String comicId;
   const FavButton({
     Key? key,
     required this.comicId,
   }) : super(key: key);
+
+  final String comicId;
 
   @override
   Widget build(BuildContext context) {
@@ -159,19 +167,18 @@ class FavButton extends StatelessWidget {
         builder: (context, state) {
           return state.maybeMap(
               orElse: () => Container(),
-              loading: (_) => LoadingIndicator(),
-              error: (_) => Container(),
+              error: (_) => const Text("Error"),
               watchSuccess: (state) {
                 final isSaved = state.saveComics.where((e) => e.id == comicId);
-                print(isSaved.isEmpty);
+
                 return IconButton(
-                    onPressed: () async {
+                    onPressed: () {
                       context.read<SaveComicBloc>().add(isSaved.isEmpty
                           ? SaveComicEvent.saveComic(comicId)
                           : SaveComicEvent.removeComic(comicId));
                     },
                     icon: Icon(
-                      isSaved.isEmpty ? Ionicons.heart_outline : Ionicons.heart,
+                      isSaved.isEmpty ? Icons.bookmark_outline : Icons.bookmark,
                       color: Colors.white,
                     ));
               });

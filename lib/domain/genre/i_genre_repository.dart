@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:movie_app/domain/comic/comic_failure.dart';
-import 'package:movie_app/domain/genre/genre.dart';
+import '../comic/comic.dart';
+import '../comic/comic_failure.dart';
+import 'genre.dart';
 
 abstract class IGenreRepository {
   Future<Either<ComicFailure, List<Genre>>> getGenres();
+  Future<Either<ComicFailure, List<Comic>>> getComicsByGenres(String genreId);
 }

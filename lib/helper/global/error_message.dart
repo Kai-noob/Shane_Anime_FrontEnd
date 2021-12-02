@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
 
 class ErrorMessage extends StatelessWidget {
   final String message;
@@ -16,7 +15,7 @@ class ErrorMessage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(
-                    Ionicons.warning_outline,
+                    Icons.warning,
                     size: 40,
                   ),
                   Text(
@@ -33,7 +32,7 @@ class ErrorMessage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(
-                  Ionicons.warning_outline,
+                  Icons.warning,
                   size: 40,
                 ),
                 Text(

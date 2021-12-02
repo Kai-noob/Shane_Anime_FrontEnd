@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerCard extends StatelessWidget {
@@ -19,30 +20,31 @@ class ShimmerCard extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5), color: Colors.grey),
-                height: 240,
-                width: MediaQuery.of(context).size.width * 0.4,
+                height: 250.h,
+                width: 180.w,
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.w),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5), color: Colors.grey),
-                height: 240,
-                width: MediaQuery.of(context).size.width * 0.4,
+                height: 250.h,
+                width: 180.w,
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.w),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5), color: Colors.grey),
-                height: 240,
-                width: MediaQuery.of(context).size.width * 0.4,
+                height: 250.h,
+                width: 180.w,
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.w),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5), color: Colors.grey),
-                height: 240,
-                width: MediaQuery.of(context).size.width * 0.4,
+                height: 250.h,
+                width: 180.w,
               ),
+              SizedBox(width: 8.w),
             ],
           ),
         ),

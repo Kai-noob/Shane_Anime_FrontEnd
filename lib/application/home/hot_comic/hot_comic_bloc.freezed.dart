@@ -17,8 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$HotComicEventTearOff {
   const _$HotComicEventTearOff();
 
-  GetHotComics getHotComics() {
-    return const GetHotComics();
+  _GetMoreHotComics getMoreHotComics() {
+    return const _GetMoreHotComics();
+  }
+
+  _GetHomeHotComics getHomeHotComics() {
+    return const _GetHomeHotComics();
   }
 }
 
@@ -29,33 +33,39 @@ const $HotComicEvent = _$HotComicEventTearOff();
 mixin _$HotComicEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getHotComics,
+    required TResult Function() getMoreHotComics,
+    required TResult Function() getHomeHotComics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getHotComics,
+    TResult Function()? getMoreHotComics,
+    TResult Function()? getHomeHotComics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getHotComics,
+    TResult Function()? getMoreHotComics,
+    TResult Function()? getHomeHotComics,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetHotComics value) getHotComics,
+    required TResult Function(_GetMoreHotComics value) getMoreHotComics,
+    required TResult Function(_GetHomeHotComics value) getHomeHotComics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetHotComics value)? getHotComics,
+    TResult Function(_GetMoreHotComics value)? getMoreHotComics,
+    TResult Function(_GetHomeHotComics value)? getHomeHotComics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetHotComics value)? getHotComics,
+    TResult Function(_GetMoreHotComics value)? getMoreHotComics,
+    TResult Function(_GetHomeHotComics value)? getHomeHotComics,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,37 +89,38 @@ class _$HotComicEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $GetHotComicsCopyWith<$Res> {
-  factory $GetHotComicsCopyWith(
-          GetHotComics value, $Res Function(GetHotComics) then) =
-      _$GetHotComicsCopyWithImpl<$Res>;
+abstract class _$GetMoreHotComicsCopyWith<$Res> {
+  factory _$GetMoreHotComicsCopyWith(
+          _GetMoreHotComics value, $Res Function(_GetMoreHotComics) then) =
+      __$GetMoreHotComicsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GetHotComicsCopyWithImpl<$Res> extends _$HotComicEventCopyWithImpl<$Res>
-    implements $GetHotComicsCopyWith<$Res> {
-  _$GetHotComicsCopyWithImpl(
-      GetHotComics _value, $Res Function(GetHotComics) _then)
-      : super(_value, (v) => _then(v as GetHotComics));
+class __$GetMoreHotComicsCopyWithImpl<$Res>
+    extends _$HotComicEventCopyWithImpl<$Res>
+    implements _$GetMoreHotComicsCopyWith<$Res> {
+  __$GetMoreHotComicsCopyWithImpl(
+      _GetMoreHotComics _value, $Res Function(_GetMoreHotComics) _then)
+      : super(_value, (v) => _then(v as _GetMoreHotComics));
 
   @override
-  GetHotComics get _value => super._value as GetHotComics;
+  _GetMoreHotComics get _value => super._value as _GetMoreHotComics;
 }
 
 /// @nodoc
 
-class _$GetHotComics implements GetHotComics {
-  const _$GetHotComics();
+class _$_GetMoreHotComics implements _GetMoreHotComics {
+  const _$_GetMoreHotComics();
 
   @override
   String toString() {
-    return 'HotComicEvent.getHotComics()';
+    return 'HotComicEvent.getMoreHotComics()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is GetHotComics);
+        (other.runtimeType == runtimeType && other is _GetMoreHotComics);
   }
 
   @override
@@ -118,27 +129,30 @@ class _$GetHotComics implements GetHotComics {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getHotComics,
+    required TResult Function() getMoreHotComics,
+    required TResult Function() getHomeHotComics,
   }) {
-    return getHotComics();
+    return getMoreHotComics();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getHotComics,
+    TResult Function()? getMoreHotComics,
+    TResult Function()? getHomeHotComics,
   }) {
-    return getHotComics?.call();
+    return getMoreHotComics?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getHotComics,
+    TResult Function()? getMoreHotComics,
+    TResult Function()? getHomeHotComics,
     required TResult orElse(),
   }) {
-    if (getHotComics != null) {
-      return getHotComics();
+    if (getMoreHotComics != null) {
+      return getMoreHotComics();
     }
     return orElse();
   }
@@ -146,34 +160,142 @@ class _$GetHotComics implements GetHotComics {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetHotComics value) getHotComics,
+    required TResult Function(_GetMoreHotComics value) getMoreHotComics,
+    required TResult Function(_GetHomeHotComics value) getHomeHotComics,
   }) {
-    return getHotComics(this);
+    return getMoreHotComics(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetHotComics value)? getHotComics,
+    TResult Function(_GetMoreHotComics value)? getMoreHotComics,
+    TResult Function(_GetHomeHotComics value)? getHomeHotComics,
   }) {
-    return getHotComics?.call(this);
+    return getMoreHotComics?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetHotComics value)? getHotComics,
+    TResult Function(_GetMoreHotComics value)? getMoreHotComics,
+    TResult Function(_GetHomeHotComics value)? getHomeHotComics,
     required TResult orElse(),
   }) {
-    if (getHotComics != null) {
-      return getHotComics(this);
+    if (getMoreHotComics != null) {
+      return getMoreHotComics(this);
     }
     return orElse();
   }
 }
 
-abstract class GetHotComics implements HotComicEvent {
-  const factory GetHotComics() = _$GetHotComics;
+abstract class _GetMoreHotComics implements HotComicEvent {
+  const factory _GetMoreHotComics() = _$_GetMoreHotComics;
+}
+
+/// @nodoc
+abstract class _$GetHomeHotComicsCopyWith<$Res> {
+  factory _$GetHomeHotComicsCopyWith(
+          _GetHomeHotComics value, $Res Function(_GetHomeHotComics) then) =
+      __$GetHomeHotComicsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetHomeHotComicsCopyWithImpl<$Res>
+    extends _$HotComicEventCopyWithImpl<$Res>
+    implements _$GetHomeHotComicsCopyWith<$Res> {
+  __$GetHomeHotComicsCopyWithImpl(
+      _GetHomeHotComics _value, $Res Function(_GetHomeHotComics) _then)
+      : super(_value, (v) => _then(v as _GetHomeHotComics));
+
+  @override
+  _GetHomeHotComics get _value => super._value as _GetHomeHotComics;
+}
+
+/// @nodoc
+
+class _$_GetHomeHotComics implements _GetHomeHotComics {
+  const _$_GetHomeHotComics();
+
+  @override
+  String toString() {
+    return 'HotComicEvent.getHomeHotComics()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _GetHomeHotComics);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getMoreHotComics,
+    required TResult Function() getHomeHotComics,
+  }) {
+    return getHomeHotComics();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getMoreHotComics,
+    TResult Function()? getHomeHotComics,
+  }) {
+    return getHomeHotComics?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getMoreHotComics,
+    TResult Function()? getHomeHotComics,
+    required TResult orElse(),
+  }) {
+    if (getHomeHotComics != null) {
+      return getHomeHotComics();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetMoreHotComics value) getMoreHotComics,
+    required TResult Function(_GetHomeHotComics value) getHomeHotComics,
+  }) {
+    return getHomeHotComics(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetMoreHotComics value)? getMoreHotComics,
+    TResult Function(_GetHomeHotComics value)? getHomeHotComics,
+  }) {
+    return getHomeHotComics?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetMoreHotComics value)? getMoreHotComics,
+    TResult Function(_GetHomeHotComics value)? getHomeHotComics,
+    required TResult orElse(),
+  }) {
+    if (getHomeHotComics != null) {
+      return getHomeHotComics(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetHomeHotComics implements HotComicEvent {
+  const factory _GetHomeHotComics() = _$_GetHomeHotComics;
 }
 
 /// @nodoc

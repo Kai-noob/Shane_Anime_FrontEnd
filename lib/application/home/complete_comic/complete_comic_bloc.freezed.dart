@@ -17,8 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CompleteComicEventTearOff {
   const _$CompleteComicEventTearOff();
 
-  GetCompleteComics getCompleteComics() {
-    return const GetCompleteComics();
+  _GetHomeCompletedComics getHomeCompletedComics() {
+    return const _GetHomeCompletedComics();
+  }
+
+  _GetMoreCompletedComics getMoreCompletedComics() {
+    return const _GetMoreCompletedComics();
   }
 }
 
@@ -29,33 +33,41 @@ const $CompleteComicEvent = _$CompleteComicEventTearOff();
 mixin _$CompleteComicEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getCompleteComics,
+    required TResult Function() getHomeCompletedComics,
+    required TResult Function() getMoreCompletedComics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getCompleteComics,
+    TResult Function()? getHomeCompletedComics,
+    TResult Function()? getMoreCompletedComics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getCompleteComics,
+    TResult Function()? getHomeCompletedComics,
+    TResult Function()? getMoreCompletedComics,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetCompleteComics value) getCompleteComics,
+    required TResult Function(_GetHomeCompletedComics value)
+        getHomeCompletedComics,
+    required TResult Function(_GetMoreCompletedComics value)
+        getMoreCompletedComics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetCompleteComics value)? getCompleteComics,
+    TResult Function(_GetHomeCompletedComics value)? getHomeCompletedComics,
+    TResult Function(_GetMoreCompletedComics value)? getMoreCompletedComics,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetCompleteComics value)? getCompleteComics,
+    TResult Function(_GetHomeCompletedComics value)? getHomeCompletedComics,
+    TResult Function(_GetMoreCompletedComics value)? getMoreCompletedComics,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,38 +91,38 @@ class _$CompleteComicEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $GetCompleteComicsCopyWith<$Res> {
-  factory $GetCompleteComicsCopyWith(
-          GetCompleteComics value, $Res Function(GetCompleteComics) then) =
-      _$GetCompleteComicsCopyWithImpl<$Res>;
+abstract class _$GetHomeCompletedComicsCopyWith<$Res> {
+  factory _$GetHomeCompletedComicsCopyWith(_GetHomeCompletedComics value,
+          $Res Function(_GetHomeCompletedComics) then) =
+      __$GetHomeCompletedComicsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GetCompleteComicsCopyWithImpl<$Res>
+class __$GetHomeCompletedComicsCopyWithImpl<$Res>
     extends _$CompleteComicEventCopyWithImpl<$Res>
-    implements $GetCompleteComicsCopyWith<$Res> {
-  _$GetCompleteComicsCopyWithImpl(
-      GetCompleteComics _value, $Res Function(GetCompleteComics) _then)
-      : super(_value, (v) => _then(v as GetCompleteComics));
+    implements _$GetHomeCompletedComicsCopyWith<$Res> {
+  __$GetHomeCompletedComicsCopyWithImpl(_GetHomeCompletedComics _value,
+      $Res Function(_GetHomeCompletedComics) _then)
+      : super(_value, (v) => _then(v as _GetHomeCompletedComics));
 
   @override
-  GetCompleteComics get _value => super._value as GetCompleteComics;
+  _GetHomeCompletedComics get _value => super._value as _GetHomeCompletedComics;
 }
 
 /// @nodoc
 
-class _$GetCompleteComics implements GetCompleteComics {
-  const _$GetCompleteComics();
+class _$_GetHomeCompletedComics implements _GetHomeCompletedComics {
+  const _$_GetHomeCompletedComics();
 
   @override
   String toString() {
-    return 'CompleteComicEvent.getCompleteComics()';
+    return 'CompleteComicEvent.getHomeCompletedComics()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is GetCompleteComics);
+        (other.runtimeType == runtimeType && other is _GetHomeCompletedComics);
   }
 
   @override
@@ -119,27 +131,30 @@ class _$GetCompleteComics implements GetCompleteComics {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getCompleteComics,
+    required TResult Function() getHomeCompletedComics,
+    required TResult Function() getMoreCompletedComics,
   }) {
-    return getCompleteComics();
+    return getHomeCompletedComics();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getCompleteComics,
+    TResult Function()? getHomeCompletedComics,
+    TResult Function()? getMoreCompletedComics,
   }) {
-    return getCompleteComics?.call();
+    return getHomeCompletedComics?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getCompleteComics,
+    TResult Function()? getHomeCompletedComics,
+    TResult Function()? getMoreCompletedComics,
     required TResult orElse(),
   }) {
-    if (getCompleteComics != null) {
-      return getCompleteComics();
+    if (getHomeCompletedComics != null) {
+      return getHomeCompletedComics();
     }
     return orElse();
   }
@@ -147,34 +162,146 @@ class _$GetCompleteComics implements GetCompleteComics {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(GetCompleteComics value) getCompleteComics,
+    required TResult Function(_GetHomeCompletedComics value)
+        getHomeCompletedComics,
+    required TResult Function(_GetMoreCompletedComics value)
+        getMoreCompletedComics,
   }) {
-    return getCompleteComics(this);
+    return getHomeCompletedComics(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(GetCompleteComics value)? getCompleteComics,
+    TResult Function(_GetHomeCompletedComics value)? getHomeCompletedComics,
+    TResult Function(_GetMoreCompletedComics value)? getMoreCompletedComics,
   }) {
-    return getCompleteComics?.call(this);
+    return getHomeCompletedComics?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(GetCompleteComics value)? getCompleteComics,
+    TResult Function(_GetHomeCompletedComics value)? getHomeCompletedComics,
+    TResult Function(_GetMoreCompletedComics value)? getMoreCompletedComics,
     required TResult orElse(),
   }) {
-    if (getCompleteComics != null) {
-      return getCompleteComics(this);
+    if (getHomeCompletedComics != null) {
+      return getHomeCompletedComics(this);
     }
     return orElse();
   }
 }
 
-abstract class GetCompleteComics implements CompleteComicEvent {
-  const factory GetCompleteComics() = _$GetCompleteComics;
+abstract class _GetHomeCompletedComics implements CompleteComicEvent {
+  const factory _GetHomeCompletedComics() = _$_GetHomeCompletedComics;
+}
+
+/// @nodoc
+abstract class _$GetMoreCompletedComicsCopyWith<$Res> {
+  factory _$GetMoreCompletedComicsCopyWith(_GetMoreCompletedComics value,
+          $Res Function(_GetMoreCompletedComics) then) =
+      __$GetMoreCompletedComicsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetMoreCompletedComicsCopyWithImpl<$Res>
+    extends _$CompleteComicEventCopyWithImpl<$Res>
+    implements _$GetMoreCompletedComicsCopyWith<$Res> {
+  __$GetMoreCompletedComicsCopyWithImpl(_GetMoreCompletedComics _value,
+      $Res Function(_GetMoreCompletedComics) _then)
+      : super(_value, (v) => _then(v as _GetMoreCompletedComics));
+
+  @override
+  _GetMoreCompletedComics get _value => super._value as _GetMoreCompletedComics;
+}
+
+/// @nodoc
+
+class _$_GetMoreCompletedComics implements _GetMoreCompletedComics {
+  const _$_GetMoreCompletedComics();
+
+  @override
+  String toString() {
+    return 'CompleteComicEvent.getMoreCompletedComics()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _GetMoreCompletedComics);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getHomeCompletedComics,
+    required TResult Function() getMoreCompletedComics,
+  }) {
+    return getMoreCompletedComics();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getHomeCompletedComics,
+    TResult Function()? getMoreCompletedComics,
+  }) {
+    return getMoreCompletedComics?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getHomeCompletedComics,
+    TResult Function()? getMoreCompletedComics,
+    required TResult orElse(),
+  }) {
+    if (getMoreCompletedComics != null) {
+      return getMoreCompletedComics();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetHomeCompletedComics value)
+        getHomeCompletedComics,
+    required TResult Function(_GetMoreCompletedComics value)
+        getMoreCompletedComics,
+  }) {
+    return getMoreCompletedComics(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetHomeCompletedComics value)? getHomeCompletedComics,
+    TResult Function(_GetMoreCompletedComics value)? getMoreCompletedComics,
+  }) {
+    return getMoreCompletedComics?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetHomeCompletedComics value)? getHomeCompletedComics,
+    TResult Function(_GetMoreCompletedComics value)? getMoreCompletedComics,
+    required TResult orElse(),
+  }) {
+    if (getMoreCompletedComics != null) {
+      return getMoreCompletedComics(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetMoreCompletedComics implements CompleteComicEvent {
+  const factory _GetMoreCompletedComics() = _$_GetMoreCompletedComics;
 }
 
 /// @nodoc
@@ -191,8 +318,10 @@ class _$CompleteComicStateTearOff {
     );
   }
 
-  _Error error() {
-    return const _Error();
+  _Error error(ComicFailure failure) {
+    return _Error(
+      failure,
+    );
   }
 }
 
@@ -205,21 +334,21 @@ mixin _$CompleteComicState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<Comic> comics) loaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Comic> comics)? loaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Comic> comics)? loaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -305,7 +434,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<Comic> comics) loaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
   }) {
     return loading();
   }
@@ -315,7 +444,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Comic> comics)? loaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
   }) {
     return loading?.call();
   }
@@ -325,7 +454,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Comic> comics)? loaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -437,7 +566,7 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<Comic> comics) loaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
   }) {
     return loaded(comics);
   }
@@ -447,7 +576,7 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Comic> comics)? loaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
   }) {
     return loaded?.call(comics);
   }
@@ -457,7 +586,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Comic> comics)? loaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -513,6 +642,9 @@ abstract class _Loaded implements CompleteComicState {
 abstract class _$ErrorCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
       __$ErrorCopyWithImpl<$Res>;
+  $Res call({ComicFailure failure});
+
+  $ComicFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -523,35 +655,64 @@ class __$ErrorCopyWithImpl<$Res> extends _$CompleteComicStateCopyWithImpl<$Res>
 
   @override
   _Error get _value => super._value as _Error;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_Error(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as ComicFailure,
+    ));
+  }
+
+  @override
+  $ComicFailureCopyWith<$Res> get failure {
+    return $ComicFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error();
+  const _$_Error(this.failure);
+
+  @override
+  final ComicFailure failure;
 
   @override
   String toString() {
-    return 'CompleteComicState.error()';
+    return 'CompleteComicState.error(failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Error);
+        (other.runtimeType == runtimeType &&
+            other is _Error &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<Comic> comics) loaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
   }) {
-    return error();
+    return error(failure);
   }
 
   @override
@@ -559,9 +720,9 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Comic> comics)? loaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
   }) {
-    return error?.call();
+    return error?.call(failure);
   }
 
   @override
@@ -569,11 +730,11 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<Comic> comics)? loaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(failure);
     }
     return orElse();
   }
@@ -614,5 +775,9 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements CompleteComicState {
-  const factory _Error() = _$_Error;
+  const factory _Error(ComicFailure failure) = _$_Error;
+
+  ComicFailure get failure;
+  @JsonKey(ignore: true)
+  _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }
