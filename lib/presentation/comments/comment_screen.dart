@@ -41,147 +41,175 @@ class _CommentsScreenState extends State<CommentsScreen> {
     );
 
     // print(currentUser.username);
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: const Text("Comments"),
-        elevation: 0.0,
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: CommentList(episodeId: widget.episodeId),
-          ),
-          const Divider(
-            color: Colors.white,
-          ),
-          ListTile(
-            title: TextField(
-              controller: _commentController,
-              decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintStyle: TextStyle(color: Colors.white),
-                  hintText: "Write Comment ..."),
-            ),
-            trailing: IconButton(
-              onPressed: () {
-                addComment(currentUser, _commentController.text);
-                _commentController.clear();
-              },
-              icon: const Icon(Icons.send),
-            ),
-          ),
-          const SizedBox(
-            height: 15,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class CommentList extends StatelessWidget {
-  const CommentList({
-    Key? key,
-    required this.episodeId,
-  }) : super(key: key);
-
-  final String episodeId;
-
-  @override
-  Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<UserActionsBloc>()
-        ..add(UserActionsEvent.fetchComments(episodeId)),
-      child: BlocBuilder<UserActionsBloc, UserActionsState>(
-        buildWhen: (previous, current) => previous != current,
+        ..add(UserActionsEvent.fetchComments(widget.episodeId)),
+      child: BlocConsumer<UserActionsBloc, UserActionsState>(
+        listener: (context, state) => state.maybeMap(orElse: () {
+          print("called");
+        }, addSuccess: (_) {
+          context
+              .read<UserActionsBloc>()
+              .add(UserActionsEvent.fetchComments(widget.episodeId));
+        }),
         builder: (context, state) {
-          return state.maybeMap(
-            orElse: () => Container(),
-            loading: (_) => const LoadingIndicator(),
-            error: (_) => const Text("Error"),
-            commentsLoaded: (commentstate) {
-              if (commentstate.comments.isEmpty) {
-                return Align(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 50.r,
-                        backgroundColor: const Color(0xff1B2C3B),
-                        child: Icon(
-                          Icons.chat_bubble,
-                          color: Colors.white,
-                          size: 50.w,
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-                      Text(
-                        "No Comments.Be First",
-                        style: TextStyle(
-                          fontSize: 15.sp,
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              }
-              return ListView.builder(
-                itemCount: commentstate.comments.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return BlocProvider(
-                    create: (context) => getIt<UserActionsBloc>()
-                      ..add(UserActionsEvent.fetchCommentsProfile(
-                          commentstate.comments[index].userId)),
-                    child: BlocBuilder<UserActionsBloc, UserActionsState>(
-                      builder: (context, state) {
-                        return state.maybeMap(
-                            orElse: () => Container(),
-                            commentProfilesLoaded: (state) {
-                              return Padding(
-                                padding: EdgeInsets.symmetric(vertical: 12.0.h),
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    maxRadius: 30.r,
-                                    backgroundImage: NetworkImage(
-                                        state.commentsProfiles.photoUrl),
-                                  ),
-                                  subtitle: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          commentstate.comments[index].comment),
-                                      Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                            format(commentstate
-                                                .comments[index].timestamp),
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 10.sp)),
-                                      ),
-                                    ],
-                                  ),
-                                  title: Text(state.commentsProfiles.username),
-                                ),
-                              );
-                            });
-                      },
-                    ),
-                  );
+          return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () {
+                  Navigator.of(context).pop();
                 },
-              );
-            },
+              ),
+              title: const Text("Comments"),
+              elevation: 0.0,
+            ),
+            body: Column(
+              children: [
+                Expanded(
+                    child: state.maybeMap(
+                  orElse: () => Container(),
+                  loading: (_) => const LoadingIndicator(),
+                  error: (_) => const Text("Error"),
+                  commentsLoaded: (commentstate) {
+                    if (commentstate.comments.isEmpty) {
+                      return Align(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              radius: 50.r,
+                              backgroundColor: const Color(0xff1B2C3B),
+                              child: Icon(
+                                Icons.chat_bubble,
+                                color: Colors.white,
+                                size: 50.w,
+                              ),
+                            ),
+                            SizedBox(height: 20.h),
+                            Text(
+                              "No Comments.Be First",
+                              style: TextStyle(
+                                fontSize: 15.sp,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    }
+                    return ListView.builder(
+                      itemCount: commentstate.comments.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return BlocProvider(
+                          create: (context) => getIt<UserActionsBloc>()
+                            ..add(UserActionsEvent.fetchCommentsProfile(
+                                commentstate.comments[index].userId)),
+                          child:
+                              BlocConsumer<UserActionsBloc, UserActionsState>(
+                            listener: (context, state) =>
+                                state.maybeMap(orElse: () {
+                              print("called222");
+                            }, addSuccess: (_) {
+                              context.read<UserActionsBloc>().add(
+                                  UserActionsEvent.fetchComments(
+                                      widget.episodeId));
+                            }),
+                            buildWhen: (previous, current) =>
+                                previous != current,
+                            builder: (context, state) {
+                              return state.maybeMap(
+                                  orElse: () => Container(),
+                                  commentProfilesLoaded: (state) {
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 12.0.h),
+                                      child: ListTile(
+                                        leading: CircleAvatar(
+                                          maxRadius: 30.r,
+                                          backgroundImage: NetworkImage(
+                                              state.commentsProfiles.photoUrl),
+                                        ),
+                                        subtitle: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(commentstate
+                                                .comments[index].comment),
+                                            Align(
+                                              alignment: Alignment.centerRight,
+                                              child: Text(
+                                                  format(commentstate
+                                                      .comments[index]
+                                                      .timestamp),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 10.sp)),
+                                            ),
+                                          ],
+                                        ),
+                                        title: Text(
+                                            state.commentsProfiles.username),
+                                      ),
+                                    );
+                                  });
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  },
+                )),
+                const Divider(
+                  color: Colors.white,
+                ),
+                ListTile(
+                  title: TextField(
+                    controller: _commentController,
+                    decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintStyle: TextStyle(color: Colors.white),
+                        hintText: "Write Comment ..."),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {
+                      getIt<UserActionsBloc>().add(UserActionsEvent.addComment(
+                          currentUser.id,
+                          _commentController.text,
+                          widget.episodeId));
+                      // addComment(currentUser, _commentController.text);
+                      _commentController.clear();
+                    },
+                    icon: const Icon(Icons.send),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                )
+              ],
+            ),
           );
         },
       ),
     );
   }
 }
+
+// class CommentList extends StatelessWidget {
+//   const CommentList({
+//     Key? key,
+//     required this.episodeId,
+//   }) : super(key: key);
+
+//   final String episodeId;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<UserActionsBloc, UserActionsState>(
+//       buildWhen: (previous, current) => previous != current,
+//       builder: (context, state) {
+//         return
+//       },
+//     );
+//   }
+// }

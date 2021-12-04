@@ -30,19 +30,18 @@ class ComicReaderBloc extends Bloc<ComicReaderEvent, ComicReaderState> {
           await _comicRepo.checkPdf(e.comicId, e.episodeName, e.episodeNumber);
 
       if (checked) {
-        emit(const ComicReaderState.loading());
         final failureOrSuccess =
             await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
         emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
             (r) => ComicReaderState.pdfLoaded(r)));
       } else {
-        emit(const ComicReaderState.loading());
         final failureOrSuccess =
             await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
         emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
             (r) => ComicReaderState.driveLoaded(r)));
       }
     }, changePdf: (e) async {
+      emit(const ComicReaderState.loading());
       final Either<ComicFailure, Episodes> failureOrSuccess =
           await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
       emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),

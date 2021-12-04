@@ -53,6 +53,7 @@ class _ReadingScreenState extends State<ReadingScreen>
         builder: (context, state) {
           return state.maybeMap(
               orElse: () => Container(),
+              loading: (_) => LoadingIndicator(),
               driveLoaded: (state) {
                 return Scaffold(
                   appBar: AppBar(

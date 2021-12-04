@@ -99,11 +99,16 @@ class UserActionsBloc extends Bloc<UserActionsEvent, UserActionsState> {
       emit(UserActionsState.updateNameSuccess(updateUser));
     }, deleteComment: (e) async {
       await _userActionsRepo.deleteComments(e.commentId);
+    }, addComment: (e) async {
+      final failureOrSuccess =
+          await _userActionsRepo.addComments(e.userId, e.comment, e.episodeId);
+      emit(failureOrSuccess.fold((l) => UserActionsState.error(),
+          (r) => UserActionsState.addSuccess()));
     }, fetchCommentsProfile: (e) async {
       emit(const UserActionsState.loading());
       await usersStream?.cancel();
       usersStream = _userActionsRepo
-          .fetchProfile(e.userId)
+          .fetchCmmentProfile(e.userId)
           .listen((failureOrProfile) => add(
                 UserActionsEvent.commentsProfileReceived(failureOrProfile),
               ));

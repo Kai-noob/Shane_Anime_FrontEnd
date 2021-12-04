@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movie_app/domain/core/errors.dart';
 import '../../domain/comic/comic_failure.dart';
 import '../../domain/save_comic/i_save_comic_repository.dart';
 import '../../domain/save_comic/save_comic.dart';
@@ -40,10 +41,12 @@ class SaveComicRepositoryImpl implements ISaveComicRepository {
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
-        return const Left(ComicFailure.permissionDenied());
+        return left(const ComicFailure.permissionDenied());
       } else {
         return left(const ComicFailure.unexcepted());
       }
+    } on NotAuthenticatedError catch (e) {
+      return left(const ComicFailure.permissionDenied());
     }
   }
 

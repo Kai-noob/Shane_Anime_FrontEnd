@@ -92,6 +92,7 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
   Future<Option<UserActionsFailure>> editName(AppUser user) async {
     try {
       await _firestore.collection("users").doc(user.id).update(user.toJson());
+
       return none();
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
@@ -190,6 +191,29 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
         return some(const UserActionsFailure.notFound());
       } else {
         return some(const UserActionsFailure.unableToFetch());
+      }
+    }
+  }
+
+  @override
+  Future<Either<UserActionsFailure, Unit>> addComments(
+      String userId, String comment, String episodeId) async {
+    try {
+      final commentDoc = _firestore.collection("comments");
+      await commentDoc.add({
+        'comment': comment,
+        'timestamp': DateTime.now(),
+        'userId': userId,
+        'episodeId': episodeId,
+      });
+      return right(unit);
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        return left(const UserActionsFailure.insufficientPermissions());
+      } else if (e.code == 'not-found') {
+        return left(const UserActionsFailure.notFound());
+      } else {
+        return left(const UserActionsFailure.unableToFetch());
       }
     }
   }

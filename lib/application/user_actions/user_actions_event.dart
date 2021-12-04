@@ -23,6 +23,8 @@ class UserActionsEvent with _$UserActionsEvent {
   const factory UserActionsEvent.editImage(String image) = _EditImage;
   const factory UserActionsEvent.deleteComment(String commentId) =
       _DeleteComment;
+  const factory UserActionsEvent.addComment(
+      String userId, String comment, String episodeId) = _AddComment;
   const factory UserActionsEvent.fetchCommentsProfile(String userId) =
       _FetchCommentsProfile;
 }

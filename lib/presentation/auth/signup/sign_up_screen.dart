@@ -34,7 +34,9 @@ class SignUpScreen extends StatelessWidget {
                             serverError: (_) => 'Server Error',
                             emailAlreadyInUse: (_) => 'Email Already in Use',
                             invalidEmailAndPasswordCombination: (_) =>
-                                'Invalid Email And Password Combination'),
+                                'Invalid Email And Password Combination',
+                            accontExists: (_) =>
+                                "Already registred with other social accounts by same email."),
                         style: const TextStyle(color: Colors.white),
                       )));
                 },
@@ -48,25 +50,6 @@ class SignUpScreen extends StatelessWidget {
             );
           },
           builder: (context, state) {
-            // return Column(
-            //   children: [
-            //     Container(
-            //       height: double.infinity,
-            //       width: double.infinity,
-            //       decoration: const BoxDecoration(
-            //           image: DecorationImage(
-            //               fit: BoxFit.fitHeight,
-            //               image: AssetImage("assets/images/signup.jpeg"))),
-            //     ),
-
-            //     Container(
-            //       alignment: Alignment.centerRight,
-            //       child: Column(
-            //         mainAxisAlignment: MainAxisAlignment.end,
-            //         children: [
-
-            //   ],
-            // );
             return SafeArea(
               child: SingleChildScrollView(
                 child: Column(

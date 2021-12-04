@@ -87,7 +87,33 @@ class FirebaseAuthFacade implements IAuthFacade {
           await _firebaseAuth.signInWithCredential(authCredential);
       await _saveUserDocToDatabase(credential);
       return right(unit);
-    } on PlatformException catch (e) {
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "account-exists-with-different-credential") {
+        return left(AuthFailure.accontExists());
+        // AuthCredential? pendingCredential = e.credential;
+        // List<String> userSignInMethods =
+        //     await _firebaseAuth.fetchSignInMethodsForEmail(e.email!);
+
+        // if (userSignInMethods.first == 'facebook.com') {
+        //   // Create a new Facebook credential
+        //   FacebookAuth facebookAuth = FacebookAuth.instance;
+        //   AccessToken? token = await facebookAuth.accessToken;
+        //   var facebookAuthCredential =
+        //       FacebookAuthProvider.credential(token!.token);
+
+        //   // Sign the user in with the credential
+        //   UserCredential userCredential =
+        //       await _firebaseAuth.signInWithCredential(facebookAuthCredential);
+
+        //   // Link the pending credential with the existing account
+        //   await userCredential.user!.linkWithCredential(pendingCredential!);
+
+        //   // Success! Go back to your application flow
+        //   return right(unit);
+        // }
+
+      }
+
       return left(const AuthFailure.serverError());
     }
   }
@@ -117,22 +143,47 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<Either<AuthFailure, Unit>> signInWithFacebook() async {
     try {
       FacebookAuth facebookAuth = FacebookAuth.instance;
-      bool isLogged = await facebookAuth.accessToken != null;
-      if (!isLogged) {
-        LoginResult result = await facebookAuth.login();
-        if (result.status == LoginStatus.success) {
-          AccessToken? token = await facebookAuth.accessToken;
-          final UserCredential credential =
-              await _firebaseAuth.signInWithCredential(
-                  FacebookAuthProvider.credential(token!.token));
-          _saveUserDocToDatabase(credential);
-        } else {
-          return left(const AuthFailure.cancelledByUser());
-        }
+
+      LoginResult result = await facebookAuth.login();
+      if (result.status == LoginStatus.success) {
+        AccessToken? token = await facebookAuth.accessToken;
+        // final _userData=facebookAuth.getUserData();
+        final UserCredential credential =
+            await _firebaseAuth.signInWithCredential(
+                FacebookAuthProvider.credential(token!.token));
+        _saveUserDocToDatabase(credential);
+      } else {
+        return left(AuthFailure.cancelledByUser());
       }
       return right(unit);
-    } on PlatformException catch (_) {
-      return left(const AuthFailure.serverError());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "account-exists-with-different-credential") {
+        return left(AuthFailure.accontExists());
+        // AuthCredential? pendingCredential = e.credential;
+        // List<String> userSignInMethods =
+        //     await _firebaseAuth.fetchSignInMethodsForEmail(e.email!);
+
+        // if (userSignInMethods.first == 'google.com') {
+        //   final googleUser = await _googleSignIn.signIn();
+        //   if (googleUser == null) {
+        //     return left(const AuthFailure.cancelledByUser());
+        //   }
+        //   final googleAuthentication = await googleUser.authentication;
+
+        //   final authCredential = GoogleAuthProvider.credential(
+        //       idToken: googleAuthentication.idToken,
+        //       accessToken: googleAuthentication.accessToken);
+        //   UserCredential userCredential =
+        //       await _firebaseAuth.signInWithCredential(authCredential);
+
+        //   // Link the pending credential with the existing account
+        //   await userCredential.user!.linkWithCredential(pendingCredential!);
+
+        //   return right(unit);
+        // }
+      } else {
+        return left(const AuthFailure.serverError());
+      }
     }
   }
 }

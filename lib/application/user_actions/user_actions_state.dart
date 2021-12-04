@@ -17,5 +17,5 @@ class UserActionsState with _$UserActionsState {
   const factory UserActionsState.updateImageSuccess(AppUser user) =
       _UpdateImageSuccess;
   const factory UserActionsState.deleteSuccess() = _DeleteSuccess;
-
+  const factory UserActionsState.addSuccess() = _AddSuccess;
 }
