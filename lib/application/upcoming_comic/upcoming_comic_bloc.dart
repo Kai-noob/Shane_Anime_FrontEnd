@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movie_app/domain/comic/comic_failure.dart';
 import '../../domain/upcoming_comic/i_upcoming_comic_repo.dart';
 import '../../domain/upcoming_comic/upcoming_comic.dart';
 part 'upcoming_comic_event.dart';
@@ -19,7 +20,7 @@ class UpcomingComicBloc extends Bloc<UpcomingComicEvent, UpcomingComicState> {
       UpcomingComicEvent event, Emitter<UpcomingComicState> emit) async {
     emit(const UpcomingComicState.loading());
     final failureOrSuccess = await _upcomingComicRepo.getUpcomingComics();
-    emit(failureOrSuccess.fold((l) => const UpcomingComicState.error(),
+    emit(failureOrSuccess.fold((l) => UpcomingComicState.error(l),
         (r) => UpcomingComicState.loaded(r)));
   }
 }

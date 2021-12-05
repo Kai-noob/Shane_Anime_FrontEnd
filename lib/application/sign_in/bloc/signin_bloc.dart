@@ -16,95 +16,31 @@ class SigninBloc extends Bloc<SigninEvent, SigninState> {
   final IAuthFacade _authFacade;
 
   SigninBloc(this._authFacade) : super(SigninState.initial()) {
-    on<EmailChanged>(_onEmailChanged);
-    on<PasswordChanged>(_onPasswordChanged);
-    on<RegisterWithEmailAndPassword>(_onRegisterWithCredentials);
-    on<SignInWithEmailAndPassword>(_onSignInWithCredentials);
-    on<SignInWithGoogle>(_onSignInWithGoogle);
-    on<SignInWithFacebook>(_onSignInWithFacebook);
+    on<SigninEvent>(_signInEvent);
   }
 
-  void _onEmailChanged(EmailChanged event, Emitter<SigninState> emit) {
-    emit(state.copyWith(
-      emailAddress: EmailAddress(event.emailStr),
-      authFailureOrSuccessOption: none(),
-    ));
-  }
-
-  void _onPasswordChanged(PasswordChanged event, Emitter<SigninState> emit) {
-    emit(state.copyWith(
-      password: Password(event.passwordStr),
-      authFailureOrSuccessOption: none(),
-    ));
-  }
-
-  void _onRegisterWithCredentials(
-      RegisterWithEmailAndPassword event, Emitter<SigninState> emit) async {
-    _performActionOnAuthFacadeWithCredentials(
-        emit, _authFacade.registerWithEmailAndPassword);
-  }
-
-  void _onSignInWithCredentials(
-      SignInWithEmailAndPassword event, Emitter<SigninState> emit) {
-    _performActionOnAuthFacadeWithCredentials(
-        emit, _authFacade.signInWithEmailAndPassword);
-  }
-
-  void _performActionOnAuthFacadeWithCredentials(
-    Emitter<SigninState> emit,
-    Future<Either<AuthFailure, Unit>> Function({
-      required EmailAddress emailAddress,
-      required Password password,
-    })
-        forwardedCall,
-  ) async {
-    final isEmailValid = state.emailAddress.isValid();
-    final isPasswordValid = state.password.isValid();
-    if (isEmailValid && isPasswordValid) {
+  Future<void> _signInEvent(
+      SigninEvent event, Emitter<SigninState> emit) async {
+    await event.map(signInWithGoogle: (e) async {
       emit(state.copyWith(
         isSubmitting: true,
         authFailureOrSuccessOption: none(),
       ));
-      final failureOrSuccess = await forwardedCall(
-        emailAddress: state.emailAddress,
-        password: state.password,
-      );
+      final failureOrSuccess = await _authFacade.signInWithGoogle();
       emit(state.copyWith(
         isSubmitting: false,
         authFailureOrSuccessOption: some(failureOrSuccess),
       ));
-    } else {
+    }, signInWithFacebook: (e) async {
+      emit(state.copyWith(
+        isSubmitting: true,
+        authFailureOrSuccessOption: none(),
+      ));
+      final failureOrSuccess = await _authFacade.signInWithFacebook();
       emit(state.copyWith(
         isSubmitting: false,
-        authFailureOrSuccessOption: none(),
-        showErrorMessages: AutovalidateMode.always,
+        authFailureOrSuccessOption: some(failureOrSuccess),
       ));
-    }
-  }
-
-  void _onSignInWithGoogle(
-      SignInWithGoogle event, Emitter<SigninState> emit) async {
-    emit(state.copyWith(
-      isSubmitting: true,
-      authFailureOrSuccessOption: none(),
-    ));
-    final failureOrSuccess = await _authFacade.signInWithGoogle();
-    emit(state.copyWith(
-      isSubmitting: false,
-      authFailureOrSuccessOption: some(failureOrSuccess),
-    ));
-  }
-
-  void _onSignInWithFacebook(
-      SignInWithFacebook event, Emitter<SigninState> emit) async {
-    emit(state.copyWith(
-      isSubmitting: true,
-      authFailureOrSuccessOption: none(),
-    ));
-    final failureOrSuccess = await _authFacade.signInWithFacebook();
-    emit(state.copyWith(
-      isSubmitting: false,
-      authFailureOrSuccessOption: some(failureOrSuccess),
-    ));
+    });
   }
 }

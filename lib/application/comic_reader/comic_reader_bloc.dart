@@ -20,31 +20,26 @@ class ComicReaderBloc extends Bloc<ComicReaderEvent, ComicReaderState> {
 
   Future<void> _getPdfEvent(
       ComicReaderEvent event, Emitter<ComicReaderState> emit) async {
-    await event.map(getPdf: (e) async {
-      final Either<ComicFailure, Episodes> failureOrSuccess =
-          await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
-      emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
-          (r) => ComicReaderState.pdfLoaded(r)));
-    }, checkPdf: (e) async {
+    await event.map(checkPdf: (e) async {
       bool checked =
           await _comicRepo.checkPdf(e.comicId, e.episodeName, e.episodeNumber);
 
       if (checked) {
         final failureOrSuccess =
             await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
-        emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
+        emit(failureOrSuccess.fold((l) => ComicReaderState.error(l),
             (r) => ComicReaderState.pdfLoaded(r)));
       } else {
         final failureOrSuccess =
             await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
-        emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
+        emit(failureOrSuccess.fold((l) => ComicReaderState.error(l),
             (r) => ComicReaderState.driveLoaded(r)));
       }
     }, changePdf: (e) async {
       emit(const ComicReaderState.loading());
       final Either<ComicFailure, Episodes> failureOrSuccess =
           await _comicRepo.getPdf(e.comicId, e.episodeName, e.episodeNumber);
-      emit(failureOrSuccess.fold((l) => const ComicReaderState.error(),
+      emit(failureOrSuccess.fold((l) => ComicReaderState.error(l),
           (r) => ComicReaderState.chgEpisodeSuccess(r)));
     });
   }

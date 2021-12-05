@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../application/search/search_bloc.dart';
 import '../../../helper/global/loading_indicator.dart';
@@ -17,6 +18,21 @@ class SearchResultListView extends StatelessWidget {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         return state.maybeMap(
+            error: (error) => error.failure.maybeMap(
+                orElse: () => Container(),
+                notFound: (_) => CustomError(
+                      errorImage: "assets/logo/error.svg",
+                      errorMessage: "Not Found Comics",
+                    ),
+                unexcepted: (_) => Column(children: [
+                      SvgPicture.asset(
+                        "assets/logo/empty.svg",
+                        height: 50.h,
+                      ),
+                      Text("Un excepted error",
+                          style: TextStyle(
+                              fontSize: 19.sp, fontWeight: FontWeight.w600))
+                    ])),
             initial: (_) => Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -42,10 +58,6 @@ class SearchResultListView extends StatelessWidget {
             orElse: () => Container(),
             loading: (_) => const LoadingIndicator(),
             loaded: (state) {
-              if (state.comics.isEmpty) {
-                return const Center(child: Text("No Comics Found"));
-              }
-
               return ListView.builder(
                 shrinkWrap: true,
                 primary: false,
@@ -88,6 +100,30 @@ class SearchResultListView extends StatelessWidget {
               );
             });
       },
+    );
+  }
+}
+
+class CustomError extends StatelessWidget {
+  final String errorMessage;
+  final String errorImage;
+  const CustomError({
+    Key? key,
+    required this.errorMessage,
+    required this.errorImage,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SvgPicture.asset(
+          errorImage,
+          height: 50.h,
+        ),
+        Text(errorMessage,
+            style: TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w600))
+      ],
     );
   }
 }

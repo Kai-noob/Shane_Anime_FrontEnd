@@ -41,8 +41,8 @@ class _HomeAppBarState extends State<HomeAppBar> {
           collapseMode: CollapseMode.pin,
           background: BlocBuilder<HotComicBloc, HotComicState>(
             builder: (context, state) => state.maybeMap(
-                orElse: () =>
-                    const ErrorMessage(message: "Error", isSliver: false),
+                orElse: () => Container(),
+                // error:(error)=>error.failure.maybeMap(orElse: ()=>)
                 loading: (_) => const ShimmerAppBar(),
                 loaded: (state) {
                   return PageView.builder(

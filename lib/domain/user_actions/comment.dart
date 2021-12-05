@@ -9,14 +9,15 @@ part 'comment.g.dart';
 
 @freezed
 class Comments with _$Comments {
-  const factory Comments({
-    // ignore: invalid_annotation_target
-    @JsonKey(ignore: true) String? commentId,
-    required String comment,
-    @TimestampConverter() required DateTime timestamp,
-    required String episodeId,
-    required String userId,
-  }) = _Comments;
+  const factory Comments(
+      {
+      // ignore: invalid_annotation_target
+      @JsonKey(ignore: true) String? commentId,
+      required String comment,
+      @TimestampConverter() required DateTime timestamp,
+      required String episodeId,
+      required String userId,
+      @JsonKey(ignore: true) AppUser? user}) = _Comments;
 
   factory Comments.fromJson(Map<String, dynamic> json) =>
       _$CommentsFromJson(json);

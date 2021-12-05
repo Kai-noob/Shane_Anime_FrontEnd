@@ -45,8 +45,6 @@ class SaveComicRepositoryImpl implements ISaveComicRepository {
       } else {
         return left(const ComicFailure.unexcepted());
       }
-    } on NotAuthenticatedError catch (e) {
-      return left(const ComicFailure.permissionDenied());
     }
   }
 

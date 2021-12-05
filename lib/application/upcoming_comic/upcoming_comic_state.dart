@@ -4,7 +4,7 @@ part of 'upcoming_comic_bloc.dart';
 class UpcomingComicState with _$UpcomingComicState {
   const factory UpcomingComicState.initial() = _Initial;
   const factory UpcomingComicState.loading() = _Loading;
-  const factory UpcomingComicState.error() = _Error;
+  const factory UpcomingComicState.error(ComicFailure failure) = _Error;
   const factory UpcomingComicState.loaded(List<Upcomingcomic> upcomingComics) =
       _Loaded;
 }

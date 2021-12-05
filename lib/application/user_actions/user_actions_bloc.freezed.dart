@@ -3147,8 +3147,10 @@ class _$UserActionsStateTearOff {
     );
   }
 
-  _Error error() {
-    return const _Error();
+  _Error error(UserActionsFailure failure) {
+    return _Error(
+      failure,
+    );
   }
 
   _LikeStatus likeStatus(bool isLiked) {
@@ -3200,7 +3202,7 @@ mixin _$UserActionsState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -3215,7 +3217,7 @@ mixin _$UserActionsState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3230,7 +3232,7 @@ mixin _$UserActionsState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3348,7 +3350,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -3366,7 +3368,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3384,7 +3386,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3505,7 +3507,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -3523,7 +3525,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3541,7 +3543,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3697,7 +3699,7 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -3715,7 +3717,7 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3733,7 +3735,7 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3822,6 +3824,9 @@ abstract class _ProfileLoaded implements UserActionsState {
 abstract class _$ErrorCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
       __$ErrorCopyWithImpl<$Res>;
+  $Res call({UserActionsFailure failure});
+
+  $UserActionsFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -3832,26 +3837,55 @@ class __$ErrorCopyWithImpl<$Res> extends _$UserActionsStateCopyWithImpl<$Res>
 
   @override
   _Error get _value => super._value as _Error;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_Error(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as UserActionsFailure,
+    ));
+  }
+
+  @override
+  $UserActionsFailureCopyWith<$Res> get failure {
+    return $UserActionsFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error();
+  const _$_Error(this.failure);
+
+  @override
+  final UserActionsFailure failure;
 
   @override
   String toString() {
-    return 'UserActionsState.error()';
+    return 'UserActionsState.error(failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Error);
+        (other.runtimeType == runtimeType &&
+            other is _Error &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -3859,7 +3893,7 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -3868,7 +3902,7 @@ class _$_Error implements _Error {
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
   }) {
-    return error();
+    return error(failure);
   }
 
   @override
@@ -3877,7 +3911,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3886,7 +3920,7 @@ class _$_Error implements _Error {
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
   }) {
-    return error?.call();
+    return error?.call(failure);
   }
 
   @override
@@ -3895,7 +3929,7 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -3906,7 +3940,7 @@ class _$_Error implements _Error {
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(failure);
     }
     return orElse();
   }
@@ -3972,7 +4006,11 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements UserActionsState {
-  const factory _Error() = _$_Error;
+  const factory _Error(UserActionsFailure failure) = _$_Error;
+
+  UserActionsFailure get failure;
+  @JsonKey(ignore: true)
+  _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -4042,7 +4080,7 @@ class _$_LikeStatus implements _LikeStatus {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -4060,7 +4098,7 @@ class _$_LikeStatus implements _LikeStatus {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4078,7 +4116,7 @@ class _$_LikeStatus implements _LikeStatus {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4231,7 +4269,7 @@ class _$_CommentsLoaded implements _CommentsLoaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -4249,7 +4287,7 @@ class _$_CommentsLoaded implements _CommentsLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4267,7 +4305,7 @@ class _$_CommentsLoaded implements _CommentsLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4430,7 +4468,7 @@ class _$_CommentProfilesLoaded implements _CommentProfilesLoaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -4448,7 +4486,7 @@ class _$_CommentProfilesLoaded implements _CommentProfilesLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4466,7 +4504,7 @@ class _$_CommentProfilesLoaded implements _CommentProfilesLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4628,7 +4666,7 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -4646,7 +4684,7 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4664,7 +4702,7 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4825,7 +4863,7 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -4843,7 +4881,7 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4861,7 +4899,7 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -4990,7 +5028,7 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -5008,7 +5046,7 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -5026,7 +5064,7 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -5150,7 +5188,7 @@ class _$_AddSuccess implements _AddSuccess {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function() error,
+    required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
     required TResult Function(List<Comments> comments) commentsLoaded,
     required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
@@ -5168,7 +5206,7 @@ class _$_AddSuccess implements _AddSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
@@ -5186,7 +5224,7 @@ class _$_AddSuccess implements _AddSuccess {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppUser profile)? profileLoaded,
-    TResult Function()? error,
+    TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
     TResult Function(List<Comments> comments)? commentsLoaded,
     TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,

@@ -1,18 +1,16 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/presentation/splash/splash.dart';
 import '../application/auth/bloc/auth_bloc.dart';
 
 import '../helper/theme/themes.dart';
 import 'package:flutter/material.dart';
 import '../injection.dart';
-import 'routes/router.gr.dart';
 
 class App extends StatelessWidget {
   App({
     Key? key,
   }) : super(key: key);
-
-  final _router = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +22,10 @@ class App extends StatelessWidget {
       ],
       child: ScreenUtilInit(
         builder: () {
-          return MaterialApp.router(
-            routeInformationParser: _router.defaultRouteParser(),
-            routerDelegate: _router.delegate(),
+          return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: Themes.dark,
+            home: SplashScreen(),
           );
         },
         designSize: const Size(360, 690),

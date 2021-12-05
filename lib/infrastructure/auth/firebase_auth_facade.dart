@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart';
 import '../../domain/auth/auth_failures.dart';
 import '../../domain/auth/i_auth_facade.dart';
 import '../../domain/auth/user.dart';
-import '../../domain/auth/value_objects.dart';
+
 import 'firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
@@ -29,46 +29,6 @@ class FirebaseAuthFacade implements IAuthFacade {
     final user = AppUser.fromJson(doc.data()!);
     // return optionOf(firebaseUser?.toDomain());
     return some(user);
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
-      {required EmailAddress emailAddress, required Password password}) async {
-    final emailStr = emailAddress.getOrCrash();
-    final passwordStr = password.getOrCrash();
-
-    try {
-      final credential = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: emailStr, password: passwordStr);
-      await _saveUserDocToDatabase(credential);
-      return right(unit);
-    } on PlatformException catch (e) {
-      if (e.code == "email-already-in-use") {
-        return left(const AuthFailure.emailAlreadyInUse());
-      } else {
-        return left(const AuthFailure.serverError());
-      }
-    }
-  }
-
-  @override
-  Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
-      {required EmailAddress emailAddress, required Password password}) async {
-    final emailStr = emailAddress.getOrCrash();
-    final passwordStr = password.getOrCrash();
-
-    try {
-      final credential = await _firebaseAuth.signInWithEmailAndPassword(
-          email: emailStr, password: passwordStr);
-      await _saveUserDocToDatabase(credential);
-      return right(unit);
-    } on PlatformException catch (e) {
-      if (e.code == 'user-not-found' && e.code == "wrong-password") {
-        return left(const AuthFailure.invalidEmailAndPasswordCombination());
-      } else {
-        return left(const AuthFailure.serverError());
-      }
-    }
   }
 
   @override

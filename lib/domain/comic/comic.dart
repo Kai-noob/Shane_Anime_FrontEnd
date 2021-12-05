@@ -21,20 +21,15 @@ class TimestampConverter implements JsonConverter<DateTime, Timestamp> {
 @freezed
 class Comic with _$Comic {
   const factory Comic(
-      // ignore: invalid_annotation_target
       {@JsonKey(ignore: true) String? id,
       required String title,
-      // ignore: invalid_annotation_target
       @JsonKey(name: "cover_photo") required String coverPhoto,
       required String review,
-      // ignore: invalid_annotation_target
       @JsonKey(name: "editor_choice") required bool editorChoice,
       required bool published,
       required bool completed,
       @TimestampConverter() required DateTime created,
-      // ignore: invalid_annotation_target
       @JsonKey(ignore: true) List<Genre>? genres,
-      // ignore: invalid_annotation_target
       @JsonKey(ignore: true) List<Episodes>? episodes}) = _Comic;
 
   factory Comic.fromJson(Map<String, dynamic> json) => _$ComicFromJson(json);

@@ -77,16 +77,16 @@ class UserActionsBloc extends Bloc<UserActionsEvent, UserActionsState> {
                 UserActionsEvent.commentsReceived(failureOrComments),
               ));
     }, commentsReceived: (e) async {
-      emit(e.failureOrComments.fold((l) => const UserActionsState.error(), (r) {
+      emit(e.failureOrComments.fold((l) => UserActionsState.error(l), (r) {
         return UserActionsState.commentsLoaded(r);
       }));
     }, commentsProfileReceived: (e) async {
-      emit(e.failureOrCommetsProfile.fold((l) => const UserActionsState.error(),
-          (r) {
+      emit(
+          e.failureOrCommetsProfile.fold((l) => UserActionsState.error(l), (r) {
         return UserActionsState.commentProfilesLoaded(r);
       }));
     }, profileReceived: (e) async {
-      emit(e.failureOrProfile.fold((l) => const UserActionsState.error(), (r) {
+      emit(e.failureOrProfile.fold((l) => UserActionsState.error(l), (r) {
         return UserActionsState.profileLoaded(r);
       }));
     }, editName: (e) async {
@@ -100,10 +100,10 @@ class UserActionsBloc extends Bloc<UserActionsEvent, UserActionsState> {
     }, deleteComment: (e) async {
       await _userActionsRepo.deleteComments(e.commentId);
     }, addComment: (e) async {
-      final failureOrSuccess =
-          await _userActionsRepo.addComments(e.userId, e.comment, e.episodeId);
-      emit(failureOrSuccess.fold((l) => UserActionsState.error(),
-          (r) => UserActionsState.addSuccess()));
+      emit(UserActionsState.loading());
+      await _userActionsRepo.addComments(e.userId, e.comment, e.episodeId);
+
+      emit(const UserActionsState.addSuccess());
     }, fetchCommentsProfile: (e) async {
       emit(const UserActionsState.loading());
       await usersStream?.cancel();

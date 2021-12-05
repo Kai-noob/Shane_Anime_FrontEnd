@@ -24,7 +24,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       final Either<ComicFailure, List<Comic>> failureOrSuccess =
           await _comicRepo.searchComics(e.title);
       emit(failureOrSuccess.fold(
-          (l) => const SearchState.error(), (r) => SearchState.loaded(r)));
+          (l) => SearchState.error(l), (r) => SearchState.loaded(r)));
     });
   }
 }

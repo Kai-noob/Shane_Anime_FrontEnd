@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:movie_app/domain/comic/comic_failure.dart';
 import '../../domain/comic/i_comic_repository.dart';
 import '../../domain/episodes/episodes.dart';
 
@@ -21,11 +22,11 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
       emit(const EpisodesState.loading());
       final failureOrSuccess = await _comiRepo.getDailyEpisodes();
       emit(failureOrSuccess.fold(
-          (l) => const EpisodesState.error(), (r) => EpisodesState.loaded(r)));
+          (l) => EpisodesState.error(l), (r) => EpisodesState.loaded(r)));
     }, getEpisode: (e) async {
       emit(const EpisodesState.loading());
       final failureOrSuccess = await _comiRepo.getEpisode(e.episodeId);
-      emit(failureOrSuccess.fold((l) => const EpisodesState.error(),
+      emit(failureOrSuccess.fold((l) => EpisodesState.error(l),
           (r) => EpisodesState.episodeLoaded(r)));
     });
   }

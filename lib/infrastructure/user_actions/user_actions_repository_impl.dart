@@ -125,6 +125,7 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
         if (e.code == 'permission-denied') {
           return left(const UserActionsFailure.insufficientPermissions());
         } else if (e.code == 'not-found') {
+          print("NOt Found");
           return left(const UserActionsFailure.notFound());
         } else {
           return left(const UserActionsFailure.unableToFetch());
@@ -156,6 +157,21 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
   @override
   Stream<Either<UserActionsFailure, AppUser>> fetchCmmentProfile(
       String userId) async* {
+    //   try{
+
+    //     final profileDoc=await _firestore.collection("users").doc(userId).get();
+    //     final profile=AppUser.fromJson(profileDoc.data() as Map<String,dynamic>);
+
+    //     return right(profile);
+    //   }on FirebaseException catch (e) {
+    //   if (e.code == 'permission-denied') {
+    //     return left(const UserActionsFailure.insufficientPermissions());
+    //   } else if (e.code == 'not-found') {
+    //     return left(const UserActionsFailure.notFound());
+    //   } else {
+    //     return left(const UserActionsFailure.unableToFetch());
+    //   }
+    // }
     yield* _firestore
         .collection("users")
         .doc(userId)
@@ -196,7 +212,7 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
   }
 
   @override
-  Future<Either<UserActionsFailure, Unit>> addComments(
+  Future<Option<UserActionsFailure>> addComments(
       String userId, String comment, String episodeId) async {
     try {
       final commentDoc = _firestore.collection("comments");
@@ -206,14 +222,14 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
         'userId': userId,
         'episodeId': episodeId,
       });
-      return right(unit);
+      return none();
     } on FirebaseException catch (e) {
       if (e.code == 'permission-denied') {
-        return left(const UserActionsFailure.insufficientPermissions());
+        return some(const UserActionsFailure.insufficientPermissions());
       } else if (e.code == 'not-found') {
-        return left(const UserActionsFailure.notFound());
+        return some(const UserActionsFailure.notFound());
       } else {
-        return left(const UserActionsFailure.unableToFetch());
+        return some(const UserActionsFailure.unableToFetch());
       }
     }
   }

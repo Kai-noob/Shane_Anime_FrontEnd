@@ -4,7 +4,7 @@ part of 'episodes_bloc.dart';
 class EpisodesState with _$EpisodesState {
   const factory EpisodesState.initial() = _Initial;
   const factory EpisodesState.loading() = _Loading;
-  const factory EpisodesState.error() = _Error;
+  const factory EpisodesState.error(ComicFailure failure) = _Error;
   const factory EpisodesState.loaded(List<Episodes> episodes) = _Loaded;
   const factory EpisodesState.episodeLoaded(Episodes episodes) = _EpisodeLoaded;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/presentation/search/components/search_result_list_view.dart';
 
 import '../../../application/comic_details/comic_details_bloc.dart';
 import '../../../application/save_comic/save_comic_bloc.dart';
@@ -23,29 +24,36 @@ class SaveScreen extends StatelessWidget {
         builder: (context, state) {
           return state.maybeMap(
               orElse: () => Container(),
+              error: (error) => error.comicFailure.maybeMap(
+                  orElse: () => Container(),
+                  notFound: (_) {
+                    return CustomError(
+                        errorMessage: "No Saved Mangas",
+                        errorImage: "assets/logo/empty.svg");
+                  }),
               loading: (_) => const LoadingIndicator(),
               watchSuccess: (state) {
-                if (state.saveComics.isEmpty) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: 70.r,
-                        backgroundColor: const Color(0xff1B2C3B),
-                        child: Icon(
-                          Icons.bookmark_outline,
-                          color: Colors.white,
-                          size: 80.w,
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-                      Text(
-                        "No Saved Mangas",
-                        style: TextStyle(fontSize: 18.sp),
-                      )
-                    ],
-                  );
-                }
+                // if (state.saveComics.isEmpty) {
+                //   return Column(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       CircleAvatar(
+                //         radius: 70.r,
+                //         backgroundColor: const Color(0xff1B2C3B),
+                //         child: Icon(
+                //           Icons.bookmark_outline,
+                //           color: Colors.white,
+                //           size: 80.w,
+                //         ),
+                //       ),
+                //       SizedBox(height: 20.h),
+                //       Text(
+                //         "No Saved Mangas",
+                //         style: TextStyle(fontSize: 18.sp),
+                //       )
+                //     ],
+                //   );
+                // }
 
                 return GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

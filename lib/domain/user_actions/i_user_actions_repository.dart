@@ -17,7 +17,7 @@ abstract class IUserActionsRepository {
       String userId);
   // Future<Either<UserActionsFailure, List<Comments>>> fetchUserComment(
   //     String userId);
-  Future<Either<UserActionsFailure, Unit>> addComments(
+  Future<Option<UserActionsFailure>> addComments(
       String userId, String comment, String episodeId);
   Future<Either<UserActionsFailure, Unit>> deleteComments(String commentId);
   Future<Option<UserActionsFailure>> editName(AppUser user);

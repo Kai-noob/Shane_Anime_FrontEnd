@@ -6,7 +6,7 @@ class UserActionsState with _$UserActionsState {
   const factory UserActionsState.loading() = _Loading;
   const factory UserActionsState.profileLoaded(AppUser profile) =
       _ProfileLoaded;
-  const factory UserActionsState.error() = _Error;
+  const factory UserActionsState.error(UserActionsFailure failure) = _Error;
   const factory UserActionsState.likeStatus(bool isLiked) = _LikeStatus;
   const factory UserActionsState.commentsLoaded(List<Comments> comments) =
       _CommentsLoaded;

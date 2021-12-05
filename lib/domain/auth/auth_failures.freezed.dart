@@ -28,14 +28,6 @@ class _$AuthFailureTearOff {
   _AccountExists accontExists() {
     return const _AccountExists();
   }
-
-  _EmailAlreadyInUse emailAlreadyInUse() {
-    return const _EmailAlreadyInUse();
-  }
-
-  _InvalidEmailAndPasswordCombination invalidEmailAndPasswordCombination() {
-    return const _InvalidEmailAndPasswordCombination();
-  }
 }
 
 /// @nodoc
@@ -48,8 +40,6 @@ mixin _$AuthFailure {
     required TResult Function() cancelledByUser,
     required TResult Function() serverError,
     required TResult Function() accontExists,
-    required TResult Function() emailAlreadyInUse,
-    required TResult Function() invalidEmailAndPasswordCombination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,8 +47,6 @@ mixin _$AuthFailure {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,8 +54,6 @@ mixin _$AuthFailure {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -76,9 +62,6 @@ mixin _$AuthFailure {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_AccountExists value) accontExists,
-    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(_InvalidEmailAndPasswordCombination value)
-        invalidEmailAndPasswordCombination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,9 +69,6 @@ mixin _$AuthFailure {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -96,9 +76,6 @@ mixin _$AuthFailure {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -164,8 +141,6 @@ class _$_CancelledByUser implements _CancelledByUser {
     required TResult Function() cancelledByUser,
     required TResult Function() serverError,
     required TResult Function() accontExists,
-    required TResult Function() emailAlreadyInUse,
-    required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return cancelledByUser();
   }
@@ -176,8 +151,6 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return cancelledByUser?.call();
   }
@@ -188,8 +161,6 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -204,9 +175,6 @@ class _$_CancelledByUser implements _CancelledByUser {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_AccountExists value) accontExists,
-    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(_InvalidEmailAndPasswordCombination value)
-        invalidEmailAndPasswordCombination,
   }) {
     return cancelledByUser(this);
   }
@@ -217,9 +185,6 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
   }) {
     return cancelledByUser?.call(this);
   }
@@ -230,9 +195,6 @@ class _$_CancelledByUser implements _CancelledByUser {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
     if (cancelledByUser != null) {
@@ -289,8 +251,6 @@ class _$_ServerError implements _ServerError {
     required TResult Function() cancelledByUser,
     required TResult Function() serverError,
     required TResult Function() accontExists,
-    required TResult Function() emailAlreadyInUse,
-    required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return serverError();
   }
@@ -301,8 +261,6 @@ class _$_ServerError implements _ServerError {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return serverError?.call();
   }
@@ -313,8 +271,6 @@ class _$_ServerError implements _ServerError {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -329,9 +285,6 @@ class _$_ServerError implements _ServerError {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_AccountExists value) accontExists,
-    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(_InvalidEmailAndPasswordCombination value)
-        invalidEmailAndPasswordCombination,
   }) {
     return serverError(this);
   }
@@ -342,9 +295,6 @@ class _$_ServerError implements _ServerError {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
   }) {
     return serverError?.call(this);
   }
@@ -355,9 +305,6 @@ class _$_ServerError implements _ServerError {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
     if (serverError != null) {
@@ -414,8 +361,6 @@ class _$_AccountExists implements _AccountExists {
     required TResult Function() cancelledByUser,
     required TResult Function() serverError,
     required TResult Function() accontExists,
-    required TResult Function() emailAlreadyInUse,
-    required TResult Function() invalidEmailAndPasswordCombination,
   }) {
     return accontExists();
   }
@@ -426,8 +371,6 @@ class _$_AccountExists implements _AccountExists {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
   }) {
     return accontExists?.call();
   }
@@ -438,8 +381,6 @@ class _$_AccountExists implements _AccountExists {
     TResult Function()? cancelledByUser,
     TResult Function()? serverError,
     TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
     if (accontExists != null) {
@@ -454,9 +395,6 @@ class _$_AccountExists implements _AccountExists {
     required TResult Function(_CancelledByUser value) cancelledByUser,
     required TResult Function(_ServerError value) serverError,
     required TResult Function(_AccountExists value) accontExists,
-    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(_InvalidEmailAndPasswordCombination value)
-        invalidEmailAndPasswordCombination,
   }) {
     return accontExists(this);
   }
@@ -467,9 +405,6 @@ class _$_AccountExists implements _AccountExists {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
   }) {
     return accontExists?.call(this);
   }
@@ -480,9 +415,6 @@ class _$_AccountExists implements _AccountExists {
     TResult Function(_CancelledByUser value)? cancelledByUser,
     TResult Function(_ServerError value)? serverError,
     TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
     required TResult orElse(),
   }) {
     if (accontExists != null) {
@@ -494,262 +426,4 @@ class _$_AccountExists implements _AccountExists {
 
 abstract class _AccountExists implements AuthFailure {
   const factory _AccountExists() = _$_AccountExists;
-}
-
-/// @nodoc
-abstract class _$EmailAlreadyInUseCopyWith<$Res> {
-  factory _$EmailAlreadyInUseCopyWith(
-          _EmailAlreadyInUse value, $Res Function(_EmailAlreadyInUse) then) =
-      __$EmailAlreadyInUseCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$EmailAlreadyInUseCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$EmailAlreadyInUseCopyWith<$Res> {
-  __$EmailAlreadyInUseCopyWithImpl(
-      _EmailAlreadyInUse _value, $Res Function(_EmailAlreadyInUse) _then)
-      : super(_value, (v) => _then(v as _EmailAlreadyInUse));
-
-  @override
-  _EmailAlreadyInUse get _value => super._value as _EmailAlreadyInUse;
-}
-
-/// @nodoc
-
-class _$_EmailAlreadyInUse implements _EmailAlreadyInUse {
-  const _$_EmailAlreadyInUse();
-
-  @override
-  String toString() {
-    return 'AuthFailure.emailAlreadyInUse()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _EmailAlreadyInUse);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
-    required TResult Function() accontExists,
-    required TResult Function() emailAlreadyInUse,
-    required TResult Function() invalidEmailAndPasswordCombination,
-  }) {
-    return emailAlreadyInUse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
-    TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
-  }) {
-    return emailAlreadyInUse?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
-    TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
-    required TResult orElse(),
-  }) {
-    if (emailAlreadyInUse != null) {
-      return emailAlreadyInUse();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CancelledByUser value) cancelledByUser,
-    required TResult Function(_ServerError value) serverError,
-    required TResult Function(_AccountExists value) accontExists,
-    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(_InvalidEmailAndPasswordCombination value)
-        invalidEmailAndPasswordCombination,
-  }) {
-    return emailAlreadyInUse(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CancelledByUser value)? cancelledByUser,
-    TResult Function(_ServerError value)? serverError,
-    TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
-  }) {
-    return emailAlreadyInUse?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CancelledByUser value)? cancelledByUser,
-    TResult Function(_ServerError value)? serverError,
-    TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
-    required TResult orElse(),
-  }) {
-    if (emailAlreadyInUse != null) {
-      return emailAlreadyInUse(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EmailAlreadyInUse implements AuthFailure {
-  const factory _EmailAlreadyInUse() = _$_EmailAlreadyInUse;
-}
-
-/// @nodoc
-abstract class _$InvalidEmailAndPasswordCombinationCopyWith<$Res> {
-  factory _$InvalidEmailAndPasswordCombinationCopyWith(
-          _InvalidEmailAndPasswordCombination value,
-          $Res Function(_InvalidEmailAndPasswordCombination) then) =
-      __$InvalidEmailAndPasswordCombinationCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InvalidEmailAndPasswordCombinationCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res>
-    implements _$InvalidEmailAndPasswordCombinationCopyWith<$Res> {
-  __$InvalidEmailAndPasswordCombinationCopyWithImpl(
-      _InvalidEmailAndPasswordCombination _value,
-      $Res Function(_InvalidEmailAndPasswordCombination) _then)
-      : super(_value, (v) => _then(v as _InvalidEmailAndPasswordCombination));
-
-  @override
-  _InvalidEmailAndPasswordCombination get _value =>
-      super._value as _InvalidEmailAndPasswordCombination;
-}
-
-/// @nodoc
-
-class _$_InvalidEmailAndPasswordCombination
-    implements _InvalidEmailAndPasswordCombination {
-  const _$_InvalidEmailAndPasswordCombination();
-
-  @override
-  String toString() {
-    return 'AuthFailure.invalidEmailAndPasswordCombination()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _InvalidEmailAndPasswordCombination);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() cancelledByUser,
-    required TResult Function() serverError,
-    required TResult Function() accontExists,
-    required TResult Function() emailAlreadyInUse,
-    required TResult Function() invalidEmailAndPasswordCombination,
-  }) {
-    return invalidEmailAndPasswordCombination();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
-    TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
-  }) {
-    return invalidEmailAndPasswordCombination?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? cancelledByUser,
-    TResult Function()? serverError,
-    TResult Function()? accontExists,
-    TResult Function()? emailAlreadyInUse,
-    TResult Function()? invalidEmailAndPasswordCombination,
-    required TResult orElse(),
-  }) {
-    if (invalidEmailAndPasswordCombination != null) {
-      return invalidEmailAndPasswordCombination();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CancelledByUser value) cancelledByUser,
-    required TResult Function(_ServerError value) serverError,
-    required TResult Function(_AccountExists value) accontExists,
-    required TResult Function(_EmailAlreadyInUse value) emailAlreadyInUse,
-    required TResult Function(_InvalidEmailAndPasswordCombination value)
-        invalidEmailAndPasswordCombination,
-  }) {
-    return invalidEmailAndPasswordCombination(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CancelledByUser value)? cancelledByUser,
-    TResult Function(_ServerError value)? serverError,
-    TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
-  }) {
-    return invalidEmailAndPasswordCombination?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CancelledByUser value)? cancelledByUser,
-    TResult Function(_ServerError value)? serverError,
-    TResult Function(_AccountExists value)? accontExists,
-    TResult Function(_EmailAlreadyInUse value)? emailAlreadyInUse,
-    TResult Function(_InvalidEmailAndPasswordCombination value)?
-        invalidEmailAndPasswordCombination,
-    required TResult orElse(),
-  }) {
-    if (invalidEmailAndPasswordCombination != null) {
-      return invalidEmailAndPasswordCombination(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InvalidEmailAndPasswordCombination implements AuthFailure {
-  const factory _InvalidEmailAndPasswordCombination() =
-      _$_InvalidEmailAndPasswordCombination;
 }

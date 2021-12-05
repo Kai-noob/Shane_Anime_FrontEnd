@@ -14,14 +14,16 @@ part 'comic_details_bloc.freezed.dart';
 class ComicDetailsBloc extends Bloc<ComicDetailsEvent, ComicDetailsState> {
   final IComicRepository _comicRepo;
   ComicDetailsBloc(this._comicRepo) : super(const ComicDetailsState.loading()) {
-    on<GetComicsDetails>(_getComicDetails);
+    on<ComicDetailsEvent>(_getComicDetails);
   }
 
-  void _getComicDetails(
-      GetComicsDetails event, Emitter<ComicDetailsState> emit) async {
-    final Either<ComicFailure, Comic> failureOrSuccess =
-        await _comicRepo.getComicDetails(event.comicId);
-    emit(failureOrSuccess.fold((l) => const ComicDetailsState.error(),
-        (r) => ComicDetailsState.loaded(r)));
+  Future<void> _getComicDetails(
+      ComicDetailsEvent event, Emitter<ComicDetailsState> emit) async {
+    await event.map(getComicDetais: (e) async {
+      final Either<ComicFailure, Comic> failureOrSuccess =
+          await _comicRepo.getComicDetails(e.comicId);
+      emit(failureOrSuccess.fold((l) => ComicDetailsState.error(l),
+          (r) => ComicDetailsState.loaded(r)));
+    });
   }
 }

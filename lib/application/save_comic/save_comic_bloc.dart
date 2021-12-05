@@ -25,12 +25,8 @@ class SaveComicBloc extends Bloc<SaveComicEvent, SaveComicState> {
   Future _onEvent(SaveComicEvent event, Emitter<SaveComicState> emit) async {
     await event.map(saveComic: (e) async {
       await _saveComicRepo.saveComic(e.comicId);
-      // emit(failureOrSuccess.fold((l) => SaveComicState.error(l),
-      //     (_) => SaveComicState.createSuccess()));
     }, removeComic: (e) async {
       await _saveComicRepo.removeComic(e.comicId);
-      // emit(failureOrSuccess.fold((l) => SaveComicState.error(l),
-      //     (_) => SaveComicState.deleteSuccess()));
     }, watchSaved: (e) async {
       await saveComicsStream?.cancel();
       saveComicsStream =

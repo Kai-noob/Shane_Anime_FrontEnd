@@ -26,13 +26,15 @@ class _$CommentsTearOff {
       required String comment,
       @TimestampConverter() required DateTime timestamp,
       required String episodeId,
-      required String userId}) {
+      required String userId,
+      @JsonKey(ignore: true) AppUser? user}) {
     return _Comments(
       commentId: commentId,
       comment: comment,
       timestamp: timestamp,
       episodeId: episodeId,
       userId: userId,
+      user: user,
     );
   }
 
@@ -54,6 +56,8 @@ mixin _$Comments {
   DateTime get timestamp => throw _privateConstructorUsedError;
   String get episodeId => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  AppUser? get user => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,7 +74,10 @@ abstract class $CommentsCopyWith<$Res> {
       String comment,
       @TimestampConverter() DateTime timestamp,
       String episodeId,
-      String userId});
+      String userId,
+      @JsonKey(ignore: true) AppUser? user});
+
+  $AppUserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -88,6 +95,7 @@ class _$CommentsCopyWithImpl<$Res> implements $CommentsCopyWith<$Res> {
     Object? timestamp = freezed,
     Object? episodeId = freezed,
     Object? userId = freezed,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       commentId: commentId == freezed
@@ -110,7 +118,22 @@ class _$CommentsCopyWithImpl<$Res> implements $CommentsCopyWith<$Res> {
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser?,
     ));
+  }
+
+  @override
+  $AppUserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $AppUserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
@@ -124,7 +147,11 @@ abstract class _$CommentsCopyWith<$Res> implements $CommentsCopyWith<$Res> {
       String comment,
       @TimestampConverter() DateTime timestamp,
       String episodeId,
-      String userId});
+      String userId,
+      @JsonKey(ignore: true) AppUser? user});
+
+  @override
+  $AppUserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -143,6 +170,7 @@ class __$CommentsCopyWithImpl<$Res> extends _$CommentsCopyWithImpl<$Res>
     Object? timestamp = freezed,
     Object? episodeId = freezed,
     Object? userId = freezed,
+    Object? user = freezed,
   }) {
     return _then(_Comments(
       commentId: commentId == freezed
@@ -165,6 +193,10 @@ class __$CommentsCopyWithImpl<$Res> extends _$CommentsCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser?,
     ));
   }
 }
@@ -177,7 +209,8 @@ class _$_Comments implements _Comments {
       required this.comment,
       @TimestampConverter() required this.timestamp,
       required this.episodeId,
-      required this.userId});
+      required this.userId,
+      @JsonKey(ignore: true) this.user});
 
   factory _$_Comments.fromJson(Map<String, dynamic> json) =>
       _$$_CommentsFromJson(json);
@@ -194,10 +227,13 @@ class _$_Comments implements _Comments {
   final String episodeId;
   @override
   final String userId;
+  @override
+  @JsonKey(ignore: true)
+  final AppUser? user;
 
   @override
   String toString() {
-    return 'Comments(commentId: $commentId, comment: $comment, timestamp: $timestamp, episodeId: $episodeId, userId: $userId)';
+    return 'Comments(commentId: $commentId, comment: $comment, timestamp: $timestamp, episodeId: $episodeId, userId: $userId, user: $user)';
   }
 
   @override
@@ -212,12 +248,13 @@ class _$_Comments implements _Comments {
                 other.timestamp == timestamp) &&
             (identical(other.episodeId, episodeId) ||
                 other.episodeId == episodeId) &&
-            (identical(other.userId, userId) || other.userId == userId));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, commentId, comment, timestamp, episodeId, userId);
+      runtimeType, commentId, comment, timestamp, episodeId, userId, user);
 
   @JsonKey(ignore: true)
   @override
@@ -236,7 +273,8 @@ abstract class _Comments implements Comments {
       required String comment,
       @TimestampConverter() required DateTime timestamp,
       required String episodeId,
-      required String userId}) = _$_Comments;
+      required String userId,
+      @JsonKey(ignore: true) AppUser? user}) = _$_Comments;
 
   factory _Comments.fromJson(Map<String, dynamic> json) = _$_Comments.fromJson;
 
@@ -252,6 +290,9 @@ abstract class _Comments implements Comments {
   String get episodeId;
   @override
   String get userId;
+  @override
+  @JsonKey(ignore: true)
+  AppUser? get user;
   @override
   @JsonKey(ignore: true)
   _$CommentsCopyWith<_Comments> get copyWith =>

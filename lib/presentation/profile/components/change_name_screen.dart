@@ -81,9 +81,11 @@ class EditNameForm extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)),
               color: Colors.white,
               onPressed: () {
-                context
-                    .read<UserActionsBloc>()
-                    .add(UserActionsEvent.editName(_nameController.text));
+                _nameController.text.isNotEmpty
+                    ? context
+                        .read<UserActionsBloc>()
+                        .add(UserActionsEvent.editName(_nameController.text))
+                    : null;
               },
               child: Text(
                 "Change",

@@ -11,13 +11,14 @@ import 'package:google_sign_in/google_sign_in.dart' as _i5;
 import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/auth/bloc/auth_bloc.dart' as _i24;
+import 'application/bloc/comment_bloc.dart' as _i27;
 import 'application/comic_details/comic_details_bloc.dart' as _i25;
 import 'application/comic_reader/comic_reader_bloc.dart' as _i26;
-import 'application/episodes/episodes_bloc.dart' as _i28;
-import 'application/genre/genre_bloc.dart' as _i29;
+import 'application/episodes/episodes_bloc.dart' as _i29;
+import 'application/genre/genre_bloc.dart' as _i30;
 import 'application/home/all_comics/all_comics_bloc.dart' as _i23;
-import 'application/home/complete_comic/complete_comic_bloc.dart' as _i27;
-import 'application/home/hot_comic/hot_comic_bloc.dart' as _i30;
+import 'application/home/complete_comic/complete_comic_bloc.dart' as _i28;
+import 'application/home/hot_comic/hot_comic_bloc.dart' as _i31;
 import 'application/save_comic/save_comic_bloc.dart' as _i18;
 import 'application/search/search_bloc.dart' as _i19;
 import 'application/sign_in/bloc/signin_bloc.dart' as _i20;
@@ -31,10 +32,10 @@ import 'domain/upcoming_comic/i_upcoming_comic_repo.dart' as _i14;
 import 'domain/user_actions/i_user_actions_repository.dart' as _i16;
 import 'infrastructure/auth/firebase_auth_facade.dart' as _i7;
 import 'infrastructure/comic/comic_repository_impl.dart' as _i9;
-import 'infrastructure/core/firebase_injectable_module.dart' as _i31;
+import 'infrastructure/core/firebase_injectable_module.dart' as _i32;
 import 'infrastructure/genre/genre_repository_impl.dart' as _i11;
 import 'infrastructure/save_comic/save_comic_repository_impl.dart' as _i13;
-import 'infrastructure/upcoming_comic/upcominc_comic_repo_impl.dart' as _i15;
+import 'infrastructure/upcoming_comic/upcoming_comic_repo_impl.dart' as _i15;
 import 'infrastructure/user_actions/user_actions_repository_impl.dart'
     as _i17; // ignore_for_file: unnecessary_lambdas
 
@@ -80,15 +81,17 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i25.ComicDetailsBloc(get<_i8.IComicRepository>()));
   gh.factory<_i26.ComicReaderBloc>(
       () => _i26.ComicReaderBloc(get<_i8.IComicRepository>()));
-  gh.factory<_i27.CompleteComicBloc>(
-      () => _i27.CompleteComicBloc(get<_i8.IComicRepository>()));
-  gh.factory<_i28.EpisodesBloc>(
-      () => _i28.EpisodesBloc(get<_i8.IComicRepository>()));
-  gh.factory<_i29.GenreBloc>(
-      () => _i29.GenreBloc(get<_i10.IGenreRepository>()));
-  gh.factory<_i30.HotComicBloc>(
-      () => _i30.HotComicBloc(get<_i8.IComicRepository>()));
+  gh.factory<_i27.CommentBloc>(
+      () => _i27.CommentBloc(get<_i16.IUserActionsRepository>()));
+  gh.factory<_i28.CompleteComicBloc>(
+      () => _i28.CompleteComicBloc(get<_i8.IComicRepository>()));
+  gh.factory<_i29.EpisodesBloc>(
+      () => _i29.EpisodesBloc(get<_i8.IComicRepository>()));
+  gh.factory<_i30.GenreBloc>(
+      () => _i30.GenreBloc(get<_i10.IGenreRepository>()));
+  gh.factory<_i31.HotComicBloc>(
+      () => _i31.HotComicBloc(get<_i8.IComicRepository>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i31.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i32.FirebaseInjectableModule {}

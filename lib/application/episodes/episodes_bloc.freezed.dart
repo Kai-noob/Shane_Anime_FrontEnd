@@ -339,8 +339,10 @@ class _$EpisodesStateTearOff {
     return const _Loading();
   }
 
-  _Error error() {
-    return const _Error();
+  _Error error(ComicFailure failure) {
+    return _Error(
+      failure,
+    );
   }
 
   _Loaded loaded(List<Episodes> episodes) {
@@ -365,7 +367,7 @@ mixin _$EpisodesState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(List<Episodes> episodes) loaded,
     required TResult Function(Episodes episodes) episodeLoaded,
   }) =>
@@ -374,7 +376,7 @@ mixin _$EpisodesState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
   }) =>
@@ -383,7 +385,7 @@ mixin _$EpisodesState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
     required TResult orElse(),
@@ -476,7 +478,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(List<Episodes> episodes) loaded,
     required TResult Function(Episodes episodes) episodeLoaded,
   }) {
@@ -488,7 +490,7 @@ class _$_Initial implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
   }) {
@@ -500,7 +502,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
     required TResult orElse(),
@@ -596,7 +598,7 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(List<Episodes> episodes) loaded,
     required TResult Function(Episodes episodes) episodeLoaded,
   }) {
@@ -608,7 +610,7 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
   }) {
@@ -620,7 +622,7 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
     required TResult orElse(),
@@ -680,6 +682,9 @@ abstract class _Loading implements EpisodesState {
 abstract class _$ErrorCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
       __$ErrorCopyWithImpl<$Res>;
+  $Res call({ComicFailure failure});
+
+  $ComicFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -690,37 +695,66 @@ class __$ErrorCopyWithImpl<$Res> extends _$EpisodesStateCopyWithImpl<$Res>
 
   @override
   _Error get _value => super._value as _Error;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_Error(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as ComicFailure,
+    ));
+  }
+
+  @override
+  $ComicFailureCopyWith<$Res> get failure {
+    return $ComicFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error();
+  const _$_Error(this.failure);
+
+  @override
+  final ComicFailure failure;
 
   @override
   String toString() {
-    return 'EpisodesState.error()';
+    return 'EpisodesState.error(failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Error);
+        (other.runtimeType == runtimeType &&
+            other is _Error &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(List<Episodes> episodes) loaded,
     required TResult Function(Episodes episodes) episodeLoaded,
   }) {
-    return error();
+    return error(failure);
   }
 
   @override
@@ -728,11 +762,11 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
   }) {
-    return error?.call();
+    return error?.call(failure);
   }
 
   @override
@@ -740,13 +774,13 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(failure);
     }
     return orElse();
   }
@@ -793,7 +827,11 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements EpisodesState {
-  const factory _Error() = _$_Error;
+  const factory _Error(ComicFailure failure) = _$_Error;
+
+  ComicFailure get failure;
+  @JsonKey(ignore: true)
+  _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -860,7 +898,7 @@ class _$_Loaded implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(List<Episodes> episodes) loaded,
     required TResult Function(Episodes episodes) episodeLoaded,
   }) {
@@ -872,7 +910,7 @@ class _$_Loaded implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
   }) {
@@ -884,7 +922,7 @@ class _$_Loaded implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
     required TResult orElse(),
@@ -1020,7 +1058,7 @@ class _$_EpisodeLoaded implements _EpisodeLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(List<Episodes> episodes) loaded,
     required TResult Function(Episodes episodes) episodeLoaded,
   }) {
@@ -1032,7 +1070,7 @@ class _$_EpisodeLoaded implements _EpisodeLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
   }) {
@@ -1044,7 +1082,7 @@ class _$_EpisodeLoaded implements _EpisodeLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(List<Episodes> episodes)? loaded,
     TResult Function(Episodes episodes)? episodeLoaded,
     required TResult orElse(),

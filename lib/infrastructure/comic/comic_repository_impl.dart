@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/comic/comic_failure.dart';
 import '../../domain/comic/comic.dart';
@@ -359,7 +360,9 @@ class ComicRepositoryImpl implements IComicRepository {
       }
       return right(_searchComicList);
     } on FirebaseException catch (e) {
-      if (e.code == 'not-found') {
+      print("calllllled");
+      if (e.code == 'NOT_FOUND') {
+        print("Not Found");
         return left(const ComicFailure.notFound());
       } else {
         return left(const ComicFailure.unexcepted());

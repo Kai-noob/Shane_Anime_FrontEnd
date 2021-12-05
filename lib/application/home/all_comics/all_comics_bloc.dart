@@ -22,13 +22,13 @@ class AllComicsBloc extends Bloc<AllComicsEvent, AllComicsState> {
     await event.map(getMoreAllComics: (e) async {
       final Either<ComicFailure, List<Comic>> failureOrSuccess =
           await _comicRepo.getMoreAllComics();
-      emit(failureOrSuccess.fold((l) => const AllComicsState.error(),
-          (r) => AllComicsState.loaded(r)));
+      emit(failureOrSuccess.fold(
+          (l) => AllComicsState.error(l), (r) => AllComicsState.loaded(r)));
     }, getHomeAllComics: (e) async {
       final Either<ComicFailure, List<Comic>> failureOrSuccess =
           await _comicRepo.getHomeAllComics();
-      emit(failureOrSuccess.fold((l) => const AllComicsState.error(),
-          (r) => AllComicsState.loaded(r)));
+      emit(failureOrSuccess.fold(
+          (l) => AllComicsState.error(l), (r) => AllComicsState.loaded(r)));
     });
   }
 }

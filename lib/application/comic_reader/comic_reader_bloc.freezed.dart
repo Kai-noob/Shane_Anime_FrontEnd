@@ -17,14 +17,6 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ComicReaderEventTearOff {
   const _$ComicReaderEventTearOff();
 
-  _GetPdf getPdf(String comicId, String episodeName, int episodeNumber) {
-    return _GetPdf(
-      comicId,
-      episodeName,
-      episodeNumber,
-    );
-  }
-
   _CheckPdf checkPdf(String comicId, String episodeName, int episodeNumber) {
     return _CheckPdf(
       comicId,
@@ -55,9 +47,6 @@ mixin _$ComicReaderEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String comicId, String episodeName, int episodeNumber)
-        getPdf,
-    required TResult Function(
-            String comicId, String episodeName, int episodeNumber)
         checkPdf,
     required TResult Function(
             String comicId, String episodeName, int episodeNumber)
@@ -67,8 +56,6 @@ mixin _$ComicReaderEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String comicId, String episodeName, int episodeNumber)?
-        getPdf,
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
         checkPdf,
     TResult Function(String comicId, String episodeName, int episodeNumber)?
         changePdf,
@@ -76,8 +63,6 @@ mixin _$ComicReaderEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
-        getPdf,
     TResult Function(String comicId, String episodeName, int episodeNumber)?
         checkPdf,
     TResult Function(String comicId, String episodeName, int episodeNumber)?
@@ -87,21 +72,18 @@ mixin _$ComicReaderEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetPdf value) getPdf,
     required TResult Function(_CheckPdf value) checkPdf,
     required TResult Function(_ChangePdf value) changePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetPdf value)? getPdf,
     TResult Function(_CheckPdf value)? checkPdf,
     TResult Function(_ChangePdf value)? changePdf,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetPdf value)? getPdf,
     TResult Function(_CheckPdf value)? checkPdf,
     TResult Function(_ChangePdf value)? changePdf,
     required TResult orElse(),
@@ -151,181 +133,6 @@ class _$ComicReaderEventCopyWithImpl<$Res>
               as int,
     ));
   }
-}
-
-/// @nodoc
-abstract class _$GetPdfCopyWith<$Res>
-    implements $ComicReaderEventCopyWith<$Res> {
-  factory _$GetPdfCopyWith(_GetPdf value, $Res Function(_GetPdf) then) =
-      __$GetPdfCopyWithImpl<$Res>;
-  @override
-  $Res call({String comicId, String episodeName, int episodeNumber});
-}
-
-/// @nodoc
-class __$GetPdfCopyWithImpl<$Res> extends _$ComicReaderEventCopyWithImpl<$Res>
-    implements _$GetPdfCopyWith<$Res> {
-  __$GetPdfCopyWithImpl(_GetPdf _value, $Res Function(_GetPdf) _then)
-      : super(_value, (v) => _then(v as _GetPdf));
-
-  @override
-  _GetPdf get _value => super._value as _GetPdf;
-
-  @override
-  $Res call({
-    Object? comicId = freezed,
-    Object? episodeName = freezed,
-    Object? episodeNumber = freezed,
-  }) {
-    return _then(_GetPdf(
-      comicId == freezed
-          ? _value.comicId
-          : comicId // ignore: cast_nullable_to_non_nullable
-              as String,
-      episodeName == freezed
-          ? _value.episodeName
-          : episodeName // ignore: cast_nullable_to_non_nullable
-              as String,
-      episodeNumber == freezed
-          ? _value.episodeNumber
-          : episodeNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_GetPdf implements _GetPdf {
-  const _$_GetPdf(this.comicId, this.episodeName, this.episodeNumber);
-
-  @override
-  final String comicId;
-  @override
-  final String episodeName;
-  @override
-  final int episodeNumber;
-
-  @override
-  String toString() {
-    return 'ComicReaderEvent.getPdf(comicId: $comicId, episodeName: $episodeName, episodeNumber: $episodeNumber)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _GetPdf &&
-            (identical(other.comicId, comicId) || other.comicId == comicId) &&
-            (identical(other.episodeName, episodeName) ||
-                other.episodeName == episodeName) &&
-            (identical(other.episodeNumber, episodeNumber) ||
-                other.episodeNumber == episodeNumber));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, comicId, episodeName, episodeNumber);
-
-  @JsonKey(ignore: true)
-  @override
-  _$GetPdfCopyWith<_GetPdf> get copyWith =>
-      __$GetPdfCopyWithImpl<_GetPdf>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String comicId, String episodeName, int episodeNumber)
-        getPdf,
-    required TResult Function(
-            String comicId, String episodeName, int episodeNumber)
-        checkPdf,
-    required TResult Function(
-            String comicId, String episodeName, int episodeNumber)
-        changePdf,
-  }) {
-    return getPdf(comicId, episodeName, episodeNumber);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
-        getPdf,
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
-        checkPdf,
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
-        changePdf,
-  }) {
-    return getPdf?.call(comicId, episodeName, episodeNumber);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
-        getPdf,
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
-        checkPdf,
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
-        changePdf,
-    required TResult orElse(),
-  }) {
-    if (getPdf != null) {
-      return getPdf(comicId, episodeName, episodeNumber);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetPdf value) getPdf,
-    required TResult Function(_CheckPdf value) checkPdf,
-    required TResult Function(_ChangePdf value) changePdf,
-  }) {
-    return getPdf(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetPdf value)? getPdf,
-    TResult Function(_CheckPdf value)? checkPdf,
-    TResult Function(_ChangePdf value)? changePdf,
-  }) {
-    return getPdf?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetPdf value)? getPdf,
-    TResult Function(_CheckPdf value)? checkPdf,
-    TResult Function(_ChangePdf value)? changePdf,
-    required TResult orElse(),
-  }) {
-    if (getPdf != null) {
-      return getPdf(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetPdf implements ComicReaderEvent {
-  const factory _GetPdf(String comicId, String episodeName, int episodeNumber) =
-      _$_GetPdf;
-
-  @override
-  String get comicId;
-  @override
-  String get episodeName;
-  @override
-  int get episodeNumber;
-  @override
-  @JsonKey(ignore: true)
-  _$GetPdfCopyWith<_GetPdf> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -412,9 +219,6 @@ class _$_CheckPdf implements _CheckPdf {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String comicId, String episodeName, int episodeNumber)
-        getPdf,
-    required TResult Function(
-            String comicId, String episodeName, int episodeNumber)
         checkPdf,
     required TResult Function(
             String comicId, String episodeName, int episodeNumber)
@@ -427,8 +231,6 @@ class _$_CheckPdf implements _CheckPdf {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String comicId, String episodeName, int episodeNumber)?
-        getPdf,
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
         checkPdf,
     TResult Function(String comicId, String episodeName, int episodeNumber)?
         changePdf,
@@ -439,8 +241,6 @@ class _$_CheckPdf implements _CheckPdf {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
-        getPdf,
     TResult Function(String comicId, String episodeName, int episodeNumber)?
         checkPdf,
     TResult Function(String comicId, String episodeName, int episodeNumber)?
@@ -456,7 +256,6 @@ class _$_CheckPdf implements _CheckPdf {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetPdf value) getPdf,
     required TResult Function(_CheckPdf value) checkPdf,
     required TResult Function(_ChangePdf value) changePdf,
   }) {
@@ -466,7 +265,6 @@ class _$_CheckPdf implements _CheckPdf {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetPdf value)? getPdf,
     TResult Function(_CheckPdf value)? checkPdf,
     TResult Function(_ChangePdf value)? changePdf,
   }) {
@@ -476,7 +274,6 @@ class _$_CheckPdf implements _CheckPdf {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetPdf value)? getPdf,
     TResult Function(_CheckPdf value)? checkPdf,
     TResult Function(_ChangePdf value)? changePdf,
     required TResult orElse(),
@@ -590,9 +387,6 @@ class _$_ChangePdf implements _ChangePdf {
   TResult when<TResult extends Object?>({
     required TResult Function(
             String comicId, String episodeName, int episodeNumber)
-        getPdf,
-    required TResult Function(
-            String comicId, String episodeName, int episodeNumber)
         checkPdf,
     required TResult Function(
             String comicId, String episodeName, int episodeNumber)
@@ -605,8 +399,6 @@ class _$_ChangePdf implements _ChangePdf {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String comicId, String episodeName, int episodeNumber)?
-        getPdf,
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
         checkPdf,
     TResult Function(String comicId, String episodeName, int episodeNumber)?
         changePdf,
@@ -617,8 +409,6 @@ class _$_ChangePdf implements _ChangePdf {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String comicId, String episodeName, int episodeNumber)?
-        getPdf,
     TResult Function(String comicId, String episodeName, int episodeNumber)?
         checkPdf,
     TResult Function(String comicId, String episodeName, int episodeNumber)?
@@ -634,7 +424,6 @@ class _$_ChangePdf implements _ChangePdf {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetPdf value) getPdf,
     required TResult Function(_CheckPdf value) checkPdf,
     required TResult Function(_ChangePdf value) changePdf,
   }) {
@@ -644,7 +433,6 @@ class _$_ChangePdf implements _ChangePdf {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetPdf value)? getPdf,
     TResult Function(_CheckPdf value)? checkPdf,
     TResult Function(_ChangePdf value)? changePdf,
   }) {
@@ -654,7 +442,6 @@ class _$_ChangePdf implements _ChangePdf {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetPdf value)? getPdf,
     TResult Function(_CheckPdf value)? checkPdf,
     TResult Function(_ChangePdf value)? changePdf,
     required TResult orElse(),
@@ -702,8 +489,10 @@ class _$ComicReaderStateTearOff {
     );
   }
 
-  _Error error() {
-    return const _Error();
+  _Error error(ComicFailure failure) {
+    return _Error(
+      failure,
+    );
   }
 
   _ChgEpisodeSuccess chgEpisodeSuccess(Episodes episodes) {
@@ -723,7 +512,7 @@ mixin _$ComicReaderState {
     required TResult Function() loading,
     required TResult Function(Episodes pdf) pdfLoaded,
     required TResult Function(Episodes pdf) driveLoaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(Episodes episodes) chgEpisodeSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -732,7 +521,7 @@ mixin _$ComicReaderState {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
   }) =>
       throw _privateConstructorUsedError;
@@ -741,7 +530,7 @@ mixin _$ComicReaderState {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
     required TResult orElse(),
   }) =>
@@ -834,7 +623,7 @@ class _$_Loading implements _Loading {
     required TResult Function() loading,
     required TResult Function(Episodes pdf) pdfLoaded,
     required TResult Function(Episodes pdf) driveLoaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(Episodes episodes) chgEpisodeSuccess,
   }) {
     return loading();
@@ -846,7 +635,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
   }) {
     return loading?.call();
@@ -858,7 +647,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
     required TResult orElse(),
   }) {
@@ -988,7 +777,7 @@ class _$_Pdfloaded implements _Pdfloaded {
     required TResult Function() loading,
     required TResult Function(Episodes pdf) pdfLoaded,
     required TResult Function(Episodes pdf) driveLoaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(Episodes episodes) chgEpisodeSuccess,
   }) {
     return pdfLoaded(pdf);
@@ -1000,7 +789,7 @@ class _$_Pdfloaded implements _Pdfloaded {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
   }) {
     return pdfLoaded?.call(pdf);
@@ -1012,7 +801,7 @@ class _$_Pdfloaded implements _Pdfloaded {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
     required TResult orElse(),
   }) {
@@ -1148,7 +937,7 @@ class _$_DriveLoaded implements _DriveLoaded {
     required TResult Function() loading,
     required TResult Function(Episodes pdf) pdfLoaded,
     required TResult Function(Episodes pdf) driveLoaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(Episodes episodes) chgEpisodeSuccess,
   }) {
     return driveLoaded(pdf);
@@ -1160,7 +949,7 @@ class _$_DriveLoaded implements _DriveLoaded {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
   }) {
     return driveLoaded?.call(pdf);
@@ -1172,7 +961,7 @@ class _$_DriveLoaded implements _DriveLoaded {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
     required TResult orElse(),
   }) {
@@ -1236,6 +1025,9 @@ abstract class _DriveLoaded implements ComicReaderState {
 abstract class _$ErrorCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
       __$ErrorCopyWithImpl<$Res>;
+  $Res call({ComicFailure failure});
+
+  $ComicFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -1246,26 +1038,55 @@ class __$ErrorCopyWithImpl<$Res> extends _$ComicReaderStateCopyWithImpl<$Res>
 
   @override
   _Error get _value => super._value as _Error;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_Error(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as ComicFailure,
+    ));
+  }
+
+  @override
+  $ComicFailureCopyWith<$Res> get failure {
+    return $ComicFailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error();
+  const _$_Error(this.failure);
+
+  @override
+  final ComicFailure failure;
 
   @override
   String toString() {
-    return 'ComicReaderState.error()';
+    return 'ComicReaderState.error(failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Error);
+        (other.runtimeType == runtimeType &&
+            other is _Error &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1273,10 +1094,10 @@ class _$_Error implements _Error {
     required TResult Function() loading,
     required TResult Function(Episodes pdf) pdfLoaded,
     required TResult Function(Episodes pdf) driveLoaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(Episodes episodes) chgEpisodeSuccess,
   }) {
-    return error();
+    return error(failure);
   }
 
   @override
@@ -1285,10 +1106,10 @@ class _$_Error implements _Error {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
   }) {
-    return error?.call();
+    return error?.call(failure);
   }
 
   @override
@@ -1297,12 +1118,12 @@ class _$_Error implements _Error {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(failure);
     }
     return orElse();
   }
@@ -1349,7 +1170,11 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements ComicReaderState {
-  const factory _Error() = _$_Error;
+  const factory _Error(ComicFailure failure) = _$_Error;
+
+  ComicFailure get failure;
+  @JsonKey(ignore: true)
+  _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1429,7 +1254,7 @@ class _$_ChgEpisodeSuccess implements _ChgEpisodeSuccess {
     required TResult Function() loading,
     required TResult Function(Episodes pdf) pdfLoaded,
     required TResult Function(Episodes pdf) driveLoaded,
-    required TResult Function() error,
+    required TResult Function(ComicFailure failure) error,
     required TResult Function(Episodes episodes) chgEpisodeSuccess,
   }) {
     return chgEpisodeSuccess(episodes);
@@ -1441,7 +1266,7 @@ class _$_ChgEpisodeSuccess implements _ChgEpisodeSuccess {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
   }) {
     return chgEpisodeSuccess?.call(episodes);
@@ -1453,7 +1278,7 @@ class _$_ChgEpisodeSuccess implements _ChgEpisodeSuccess {
     TResult Function()? loading,
     TResult Function(Episodes pdf)? pdfLoaded,
     TResult Function(Episodes pdf)? driveLoaded,
-    TResult Function()? error,
+    TResult Function(ComicFailure failure)? error,
     TResult Function(Episodes episodes)? chgEpisodeSuccess,
     required TResult orElse(),
   }) {

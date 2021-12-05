@@ -9,8 +9,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
 import 'package:movie_app/application/sign_in/bloc/signin_bloc.dart';
 import 'package:movie_app/injection.dart';
-
-import 'package:movie_app/presentation/routes/router.gr.dart';
+import 'package:movie_app/presentation/layout/bottom_navigation.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -26,25 +25,27 @@ class SignUpScreen extends StatelessWidget {
               () {},
               (e) => e.fold(
                 (failure) {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
                       backgroundColor: Colors.black,
                       content: Text(
                         failure.map(
                             cancelledByUser: (_) => 'Cancelled',
                             serverError: (_) => 'Server Error',
-                            emailAlreadyInUse: (_) => 'Email Already in Use',
-                            invalidEmailAndPasswordCombination: (_) =>
-                                'Invalid Email And Password Combination',
                             accontExists: (_) =>
                                 "Already registred with other social accounts by same email."),
                         style: const TextStyle(color: Colors.white),
-                      )));
+                      ),
+                    ),
+                  );
                 },
                 (_) {
                   context
                       .read<AuthBloc>()
                       .add(const AuthEvent.authCheckRequested());
-                  context.replaceRoute(const BottomNavigationScreenRoute());
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          BottomNavigationScreen()));
                 },
               ),
             );

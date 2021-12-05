@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'components/save_screen.dart';
 import 'components/user_comments_screen.dart';
 
-import 'components/notification_screen.dart';
 import 'components/sliver_delegate.dart';
 
 class LibraryScreen extends StatelessWidget {

@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/application/bloc/comment_bloc.dart';
 import 'package:movie_app/domain/auth/user.dart';
+import 'package:movie_app/domain/core/errors.dart';
 
 import '../../application/auth/bloc/auth_bloc.dart';
 import '../../application/user_actions/user_actions_bloc.dart';
@@ -40,87 +42,74 @@ class _CommentsScreenState extends State<CommentsScreen> {
       orElse: () => throw NotAuthenticatedError(),
     );
 
-    // print(currentUser.username);
     return BlocProvider(
-      create: (context) => getIt<UserActionsBloc>()
-        ..add(UserActionsEvent.fetchComments(widget.episodeId)),
-      child: BlocConsumer<UserActionsBloc, UserActionsState>(
-        listener: (context, state) => state.maybeMap(orElse: () {
-          print("called");
-        }, addSuccess: (_) {
-          context
-              .read<UserActionsBloc>()
-              .add(UserActionsEvent.fetchComments(widget.episodeId));
-        }),
-        builder: (context, state) {
-          return Scaffold(
-            appBar: AppBar(
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              title: const Text("Comments"),
-              elevation: 0.0,
+        create: (context) => getIt<CommentBloc>()
+          ..add(CommentEvent.fetchComments(widget.episodeId)),
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back_ios),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            body: Column(
-              children: [
-                Expanded(
-                    child: state.maybeMap(
-                  orElse: () => Container(),
-                  loading: (_) => const LoadingIndicator(),
-                  error: (_) => const Text("Error"),
-                  commentsLoaded: (commentstate) {
-                    if (commentstate.comments.isEmpty) {
-                      return Align(
-                        alignment: Alignment.center,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              radius: 50.r,
-                              backgroundColor: const Color(0xff1B2C3B),
-                              child: Icon(
-                                Icons.chat_bubble,
-                                color: Colors.white,
-                                size: 50.w,
+            title: const Text("Comments"),
+            elevation: 0.0,
+          ),
+          body: Column(
+            children: [
+              Expanded(
+                  child: BlocConsumer<CommentBloc, CommentState>(
+                listener: (context, state) => state.maybeMap(orElse: () {
+                  print("Fck Called");
+                }, addSuccess: (_) {
+                  print("Called");
+                }),
+                builder: (context, state) {
+                  return state.maybeMap(
+                    orElse: () => Container(),
+                    loading: (_) => const LoadingIndicator(),
+                    error: (_) => const Text("Error"),
+                    commentsLoaded: (commentstate) {
+                      if (commentstate.comments.isEmpty) {
+                        return Align(
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                radius: 50.r,
+                                backgroundColor: const Color(0xff1B2C3B),
+                                child: Icon(
+                                  Icons.chat_bubble,
+                                  color: Colors.white,
+                                  size: 50.w,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 20.h),
-                            Text(
-                              "No Comments.Be First",
-                              style: TextStyle(
-                                fontSize: 15.sp,
-                              ),
-                            )
-                          ],
-                        ),
-                      );
-                    }
-                    return ListView.builder(
-                      itemCount: commentstate.comments.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return BlocProvider(
-                          create: (context) => getIt<UserActionsBloc>()
-                            ..add(UserActionsEvent.fetchCommentsProfile(
-                                commentstate.comments[index].userId)),
-                          child:
-                              BlocConsumer<UserActionsBloc, UserActionsState>(
-                            listener: (context, state) =>
-                                state.maybeMap(orElse: () {
-                              print("called222");
-                            }, addSuccess: (_) {
-                              context.read<UserActionsBloc>().add(
-                                  UserActionsEvent.fetchComments(
-                                      widget.episodeId));
-                            }),
-                            buildWhen: (previous, current) =>
-                                previous != current,
-                            builder: (context, state) {
-                              return state.maybeMap(
-                                  orElse: () => Container(),
-                                  commentProfilesLoaded: (state) {
+                              SizedBox(height: 20.h),
+                              Text(
+                                "No Comments.Be First",
+                                style: TextStyle(
+                                  fontSize: 15.sp,
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      }
+
+                      return ListView(
+                        children: commentstate.comments.map((e) {
+                          return BlocProvider(
+                              create: (context) => getIt<UserActionsBloc>()
+                                ..add(UserActionsEvent.fetchCommentsProfile(
+                                    e.userId)),
+                              child: BlocBuilder<UserActionsBloc,
+                                  UserActionsState>(
+                                builder: (context, state) {
+                                  return state.maybeMap(orElse: () {
+                                    return Container();
+                                  }, commentProfilesLoaded: (state) {
                                     return Padding(
                                       padding: EdgeInsets.symmetric(
                                           vertical: 12.0.h),
@@ -134,14 +123,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(commentstate
-                                                .comments[index].comment),
+                                            Text(e.comment),
                                             Align(
                                               alignment: Alignment.centerRight,
-                                              child: Text(
-                                                  format(commentstate
-                                                      .comments[index]
-                                                      .timestamp),
+                                              child: Text(format(e.timestamp),
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 10.sp)),
@@ -153,45 +138,77 @@ class _CommentsScreenState extends State<CommentsScreen> {
                                       ),
                                     );
                                   });
-                            },
-                          ),
-                        );
-                      },
-                    );
-                  },
-                )),
-                const Divider(
-                  color: Colors.white,
-                ),
-                ListTile(
-                  title: TextField(
-                    controller: _commentController,
-                    decoration: const InputDecoration(
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(color: Colors.white),
-                        hintText: "Write Comment ..."),
-                  ),
-                  trailing: IconButton(
-                    onPressed: () {
-                      getIt<UserActionsBloc>().add(UserActionsEvent.addComment(
-                          currentUser.id,
-                          _commentController.text,
-                          widget.episodeId));
-                      // addComment(currentUser, _commentController.text);
-                      _commentController.clear();
+                                },
+                              ));
+                        }).toList(),
+                      );
+                      // return ListView.builder(
+                      //   itemCount: commentstate.comments.length,
+                      //   itemBuilder: (BuildContext context, int index) {
+                      //     return BlocProvider(
+                      //       create: (context) => getIt<UserActionsBloc>()
+                      //         ..add(UserActionsEvent.fetchCommentsProfile(
+                      //             commentstate.comments[index].userId)),
+                      //       child:
+                      //           BlocConsumer<UserActionsBloc, UserActionsState>(
+                      //         listener: (context, state) =>
+                      //             state.maybeMap(orElse: () {
+                      //           print("called222");
+                      //         }, addSuccess: (_) {
+                      //           print("called333");
+                      //           context.read<UserActionsBloc>().add(
+                      //               UserActionsEvent.fetchComments(
+                      //                   widget.episodeId));
+                      //         }),
+                      //         buildWhen: (previous, current) =>
+                      //             previous != current,
+                      //         builder: (context, state) {
+                      //           return state.maybeMap(
+                      //               orElse: () => Container(),
+                      //               commentProfilesLoaded: (state) {
+                      //                 return
+                      //               });
+                      //         },
+                      //       ),
+                      //     );
+                      //   },
+                      // );
                     },
-                    icon: const Icon(Icons.send),
-                  ),
+                  );
+                },
+              )),
+              const Divider(
+                color: Colors.white,
+              ),
+              ListTile(
+                title: TextField(
+                  controller: _commentController,
+                  decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      hintStyle: TextStyle(color: Colors.white),
+                      hintText: "Write Comment ..."),
                 ),
-                const SizedBox(
-                  height: 15,
-                )
-              ],
-            ),
-          );
-        },
-      ),
-    );
+                trailing: IconButton(
+                  onPressed: () {
+                    _commentController.text.isNotEmpty
+                        ? getIt<CommentBloc>().add(CommentEvent.addComment(
+                            currentUser.id,
+                            _commentController.text,
+                            widget.episodeId))
+                        : null;
+
+                    // addComment(currentUser, _commentController.text);
+                    _commentController.clear();
+                  },
+                  icon: const Icon(Icons.send),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              )
+            ],
+          ),
+        ));
   }
 }
 

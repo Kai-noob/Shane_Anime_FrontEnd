@@ -23,12 +23,12 @@ class HotComicBloc extends Bloc<HotComicEvent, HotComicState> {
       final Either<ComicFailure, List<Comic>> failureOrSuccess =
           await _comicRepo.getMoreHotComics();
       emit(failureOrSuccess.fold(
-          (l) => const HotComicState.error(), (r) => HotComicState.loaded(r)));
+          (l) => HotComicState.error(l), (r) => HotComicState.loaded(r)));
     }, getHomeHotComics: (e) async {
       final Either<ComicFailure, List<Comic>> failureOrSuccess =
           await _comicRepo.getHomeHotComics();
       emit(failureOrSuccess.fold(
-          (l) => const HotComicState.error(), (r) => HotComicState.loaded(r)));
+          (l) => HotComicState.error(l), (r) => HotComicState.loaded(r)));
     });
   }
 }

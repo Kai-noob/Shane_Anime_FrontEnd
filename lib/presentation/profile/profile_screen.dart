@@ -8,8 +8,8 @@ import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
 import 'package:movie_app/application/user_actions/user_actions_bloc.dart';
 import 'package:movie_app/helper/global/loading_indicator.dart';
 import 'package:movie_app/injection.dart';
+import 'package:movie_app/presentation/auth/signup/sign_up_screen.dart';
 import 'package:movie_app/presentation/profile/components/change_image_screen.dart';
-import 'package:movie_app/presentation/routes/router.gr.dart';
 
 import 'components/change_name_screen.dart';
 
@@ -29,8 +29,9 @@ class ProfileScreen extends StatelessWidget {
           body: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) => state.maybeMap(
                 orElse: () {},
-                unauthenticated: (_) =>
-                    context.replaceRoute(const SignUpScreenRoute())),
+                unauthenticated: (_) => Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => SignUpScreen()))),
             child: BlocBuilder<UserActionsBloc, UserActionsState>(
                 buildWhen: (previous, current) => previous != current,
                 builder: (context, state) => state.maybeMap(
