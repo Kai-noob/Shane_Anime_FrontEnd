@@ -1,4 +1,3 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
@@ -16,13 +15,13 @@ class CheckScreen extends StatelessWidget {
         state.maybeMap(
             orElse: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                    builder: (BuildContext context) => SignUpScreen())),
+                    builder: (BuildContext context) => const SignUpScreen())),
             authenticated: (_) => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        BottomNavigationScreen())));
+                        const BottomNavigationScreen())));
       },
-      child: Scaffold(
+      child: const Scaffold(
         body: Center(
           child: LoadingIndicator(),
         ),

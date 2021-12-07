@@ -76,9 +76,9 @@ class _DetailsBodyState extends State<DetailsBody> {
                         children: <Widget>[
                           Text(genre,
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
-                                  overflow: TextOverflow.ellipsis)),
+                                color: Colors.white,
+                                fontSize: 14.sp,
+                              )),
                           Text(widget.comic.title,
                               style: TextStyle(
                                 color: Colors.white,

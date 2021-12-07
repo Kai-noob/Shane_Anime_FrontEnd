@@ -20,6 +20,7 @@ class ComicDetailsBloc extends Bloc<ComicDetailsEvent, ComicDetailsState> {
   Future<void> _getComicDetails(
       ComicDetailsEvent event, Emitter<ComicDetailsState> emit) async {
     await event.map(getComicDetais: (e) async {
+      emit(const ComicDetailsState.loading());
       final Either<ComicFailure, Comic> failureOrSuccess =
           await _comicRepo.getComicDetails(e.comicId);
       emit(failureOrSuccess.fold((l) => ComicDetailsState.error(l),

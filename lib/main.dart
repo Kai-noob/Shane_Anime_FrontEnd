@@ -11,12 +11,19 @@ import 'injection.dart';
 
 import 'presentation/app.dart';
 
-Future<void> backgroundHandler(RemoteMessage message) async {}
+Future<void> backgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
+  // await Firebase.initializeApp(
+  //     options: const FirebaseOptions(
+  //         apiKey: "AIzaSyCW3jXh02GHTLw7Bp2PbtccHqGk7u9FuX",
+  //         appId: "1:1083688049259:android:22ad37b9ee721aa849af2e",
+  //         messagingSenderId: "1083688049259",
+  //         projectId: "shanemanga-e59fb"));
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
 
   await SystemChrome.setPreferredOrientations(
@@ -24,5 +31,5 @@ Future<void> main() async {
 
   configureInjection(Environment.prod);
 
-  runApp(App());
+  runApp(const App());
 }

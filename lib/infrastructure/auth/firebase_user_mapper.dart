@@ -5,6 +5,7 @@ extension FirebaseUserDomainX on auth.User {
   AppUser toDomain() {
     return AppUser(
       id: uid,
+      admin: false,
       photoUrl: photoURL!,
       username: displayName!,
     );

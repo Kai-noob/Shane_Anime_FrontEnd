@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/comic/comic_failure.dart';
 import '../../domain/comic/comic.dart';
@@ -298,7 +297,6 @@ class ComicRepositoryImpl implements IComicRepository {
       }
       return right(_homeHotComicList);
     } on FirebaseException catch (e) {
-      print(e.toString());
       if (e.code == 'not-found') {
         return left(const ComicFailure.notFound());
       } else {
@@ -360,9 +358,7 @@ class ComicRepositoryImpl implements IComicRepository {
       }
       return right(_searchComicList);
     } on FirebaseException catch (e) {
-      print("calllllled");
       if (e.code == 'NOT_FOUND') {
-        print("Not Found");
         return left(const ComicFailure.notFound());
       } else {
         return left(const ComicFailure.unexcepted());
@@ -420,7 +416,6 @@ class ComicRepositoryImpl implements IComicRepository {
           .collection("comics")
           .doc(_episodeDoc.data()!["comic_id"])
           .get();
-      print(_episodeDoc.get("comic_id"));
 
       final episode =
           Episodes.fromJson(_episodeDoc.data() as Map<String, dynamic>)
@@ -432,7 +427,6 @@ class ComicRepositoryImpl implements IComicRepository {
 
       return right(episode);
     } on FirebaseException catch (e) {
-      print(e.toString());
       if (e.code == 'not-found') {
         return left(const ComicFailure.notFound());
       } else {

@@ -24,6 +24,12 @@ class _$CommentEventTearOff {
     );
   }
 
+  _FetchComment fetchComment(String episodeId) {
+    return _FetchComment(
+      episodeId,
+    );
+  }
+
   _FetchComments fetchComments(String episodeId) {
     return _FetchComments(
       episodeId,
@@ -49,6 +55,7 @@ mixin _$CommentEvent {
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
+    required TResult Function(String episodeId) fetchComment,
     required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
@@ -59,6 +66,7 @@ mixin _$CommentEvent {
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
     TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
@@ -69,6 +77,7 @@ mixin _$CommentEvent {
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
     TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
@@ -78,6 +87,7 @@ mixin _$CommentEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CommentsReceived value) commentsReceived,
+    required TResult Function(_FetchComment value) fetchComment,
     required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_AddComment value) addComment,
   }) =>
@@ -85,6 +95,7 @@ mixin _$CommentEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
     TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_AddComment value)? addComment,
   }) =>
@@ -92,6 +103,7 @@ mixin _$CommentEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
     TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_AddComment value)? addComment,
     required TResult orElse(),
@@ -183,6 +195,7 @@ class _$_CommentsReceived implements _CommentsReceived {
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
+    required TResult Function(String episodeId) fetchComment,
     required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
@@ -196,6 +209,7 @@ class _$_CommentsReceived implements _CommentsReceived {
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
     TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
@@ -209,6 +223,7 @@ class _$_CommentsReceived implements _CommentsReceived {
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
     TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
@@ -224,6 +239,7 @@ class _$_CommentsReceived implements _CommentsReceived {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CommentsReceived value) commentsReceived,
+    required TResult Function(_FetchComment value) fetchComment,
     required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_AddComment value) addComment,
   }) {
@@ -234,6 +250,7 @@ class _$_CommentsReceived implements _CommentsReceived {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
     TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_AddComment value)? addComment,
   }) {
@@ -244,6 +261,7 @@ class _$_CommentsReceived implements _CommentsReceived {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
     TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_AddComment value)? addComment,
     required TResult orElse(),
@@ -263,6 +281,160 @@ abstract class _CommentsReceived implements CommentEvent {
   Either<UserActionsFailure, List<Comments>> get failureOrComments;
   @JsonKey(ignore: true)
   _$CommentsReceivedCopyWith<_CommentsReceived> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$FetchCommentCopyWith<$Res> {
+  factory _$FetchCommentCopyWith(
+          _FetchComment value, $Res Function(_FetchComment) then) =
+      __$FetchCommentCopyWithImpl<$Res>;
+  $Res call({String episodeId});
+}
+
+/// @nodoc
+class __$FetchCommentCopyWithImpl<$Res> extends _$CommentEventCopyWithImpl<$Res>
+    implements _$FetchCommentCopyWith<$Res> {
+  __$FetchCommentCopyWithImpl(
+      _FetchComment _value, $Res Function(_FetchComment) _then)
+      : super(_value, (v) => _then(v as _FetchComment));
+
+  @override
+  _FetchComment get _value => super._value as _FetchComment;
+
+  @override
+  $Res call({
+    Object? episodeId = freezed,
+  }) {
+    return _then(_FetchComment(
+      episodeId == freezed
+          ? _value.episodeId
+          : episodeId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_FetchComment implements _FetchComment {
+  const _$_FetchComment(this.episodeId);
+
+  @override
+  final String episodeId;
+
+  @override
+  String toString() {
+    return 'CommentEvent.fetchComment(episodeId: $episodeId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _FetchComment &&
+            (identical(other.episodeId, episodeId) ||
+                other.episodeId == episodeId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, episodeId);
+
+  @JsonKey(ignore: true)
+  @override
+  _$FetchCommentCopyWith<_FetchComment> get copyWith =>
+      __$FetchCommentCopyWithImpl<_FetchComment>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            Either<UserActionsFailure, List<Comments>> failureOrComments)
+        commentsReceived,
+    required TResult Function(String episodeId) fetchComment,
+    required TResult Function(String episodeId) fetchComments,
+    required TResult Function(String userId, String comment, String episodeId)
+        addComment,
+  }) {
+    return fetchComment(episodeId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            Either<UserActionsFailure, List<Comments>> failureOrComments)?
+        commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
+    TResult Function(String episodeId)? fetchComments,
+    TResult Function(String userId, String comment, String episodeId)?
+        addComment,
+  }) {
+    return fetchComment?.call(episodeId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            Either<UserActionsFailure, List<Comments>> failureOrComments)?
+        commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
+    TResult Function(String episodeId)? fetchComments,
+    TResult Function(String userId, String comment, String episodeId)?
+        addComment,
+    required TResult orElse(),
+  }) {
+    if (fetchComment != null) {
+      return fetchComment(episodeId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CommentsReceived value) commentsReceived,
+    required TResult Function(_FetchComment value) fetchComment,
+    required TResult Function(_FetchComments value) fetchComments,
+    required TResult Function(_AddComment value) addComment,
+  }) {
+    return fetchComment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
+    TResult Function(_FetchComments value)? fetchComments,
+    TResult Function(_AddComment value)? addComment,
+  }) {
+    return fetchComment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
+    TResult Function(_FetchComments value)? fetchComments,
+    TResult Function(_AddComment value)? addComment,
+    required TResult orElse(),
+  }) {
+    if (fetchComment != null) {
+      return fetchComment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchComment implements CommentEvent {
+  const factory _FetchComment(String episodeId) = _$_FetchComment;
+
+  String get episodeId;
+  @JsonKey(ignore: true)
+  _$FetchCommentCopyWith<_FetchComment> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -334,6 +506,7 @@ class _$_FetchComments implements _FetchComments {
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
+    required TResult Function(String episodeId) fetchComment,
     required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
@@ -347,6 +520,7 @@ class _$_FetchComments implements _FetchComments {
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
     TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
@@ -360,6 +534,7 @@ class _$_FetchComments implements _FetchComments {
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
     TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
@@ -375,6 +550,7 @@ class _$_FetchComments implements _FetchComments {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CommentsReceived value) commentsReceived,
+    required TResult Function(_FetchComment value) fetchComment,
     required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_AddComment value) addComment,
   }) {
@@ -385,6 +561,7 @@ class _$_FetchComments implements _FetchComments {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
     TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_AddComment value)? addComment,
   }) {
@@ -395,6 +572,7 @@ class _$_FetchComments implements _FetchComments {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
     TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_AddComment value)? addComment,
     required TResult orElse(),
@@ -498,6 +676,7 @@ class _$_AddComment implements _AddComment {
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
+    required TResult Function(String episodeId) fetchComment,
     required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
@@ -511,6 +690,7 @@ class _$_AddComment implements _AddComment {
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
     TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
@@ -524,6 +704,7 @@ class _$_AddComment implements _AddComment {
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
+    TResult Function(String episodeId)? fetchComment,
     TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
@@ -539,6 +720,7 @@ class _$_AddComment implements _AddComment {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_CommentsReceived value) commentsReceived,
+    required TResult Function(_FetchComment value) fetchComment,
     required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_AddComment value) addComment,
   }) {
@@ -549,6 +731,7 @@ class _$_AddComment implements _AddComment {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
     TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_AddComment value)? addComment,
   }) {
@@ -559,6 +742,7 @@ class _$_AddComment implements _AddComment {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_CommentsReceived value)? commentsReceived,
+    TResult Function(_FetchComment value)? fetchComment,
     TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_AddComment value)? addComment,
     required TResult orElse(),

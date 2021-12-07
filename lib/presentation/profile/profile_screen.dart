@@ -1,15 +1,19 @@
 // ignore: implementation_imports
-import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ionicons/ionicons.dart';
 
 import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
 import 'package:movie_app/application/user_actions/user_actions_bloc.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 import 'package:movie_app/helper/global/loading_indicator.dart';
 import 'package:movie_app/injection.dart';
 import 'package:movie_app/presentation/auth/signup/sign_up_screen.dart';
+import 'package:movie_app/presentation/intro/web_view_screen.dart';
 import 'package:movie_app/presentation/profile/components/change_image_screen.dart';
+import 'package:movie_app/presentation/profile/components/commentscreen.dart';
+import 'package:share/share.dart';
 
 import 'components/change_name_screen.dart';
 
@@ -31,11 +35,17 @@ class ProfileScreen extends StatelessWidget {
                 orElse: () {},
                 unauthenticated: (_) => Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                        builder: (BuildContext context) => SignUpScreen()))),
+                        builder: (BuildContext context) =>
+                            const SignUpScreen()))),
             child: BlocBuilder<UserActionsBloc, UserActionsState>(
                 buildWhen: (previous, current) => previous != current,
                 builder: (context, state) => state.maybeMap(
-                    error: (_) => const Text("Error"),
+                    error: (error) => CustomError(
+                        errorMessage: error.failure.maybeMap(
+                            unableToFetch: (_) => "Unexcepted Error occured.",
+                            notFound: (_) => "No Saved Mangas",
+                            orElse: () => "Unknown Error"),
+                        errorImage: "assets/logo/error.svg"),
                     orElse: () => const LoadingIndicator(),
                     profileLoaded: (state) => ListView(
                           children: [
@@ -113,26 +123,55 @@ class ProfileScreen extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.r)),
                               child: Column(
-                                children: const [
+                                children: [
                                   ListTile(
-                                      leading: Icon(Icons.shield_outlined),
-                                      title: Text("Privacy")),
-                                  Divider(
+                                      onTap: () => Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  const CommentHistory(
+                                                    isComment: false,
+                                                  ))),
+                                      leading:
+                                          const Icon(Ionicons.bookmark_outline),
+                                      title: const Text("Saved")),
+                                  const Divider(
                                     indent: 20,
                                     endIndent: 20,
                                     color: Colors.white54,
                                   ),
                                   ListTile(
-                                      leading: Icon(Icons.apps_outlined),
-                                      title: Text("Family Apps")),
-                                  Divider(
+                                      onTap: () => Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  const CommentHistory(
+                                                    isComment: true,
+                                                  ))),
+                                      leading: const Icon(
+                                          Ionicons.chatbox_ellipses_outline),
+                                      title: const Text("Comments History")),
+                                  const Divider(
                                     indent: 20,
                                     endIndent: 20,
                                     color: Colors.white54,
                                   ),
                                   ListTile(
-                                      leading: Icon(Icons.share_outlined),
-                                      title: Text("Share")),
+                                      onTap: () => Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (_) => const WebViewScreen(
+                                                  url:
+                                                      'https://shanemmtranslations.blogspot.com/'))),
+                                      leading:
+                                          const Icon(Ionicons.shield_outline),
+                                      title: const Text("Privacy")),
+                                  const Divider(
+                                    indent: 20,
+                                    endIndent: 20,
+                                    color: Colors.white54,
+                                  ),
+                                  ListTile(
+                                      onTap: () => _onShare(context),
+                                      leading: const Icon(Icons.share_outlined),
+                                      title: const Text("Share")),
                                 ],
                               ),
                             ),
@@ -156,4 +195,7 @@ class ProfileScreen extends StatelessWidget {
           )),
     );
   }
+
+  _onShare(BuildContext context) async => await Share.share(
+      'https://play.google.com/store/apps/details?id=com.shaneMangaMM.reader');
 }

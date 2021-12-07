@@ -42,7 +42,6 @@ const $Genre = _$GenreTearOff();
 
 /// @nodoc
 mixin _$Genre {
-// ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   String? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -140,7 +139,7 @@ class _$_Genre implements _Genre {
   factory _$_Genre.fromJson(Map<String, dynamic> json) =>
       _$$_GenreFromJson(json);
 
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   final String? id;
   @override
@@ -185,7 +184,7 @@ abstract class _Genre implements Genre {
 
   factory _Genre.fromJson(Map<String, dynamic> json) = _$_Genre.fromJson;
 
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   String? get id;
   @override

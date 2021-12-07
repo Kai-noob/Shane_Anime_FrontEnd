@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/application/episodes/episodes_bloc.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 
 import '../../../application/auth/bloc/auth_bloc.dart';
 import '../../../application/user_actions/user_actions_bloc.dart';
@@ -30,8 +32,14 @@ class UserCommentsScreen extends StatelessWidget {
         builder: (context, state) {
           return state.maybeMap(
             orElse: () => Container(),
+            error: (error) => CustomError(
+                errorMessage: error.failure.maybeMap(
+                    unableToFetch: (_) => "Unexcepted Error occured.",
+                    notFound: (_) => "No Saved Mangas",
+                    orElse: () => "Unknown Error"),
+                errorImage: "assets/logo/error.svg"),
             loading: (_) => const LoadingIndicator(),
-            commentsLoaded: (commentState) {
+            userCommentsLoaded: (commentState) {
               if (commentState.comments.isEmpty) {
                 return Align(
                   alignment: Alignment.center,
@@ -42,7 +50,7 @@ class UserCommentsScreen extends StatelessWidget {
                         radius: 70.r,
                         backgroundColor: const Color(0xff1B2C3B),
                         child: Icon(
-                          Icons.chat_outlined,
+                          Ionicons.chatbox_ellipses_outline,
                           color: Colors.white,
                           size: 80.w,
                         ),

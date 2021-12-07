@@ -46,15 +46,12 @@ const $Upcomingcomic = _$UpcomingcomicTearOff();
 
 /// @nodoc
 mixin _$Upcomingcomic {
-  String get title =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get title => throw _privateConstructorUsedError;
   @JsonKey(name: "cover_photo")
   String get coverPhoto => throw _privateConstructorUsedError;
-  String get review =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get review => throw _privateConstructorUsedError;
   @JsonKey(name: "episode_number")
-  String get episodeNumber =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get episodeNumber => throw _privateConstructorUsedError;
   @JsonKey(name: "release_date")
   String get releaseDate => throw _privateConstructorUsedError;
 
@@ -193,15 +190,15 @@ class _$_Upcomingcomic implements _Upcomingcomic {
 
   @override
   final String title;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "cover_photo")
   final String coverPhoto;
   @override
   final String review;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "episode_number")
   final String episodeNumber;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "release_date")
   final String releaseDate;
 
@@ -254,15 +251,15 @@ abstract class _Upcomingcomic implements Upcomingcomic {
 
   @override
   String get title;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "cover_photo")
   String get coverPhoto;
   @override
   String get review;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "episode_number")
   String get episodeNumber;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "release_date")
   String get releaseDate;
   @override

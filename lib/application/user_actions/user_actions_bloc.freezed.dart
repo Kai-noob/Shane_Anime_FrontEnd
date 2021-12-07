@@ -34,12 +34,6 @@ class _$UserActionsEventTearOff {
     );
   }
 
-  _FetchComments fetchComments(String episodeId) {
-    return _FetchComments(
-      episodeId,
-    );
-  }
-
   _FetchUserComments fetchUserComments(String userId) {
     return _FetchUserComments(
       userId,
@@ -50,13 +44,6 @@ class _$UserActionsEventTearOff {
       Either<UserActionsFailure, List<Comments>> failureOrComments) {
     return _CommentsReceived(
       failureOrComments,
-    );
-  }
-
-  _CommentsProfileReceived commentsProfileReceived(
-      Either<UserActionsFailure, AppUser> failureOrCommetsProfile) {
-    return _CommentsProfileReceived(
-      failureOrCommetsProfile,
     );
   }
 
@@ -92,12 +79,6 @@ class _$UserActionsEventTearOff {
       episodeId,
     );
   }
-
-  _FetchCommentsProfile fetchCommentsProfile(String userId) {
-    return _FetchCommentsProfile(
-      userId,
-    );
-  }
 }
 
 /// @nodoc
@@ -110,14 +91,10 @@ mixin _$UserActionsEvent {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -126,7 +103,6 @@ mixin _$UserActionsEvent {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -134,14 +110,10 @@ mixin _$UserActionsEvent {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -149,7 +121,6 @@ mixin _$UserActionsEvent {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -157,14 +128,10 @@ mixin _$UserActionsEvent {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -172,7 +139,6 @@ mixin _$UserActionsEvent {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -181,17 +147,13 @@ mixin _$UserActionsEvent {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -199,16 +161,13 @@ mixin _$UserActionsEvent {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -216,16 +175,13 @@ mixin _$UserActionsEvent {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -292,14 +248,10 @@ class _$_FetchProfile implements _FetchProfile {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -308,7 +260,6 @@ class _$_FetchProfile implements _FetchProfile {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return fetchProfile();
   }
@@ -319,14 +270,10 @@ class _$_FetchProfile implements _FetchProfile {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -334,7 +281,6 @@ class _$_FetchProfile implements _FetchProfile {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return fetchProfile?.call();
   }
@@ -345,14 +291,10 @@ class _$_FetchProfile implements _FetchProfile {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -360,7 +302,6 @@ class _$_FetchProfile implements _FetchProfile {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (fetchProfile != null) {
@@ -375,17 +316,13 @@ class _$_FetchProfile implements _FetchProfile {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return fetchProfile(this);
   }
@@ -396,16 +333,13 @@ class _$_FetchProfile implements _FetchProfile {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return fetchProfile?.call(this);
   }
@@ -416,16 +350,13 @@ class _$_FetchProfile implements _FetchProfile {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (fetchProfile != null) {
@@ -525,14 +456,10 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -541,7 +468,6 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return likeEpisodes(likeStatus, episodes);
   }
@@ -552,14 +478,10 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -567,7 +489,6 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return likeEpisodes?.call(likeStatus, episodes);
   }
@@ -578,14 +499,10 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -593,7 +510,6 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (likeEpisodes != null) {
@@ -608,17 +524,13 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return likeEpisodes(this);
   }
@@ -629,16 +541,13 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return likeEpisodes?.call(this);
   }
@@ -649,16 +558,13 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (likeEpisodes != null) {
@@ -756,14 +662,10 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -772,7 +674,6 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return checkLikeStatus(episodes);
   }
@@ -783,14 +684,10 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -798,7 +695,6 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return checkLikeStatus?.call(episodes);
   }
@@ -809,14 +705,10 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -824,7 +716,6 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (checkLikeStatus != null) {
@@ -839,17 +730,13 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return checkLikeStatus(this);
   }
@@ -860,16 +747,13 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return checkLikeStatus?.call(this);
   }
@@ -880,16 +764,13 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (checkLikeStatus != null) {
@@ -905,226 +786,6 @@ abstract class _CheckLikeStatus implements UserActionsEvent {
   Episodes get episodes;
   @JsonKey(ignore: true)
   _$CheckLikeStatusCopyWith<_CheckLikeStatus> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$FetchCommentsCopyWith<$Res> {
-  factory _$FetchCommentsCopyWith(
-          _FetchComments value, $Res Function(_FetchComments) then) =
-      __$FetchCommentsCopyWithImpl<$Res>;
-  $Res call({String episodeId});
-}
-
-/// @nodoc
-class __$FetchCommentsCopyWithImpl<$Res>
-    extends _$UserActionsEventCopyWithImpl<$Res>
-    implements _$FetchCommentsCopyWith<$Res> {
-  __$FetchCommentsCopyWithImpl(
-      _FetchComments _value, $Res Function(_FetchComments) _then)
-      : super(_value, (v) => _then(v as _FetchComments));
-
-  @override
-  _FetchComments get _value => super._value as _FetchComments;
-
-  @override
-  $Res call({
-    Object? episodeId = freezed,
-  }) {
-    return _then(_FetchComments(
-      episodeId == freezed
-          ? _value.episodeId
-          : episodeId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_FetchComments implements _FetchComments {
-  const _$_FetchComments(this.episodeId);
-
-  @override
-  final String episodeId;
-
-  @override
-  String toString() {
-    return 'UserActionsEvent.fetchComments(episodeId: $episodeId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _FetchComments &&
-            (identical(other.episodeId, episodeId) ||
-                other.episodeId == episodeId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, episodeId);
-
-  @JsonKey(ignore: true)
-  @override
-  _$FetchCommentsCopyWith<_FetchComments> get copyWith =>
-      __$FetchCommentsCopyWithImpl<_FetchComments>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() fetchProfile,
-    required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
-    required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
-    required TResult Function(String userId) fetchUserComments,
-    required TResult Function(
-            Either<UserActionsFailure, List<Comments>> failureOrComments)
-        commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrProfile)
-        profileReceived,
-    required TResult Function(String name) editName,
-    required TResult Function(String image) editImage,
-    required TResult Function(String commentId) deleteComment,
-    required TResult Function(String userId, String comment, String episodeId)
-        addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
-  }) {
-    return fetchComments(episodeId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchProfile,
-    TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
-    TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
-    TResult Function(String userId)? fetchUserComments,
-    TResult Function(
-            Either<UserActionsFailure, List<Comments>> failureOrComments)?
-        commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
-    TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
-        profileReceived,
-    TResult Function(String name)? editName,
-    TResult Function(String image)? editImage,
-    TResult Function(String commentId)? deleteComment,
-    TResult Function(String userId, String comment, String episodeId)?
-        addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
-  }) {
-    return fetchComments?.call(episodeId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchProfile,
-    TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
-    TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
-    TResult Function(String userId)? fetchUserComments,
-    TResult Function(
-            Either<UserActionsFailure, List<Comments>> failureOrComments)?
-        commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
-    TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
-        profileReceived,
-    TResult Function(String name)? editName,
-    TResult Function(String image)? editImage,
-    TResult Function(String commentId)? deleteComment,
-    TResult Function(String userId, String comment, String episodeId)?
-        addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
-    required TResult orElse(),
-  }) {
-    if (fetchComments != null) {
-      return fetchComments(episodeId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FetchProfile value) fetchProfile,
-    required TResult Function(_LikeEpisodes value) likeEpisodes,
-    required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
-    required TResult Function(_FetchUserComments value) fetchUserComments,
-    required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
-    required TResult Function(_ProfileReceived value) profileReceived,
-    required TResult Function(_EditName value) editName,
-    required TResult Function(_EditImage value) editImage,
-    required TResult Function(_DeleteComment value) deleteComment,
-    required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
-  }) {
-    return fetchComments(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_FetchProfile value)? fetchProfile,
-    TResult Function(_LikeEpisodes value)? likeEpisodes,
-    TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
-    TResult Function(_FetchUserComments value)? fetchUserComments,
-    TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
-    TResult Function(_ProfileReceived value)? profileReceived,
-    TResult Function(_EditName value)? editName,
-    TResult Function(_EditImage value)? editImage,
-    TResult Function(_DeleteComment value)? deleteComment,
-    TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
-  }) {
-    return fetchComments?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchProfile value)? fetchProfile,
-    TResult Function(_LikeEpisodes value)? likeEpisodes,
-    TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
-    TResult Function(_FetchUserComments value)? fetchUserComments,
-    TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
-    TResult Function(_ProfileReceived value)? profileReceived,
-    TResult Function(_EditName value)? editName,
-    TResult Function(_EditImage value)? editImage,
-    TResult Function(_DeleteComment value)? deleteComment,
-    TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
-    required TResult orElse(),
-  }) {
-    if (fetchComments != null) {
-      return fetchComments(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FetchComments implements UserActionsEvent {
-  const factory _FetchComments(String episodeId) = _$_FetchComments;
-
-  String get episodeId;
-  @JsonKey(ignore: true)
-  _$FetchCommentsCopyWith<_FetchComments> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1195,14 +856,10 @@ class _$_FetchUserComments implements _FetchUserComments {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -1211,7 +868,6 @@ class _$_FetchUserComments implements _FetchUserComments {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return fetchUserComments(userId);
   }
@@ -1222,14 +878,10 @@ class _$_FetchUserComments implements _FetchUserComments {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -1237,7 +889,6 @@ class _$_FetchUserComments implements _FetchUserComments {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return fetchUserComments?.call(userId);
   }
@@ -1248,14 +899,10 @@ class _$_FetchUserComments implements _FetchUserComments {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -1263,7 +910,6 @@ class _$_FetchUserComments implements _FetchUserComments {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (fetchUserComments != null) {
@@ -1278,17 +924,13 @@ class _$_FetchUserComments implements _FetchUserComments {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return fetchUserComments(this);
   }
@@ -1299,16 +941,13 @@ class _$_FetchUserComments implements _FetchUserComments {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return fetchUserComments?.call(this);
   }
@@ -1319,16 +958,13 @@ class _$_FetchUserComments implements _FetchUserComments {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (fetchUserComments != null) {
@@ -1415,14 +1051,10 @@ class _$_CommentsReceived implements _CommentsReceived {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -1431,7 +1063,6 @@ class _$_CommentsReceived implements _CommentsReceived {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return commentsReceived(failureOrComments);
   }
@@ -1442,14 +1073,10 @@ class _$_CommentsReceived implements _CommentsReceived {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -1457,7 +1084,6 @@ class _$_CommentsReceived implements _CommentsReceived {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return commentsReceived?.call(failureOrComments);
   }
@@ -1468,14 +1094,10 @@ class _$_CommentsReceived implements _CommentsReceived {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -1483,7 +1105,6 @@ class _$_CommentsReceived implements _CommentsReceived {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (commentsReceived != null) {
@@ -1498,17 +1119,13 @@ class _$_CommentsReceived implements _CommentsReceived {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return commentsReceived(this);
   }
@@ -1519,16 +1136,13 @@ class _$_CommentsReceived implements _CommentsReceived {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return commentsReceived?.call(this);
   }
@@ -1539,16 +1153,13 @@ class _$_CommentsReceived implements _CommentsReceived {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (commentsReceived != null) {
@@ -1566,231 +1177,6 @@ abstract class _CommentsReceived implements UserActionsEvent {
   Either<UserActionsFailure, List<Comments>> get failureOrComments;
   @JsonKey(ignore: true)
   _$CommentsReceivedCopyWith<_CommentsReceived> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$CommentsProfileReceivedCopyWith<$Res> {
-  factory _$CommentsProfileReceivedCopyWith(_CommentsProfileReceived value,
-          $Res Function(_CommentsProfileReceived) then) =
-      __$CommentsProfileReceivedCopyWithImpl<$Res>;
-  $Res call({Either<UserActionsFailure, AppUser> failureOrCommetsProfile});
-}
-
-/// @nodoc
-class __$CommentsProfileReceivedCopyWithImpl<$Res>
-    extends _$UserActionsEventCopyWithImpl<$Res>
-    implements _$CommentsProfileReceivedCopyWith<$Res> {
-  __$CommentsProfileReceivedCopyWithImpl(_CommentsProfileReceived _value,
-      $Res Function(_CommentsProfileReceived) _then)
-      : super(_value, (v) => _then(v as _CommentsProfileReceived));
-
-  @override
-  _CommentsProfileReceived get _value =>
-      super._value as _CommentsProfileReceived;
-
-  @override
-  $Res call({
-    Object? failureOrCommetsProfile = freezed,
-  }) {
-    return _then(_CommentsProfileReceived(
-      failureOrCommetsProfile == freezed
-          ? _value.failureOrCommetsProfile
-          : failureOrCommetsProfile // ignore: cast_nullable_to_non_nullable
-              as Either<UserActionsFailure, AppUser>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_CommentsProfileReceived implements _CommentsProfileReceived {
-  const _$_CommentsProfileReceived(this.failureOrCommetsProfile);
-
-  @override
-  final Either<UserActionsFailure, AppUser> failureOrCommetsProfile;
-
-  @override
-  String toString() {
-    return 'UserActionsEvent.commentsProfileReceived(failureOrCommetsProfile: $failureOrCommetsProfile)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _CommentsProfileReceived &&
-            (identical(
-                    other.failureOrCommetsProfile, failureOrCommetsProfile) ||
-                other.failureOrCommetsProfile == failureOrCommetsProfile));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, failureOrCommetsProfile);
-
-  @JsonKey(ignore: true)
-  @override
-  _$CommentsProfileReceivedCopyWith<_CommentsProfileReceived> get copyWith =>
-      __$CommentsProfileReceivedCopyWithImpl<_CommentsProfileReceived>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() fetchProfile,
-    required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
-    required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
-    required TResult Function(String userId) fetchUserComments,
-    required TResult Function(
-            Either<UserActionsFailure, List<Comments>> failureOrComments)
-        commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrProfile)
-        profileReceived,
-    required TResult Function(String name) editName,
-    required TResult Function(String image) editImage,
-    required TResult Function(String commentId) deleteComment,
-    required TResult Function(String userId, String comment, String episodeId)
-        addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
-  }) {
-    return commentsProfileReceived(failureOrCommetsProfile);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchProfile,
-    TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
-    TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
-    TResult Function(String userId)? fetchUserComments,
-    TResult Function(
-            Either<UserActionsFailure, List<Comments>> failureOrComments)?
-        commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
-    TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
-        profileReceived,
-    TResult Function(String name)? editName,
-    TResult Function(String image)? editImage,
-    TResult Function(String commentId)? deleteComment,
-    TResult Function(String userId, String comment, String episodeId)?
-        addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
-  }) {
-    return commentsProfileReceived?.call(failureOrCommetsProfile);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchProfile,
-    TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
-    TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
-    TResult Function(String userId)? fetchUserComments,
-    TResult Function(
-            Either<UserActionsFailure, List<Comments>> failureOrComments)?
-        commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
-    TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
-        profileReceived,
-    TResult Function(String name)? editName,
-    TResult Function(String image)? editImage,
-    TResult Function(String commentId)? deleteComment,
-    TResult Function(String userId, String comment, String episodeId)?
-        addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
-    required TResult orElse(),
-  }) {
-    if (commentsProfileReceived != null) {
-      return commentsProfileReceived(failureOrCommetsProfile);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FetchProfile value) fetchProfile,
-    required TResult Function(_LikeEpisodes value) likeEpisodes,
-    required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
-    required TResult Function(_FetchUserComments value) fetchUserComments,
-    required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
-    required TResult Function(_ProfileReceived value) profileReceived,
-    required TResult Function(_EditName value) editName,
-    required TResult Function(_EditImage value) editImage,
-    required TResult Function(_DeleteComment value) deleteComment,
-    required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
-  }) {
-    return commentsProfileReceived(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_FetchProfile value)? fetchProfile,
-    TResult Function(_LikeEpisodes value)? likeEpisodes,
-    TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
-    TResult Function(_FetchUserComments value)? fetchUserComments,
-    TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
-    TResult Function(_ProfileReceived value)? profileReceived,
-    TResult Function(_EditName value)? editName,
-    TResult Function(_EditImage value)? editImage,
-    TResult Function(_DeleteComment value)? deleteComment,
-    TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
-  }) {
-    return commentsProfileReceived?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchProfile value)? fetchProfile,
-    TResult Function(_LikeEpisodes value)? likeEpisodes,
-    TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
-    TResult Function(_FetchUserComments value)? fetchUserComments,
-    TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
-    TResult Function(_ProfileReceived value)? profileReceived,
-    TResult Function(_EditName value)? editName,
-    TResult Function(_EditImage value)? editImage,
-    TResult Function(_DeleteComment value)? deleteComment,
-    TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
-    required TResult orElse(),
-  }) {
-    if (commentsProfileReceived != null) {
-      return commentsProfileReceived(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CommentsProfileReceived implements UserActionsEvent {
-  const factory _CommentsProfileReceived(
-          Either<UserActionsFailure, AppUser> failureOrCommetsProfile) =
-      _$_CommentsProfileReceived;
-
-  Either<UserActionsFailure, AppUser> get failureOrCommetsProfile;
-  @JsonKey(ignore: true)
-  _$CommentsProfileReceivedCopyWith<_CommentsProfileReceived> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1862,14 +1248,10 @@ class _$_ProfileReceived implements _ProfileReceived {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -1878,7 +1260,6 @@ class _$_ProfileReceived implements _ProfileReceived {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return profileReceived(failureOrProfile);
   }
@@ -1889,14 +1270,10 @@ class _$_ProfileReceived implements _ProfileReceived {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -1904,7 +1281,6 @@ class _$_ProfileReceived implements _ProfileReceived {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return profileReceived?.call(failureOrProfile);
   }
@@ -1915,14 +1291,10 @@ class _$_ProfileReceived implements _ProfileReceived {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -1930,7 +1302,6 @@ class _$_ProfileReceived implements _ProfileReceived {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (profileReceived != null) {
@@ -1945,17 +1316,13 @@ class _$_ProfileReceived implements _ProfileReceived {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return profileReceived(this);
   }
@@ -1966,16 +1333,13 @@ class _$_ProfileReceived implements _ProfileReceived {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return profileReceived?.call(this);
   }
@@ -1986,16 +1350,13 @@ class _$_ProfileReceived implements _ProfileReceived {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (profileReceived != null) {
@@ -2080,14 +1441,10 @@ class _$_EditName implements _EditName {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -2096,7 +1453,6 @@ class _$_EditName implements _EditName {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return editName(name);
   }
@@ -2107,14 +1463,10 @@ class _$_EditName implements _EditName {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -2122,7 +1474,6 @@ class _$_EditName implements _EditName {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return editName?.call(name);
   }
@@ -2133,14 +1484,10 @@ class _$_EditName implements _EditName {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -2148,7 +1495,6 @@ class _$_EditName implements _EditName {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (editName != null) {
@@ -2163,17 +1509,13 @@ class _$_EditName implements _EditName {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return editName(this);
   }
@@ -2184,16 +1526,13 @@ class _$_EditName implements _EditName {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return editName?.call(this);
   }
@@ -2204,16 +1543,13 @@ class _$_EditName implements _EditName {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (editName != null) {
@@ -2298,14 +1634,10 @@ class _$_EditImage implements _EditImage {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -2314,7 +1646,6 @@ class _$_EditImage implements _EditImage {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return editImage(image);
   }
@@ -2325,14 +1656,10 @@ class _$_EditImage implements _EditImage {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -2340,7 +1667,6 @@ class _$_EditImage implements _EditImage {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return editImage?.call(image);
   }
@@ -2351,14 +1677,10 @@ class _$_EditImage implements _EditImage {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -2366,7 +1688,6 @@ class _$_EditImage implements _EditImage {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (editImage != null) {
@@ -2381,17 +1702,13 @@ class _$_EditImage implements _EditImage {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return editImage(this);
   }
@@ -2402,16 +1719,13 @@ class _$_EditImage implements _EditImage {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return editImage?.call(this);
   }
@@ -2422,16 +1736,13 @@ class _$_EditImage implements _EditImage {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (editImage != null) {
@@ -2518,14 +1829,10 @@ class _$_DeleteComment implements _DeleteComment {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -2534,7 +1841,6 @@ class _$_DeleteComment implements _DeleteComment {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return deleteComment(commentId);
   }
@@ -2545,14 +1851,10 @@ class _$_DeleteComment implements _DeleteComment {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -2560,7 +1862,6 @@ class _$_DeleteComment implements _DeleteComment {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return deleteComment?.call(commentId);
   }
@@ -2571,14 +1872,10 @@ class _$_DeleteComment implements _DeleteComment {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -2586,7 +1883,6 @@ class _$_DeleteComment implements _DeleteComment {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (deleteComment != null) {
@@ -2601,17 +1897,13 @@ class _$_DeleteComment implements _DeleteComment {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return deleteComment(this);
   }
@@ -2622,16 +1914,13 @@ class _$_DeleteComment implements _DeleteComment {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return deleteComment?.call(this);
   }
@@ -2642,16 +1931,13 @@ class _$_DeleteComment implements _DeleteComment {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (deleteComment != null) {
@@ -2754,14 +2040,10 @@ class _$_AddComment implements _AddComment {
     required TResult Function() fetchProfile,
     required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
     required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
     required TResult Function(String userId) fetchUserComments,
     required TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)
         commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
     required TResult Function(
             Either<UserActionsFailure, AppUser> failureOrProfile)
         profileReceived,
@@ -2770,7 +2052,6 @@ class _$_AddComment implements _AddComment {
     required TResult Function(String commentId) deleteComment,
     required TResult Function(String userId, String comment, String episodeId)
         addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
   }) {
     return addComment(userId, comment, episodeId);
   }
@@ -2781,14 +2062,10 @@ class _$_AddComment implements _AddComment {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -2796,7 +2073,6 @@ class _$_AddComment implements _AddComment {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
   }) {
     return addComment?.call(userId, comment, episodeId);
   }
@@ -2807,14 +2083,10 @@ class _$_AddComment implements _AddComment {
     TResult Function()? fetchProfile,
     TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
     TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
     TResult Function(String userId)? fetchUserComments,
     TResult Function(
             Either<UserActionsFailure, List<Comments>> failureOrComments)?
         commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
     TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
         profileReceived,
     TResult Function(String name)? editName,
@@ -2822,7 +2094,6 @@ class _$_AddComment implements _AddComment {
     TResult Function(String commentId)? deleteComment,
     TResult Function(String userId, String comment, String episodeId)?
         addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (addComment != null) {
@@ -2837,17 +2108,13 @@ class _$_AddComment implements _AddComment {
     required TResult Function(_FetchProfile value) fetchProfile,
     required TResult Function(_LikeEpisodes value) likeEpisodes,
     required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
     required TResult Function(_FetchUserComments value) fetchUserComments,
     required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
     required TResult Function(_ProfileReceived value) profileReceived,
     required TResult Function(_EditName value) editName,
     required TResult Function(_EditImage value) editImage,
     required TResult Function(_DeleteComment value) deleteComment,
     required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
   }) {
     return addComment(this);
   }
@@ -2858,16 +2125,13 @@ class _$_AddComment implements _AddComment {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
   }) {
     return addComment?.call(this);
   }
@@ -2878,16 +2142,13 @@ class _$_AddComment implements _AddComment {
     TResult Function(_FetchProfile value)? fetchProfile,
     TResult Function(_LikeEpisodes value)? likeEpisodes,
     TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
     TResult Function(_FetchUserComments value)? fetchUserComments,
     TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
     TResult Function(_ProfileReceived value)? profileReceived,
     TResult Function(_EditName value)? editName,
     TResult Function(_EditImage value)? editImage,
     TResult Function(_DeleteComment value)? deleteComment,
     TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
     required TResult orElse(),
   }) {
     if (addComment != null) {
@@ -2906,226 +2167,6 @@ abstract class _AddComment implements UserActionsEvent {
   String get episodeId;
   @JsonKey(ignore: true)
   _$AddCommentCopyWith<_AddComment> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$FetchCommentsProfileCopyWith<$Res> {
-  factory _$FetchCommentsProfileCopyWith(_FetchCommentsProfile value,
-          $Res Function(_FetchCommentsProfile) then) =
-      __$FetchCommentsProfileCopyWithImpl<$Res>;
-  $Res call({String userId});
-}
-
-/// @nodoc
-class __$FetchCommentsProfileCopyWithImpl<$Res>
-    extends _$UserActionsEventCopyWithImpl<$Res>
-    implements _$FetchCommentsProfileCopyWith<$Res> {
-  __$FetchCommentsProfileCopyWithImpl(
-      _FetchCommentsProfile _value, $Res Function(_FetchCommentsProfile) _then)
-      : super(_value, (v) => _then(v as _FetchCommentsProfile));
-
-  @override
-  _FetchCommentsProfile get _value => super._value as _FetchCommentsProfile;
-
-  @override
-  $Res call({
-    Object? userId = freezed,
-  }) {
-    return _then(_FetchCommentsProfile(
-      userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_FetchCommentsProfile implements _FetchCommentsProfile {
-  const _$_FetchCommentsProfile(this.userId);
-
-  @override
-  final String userId;
-
-  @override
-  String toString() {
-    return 'UserActionsEvent.fetchCommentsProfile(userId: $userId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _FetchCommentsProfile &&
-            (identical(other.userId, userId) || other.userId == userId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, userId);
-
-  @JsonKey(ignore: true)
-  @override
-  _$FetchCommentsProfileCopyWith<_FetchCommentsProfile> get copyWith =>
-      __$FetchCommentsProfileCopyWithImpl<_FetchCommentsProfile>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() fetchProfile,
-    required TResult Function(bool likeStatus, Episodes episodes) likeEpisodes,
-    required TResult Function(Episodes episodes) checkLikeStatus,
-    required TResult Function(String episodeId) fetchComments,
-    required TResult Function(String userId) fetchUserComments,
-    required TResult Function(
-            Either<UserActionsFailure, List<Comments>> failureOrComments)
-        commentsReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)
-        commentsProfileReceived,
-    required TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrProfile)
-        profileReceived,
-    required TResult Function(String name) editName,
-    required TResult Function(String image) editImage,
-    required TResult Function(String commentId) deleteComment,
-    required TResult Function(String userId, String comment, String episodeId)
-        addComment,
-    required TResult Function(String userId) fetchCommentsProfile,
-  }) {
-    return fetchCommentsProfile(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchProfile,
-    TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
-    TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
-    TResult Function(String userId)? fetchUserComments,
-    TResult Function(
-            Either<UserActionsFailure, List<Comments>> failureOrComments)?
-        commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
-    TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
-        profileReceived,
-    TResult Function(String name)? editName,
-    TResult Function(String image)? editImage,
-    TResult Function(String commentId)? deleteComment,
-    TResult Function(String userId, String comment, String episodeId)?
-        addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
-  }) {
-    return fetchCommentsProfile?.call(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? fetchProfile,
-    TResult Function(bool likeStatus, Episodes episodes)? likeEpisodes,
-    TResult Function(Episodes episodes)? checkLikeStatus,
-    TResult Function(String episodeId)? fetchComments,
-    TResult Function(String userId)? fetchUserComments,
-    TResult Function(
-            Either<UserActionsFailure, List<Comments>> failureOrComments)?
-        commentsReceived,
-    TResult Function(
-            Either<UserActionsFailure, AppUser> failureOrCommetsProfile)?
-        commentsProfileReceived,
-    TResult Function(Either<UserActionsFailure, AppUser> failureOrProfile)?
-        profileReceived,
-    TResult Function(String name)? editName,
-    TResult Function(String image)? editImage,
-    TResult Function(String commentId)? deleteComment,
-    TResult Function(String userId, String comment, String episodeId)?
-        addComment,
-    TResult Function(String userId)? fetchCommentsProfile,
-    required TResult orElse(),
-  }) {
-    if (fetchCommentsProfile != null) {
-      return fetchCommentsProfile(userId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FetchProfile value) fetchProfile,
-    required TResult Function(_LikeEpisodes value) likeEpisodes,
-    required TResult Function(_CheckLikeStatus value) checkLikeStatus,
-    required TResult Function(_FetchComments value) fetchComments,
-    required TResult Function(_FetchUserComments value) fetchUserComments,
-    required TResult Function(_CommentsReceived value) commentsReceived,
-    required TResult Function(_CommentsProfileReceived value)
-        commentsProfileReceived,
-    required TResult Function(_ProfileReceived value) profileReceived,
-    required TResult Function(_EditName value) editName,
-    required TResult Function(_EditImage value) editImage,
-    required TResult Function(_DeleteComment value) deleteComment,
-    required TResult Function(_AddComment value) addComment,
-    required TResult Function(_FetchCommentsProfile value) fetchCommentsProfile,
-  }) {
-    return fetchCommentsProfile(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_FetchProfile value)? fetchProfile,
-    TResult Function(_LikeEpisodes value)? likeEpisodes,
-    TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
-    TResult Function(_FetchUserComments value)? fetchUserComments,
-    TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
-    TResult Function(_ProfileReceived value)? profileReceived,
-    TResult Function(_EditName value)? editName,
-    TResult Function(_EditImage value)? editImage,
-    TResult Function(_DeleteComment value)? deleteComment,
-    TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
-  }) {
-    return fetchCommentsProfile?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FetchProfile value)? fetchProfile,
-    TResult Function(_LikeEpisodes value)? likeEpisodes,
-    TResult Function(_CheckLikeStatus value)? checkLikeStatus,
-    TResult Function(_FetchComments value)? fetchComments,
-    TResult Function(_FetchUserComments value)? fetchUserComments,
-    TResult Function(_CommentsReceived value)? commentsReceived,
-    TResult Function(_CommentsProfileReceived value)? commentsProfileReceived,
-    TResult Function(_ProfileReceived value)? profileReceived,
-    TResult Function(_EditName value)? editName,
-    TResult Function(_EditImage value)? editImage,
-    TResult Function(_DeleteComment value)? deleteComment,
-    TResult Function(_AddComment value)? addComment,
-    TResult Function(_FetchCommentsProfile value)? fetchCommentsProfile,
-    required TResult orElse(),
-  }) {
-    if (fetchCommentsProfile != null) {
-      return fetchCommentsProfile(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FetchCommentsProfile implements UserActionsEvent {
-  const factory _FetchCommentsProfile(String userId) = _$_FetchCommentsProfile;
-
-  String get userId;
-  @JsonKey(ignore: true)
-  _$FetchCommentsProfileCopyWith<_FetchCommentsProfile> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3159,18 +2200,6 @@ class _$UserActionsStateTearOff {
     );
   }
 
-  _CommentsLoaded commentsLoaded(List<Comments> comments) {
-    return _CommentsLoaded(
-      comments,
-    );
-  }
-
-  _CommentProfilesLoaded commentProfilesLoaded(AppUser commentsProfiles) {
-    return _CommentProfilesLoaded(
-      commentsProfiles,
-    );
-  }
-
   _UpdateNameSuccess updateNameSuccess(AppUser user) {
     return _UpdateNameSuccess(
       user,
@@ -3190,6 +2219,12 @@ class _$UserActionsStateTearOff {
   _AddSuccess addSuccess() {
     return const _AddSuccess();
   }
+
+  _UserCommentsLoaded userCommentsLoaded(List<Comments> comments) {
+    return _UserCommentsLoaded(
+      comments,
+    );
+  }
 }
 
 /// @nodoc
@@ -3204,12 +2239,11 @@ mixin _$UserActionsState {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -3219,12 +2253,11 @@ mixin _$UserActionsState {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -3234,12 +2267,11 @@ mixin _$UserActionsState {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -3250,13 +2282,11 @@ mixin _$UserActionsState {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -3266,12 +2296,11 @@ mixin _$UserActionsState {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -3281,12 +2310,11 @@ mixin _$UserActionsState {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -3352,12 +2380,11 @@ class _$_Initial implements _Initial {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) {
     return initial();
   }
@@ -3370,12 +2397,11 @@ class _$_Initial implements _Initial {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) {
     return initial?.call();
   }
@@ -3388,12 +2414,11 @@ class _$_Initial implements _Initial {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -3410,13 +2435,11 @@ class _$_Initial implements _Initial {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) {
     return initial(this);
   }
@@ -3429,12 +2452,11 @@ class _$_Initial implements _Initial {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) {
     return initial?.call(this);
   }
@@ -3447,12 +2469,11 @@ class _$_Initial implements _Initial {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -3509,12 +2530,11 @@ class _$_Loading implements _Loading {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) {
     return loading();
   }
@@ -3527,12 +2547,11 @@ class _$_Loading implements _Loading {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) {
     return loading?.call();
   }
@@ -3545,12 +2564,11 @@ class _$_Loading implements _Loading {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -3567,13 +2585,11 @@ class _$_Loading implements _Loading {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) {
     return loading(this);
   }
@@ -3586,12 +2602,11 @@ class _$_Loading implements _Loading {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) {
     return loading?.call(this);
   }
@@ -3604,12 +2619,11 @@ class _$_Loading implements _Loading {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -3701,12 +2715,11 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) {
     return profileLoaded(profile);
   }
@@ -3719,12 +2732,11 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) {
     return profileLoaded?.call(profile);
   }
@@ -3737,12 +2749,11 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (profileLoaded != null) {
@@ -3759,13 +2770,11 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) {
     return profileLoaded(this);
   }
@@ -3778,12 +2787,11 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) {
     return profileLoaded?.call(this);
   }
@@ -3796,12 +2804,11 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (profileLoaded != null) {
@@ -3895,12 +2902,11 @@ class _$_Error implements _Error {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) {
     return error(failure);
   }
@@ -3913,12 +2919,11 @@ class _$_Error implements _Error {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) {
     return error?.call(failure);
   }
@@ -3931,12 +2936,11 @@ class _$_Error implements _Error {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -3953,13 +2957,11 @@ class _$_Error implements _Error {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) {
     return error(this);
   }
@@ -3972,12 +2974,11 @@ class _$_Error implements _Error {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) {
     return error?.call(this);
   }
@@ -3990,12 +2991,11 @@ class _$_Error implements _Error {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -4082,12 +3082,11 @@ class _$_LikeStatus implements _LikeStatus {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) {
     return likeStatus(isLiked);
   }
@@ -4100,12 +3099,11 @@ class _$_LikeStatus implements _LikeStatus {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) {
     return likeStatus?.call(isLiked);
   }
@@ -4118,12 +3116,11 @@ class _$_LikeStatus implements _LikeStatus {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (likeStatus != null) {
@@ -4140,13 +3137,11 @@ class _$_LikeStatus implements _LikeStatus {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) {
     return likeStatus(this);
   }
@@ -4159,12 +3154,11 @@ class _$_LikeStatus implements _LikeStatus {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) {
     return likeStatus?.call(this);
   }
@@ -4177,12 +3171,11 @@ class _$_LikeStatus implements _LikeStatus {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (likeStatus != null) {
@@ -4198,395 +3191,6 @@ abstract class _LikeStatus implements UserActionsState {
   bool get isLiked;
   @JsonKey(ignore: true)
   _$LikeStatusCopyWith<_LikeStatus> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$CommentsLoadedCopyWith<$Res> {
-  factory _$CommentsLoadedCopyWith(
-          _CommentsLoaded value, $Res Function(_CommentsLoaded) then) =
-      __$CommentsLoadedCopyWithImpl<$Res>;
-  $Res call({List<Comments> comments});
-}
-
-/// @nodoc
-class __$CommentsLoadedCopyWithImpl<$Res>
-    extends _$UserActionsStateCopyWithImpl<$Res>
-    implements _$CommentsLoadedCopyWith<$Res> {
-  __$CommentsLoadedCopyWithImpl(
-      _CommentsLoaded _value, $Res Function(_CommentsLoaded) _then)
-      : super(_value, (v) => _then(v as _CommentsLoaded));
-
-  @override
-  _CommentsLoaded get _value => super._value as _CommentsLoaded;
-
-  @override
-  $Res call({
-    Object? comments = freezed,
-  }) {
-    return _then(_CommentsLoaded(
-      comments == freezed
-          ? _value.comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as List<Comments>,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_CommentsLoaded implements _CommentsLoaded {
-  const _$_CommentsLoaded(this.comments);
-
-  @override
-  final List<Comments> comments;
-
-  @override
-  String toString() {
-    return 'UserActionsState.commentsLoaded(comments: $comments)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _CommentsLoaded &&
-            const DeepCollectionEquality().equals(other.comments, comments));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(comments));
-
-  @JsonKey(ignore: true)
-  @override
-  _$CommentsLoadedCopyWith<_CommentsLoaded> get copyWith =>
-      __$CommentsLoadedCopyWithImpl<_CommentsLoaded>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function(UserActionsFailure failure) error,
-    required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
-    required TResult Function(AppUser user) updateNameSuccess,
-    required TResult Function(AppUser user) updateImageSuccess,
-    required TResult Function() deleteSuccess,
-    required TResult Function() addSuccess,
-  }) {
-    return commentsLoaded(comments);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(AppUser profile)? profileLoaded,
-    TResult Function(UserActionsFailure failure)? error,
-    TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
-    TResult Function(AppUser user)? updateNameSuccess,
-    TResult Function(AppUser user)? updateImageSuccess,
-    TResult Function()? deleteSuccess,
-    TResult Function()? addSuccess,
-  }) {
-    return commentsLoaded?.call(comments);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(AppUser profile)? profileLoaded,
-    TResult Function(UserActionsFailure failure)? error,
-    TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
-    TResult Function(AppUser user)? updateNameSuccess,
-    TResult Function(AppUser user)? updateImageSuccess,
-    TResult Function()? deleteSuccess,
-    TResult Function()? addSuccess,
-    required TResult orElse(),
-  }) {
-    if (commentsLoaded != null) {
-      return commentsLoaded(comments);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_ProfileLoaded value) profileLoaded,
-    required TResult Function(_Error value) error,
-    required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
-    required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
-    required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
-    required TResult Function(_DeleteSuccess value) deleteSuccess,
-    required TResult Function(_AddSuccess value) addSuccess,
-  }) {
-    return commentsLoaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_ProfileLoaded value)? profileLoaded,
-    TResult Function(_Error value)? error,
-    TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
-    TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
-    TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
-    TResult Function(_AddSuccess value)? addSuccess,
-  }) {
-    return commentsLoaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_ProfileLoaded value)? profileLoaded,
-    TResult Function(_Error value)? error,
-    TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
-    TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
-    TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
-    TResult Function(_AddSuccess value)? addSuccess,
-    required TResult orElse(),
-  }) {
-    if (commentsLoaded != null) {
-      return commentsLoaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CommentsLoaded implements UserActionsState {
-  const factory _CommentsLoaded(List<Comments> comments) = _$_CommentsLoaded;
-
-  List<Comments> get comments;
-  @JsonKey(ignore: true)
-  _$CommentsLoadedCopyWith<_CommentsLoaded> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$CommentProfilesLoadedCopyWith<$Res> {
-  factory _$CommentProfilesLoadedCopyWith(_CommentProfilesLoaded value,
-          $Res Function(_CommentProfilesLoaded) then) =
-      __$CommentProfilesLoadedCopyWithImpl<$Res>;
-  $Res call({AppUser commentsProfiles});
-
-  $AppUserCopyWith<$Res> get commentsProfiles;
-}
-
-/// @nodoc
-class __$CommentProfilesLoadedCopyWithImpl<$Res>
-    extends _$UserActionsStateCopyWithImpl<$Res>
-    implements _$CommentProfilesLoadedCopyWith<$Res> {
-  __$CommentProfilesLoadedCopyWithImpl(_CommentProfilesLoaded _value,
-      $Res Function(_CommentProfilesLoaded) _then)
-      : super(_value, (v) => _then(v as _CommentProfilesLoaded));
-
-  @override
-  _CommentProfilesLoaded get _value => super._value as _CommentProfilesLoaded;
-
-  @override
-  $Res call({
-    Object? commentsProfiles = freezed,
-  }) {
-    return _then(_CommentProfilesLoaded(
-      commentsProfiles == freezed
-          ? _value.commentsProfiles
-          : commentsProfiles // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-    ));
-  }
-
-  @override
-  $AppUserCopyWith<$Res> get commentsProfiles {
-    return $AppUserCopyWith<$Res>(_value.commentsProfiles, (value) {
-      return _then(_value.copyWith(commentsProfiles: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$_CommentProfilesLoaded implements _CommentProfilesLoaded {
-  const _$_CommentProfilesLoaded(this.commentsProfiles);
-
-  @override
-  final AppUser commentsProfiles;
-
-  @override
-  String toString() {
-    return 'UserActionsState.commentProfilesLoaded(commentsProfiles: $commentsProfiles)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _CommentProfilesLoaded &&
-            (identical(other.commentsProfiles, commentsProfiles) ||
-                other.commentsProfiles == commentsProfiles));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, commentsProfiles);
-
-  @JsonKey(ignore: true)
-  @override
-  _$CommentProfilesLoadedCopyWith<_CommentProfilesLoaded> get copyWith =>
-      __$CommentProfilesLoadedCopyWithImpl<_CommentProfilesLoaded>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(AppUser profile) profileLoaded,
-    required TResult Function(UserActionsFailure failure) error,
-    required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
-    required TResult Function(AppUser user) updateNameSuccess,
-    required TResult Function(AppUser user) updateImageSuccess,
-    required TResult Function() deleteSuccess,
-    required TResult Function() addSuccess,
-  }) {
-    return commentProfilesLoaded(commentsProfiles);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(AppUser profile)? profileLoaded,
-    TResult Function(UserActionsFailure failure)? error,
-    TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
-    TResult Function(AppUser user)? updateNameSuccess,
-    TResult Function(AppUser user)? updateImageSuccess,
-    TResult Function()? deleteSuccess,
-    TResult Function()? addSuccess,
-  }) {
-    return commentProfilesLoaded?.call(commentsProfiles);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(AppUser profile)? profileLoaded,
-    TResult Function(UserActionsFailure failure)? error,
-    TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
-    TResult Function(AppUser user)? updateNameSuccess,
-    TResult Function(AppUser user)? updateImageSuccess,
-    TResult Function()? deleteSuccess,
-    TResult Function()? addSuccess,
-    required TResult orElse(),
-  }) {
-    if (commentProfilesLoaded != null) {
-      return commentProfilesLoaded(commentsProfiles);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_ProfileLoaded value) profileLoaded,
-    required TResult Function(_Error value) error,
-    required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
-    required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
-    required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
-    required TResult Function(_DeleteSuccess value) deleteSuccess,
-    required TResult Function(_AddSuccess value) addSuccess,
-  }) {
-    return commentProfilesLoaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_ProfileLoaded value)? profileLoaded,
-    TResult Function(_Error value)? error,
-    TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
-    TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
-    TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
-    TResult Function(_AddSuccess value)? addSuccess,
-  }) {
-    return commentProfilesLoaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_ProfileLoaded value)? profileLoaded,
-    TResult Function(_Error value)? error,
-    TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
-    TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
-    TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
-    TResult Function(_DeleteSuccess value)? deleteSuccess,
-    TResult Function(_AddSuccess value)? addSuccess,
-    required TResult orElse(),
-  }) {
-    if (commentProfilesLoaded != null) {
-      return commentProfilesLoaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CommentProfilesLoaded implements UserActionsState {
-  const factory _CommentProfilesLoaded(AppUser commentsProfiles) =
-      _$_CommentProfilesLoaded;
-
-  AppUser get commentsProfiles;
-  @JsonKey(ignore: true)
-  _$CommentProfilesLoadedCopyWith<_CommentProfilesLoaded> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -4668,12 +3272,11 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) {
     return updateNameSuccess(user);
   }
@@ -4686,12 +3289,11 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) {
     return updateNameSuccess?.call(user);
   }
@@ -4704,12 +3306,11 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (updateNameSuccess != null) {
@@ -4726,13 +3327,11 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) {
     return updateNameSuccess(this);
   }
@@ -4745,12 +3344,11 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) {
     return updateNameSuccess?.call(this);
   }
@@ -4763,12 +3361,11 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (updateNameSuccess != null) {
@@ -4865,12 +3462,11 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) {
     return updateImageSuccess(user);
   }
@@ -4883,12 +3479,11 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) {
     return updateImageSuccess?.call(user);
   }
@@ -4901,12 +3496,11 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (updateImageSuccess != null) {
@@ -4923,13 +3517,11 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) {
     return updateImageSuccess(this);
   }
@@ -4942,12 +3534,11 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) {
     return updateImageSuccess?.call(this);
   }
@@ -4960,12 +3551,11 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (updateImageSuccess != null) {
@@ -5030,12 +3620,11 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) {
     return deleteSuccess();
   }
@@ -5048,12 +3637,11 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) {
     return deleteSuccess?.call();
   }
@@ -5066,12 +3654,11 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (deleteSuccess != null) {
@@ -5088,13 +3675,11 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) {
     return deleteSuccess(this);
   }
@@ -5107,12 +3692,11 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) {
     return deleteSuccess?.call(this);
   }
@@ -5125,12 +3709,11 @@ class _$_DeleteSuccess implements _DeleteSuccess {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (deleteSuccess != null) {
@@ -5190,12 +3773,11 @@ class _$_AddSuccess implements _AddSuccess {
     required TResult Function(AppUser profile) profileLoaded,
     required TResult Function(UserActionsFailure failure) error,
     required TResult Function(bool isLiked) likeStatus,
-    required TResult Function(List<Comments> comments) commentsLoaded,
-    required TResult Function(AppUser commentsProfiles) commentProfilesLoaded,
     required TResult Function(AppUser user) updateNameSuccess,
     required TResult Function(AppUser user) updateImageSuccess,
     required TResult Function() deleteSuccess,
     required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
   }) {
     return addSuccess();
   }
@@ -5208,12 +3790,11 @@ class _$_AddSuccess implements _AddSuccess {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
   }) {
     return addSuccess?.call();
   }
@@ -5226,12 +3807,11 @@ class _$_AddSuccess implements _AddSuccess {
     TResult Function(AppUser profile)? profileLoaded,
     TResult Function(UserActionsFailure failure)? error,
     TResult Function(bool isLiked)? likeStatus,
-    TResult Function(List<Comments> comments)? commentsLoaded,
-    TResult Function(AppUser commentsProfiles)? commentProfilesLoaded,
     TResult Function(AppUser user)? updateNameSuccess,
     TResult Function(AppUser user)? updateImageSuccess,
     TResult Function()? deleteSuccess,
     TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (addSuccess != null) {
@@ -5248,13 +3828,11 @@ class _$_AddSuccess implements _AddSuccess {
     required TResult Function(_ProfileLoaded value) profileLoaded,
     required TResult Function(_Error value) error,
     required TResult Function(_LikeStatus value) likeStatus,
-    required TResult Function(_CommentsLoaded value) commentsLoaded,
-    required TResult Function(_CommentProfilesLoaded value)
-        commentProfilesLoaded,
     required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
     required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
     required TResult Function(_DeleteSuccess value) deleteSuccess,
     required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
   }) {
     return addSuccess(this);
   }
@@ -5267,12 +3845,11 @@ class _$_AddSuccess implements _AddSuccess {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
   }) {
     return addSuccess?.call(this);
   }
@@ -5285,12 +3862,11 @@ class _$_AddSuccess implements _AddSuccess {
     TResult Function(_ProfileLoaded value)? profileLoaded,
     TResult Function(_Error value)? error,
     TResult Function(_LikeStatus value)? likeStatus,
-    TResult Function(_CommentsLoaded value)? commentsLoaded,
-    TResult Function(_CommentProfilesLoaded value)? commentProfilesLoaded,
     TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
     TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
     TResult Function(_DeleteSuccess value)? deleteSuccess,
     TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
     required TResult orElse(),
   }) {
     if (addSuccess != null) {
@@ -5302,4 +3878,187 @@ class _$_AddSuccess implements _AddSuccess {
 
 abstract class _AddSuccess implements UserActionsState {
   const factory _AddSuccess() = _$_AddSuccess;
+}
+
+/// @nodoc
+abstract class _$UserCommentsLoadedCopyWith<$Res> {
+  factory _$UserCommentsLoadedCopyWith(
+          _UserCommentsLoaded value, $Res Function(_UserCommentsLoaded) then) =
+      __$UserCommentsLoadedCopyWithImpl<$Res>;
+  $Res call({List<Comments> comments});
+}
+
+/// @nodoc
+class __$UserCommentsLoadedCopyWithImpl<$Res>
+    extends _$UserActionsStateCopyWithImpl<$Res>
+    implements _$UserCommentsLoadedCopyWith<$Res> {
+  __$UserCommentsLoadedCopyWithImpl(
+      _UserCommentsLoaded _value, $Res Function(_UserCommentsLoaded) _then)
+      : super(_value, (v) => _then(v as _UserCommentsLoaded));
+
+  @override
+  _UserCommentsLoaded get _value => super._value as _UserCommentsLoaded;
+
+  @override
+  $Res call({
+    Object? comments = freezed,
+  }) {
+    return _then(_UserCommentsLoaded(
+      comments == freezed
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comments>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UserCommentsLoaded implements _UserCommentsLoaded {
+  const _$_UserCommentsLoaded(this.comments);
+
+  @override
+  final List<Comments> comments;
+
+  @override
+  String toString() {
+    return 'UserActionsState.userCommentsLoaded(comments: $comments)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _UserCommentsLoaded &&
+            const DeepCollectionEquality().equals(other.comments, comments));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(comments));
+
+  @JsonKey(ignore: true)
+  @override
+  _$UserCommentsLoadedCopyWith<_UserCommentsLoaded> get copyWith =>
+      __$UserCommentsLoadedCopyWithImpl<_UserCommentsLoaded>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(AppUser profile) profileLoaded,
+    required TResult Function(UserActionsFailure failure) error,
+    required TResult Function(bool isLiked) likeStatus,
+    required TResult Function(AppUser user) updateNameSuccess,
+    required TResult Function(AppUser user) updateImageSuccess,
+    required TResult Function() deleteSuccess,
+    required TResult Function() addSuccess,
+    required TResult Function(List<Comments> comments) userCommentsLoaded,
+  }) {
+    return userCommentsLoaded(comments);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(AppUser profile)? profileLoaded,
+    TResult Function(UserActionsFailure failure)? error,
+    TResult Function(bool isLiked)? likeStatus,
+    TResult Function(AppUser user)? updateNameSuccess,
+    TResult Function(AppUser user)? updateImageSuccess,
+    TResult Function()? deleteSuccess,
+    TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
+  }) {
+    return userCommentsLoaded?.call(comments);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(AppUser profile)? profileLoaded,
+    TResult Function(UserActionsFailure failure)? error,
+    TResult Function(bool isLiked)? likeStatus,
+    TResult Function(AppUser user)? updateNameSuccess,
+    TResult Function(AppUser user)? updateImageSuccess,
+    TResult Function()? deleteSuccess,
+    TResult Function()? addSuccess,
+    TResult Function(List<Comments> comments)? userCommentsLoaded,
+    required TResult orElse(),
+  }) {
+    if (userCommentsLoaded != null) {
+      return userCommentsLoaded(comments);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_ProfileLoaded value) profileLoaded,
+    required TResult Function(_Error value) error,
+    required TResult Function(_LikeStatus value) likeStatus,
+    required TResult Function(_UpdateNameSuccess value) updateNameSuccess,
+    required TResult Function(_UpdateImageSuccess value) updateImageSuccess,
+    required TResult Function(_DeleteSuccess value) deleteSuccess,
+    required TResult Function(_AddSuccess value) addSuccess,
+    required TResult Function(_UserCommentsLoaded value) userCommentsLoaded,
+  }) {
+    return userCommentsLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ProfileLoaded value)? profileLoaded,
+    TResult Function(_Error value)? error,
+    TResult Function(_LikeStatus value)? likeStatus,
+    TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
+    TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
+    TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
+  }) {
+    return userCommentsLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_ProfileLoaded value)? profileLoaded,
+    TResult Function(_Error value)? error,
+    TResult Function(_LikeStatus value)? likeStatus,
+    TResult Function(_UpdateNameSuccess value)? updateNameSuccess,
+    TResult Function(_UpdateImageSuccess value)? updateImageSuccess,
+    TResult Function(_DeleteSuccess value)? deleteSuccess,
+    TResult Function(_AddSuccess value)? addSuccess,
+    TResult Function(_UserCommentsLoaded value)? userCommentsLoaded,
+    required TResult orElse(),
+  }) {
+    if (userCommentsLoaded != null) {
+      return userCommentsLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UserCommentsLoaded implements UserActionsState {
+  const factory _UserCommentsLoaded(List<Comments> comments) =
+      _$_UserCommentsLoaded;
+
+  List<Comments> get comments;
+  @JsonKey(ignore: true)
+  _$UserCommentsLoadedCopyWith<_UserCommentsLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

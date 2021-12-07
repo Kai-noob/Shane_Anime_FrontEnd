@@ -59,36 +59,6 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
   }
 
   @override
-  Stream<Either<UserActionsFailure, List<Comments>>> fetchComments(
-      String episodeId) async* {
-    yield* _firestore
-        .collection("comments")
-        .orderBy("timestamp", descending: true)
-        .where("episodeId", isEqualTo: episodeId)
-        .snapshots()
-        .map(
-          (snapshot) => right<UserActionsFailure, List<Comments>>(
-            snapshot.docs.map((doc) {
-              return Comments.fromJson(doc.data()).copyWith(commentId: doc.id);
-            }).toList(),
-          ),
-        )
-        .handleError((e, _) {
-      if (e is FirebaseException) {
-        if (e.code == 'permission-denied') {
-          return left(const UserActionsFailure.insufficientPermissions());
-        } else if (e.code == 'not-found') {
-          return left(const UserActionsFailure.notFound());
-        } else {
-          return left(const UserActionsFailure.unableToFetch());
-        }
-      } else {
-        return left(const UserActionsFailure.unableToFetch());
-      }
-    });
-  }
-
-  @override
   Future<Option<UserActionsFailure>> editName(AppUser user) async {
     try {
       await _firestore.collection("users").doc(user.id).update(user.toJson());
@@ -125,7 +95,6 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
         if (e.code == 'permission-denied') {
           return left(const UserActionsFailure.insufficientPermissions());
         } else if (e.code == 'not-found') {
-          print("NOt Found");
           return left(const UserActionsFailure.notFound());
         } else {
           return left(const UserActionsFailure.unableToFetch());
@@ -155,47 +124,6 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
   }
 
   @override
-  Stream<Either<UserActionsFailure, AppUser>> fetchCmmentProfile(
-      String userId) async* {
-    //   try{
-
-    //     final profileDoc=await _firestore.collection("users").doc(userId).get();
-    //     final profile=AppUser.fromJson(profileDoc.data() as Map<String,dynamic>);
-
-    //     return right(profile);
-    //   }on FirebaseException catch (e) {
-    //   if (e.code == 'permission-denied') {
-    //     return left(const UserActionsFailure.insufficientPermissions());
-    //   } else if (e.code == 'not-found') {
-    //     return left(const UserActionsFailure.notFound());
-    //   } else {
-    //     return left(const UserActionsFailure.unableToFetch());
-    //   }
-    // }
-    yield* _firestore
-        .collection("users")
-        .doc(userId)
-        .snapshots()
-        .map(
-          (snapshot) => right<UserActionsFailure, AppUser>(
-              AppUser.fromJson(snapshot.data() as Map<String, dynamic>)),
-        )
-        .handleError((e, _) {
-      if (e is FirebaseException) {
-        if (e.code == 'permission-denied') {
-          return left(const UserActionsFailure.insufficientPermissions());
-        } else if (e.code == 'not-found') {
-          return left(const UserActionsFailure.notFound());
-        } else {
-          return left(const UserActionsFailure.unableToFetch());
-        }
-      } else {
-        return left(const UserActionsFailure.unableToFetch());
-      }
-    });
-  }
-
-  @override
   Future<Option<UserActionsFailure>> editImage(AppUser user) async {
     try {
       await _firestore.collection("users").doc(user.id).update(user.toJson());
@@ -215,8 +143,7 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
   Future<Option<UserActionsFailure>> addComments(
       String userId, String comment, String episodeId) async {
     try {
-      final commentDoc = _firestore.collection("comments");
-      await commentDoc.add({
+      await _firestore.collection("comments").add({
         'comment': comment,
         'timestamp': DateTime.now(),
         'userId': userId,
@@ -230,6 +157,38 @@ class UserActionsRepositoryImpl implements IUserActionsRepository {
         return some(const UserActionsFailure.notFound());
       } else {
         return some(const UserActionsFailure.unableToFetch());
+      }
+    }
+  }
+
+  @override
+  Future<Either<UserActionsFailure, List<Comments>>> fetchComment(
+      String episodeId) async {
+    try {
+      final cmtDoc = await _firestore
+          .collection("comments")
+          .orderBy("timestamp", descending: true)
+          .where("episodeId", isEqualTo: episodeId)
+          .get();
+      List<Comments> _commentList = [];
+      for (var cmt in cmtDoc.docs) {
+        final userDoc =
+            await _firestore.collection("users").doc(cmt.get("userId")).get();
+        final user = AppUser.fromJson(userDoc.data() as Map<String, dynamic>);
+        final comment = Comments.fromJson(cmt.data())
+            .copyWith(commentId: cmt.id, user: user);
+
+        _commentList.add(comment);
+      }
+
+      return right(_commentList);
+    } on FirebaseException catch (e) {
+      if (e.code == 'permission-denied') {
+        return left(const UserActionsFailure.insufficientPermissions());
+      } else if (e.code == 'not-found') {
+        return left(const UserActionsFailure.notFound());
+      } else {
+        return left(const UserActionsFailure.unableToFetch());
       }
     }
   }

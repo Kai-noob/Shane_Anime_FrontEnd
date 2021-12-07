@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 import '../../application/upcoming_comic/upcoming_comic_bloc.dart';
 import '../../helper/global/loading_indicator.dart';
 
@@ -23,6 +24,12 @@ class UpcomingScreen extends StatelessWidget {
             builder: (context, state) {
               return state.maybeMap(
                 orElse: () => Container(),
+                error: (error) => CustomError(
+                    errorMessage: error.failure.maybeMap(
+                        unexcepted: (_) => "Unexcepted Error occured.",
+                        notFound: (_) => "No Saved Mangas",
+                        orElse: () => "Unknown Error"),
+                    errorImage: "assets/logo/error.svg"),
                 loading: (_) => const LoadingIndicator(),
                 loaded: (state) => ListView.builder(
                   physics: const ClampingScrollPhysics(),

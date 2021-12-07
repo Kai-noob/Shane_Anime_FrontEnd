@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 import 'package:movie_app/helper/global/loading_indicator.dart';
 import 'package:movie_app/presentation/intro/check_screen_for_auth_screen.dart';
 import 'package:movie_app/presentation/intro/pwlogin_screen.dart';
 import 'package:movie_app/presentation/intro/web_view_screen.dart';
 
-import 'package:movie_app/presentation/search/components/search_result_list_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class IntroScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Shane Manga MM"),
+        title: const Text("Shane Manga MM"),
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
@@ -27,9 +27,9 @@ class IntroScreen extends StatelessWidget {
                 .snapshots(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return LoadingIndicator();
+                return const LoadingIndicator();
               } else if (snapshot.hasError) {
-                return CustomError(
+                return const CustomError(
                     errorMessage: "Something Wrong",
                     errorImage: "assets/logo/error.svg");
               } else if (snapshot.hasData) {
@@ -63,7 +63,7 @@ class IntroScreen extends StatelessWidget {
                                     pw: snapshot.data!['password'],
                                     isShow: snapshot.data!['isShow'],
                                   )
-                                : CheckScreen()));
+                                : const CheckScreen()));
 
                         //         : CheckScreen()));
                       }),
@@ -71,7 +71,7 @@ class IntroScreen extends StatelessWidget {
                   ),
                 );
               }
-              return SizedBox();
+              return const SizedBox();
             }),
       ),
     );
@@ -87,7 +87,7 @@ class IntroScreen extends StatelessWidget {
           child: Card(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.r)),
-            color: Color(0xFF1B2C3B),
+            color: const Color(0xFF1B2C3B),
             child: Center(
                 child: Text(label,
                     style: TextStyle(

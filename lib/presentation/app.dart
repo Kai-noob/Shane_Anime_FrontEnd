@@ -7,11 +7,16 @@ import '../helper/theme/themes.dart';
 import 'package:flutter/material.dart';
 import '../injection.dart';
 
-class App extends StatelessWidget {
-  App({
+class App extends StatefulWidget {
+  const App({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -25,7 +30,7 @@ class App extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: Themes.dark,
-            home: SplashScreen(),
+            home: const SplashScreen(),
           );
         },
         designSize: const Size(360, 690),

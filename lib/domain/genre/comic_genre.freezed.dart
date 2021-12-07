@@ -40,10 +40,8 @@ const $ComicGenre = _$ComicGenreTearOff();
 
 /// @nodoc
 mixin _$ComicGenre {
-// ignore: invalid_annotation_target
   @JsonKey(name: "comic_id")
-  String get comicId =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get comicId => throw _privateConstructorUsedError; //
   @JsonKey(name: "genre_id")
   String get genreId => throw _privateConstructorUsedError;
 
@@ -138,10 +136,10 @@ class _$_ComicGenre implements _ComicGenre {
   factory _$_ComicGenre.fromJson(Map<String, dynamic> json) =>
       _$$_ComicGenreFromJson(json);
 
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "comic_id")
   final String comicId;
-  @override // ignore: invalid_annotation_target
+  @override //
   @JsonKey(name: "genre_id")
   final String genreId;
 
@@ -181,10 +179,10 @@ abstract class _ComicGenre implements ComicGenre {
   factory _ComicGenre.fromJson(Map<String, dynamic> json) =
       _$_ComicGenre.fromJson;
 
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "comic_id")
   String get comicId;
-  @override // ignore: invalid_annotation_target
+  @override //
   @JsonKey(name: "genre_id")
   String get genreId;
   @override

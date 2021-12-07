@@ -58,15 +58,6 @@ class UserActionsBloc extends Bloc<UserActionsEvent, UserActionsState> {
           userOption.getOrElse(() => throw NotAuthenticatedError());
       final isLiked = e.episodes.like[currentUser.id] ?? false;
       emit(UserActionsState.likeStatus(isLiked));
-    }, fetchComments: (e) async {
-      emit(const UserActionsState.loading());
-
-      await commentsStream?.cancel();
-      commentsStream = _userActionsRepo
-          .fetchComments(e.episodeId)
-          .listen((failureOrComments) => add(
-                UserActionsEvent.commentsReceived(failureOrComments),
-              ));
     }, fetchUserComments: (e) async {
       emit(const UserActionsState.loading());
 
@@ -76,15 +67,6 @@ class UserActionsBloc extends Bloc<UserActionsEvent, UserActionsState> {
           .listen((failureOrComments) => add(
                 UserActionsEvent.commentsReceived(failureOrComments),
               ));
-    }, commentsReceived: (e) async {
-      emit(e.failureOrComments.fold((l) => UserActionsState.error(l), (r) {
-        return UserActionsState.commentsLoaded(r);
-      }));
-    }, commentsProfileReceived: (e) async {
-      emit(
-          e.failureOrCommetsProfile.fold((l) => UserActionsState.error(l), (r) {
-        return UserActionsState.commentProfilesLoaded(r);
-      }));
     }, profileReceived: (e) async {
       emit(e.failureOrProfile.fold((l) => UserActionsState.error(l), (r) {
         return UserActionsState.profileLoaded(r);
@@ -100,18 +82,9 @@ class UserActionsBloc extends Bloc<UserActionsEvent, UserActionsState> {
     }, deleteComment: (e) async {
       await _userActionsRepo.deleteComments(e.commentId);
     }, addComment: (e) async {
-      emit(UserActionsState.loading());
       await _userActionsRepo.addComments(e.userId, e.comment, e.episodeId);
 
       emit(const UserActionsState.addSuccess());
-    }, fetchCommentsProfile: (e) async {
-      emit(const UserActionsState.loading());
-      await usersStream?.cancel();
-      usersStream = _userActionsRepo
-          .fetchCmmentProfile(e.userId)
-          .listen((failureOrProfile) => add(
-                UserActionsEvent.commentsProfileReceived(failureOrProfile),
-              ));
     }, editImage: (e) async {
       emit(const UserActionsState.loading());
       final userOption = await _authFacade.getSignedInUser();
@@ -120,6 +93,9 @@ class UserActionsBloc extends Bloc<UserActionsEvent, UserActionsState> {
       final updateUser = currentUser.copyWith(photoUrl: e.image);
       await _userActionsRepo.editImage(updateUser);
       emit(UserActionsState.updateImageSuccess(updateUser));
+    }, commentsReceived: (e) async {
+      emit(e.failureOrComments.fold((l) => UserActionsState.error(l),
+          (r) => UserActionsState.userCommentsLoaded(r)));
     });
   }
 

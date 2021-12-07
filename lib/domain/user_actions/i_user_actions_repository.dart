@@ -9,20 +9,14 @@ abstract class IUserActionsRepository {
       String currentUserId);
   Future<Option<UserActionsFailure>> likeComic(
       String currentUserId, Episodes episode);
-  Stream<Either<UserActionsFailure, List<Comments>>> fetchComments(
+  Future<Either<UserActionsFailure, List<Comments>>> fetchComment(
       String episodeId);
-  // Future<Either<UserActionsFailure, List<Comments>>> fetchComment(
-  //     String episodeId);
   Stream<Either<UserActionsFailure, List<Comments>>> fetchUserComments(
       String userId);
-  // Future<Either<UserActionsFailure, List<Comments>>> fetchUserComment(
-  //     String userId);
+
   Future<Option<UserActionsFailure>> addComments(
       String userId, String comment, String episodeId);
   Future<Either<UserActionsFailure, Unit>> deleteComments(String commentId);
   Future<Option<UserActionsFailure>> editName(AppUser user);
   Future<Option<UserActionsFailure>> editImage(AppUser user);
-  Stream<Either<UserActionsFailure, AppUser>> fetchCmmentProfile(String userId);
-  // Future<Either<UserActionsFailure, AppUser>> fetchCmmentProfiles(
-  //     String userId);
 }

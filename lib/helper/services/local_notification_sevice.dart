@@ -38,8 +38,7 @@ class LocalNotificationService {
         notificationDetails,
         payload: message.data["route"],
       );
-    } on Exception catch (e) {
-      print(e);
-    }
+      // ignore: empty_catches
+    } on Exception {}
   }
 }

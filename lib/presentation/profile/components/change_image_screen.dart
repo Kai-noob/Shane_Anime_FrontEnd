@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/application/user_actions/user_actions_bloc.dart';
-import 'package:movie_app/helper/global/error_message.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 import 'package:movie_app/helper/global/loading_indicator.dart';
 import 'package:movie_app/injection.dart';
 
@@ -45,7 +44,13 @@ class _ChangeImageScreenState extends State<ChangeImageScreen> {
                 ),
                 body: state.maybeMap(
                     orElse: () {},
-                    loading: (_) => LoadingIndicator(),
+                    loading: (_) => const LoadingIndicator(),
+                    error: (error) => CustomError(
+                        errorMessage: error.failure.maybeMap(
+                            unableToFetch: (_) => "Unexcepted Error occured.",
+                            notFound: (_) => "No Saved Mangas",
+                            orElse: () => "Unknown Error"),
+                        errorImage: "assets/logo/error.svg"),
                     profileLoaded: (_) {
                       return Column(
                         children: [
@@ -56,9 +61,10 @@ class _ChangeImageScreenState extends State<ChangeImageScreen> {
                                     .snapshots(),
                                 builder: (context, snapshot) {
                                   if (snapshot.hasError) {
-                                    return const ErrorMessage(
-                                        message: "Server Error",
-                                        isSliver: false);
+                                    return const CustomError(
+                                        errorMessage:
+                                            "Something went wrong.Try again Later",
+                                        errorImage: "assets/logo/error.svg");
                                   }
                                   if (snapshot.hasData) {
                                     return GridView.builder(

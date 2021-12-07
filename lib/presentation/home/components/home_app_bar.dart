@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/application/home/hot_comic/hot_comic_bloc.dart';
-import 'package:movie_app/helper/global/error_message.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 import 'package:movie_app/presentation/details/details_screen.dart';
 import 'package:movie_app/presentation/search/search_screen.dart';
 
@@ -42,7 +42,12 @@ class _HomeAppBarState extends State<HomeAppBar> {
           background: BlocBuilder<HotComicBloc, HotComicState>(
             builder: (context, state) => state.maybeMap(
                 orElse: () => Container(),
-                // error:(error)=>error.failure.maybeMap(orElse: ()=>)
+                error: (error) => CustomError(
+                    errorMessage: error.failure.maybeMap(
+                        unexcepted: (_) => "Unexcepted Error occured.",
+                        notFound: (_) => "No Saved Mangas",
+                        orElse: () => "Unknown Error"),
+                    errorImage: "assets/logo/error.svg"),
                 loading: (_) => const ShimmerAppBar(),
                 loaded: (state) {
                   return PageView.builder(

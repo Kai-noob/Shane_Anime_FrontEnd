@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
+import 'package:movie_app/helper/global/loading_indicator.dart';
 import '../../application/comic_details/comic_details_bloc.dart';
-import '../../helper/global/error_message.dart';
-import '../../helper/global/loading_indicator.dart';
 import '../../injection.dart';
 import 'components/details_body.dart';
 
@@ -18,9 +18,14 @@ class DetailsScreen extends StatelessWidget {
       child: Scaffold(
         body: BlocBuilder<ComicDetailsBloc, ComicDetailsState>(
             builder: (context, state) => state.maybeMap(
-                orElse: () => const LoadingIndicator(),
-                error: (e) =>
-                    const ErrorMessage(message: "error", isSliver: false),
+                orElse: () => Container(),
+                loading: (_) => const LoadingIndicator(),
+                error: (error) => CustomError(
+                    errorMessage: error.failure.maybeMap(
+                        unexcepted: (_) => "Unexcepted Error occured.",
+                        notFound: (_) => "No Saved Mangas",
+                        orElse: () => "Unknown Error"),
+                    errorImage: "assets/logo/error.svg"),
                 loaded: (state) => DetailsBody(
                       comic: state.comic,
                     ))),

@@ -1,8 +1,6 @@
-import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:movie_app/presentation/intro/check_screen_for_auth_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -86,14 +84,15 @@ class PwLoginScreen extends StatelessWidget {
                         await SharedPreferences.getInstance();
                     await prefs.setBool('login', true);
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => CheckScreen()));
+                        builder: (BuildContext context) =>
+                            const CheckScreen()));
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         backgroundColor: Colors.black,
                         content: Text(
                           "Invalid Password",
-                          style: const TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     );
@@ -107,7 +106,7 @@ class PwLoginScreen extends StatelessWidget {
                   ),
                   height: 60.h,
                   decoration: BoxDecoration(
-                      color: Color(0xFFFF6366),
+                      color: const Color(0xFFFF6366),
                       borderRadius: BorderRadius.circular(12.r)),
                   child: Text("Login",
                       style: TextStyle(

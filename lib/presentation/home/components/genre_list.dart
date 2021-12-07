@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 import '../../../application/genre/genre_bloc.dart';
-import '../../../helper/global/error_message.dart';
 import 'genre_item.dart';
 import 'shimmer_genre.dart';
 
@@ -14,9 +14,16 @@ class GenreList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GenreBloc, GenreState>(
         builder: (context, state) => state.maybeMap(
-            orElse: () => const ErrorMessage(message: "Error", isSliver: true),
+            orElse: () => SliverToBoxAdapter(child: Container()),
             loading: (_) => const ShimmerGenre(),
-            error: (_) => const Text("Error"),
+            error: (error) => SliverToBoxAdapter(
+                  child: CustomError(
+                      errorMessage: error.failure.maybeMap(
+                          unexcepted: (_) => "Unexcepted Error occured.",
+                          notFound: (_) => "No Saved Mangas",
+                          orElse: () => "Unknown Error"),
+                      errorImage: "assets/logo/error.svg"),
+                ),
             loaded: (state) => SliverToBoxAdapter(
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,

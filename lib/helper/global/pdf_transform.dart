@@ -15,8 +15,8 @@ class PDFApi {
   static Future<File> _storeFile(String path, List<int> bytes) async {
     final filename = basename(path);
     final dir = await getApplicationDocumentsDirectory();
-
-    final file = File('${dir.path}/$filename');
+    final subStringfilename = filename.substring(0, 30);
+    final file = File('${dir.path}/$subStringfilename');
     await file.writeAsBytes(bytes, flush: true);
 
     return file;

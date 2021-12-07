@@ -48,7 +48,6 @@ const $Comments = _$CommentsTearOff();
 
 /// @nodoc
 mixin _$Comments {
-// ignore: invalid_annotation_target
   @JsonKey(ignore: true)
   String? get commentId => throw _privateConstructorUsedError;
   String get comment => throw _privateConstructorUsedError;
@@ -215,7 +214,7 @@ class _$_Comments implements _Comments {
   factory _$_Comments.fromJson(Map<String, dynamic> json) =>
       _$$_CommentsFromJson(json);
 
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   final String? commentId;
   @override
@@ -278,7 +277,7 @@ abstract class _Comments implements Comments {
 
   factory _Comments.fromJson(Map<String, dynamic> json) = _$_Comments.fromJson;
 
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   String? get commentId;
   @override

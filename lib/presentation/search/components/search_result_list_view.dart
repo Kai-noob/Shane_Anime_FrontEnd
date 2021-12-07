@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 
 import '../../../application/search/search_bloc.dart';
 import '../../../helper/global/loading_indicator.dart';
@@ -18,21 +18,12 @@ class SearchResultListView extends StatelessWidget {
     return BlocBuilder<SearchBloc, SearchState>(
       builder: (context, state) {
         return state.maybeMap(
-            error: (error) => error.failure.maybeMap(
-                orElse: () => Container(),
-                notFound: (_) => CustomError(
-                      errorImage: "assets/logo/error.svg",
-                      errorMessage: "Not Found Comics",
-                    ),
-                unexcepted: (_) => Column(children: [
-                      SvgPicture.asset(
-                        "assets/logo/empty.svg",
-                        height: 50.h,
-                      ),
-                      Text("Un excepted error",
-                          style: TextStyle(
-                              fontSize: 19.sp, fontWeight: FontWeight.w600))
-                    ])),
+            error: (error) => CustomError(
+                errorMessage: error.failure.maybeMap(
+                    unexcepted: (_) => "Unexcepted Error occured.",
+                    notFound: (_) => "No Saved Mangas",
+                    orElse: () => "Unknown Error"),
+                errorImage: "assets/logo/error.svg"),
             initial: (_) => Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -58,6 +49,32 @@ class SearchResultListView extends StatelessWidget {
             orElse: () => Container(),
             loading: (_) => const LoadingIndicator(),
             loaded: (state) {
+              if (state.comics.isEmpty) {
+                return Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 70.r,
+                        backgroundColor: const Color(0xff1B2C3B),
+                        child: Icon(
+                          Icons.search_off_outlined,
+                          color: Colors.white,
+                          size: 80.w,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        "No Comic Found!..",
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
               return ListView.builder(
                 shrinkWrap: true,
                 primary: false,
@@ -100,30 +117,6 @@ class SearchResultListView extends StatelessWidget {
               );
             });
       },
-    );
-  }
-}
-
-class CustomError extends StatelessWidget {
-  final String errorMessage;
-  final String errorImage;
-  const CustomError({
-    Key? key,
-    required this.errorMessage,
-    required this.errorImage,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SvgPicture.asset(
-          errorImage,
-          height: 50.h,
-        ),
-        Text(errorMessage,
-            style: TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w600))
-      ],
     );
   }
 }

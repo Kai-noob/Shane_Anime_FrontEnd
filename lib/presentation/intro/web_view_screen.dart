@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebViewScreen extends StatelessWidget {
+class WebViewScreen extends StatefulWidget {
   final String url;
-  WebViewScreen({Key? key, required this.url}) : super(key: key);
+  const WebViewScreen({Key? key, required this.url}) : super(key: key);
 
+  @override
+  State<WebViewScreen> createState() => _WebViewScreenState();
+}
+
+class _WebViewScreenState extends State<WebViewScreen> {
   late WebViewController _webViewController;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: WebView(
-        initialUrl: url,
+        initialUrl: widget.url,
         javascriptMode: JavascriptMode.unrestricted,
         onWebViewCreated: (WebViewController webViewController) {
           _webViewController = webViewController;
           // _controller.complete(webViewController);
         },
-        onProgress: (int progress) {
-          print("WebView is loading (progress : $progress%)");
-        },
-        onPageStarted: (String url) {
-          print('Page started loading: $url');
-        },
         onPageFinished: (String url) {
-          print('Page finished loading: $url');
-
           // Removes header and footer from page
           _webViewController
               .runJavascript("javascript:(function() { "

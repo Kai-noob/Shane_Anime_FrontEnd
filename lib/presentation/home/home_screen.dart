@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 
 import 'package:movie_app/helper/services/local_notification_sevice.dart';
 import 'package:movie_app/presentation/home/components/home_app_bar.dart';
@@ -12,7 +13,6 @@ import '../../application/home/all_comics/all_comics_bloc.dart';
 import '../../application/home/complete_comic/complete_comic_bloc.dart';
 import '../../application/home/hot_comic/hot_comic_bloc.dart';
 
-import '../../helper/global/error_message.dart';
 import '../../injection.dart';
 import 'components/comic_card.dart';
 import 'components/daily_update_card.dart';
@@ -38,10 +38,17 @@ class _HomeScreenState extends State<HomeScreen> {
     LocalNotificationService.initialize(context);
     FirebaseMessaging.instance.getInitialMessage();
 
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {});
+    checkForInitialMessage();
     FirebaseMessaging.onMessage.listen((message) {
       if (message.notification != null) {}
       LocalNotificationService.display(message);
     });
+  }
+
+  checkForInitialMessage() async {
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
   }
 
   @override
@@ -79,11 +86,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BlocBuilder<EpisodesBloc, EpisodesState>(
                 builder: (context, state) => state.maybeMap(
-                    orElse: () =>
-                        const ErrorMessage(message: "Error", isSliver: true),
+                    orElse: () => SliverToBoxAdapter(child: Container()),
                     loading: (_) => const ShimmerCard(),
-                    error: (_) =>
-                        const ErrorMessage(message: "Error", isSliver: true),
+                    error: (error) => SliverToBoxAdapter(
+                          child: CustomError(
+                              errorMessage: error.failure.maybeMap(
+                                  unexcepted: (_) =>
+                                      "Unexcepted Error occured.",
+                                  notFound: (_) => "No Saved Mangas",
+                                  orElse: () => "Unknown Error"),
+                              errorImage: "assets/logo/error.svg"),
+                        ),
                     loaded: (state) => SliverToBoxAdapter(
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -115,11 +128,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
             BlocBuilder<HotComicBloc, HotComicState>(
                 builder: (context, state) => state.maybeMap(
-                    orElse: () =>
-                        const ErrorMessage(message: "Error", isSliver: true),
+                    orElse: () => SliverToBoxAdapter(child: Container()),
                     loading: (_) => const ShimmerCard(),
-                    error: (_) =>
-                        const SliverToBoxAdapter(child: Text("Error")),
+                    error: (error) => SliverToBoxAdapter(
+                          child: CustomError(
+                              errorMessage: error.failure.maybeMap(
+                                  unexcepted: (_) =>
+                                      "Unexcepted Error occured.",
+                                  notFound: (_) => "No Saved Mangas",
+                                  orElse: () => "Unknown Error"),
+                              errorImage: "assets/logo/error.svg"),
+                        ),
                     loaded: (state) => SliverToBoxAdapter(
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -138,11 +157,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
             BlocBuilder<CompleteComicBloc, CompleteComicState>(
                 builder: (context, state) => state.maybeMap(
-                    orElse: () =>
-                        const ErrorMessage(message: "Error", isSliver: true),
+                    orElse: () => SliverToBoxAdapter(child: Container()),
                     loading: (_) => const ShimmerCard(),
-                    error: (_) =>
-                        const ErrorMessage(message: "Error", isSliver: true),
+                    error: (error) => SliverToBoxAdapter(
+                          child: CustomError(
+                              errorMessage: error.failure.maybeMap(
+                                  unexcepted: (_) =>
+                                      "Unexcepted Error occured.",
+                                  notFound: (_) => "No Saved Mangas",
+                                  orElse: () => "Unknown Error"),
+                              errorImage: "assets/logo/error.svg"),
+                        ),
                     loaded: (state) => SliverToBoxAdapter(
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -161,11 +186,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
             BlocBuilder<AllComicsBloc, AllComicsState>(
                 builder: (context, state) => state.maybeMap(
-                    orElse: () =>
-                        const ErrorMessage(message: "Error", isSliver: true),
+                    orElse: () => SliverToBoxAdapter(child: Container()),
                     loading: (_) => const ShimmerCard(),
-                    error: (_) =>
-                        const ErrorMessage(message: "Error", isSliver: true),
+                    error: (error) => SliverToBoxAdapter(
+                          child: CustomError(
+                              errorMessage: error.failure.maybeMap(
+                                  unexcepted: (_) =>
+                                      "Unexcepted Error occured.",
+                                  notFound: (_) => "No Saved Mangas",
+                                  orElse: () => "Unknown Error"),
+                              errorImage: "assets/logo/error.svg"),
+                        ),
                     loaded: (state) => SliverToBoxAdapter(
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,

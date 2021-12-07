@@ -7,12 +7,9 @@ part 'upcoming_comic.g.dart';
 class Upcomingcomic with _$Upcomingcomic {
   const factory Upcomingcomic({
     required String title,
-    // ignore: invalid_annotation_target
     @JsonKey(name: "cover_photo") required String coverPhoto,
     required String review,
-    // ignore: invalid_annotation_target
     @JsonKey(name: "episode_number") required String episodeNumber,
-    // ignore: invalid_annotation_target
     @JsonKey(name: "release_date") required String releaseDate,
   }) = _Upcomingcomic;
 

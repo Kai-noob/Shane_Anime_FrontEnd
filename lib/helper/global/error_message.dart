@@ -1,47 +1,47 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-class ErrorMessage extends StatelessWidget {
-  final String message;
-  final bool isSliver;
-  const ErrorMessage({Key? key, required this.message, required this.isSliver})
-      : super(key: key);
+// class ErrorMessage extends StatelessWidget {
+//   final String message;
+//   final bool isSliver;
+//   const ErrorMessage({Key? key, required this.message, required this.isSliver})
+//       : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return isSliver
-        ? SliverToBoxAdapter(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.warning,
-                    size: 40,
-                  ),
-                  Text(
-                    message,
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w500),
-                  )
-                ],
-              ),
-            ),
-          )
-        : Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.warning,
-                  size: 40,
-                ),
-                Text(
-                  message,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w500),
-                )
-              ],
-            ),
-          );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return isSliver
+//         ? SliverToBoxAdapter(
+//             child: Center(
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   const Icon(
+//                     Icons.warning,
+//                     size: 40,
+//                   ),
+//                   Text(
+//                     message,
+//                     style: const TextStyle(
+//                         fontSize: 20, fontWeight: FontWeight.w500),
+//                   )
+//                 ],
+//               ),
+//             ),
+//           )
+//         : Center(
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 const Icon(
+//                   Icons.warning,
+//                   size: 40,
+//                 ),
+//                 Text(
+//                   message,
+//                   style: const TextStyle(
+//                       fontSize: 20, fontWeight: FontWeight.w500),
+//                 )
+//               ],
+//             ),
+//           );
+//   }
+// }

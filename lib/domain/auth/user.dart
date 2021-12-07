@@ -8,6 +8,7 @@ abstract class AppUser with _$AppUser {
   const factory AppUser({
     required String id,
     required String username,
+    bool? admin,
     required String photoUrl,
   }) = _AppUser;
 

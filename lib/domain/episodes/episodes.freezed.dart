@@ -57,29 +57,21 @@ const $Episodes = _$EpisodesTearOff();
 /// @nodoc
 mixin _$Episodes {
   @JsonKey(ignore: true)
-  String? get id =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "comic_id")
-  String get comicId =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get comicId => throw _privateConstructorUsedError;
   @JsonKey(name: "episode_name")
-  String get episodeName =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String get episodeName => throw _privateConstructorUsedError;
   @JsonKey(name: "episode_number")
-  int get episodeNumber =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  int get episodeNumber => throw _privateConstructorUsedError;
   @JsonKey(name: "pdf_file")
-  String? get pdfFile =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String? get pdfFile => throw _privateConstructorUsedError;
   @JsonKey(name: "drive_link")
-  String? get driveLink =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String? get driveLink => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  int? get episodeCount =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  int? get episodeCount => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  String? get title =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  String? get title => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   String? get coverPhoto => throw _privateConstructorUsedError;
   Map<String, bool> get like => throw _privateConstructorUsedError;
@@ -279,28 +271,28 @@ class _$_Episodes implements _Episodes {
   @override
   @JsonKey(ignore: true)
   final String? id;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "comic_id")
   final String comicId;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "episode_name")
   final String episodeName;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "episode_number")
   final int episodeNumber;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "pdf_file")
   final String? pdfFile;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "drive_link")
   final String? driveLink;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   final int? episodeCount;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   final String? title;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   final String? coverPhoto;
   @override
@@ -376,28 +368,28 @@ abstract class _Episodes implements Episodes {
   @override
   @JsonKey(ignore: true)
   String? get id;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "comic_id")
   String get comicId;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "episode_name")
   String get episodeName;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "episode_number")
   int get episodeNumber;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "pdf_file")
   String? get pdfFile;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(name: "drive_link")
   String? get driveLink;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   int? get episodeCount;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   String? get title;
-  @override // ignore: invalid_annotation_target
+  @override
   @JsonKey(ignore: true)
   String? get coverPhoto;
   @override

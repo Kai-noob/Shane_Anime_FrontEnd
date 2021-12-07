@@ -1,12 +1,10 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../application/comic_reader/comic_reader_bloc.dart';
 import '../../domain/episodes/episodes.dart';
-import '../../helper/global/error_message.dart';
 import '../../helper/global/loading_indicator.dart';
 import '../../helper/global/pdf_transform.dart';
 import '../../injection.dart';
@@ -21,18 +19,13 @@ class ReadingScreen extends StatefulWidget {
   State<ReadingScreen> createState() => _ReadingScreenState();
 }
 
-class _ReadingScreenState extends State<ReadingScreen>
-    with SingleTickerProviderStateMixin {
+class _ReadingScreenState extends State<ReadingScreen> {
   Future<String> loadPDf(String url) async {
     final file = await PDFApi.loadNetwork(url);
     return file.path;
   }
 
   late WebViewController _webViewController;
-
-  late AnimationController animationController;
-
-  bool hideNav = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +46,13 @@ class _ReadingScreenState extends State<ReadingScreen>
         builder: (context, state) {
           return state.maybeMap(
               orElse: () => Container(),
-              loading: (_) => LoadingIndicator(),
+              loading: (_) => const LoadingIndicator(),
+              error: (error) => CustomError(
+                  errorMessage: error.failure.maybeMap(
+                      unexcepted: (_) => "Unexcepted Error occured.",
+                      notFound: (_) => "No Saved Mangas",
+                      orElse: () => "Unknown Error"),
+                  errorImage: "assets/logo/error.svg"),
               driveLoaded: (state) {
                 return Scaffold(
                   appBar: AppBar(
@@ -81,15 +80,7 @@ class _ReadingScreenState extends State<ReadingScreen>
                       _webViewController = webViewController;
                       // _controller.complete(webViewController);
                     },
-                    onProgress: (int progress) {
-                      print("WebView is loading (progress : $progress%)");
-                    },
-                    onPageStarted: (String url) {
-                      print('Page started loading: $url');
-                    },
                     onPageFinished: (String url) {
-                      print('Page finished loading: $url');
-
                       // Removes header and footer from page
                       _webViewController
                           .runJavascript("javascript:(function() { "
@@ -133,8 +124,10 @@ class _ReadingScreenState extends State<ReadingScreen>
                             return const LoadingIndicator();
                           }
                           if (snapshot.hasError) {
-                            return const ErrorMessage(
-                                message: "Something wrong.", isSliver: false);
+                            return const CustomError(
+                                errorMessage:
+                                    "Something went wrong.Try again Later",
+                                errorImage: "assets/logo/error.svg");
                           }
                           if (snapshot.connectionState ==
                               ConnectionState.done) {

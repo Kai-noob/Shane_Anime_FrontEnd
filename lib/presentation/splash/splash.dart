@@ -2,9 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
 import 'package:movie_app/presentation/intro/intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,9 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (BuildContext context) => IntroScreen()));
+    Timer(const Duration(seconds: 3), () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => const IntroScreen()));
     });
   }
 

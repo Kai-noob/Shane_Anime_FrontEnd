@@ -19,7 +19,7 @@ class BottomNavigationScreen extends StatefulWidget {
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   final List<Widget> _pages = [
     const HomeScreen(),
-    UpcomingScreen(),
+    const UpcomingScreen(),
     const LibraryScreen(),
     const ProfileScreen(),
   ];

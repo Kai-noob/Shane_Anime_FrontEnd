@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 import '../../application/home/all_comics/all_comics_bloc.dart';
 import '../../helper/global/image_widget.dart';
 import '../../helper/global/loading_indicator.dart';
@@ -32,6 +33,12 @@ class AllMoreComicView extends StatelessWidget {
             return state.maybeMap(
                 orElse: () => Container(),
                 loading: (_) => const LoadingIndicator(),
+                error: (error) => CustomError(
+                    errorMessage: error.failure.maybeMap(
+                        unexcepted: (_) => "Unexcepted Error occured.",
+                        notFound: (_) => "No Saved Mangas",
+                        orElse: () => "Unknown Error"),
+                    errorImage: "assets/logo/error.svg"),
                 loaded: (state) {
                   return ListView.builder(
                     itemCount: state.comics.length,

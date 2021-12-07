@@ -24,10 +24,12 @@ class _$AppUserTearOff {
   _AppUser call(
       {required String id,
       required String username,
+      bool? admin,
       required String photoUrl}) {
     return _AppUser(
       id: id,
       username: username,
+      admin: admin,
       photoUrl: photoUrl,
     );
   }
@@ -44,6 +46,7 @@ const $AppUser = _$AppUserTearOff();
 mixin _$AppUser {
   String get id => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  bool? get admin => throw _privateConstructorUsedError;
   String get photoUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -55,7 +58,7 @@ mixin _$AppUser {
 abstract class $AppUserCopyWith<$Res> {
   factory $AppUserCopyWith(AppUser value, $Res Function(AppUser) then) =
       _$AppUserCopyWithImpl<$Res>;
-  $Res call({String id, String username, String photoUrl});
+  $Res call({String id, String username, bool? admin, String photoUrl});
 }
 
 /// @nodoc
@@ -70,6 +73,7 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? admin = freezed,
     Object? photoUrl = freezed,
   }) {
     return _then(_value.copyWith(
@@ -81,6 +85,10 @@ class _$AppUserCopyWithImpl<$Res> implements $AppUserCopyWith<$Res> {
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      admin: admin == freezed
+          ? _value.admin
+          : admin // ignore: cast_nullable_to_non_nullable
+              as bool?,
       photoUrl: photoUrl == freezed
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -94,7 +102,7 @@ abstract class _$AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   factory _$AppUserCopyWith(_AppUser value, $Res Function(_AppUser) then) =
       __$AppUserCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String username, String photoUrl});
+  $Res call({String id, String username, bool? admin, String photoUrl});
 }
 
 /// @nodoc
@@ -110,6 +118,7 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? username = freezed,
+    Object? admin = freezed,
     Object? photoUrl = freezed,
   }) {
     return _then(_AppUser(
@@ -121,6 +130,10 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      admin: admin == freezed
+          ? _value.admin
+          : admin // ignore: cast_nullable_to_non_nullable
+              as bool?,
       photoUrl: photoUrl == freezed
           ? _value.photoUrl
           : photoUrl // ignore: cast_nullable_to_non_nullable
@@ -133,7 +146,10 @@ class __$AppUserCopyWithImpl<$Res> extends _$AppUserCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AppUser implements _AppUser {
   const _$_AppUser(
-      {required this.id, required this.username, required this.photoUrl});
+      {required this.id,
+      required this.username,
+      this.admin,
+      required this.photoUrl});
 
   factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
       _$$_AppUserFromJson(json);
@@ -143,11 +159,13 @@ class _$_AppUser implements _AppUser {
   @override
   final String username;
   @override
+  final bool? admin;
+  @override
   final String photoUrl;
 
   @override
   String toString() {
-    return 'AppUser(id: $id, username: $username, photoUrl: $photoUrl)';
+    return 'AppUser(id: $id, username: $username, admin: $admin, photoUrl: $photoUrl)';
   }
 
   @override
@@ -158,12 +176,13 @@ class _$_AppUser implements _AppUser {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.admin, admin) || other.admin == admin) &&
             (identical(other.photoUrl, photoUrl) ||
                 other.photoUrl == photoUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, username, photoUrl);
+  int get hashCode => Object.hash(runtimeType, id, username, admin, photoUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -180,6 +199,7 @@ abstract class _AppUser implements AppUser {
   const factory _AppUser(
       {required String id,
       required String username,
+      bool? admin,
       required String photoUrl}) = _$_AppUser;
 
   factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
@@ -188,6 +208,8 @@ abstract class _AppUser implements AppUser {
   String get id;
   @override
   String get username;
+  @override
+  bool? get admin;
   @override
   String get photoUrl;
   @override

@@ -7,7 +7,6 @@ part 'genre.g.dart';
 @freezed
 class Genre with _$Genre {
   const factory Genre({
-    // ignore: invalid_annotation_target
     @JsonKey(ignore: true) String? id,
     required String name,
     required String icon,

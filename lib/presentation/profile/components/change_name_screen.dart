@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/application/user_actions/user_actions_bloc.dart';
 import 'package:movie_app/domain/auth/user.dart';
+import 'package:movie_app/helper/global/cutom_error_widget.dart';
 import 'package:movie_app/helper/global/loading_indicator.dart';
 import 'package:movie_app/injection.dart';
 
@@ -21,6 +22,7 @@ class ChangeNameScreen extends StatelessWidget {
             updateNameSuccess: (_) {
               Navigator.of(context).pop();
             }),
+        buildWhen: (previous, current) => previous != current,
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
@@ -35,6 +37,12 @@ class ChangeNameScreen extends StatelessWidget {
             ),
             body: state.maybeMap(
               loading: (value) => const Center(child: LoadingIndicator()),
+              error: (error) => CustomError(
+                  errorMessage: error.failure.maybeMap(
+                      unableToFetch: (_) => "Unexcepted Error occured.",
+                      notFound: (_) => "No Saved Mangas",
+                      orElse: () => "Unknown Error"),
+                  errorImage: "assets/logo/error.svg"),
               profileLoaded: (_) {
                 return EditNameForm(user: _.profile);
               },

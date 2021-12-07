@@ -7,9 +7,8 @@ part 'comic_genre.g.dart';
 @freezed
 class ComicGenre with _$ComicGenre {
   const factory ComicGenre({
-    // ignore: invalid_annotation_target
     @JsonKey(name: "comic_id") required String comicId,
-    // ignore: invalid_annotation_target
+    //
     @JsonKey(name: "genre_id") required String genreId,
   }) = _ComicGenre;
 
