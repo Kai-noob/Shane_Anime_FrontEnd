@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/application/bloc/comment_bloc.dart';
-import 'package:movie_app/application/comic_reader/comic_reader_bloc.dart';
+import '../../../application/bloc/comment_bloc.dart';
+import '../../../application/comic_reader/comic_reader_bloc.dart';
 
 import '../../../application/user_actions/user_actions_bloc.dart';
 

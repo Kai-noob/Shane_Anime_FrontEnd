@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:movie_app/helper/global/cutom_error_widget.dart';
+import '../../helper/global/cutom_error_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../application/comic_reader/comic_reader_bloc.dart';
 import '../../domain/episodes/episodes.dart';

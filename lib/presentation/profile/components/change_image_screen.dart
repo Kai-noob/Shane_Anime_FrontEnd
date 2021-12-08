@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/application/user_actions/user_actions_bloc.dart';
-import 'package:movie_app/helper/global/cutom_error_widget.dart';
-import 'package:movie_app/helper/global/loading_indicator.dart';
-import 'package:movie_app/injection.dart';
+import '../../../application/user_actions/user_actions_bloc.dart';
+import '../../../helper/global/cutom_error_widget.dart';
+import '../../../helper/global/loading_indicator.dart';
+import '../../../injection.dart';
 
 class ChangeImageScreen extends StatefulWidget {
   const ChangeImageScreen({Key? key}) : super(key: key);

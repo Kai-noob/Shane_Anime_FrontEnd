@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movie_app/domain/comic/comic_failure.dart';
+import '../../domain/comic/comic_failure.dart';
 import '../../domain/upcoming_comic/i_upcoming_comic_repo.dart';
 import '../../domain/upcoming_comic/upcoming_comic.dart';
 part 'upcoming_comic_event.dart';

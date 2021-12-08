@@ -3,10 +3,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/helper/global/cutom_error_widget.dart';
+import '../../helper/global/cutom_error_widget.dart';
 
-import 'package:movie_app/helper/services/local_notification_sevice.dart';
-import 'package:movie_app/presentation/home/components/home_app_bar.dart';
+import '../../helper/services/local_notification_sevice.dart';
+import 'components/home_app_bar.dart';
 import '../../application/episodes/episodes_bloc.dart';
 import '../../application/genre/genre_bloc.dart';
 import '../../application/home/all_comics/all_comics_bloc.dart';
@@ -39,16 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
     FirebaseMessaging.instance.getInitialMessage();
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {});
-    checkForInitialMessage();
+
     FirebaseMessaging.onMessage.listen((message) {
       if (message.notification != null) {}
       LocalNotificationService.display(message);
     });
-  }
-
-  checkForInitialMessage() async {
-    RemoteMessage? initialMessage =
-        await FirebaseMessaging.instance.getInitialMessage();
   }
 
   @override

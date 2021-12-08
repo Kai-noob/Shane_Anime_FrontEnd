@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/helper/global/cutom_error_widget.dart';
-import 'package:movie_app/helper/global/loading_indicator.dart';
-import 'package:movie_app/presentation/intro/check_screen_for_auth_screen.dart';
-import 'package:movie_app/presentation/intro/pwlogin_screen.dart';
-import 'package:movie_app/presentation/intro/web_view_screen.dart';
+import '../../helper/global/cutom_error_widget.dart';
+import '../../helper/global/loading_indicator.dart';
+import 'check_screen_for_auth_screen.dart';
+import 'pwlogin_screen.dart';
+import 'web_view_screen.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 

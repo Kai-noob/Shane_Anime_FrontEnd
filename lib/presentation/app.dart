@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/presentation/splash/splash.dart';
+import 'splash/splash.dart';
 import '../application/auth/bloc/auth_bloc.dart';
 
 import '../helper/theme/themes.dart';
@@ -30,7 +30,7 @@ class _AppState extends State<App> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: Themes.dark,
-            home: const SplashScreen(),
+            home: const SecondClass(),
           );
         },
         designSize: const Size(360, 690),

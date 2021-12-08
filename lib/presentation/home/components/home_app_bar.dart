@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/application/home/hot_comic/hot_comic_bloc.dart';
-import 'package:movie_app/helper/global/cutom_error_widget.dart';
-import 'package:movie_app/presentation/details/details_screen.dart';
-import 'package:movie_app/presentation/search/search_screen.dart';
+import '../../../application/home/hot_comic/hot_comic_bloc.dart';
+import '../../../helper/global/cutom_error_widget.dart';
+import '../../details/details_screen.dart';
+import '../../search/search_screen.dart';
 
 import 'shimmer_app_bar.dart';
 

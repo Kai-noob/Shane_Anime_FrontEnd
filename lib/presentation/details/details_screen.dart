@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/helper/global/cutom_error_widget.dart';
-import 'package:movie_app/helper/global/loading_indicator.dart';
+import '../../helper/global/cutom_error_widget.dart';
+import '../../helper/global/loading_indicator.dart';
 import '../../application/comic_details/comic_details_bloc.dart';
 import '../../injection.dart';
 import 'components/details_body.dart';

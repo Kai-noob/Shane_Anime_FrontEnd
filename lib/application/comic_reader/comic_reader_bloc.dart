@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:movie_app/domain/episodes/episodes.dart';
+import '../../domain/episodes/episodes.dart';
 import '../../domain/comic/comic_failure.dart';
 import '../../domain/comic/i_comic_repository.dart';
 

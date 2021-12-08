@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../domain/auth/i_auth_facade.dart';
 import '../../domain/core/errors.dart';
-
 import '../../injection.dart';
 
 extension FirestoreX on FirebaseFirestore {

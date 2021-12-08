@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:movie_app/domain/auth/user.dart';
+import '../auth/user.dart';
 import '../comic/comic.dart';
 
 part 'comment.freezed.dart';

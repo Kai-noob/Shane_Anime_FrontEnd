@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/application/auth/bloc/auth_bloc.dart';
-import 'package:movie_app/helper/global/loading_indicator.dart';
-import 'package:movie_app/presentation/auth/signup/sign_up_screen.dart';
-import 'package:movie_app/presentation/layout/bottom_navigation.dart';
+import '../../application/auth/bloc/auth_bloc.dart';
+import '../../helper/global/loading_indicator.dart';
+import '../auth/signup/sign_up_screen.dart';
+import '../layout/bottom_navigation.dart';
 
 class CheckScreen extends StatelessWidget {
   const CheckScreen({Key? key}) : super(key: key);

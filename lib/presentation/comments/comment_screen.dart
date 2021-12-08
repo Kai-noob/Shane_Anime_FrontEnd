@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/application/bloc/comment_bloc.dart';
-import 'package:movie_app/domain/core/errors.dart';
+import '../../application/bloc/comment_bloc.dart';
+import '../../domain/core/errors.dart';
 
 import '../../application/auth/bloc/auth_bloc.dart';
-import '../../domain/core/errors.dart';
 import '../../helper/global/loading_indicator.dart';
 import 'package:timeago/timeago.dart';
 
@@ -105,15 +104,12 @@ class _CommentsScreenState extends State<CommentsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(commentstate.comments[index].comment),
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                      format(commentstate
-                                          .comments[index].timestamp),
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 10.sp)),
-                                ),
+                                SizedBox(height: 10.h),
+                                Text(
+                                    format(
+                                        commentstate.comments[index].timestamp),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 10.sp)),
                               ],
                             ),
                             title: Text(

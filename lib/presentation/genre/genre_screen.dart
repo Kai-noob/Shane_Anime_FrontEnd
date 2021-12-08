@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../helper/global/cutom_error_widget.dart';
 
 import '../../application/genre/genre_bloc.dart';
 import '../../domain/genre/genre.dart';
@@ -63,6 +64,11 @@ class GenreScreen extends StatelessWidget {
                       ),
                     ),
                 comicsLoaded: (state) {
+                  if (state.comics.isEmpty) {
+                    return CustomError(
+                        errorMessage: "No ${genre.name} Comics Found.",
+                        errorImage: "assets/logo/empty.svg");
+                  }
                   return ListView.builder(
                     itemCount: state.comics.length,
                     itemBuilder: (BuildContext context, int index) {

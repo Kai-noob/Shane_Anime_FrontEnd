@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/helper/global/cutom_error_widget.dart';
+import '../../helper/global/cutom_error_widget.dart';
 import '../../application/upcoming_comic/upcoming_comic_bloc.dart';
 import '../../helper/global/loading_indicator.dart';
 

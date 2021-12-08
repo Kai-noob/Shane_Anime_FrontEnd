@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app/helper/global/cutom_error_widget.dart';
+import '../../../helper/global/cutom_error_widget.dart';
 import '../../../application/genre/genre_bloc.dart';
 import 'genre_item.dart';
 import 'shimmer_genre.dart';

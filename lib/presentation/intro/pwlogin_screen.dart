@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:movie_app/presentation/intro/check_screen_for_auth_screen.dart';
+import 'check_screen_for_auth_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PwLoginScreen extends StatelessWidget {

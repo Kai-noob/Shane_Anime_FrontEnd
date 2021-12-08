@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:movie_app/application/episodes/episodes_bloc.dart';
-import 'package:movie_app/helper/global/cutom_error_widget.dart';
+import '../../../application/episodes/episodes_bloc.dart';
+import '../../../helper/global/cutom_error_widget.dart';
 
 import '../../../application/auth/bloc/auth_bloc.dart';
 import '../../../application/user_actions/user_actions_bloc.dart';

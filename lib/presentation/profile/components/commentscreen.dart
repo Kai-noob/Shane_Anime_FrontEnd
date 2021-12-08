@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/presentation/library/components/save_screen.dart';
-import 'package:movie_app/presentation/library/components/user_comments_screen.dart';
+import '../../library/components/save_screen.dart';
+import '../../library/components/user_comments_screen.dart';
 
 class CommentHistory extends StatelessWidget {
   final bool isComment;

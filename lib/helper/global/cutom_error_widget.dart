@@ -13,15 +13,22 @@ class CustomError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SvgPicture.asset(
-          errorImage,
-          height: 50.h,
-        ),
-        Text(errorMessage,
-            style: TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w600))
-      ],
+    return Align(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            errorImage,
+            height: 90.h,
+          ),
+          SizedBox(
+            height: 15.h,
+          ),
+          Text(errorMessage,
+              style: TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w600))
+        ],
+      ),
     );
   }
 }

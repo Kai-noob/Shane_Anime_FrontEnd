@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
+
+import '../episodes/episodes.dart';
 import 'comic.dart';
 import 'comic_failure.dart';
-import '../episodes/episodes.dart';
 
 abstract class IComicRepository {
   Future<Either<ComicFailure, List<Comic>>> getMoreCompletedComics();

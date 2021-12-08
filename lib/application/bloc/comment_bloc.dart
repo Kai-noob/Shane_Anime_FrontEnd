@@ -5,9 +5,9 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:movie_app/domain/user_actions/comment.dart';
-import 'package:movie_app/domain/user_actions/i_user_actions_repository.dart';
-import 'package:movie_app/domain/user_actions/user_actions_failure.dart';
+import '../../domain/user_actions/comment.dart';
+import '../../domain/user_actions/i_user_actions_repository.dart';
+import '../../domain/user_actions/user_actions_failure.dart';
 
 part 'comment_event.dart';
 part 'comment_state.dart';
