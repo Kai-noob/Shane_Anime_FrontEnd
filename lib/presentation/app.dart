@@ -30,7 +30,7 @@ class _AppState extends State<App> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: Themes.dark,
-            home: const SecondClass(),
+            home: const SplashScreen(),
           );
         },
         designSize: const Size(360, 690),
