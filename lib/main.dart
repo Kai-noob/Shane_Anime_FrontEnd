@@ -10,6 +10,7 @@ import 'package:injectable/injectable.dart';
 import 'injection.dart';
 
 import 'presentation/app.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -18,6 +19,7 @@ Future<void> backgroundHandler(RemoteMessage message) async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  MobileAds.instance.initialize();
   // await Firebase.initializeApp(
   //     options: const FirebaseOptions(
   //         apiKey: "AIzaSyCW3jXh02GHTLw7Bp2PbtccHqGk7u9FuX",

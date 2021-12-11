@@ -59,9 +59,11 @@ class PwLoginScreen extends StatelessWidget {
                 child: TextField(
                   controller: pwContoller,
                   decoration: InputDecoration(
-                      hintText: "Enter Password",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.r))),
+                    hintText: "Enter Password",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.r)),
+                  ),
+                  obscureText: true,
                 ),
               ),
               SizedBox(
