@@ -372,7 +372,7 @@ class ComicRepositoryImpl implements IComicRepository {
       final QuerySnapshot _querySnapshot = await _firestore
           .collection("episodes")
           .limit(8)
-          .orderBy("created", descending: true)
+          .orderBy("created", descending: false)
           .get();
 
       List<Episodes> _dailyEpisodesList = [];

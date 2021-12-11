@@ -20,7 +20,7 @@ class ShimmerGenre extends StatelessWidget {
                     color: const Color(0xff1B2C3B)),
                 height: 80.h,
                 width: 100.w),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Container(
@@ -29,7 +29,7 @@ class ShimmerGenre extends StatelessWidget {
                     color: const Color(0xff1B2C3B)),
                 height: 80.h,
                 width: 100.w),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Container(
@@ -38,7 +38,7 @@ class ShimmerGenre extends StatelessWidget {
                     color: const Color(0xff1B2C3B)),
                 height: 80.h,
                 width: 100.w),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Container(
@@ -47,7 +47,7 @@ class ShimmerGenre extends StatelessWidget {
                     color: const Color(0xff1B2C3B)),
                 height: 80.h,
                 width: 100.w),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Container(
@@ -56,7 +56,7 @@ class ShimmerGenre extends StatelessWidget {
                     color: const Color(0xff1B2C3B)),
                 height: 80.h,
                 width: 100.w),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
             Container(
