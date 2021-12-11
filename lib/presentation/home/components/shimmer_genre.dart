@@ -15,47 +15,56 @@ class ShimmerGenre extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(children: [
             Container(
-              padding: EdgeInsets.all(20.w),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: const Color(0xff1B2C3B)),
-              height: 40.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: const Color(0xff1B2C3B)),
+                height: 80.h,
+                width: 100.w),
+            SizedBox(
+              width: 20,
             ),
             Container(
-              padding: EdgeInsets.all(20.w),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: const Color(0xff1B2C3B)),
-              height: 40.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: const Color(0xff1B2C3B)),
+                height: 80.h,
+                width: 100.w),
+            SizedBox(
+              width: 20,
             ),
             Container(
-              padding: EdgeInsets.all(20.w),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: const Color(0xff1B2C3B)),
-              height: 40.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: const Color(0xff1B2C3B)),
+                height: 80.h,
+                width: 100.w),
+            SizedBox(
+              width: 20,
             ),
             Container(
-              padding: EdgeInsets.all(20.w),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: const Color(0xff1B2C3B)),
-              height: 40.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: const Color(0xff1B2C3B)),
+                height: 80.h,
+                width: 100.w),
+            SizedBox(
+              width: 20,
             ),
             Container(
-              padding: EdgeInsets.all(20.w),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: const Color(0xff1B2C3B)),
-              height: 40.h,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: const Color(0xff1B2C3B)),
+                height: 80.h,
+                width: 100.w),
+            SizedBox(
+              width: 20,
             ),
             Container(
-              padding: EdgeInsets.all(20.w),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.r),
-                  color: const Color(0xff1B2C3B)),
-              height: 40.h,
-            ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    color: const Color(0xff1B2C3B)),
+                height: 80.h,
+                width: 100.w),
           ]),
         ),
       ),
