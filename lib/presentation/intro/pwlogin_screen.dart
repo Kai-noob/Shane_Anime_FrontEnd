@@ -64,7 +64,6 @@ class PwLoginScreen extends StatelessWidget {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.r)),
                   ),
-                  obscureText: true,
                 ),
               ),
               SizedBox(
