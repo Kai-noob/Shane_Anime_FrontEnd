@@ -6,11 +6,74 @@ import '../../helper/global/loading_indicator.dart';
 import 'check_screen_for_auth_screen.dart';
 import 'pwlogin_screen.dart';
 import 'web_view_screen.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:movie_app/ad_helper.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-class IntroScreen extends StatelessWidget {
+class IntroScreen extends StatefulWidget {
   const IntroScreen({Key? key}) : super(key: key);
+
+  @override
+  _IntroScreenState createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends State<IntroScreen> {
+  // Banner ads
+  late BannerAd _bannerAd;
+  bool _isBannerAdReady = false;
+
+  // Add _interstitialAd
+  InterstitialAd? _interstitialAd;
+  bool _isInterstitialAdReady = false;
+
+  // TODO: Implement _loadInterstitialAd()
+  void _loadInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          this._interstitialAd = ad;
+
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {},
+          );
+
+          _isInterstitialAdReady = true;
+        },
+        onAdFailedToLoad: (err) {
+          print('Failed to load an interstitial ad: ${err.message}');
+          _isInterstitialAdReady = false;
+        },
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    //Initialize _bannerAd
+    super.initState();
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (_) {
+          setState(() {
+            _isBannerAdReady = true;
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          print('Failed to load a banner ad: ${err.message}');
+          _isBannerAdReady = false;
+          ad.dispose();
+        },
+      ),
+    );
+    _bannerAd.load();
+    _loadInterstitialAd();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +103,32 @@ class IntroScreen extends StatelessWidget {
                       SizedBox(
                         height: 20.h,
                       ),
-                      buildCard(
-                          snapshot.data!["button_one"],
-                          snapshot.data!["link_one"],
-                          () => Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => WebViewScreen(
-                                  url: snapshot.data!["link_one"])))),
-                      buildCard(
-                          snapshot.data!["button_two"],
-                          snapshot.data!["link_two"],
-                          () => Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => WebViewScreen(
-                                  url: snapshot.data!["link_two"])))),
+                      buildCard(snapshot.data!["button_one"],
+                          snapshot.data!["link_one"], () {
+                        // TODO: Display an Interstitial Ad
+                        if (_isInterstitialAdReady) {
+                          _interstitialAd?.show();
+                        }
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) => WebViewScreen(
+                                url: snapshot.data!["link_one"])));
+                      }),
+                      buildCard(snapshot.data!["button_two"],
+                          snapshot.data!["link_two"], () {
+                        // TODO: Display an Interstitial Ad
+                        if (_isInterstitialAdReady) {
+                          _interstitialAd?.show();
+                        }
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => WebViewScreen(
+                                url: snapshot.data!["link_two"])));
+                      }),
                       buildCard(snapshot.data!["button_three"],
                           snapshot.data!["link_three"], () async {
+                        // TODO: Display an Interstitial Ad
+                        if (_isInterstitialAdReady) {
+                          _interstitialAd?.show();
+                        }
                         SharedPreferences prefs =
                             await SharedPreferences.getInstance();
                         bool? login = prefs.getBool("login");
@@ -73,6 +148,19 @@ class IntroScreen extends StatelessWidget {
               }
               return const SizedBox();
             }),
+      ),
+      // banner : use bottom navigator
+      bottomNavigationBar: Container(
+        height: 50.0,
+        color: Colors.white,
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            width: _bannerAd.size.width.toDouble(),
+            height: _bannerAd.size.height.toDouble(),
+            child: AdWidget(ad: _bannerAd),
+          ),
+        ),
       ),
     );
   }

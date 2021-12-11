@@ -1,6 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:unity_ads_plugin/unity_ads.dart';
+import '../../ad_helper.dart';
 import '../../helper/global/cutom_error_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../application/comic_reader/comic_reader_bloc.dart';
@@ -26,6 +30,19 @@ class _ReadingScreenState extends State<ReadingScreen> {
   }
 
   late WebViewController _webViewController;
+
+  // Add _interstitialAd
+
+  @override
+  void initState() {
+    UnityAds.init(
+      gameId: AdManager.gameId,
+      testMode: true,
+      listener: (state, args) => print('Init Listener: $state => $args'),
+    );
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +119,12 @@ class _ReadingScreenState extends State<ReadingScreen> {
                       leading: IconButton(
                         icon: const Icon(Icons.arrow_back_ios),
                         onPressed: () {
+                          UnityAds.showVideoAd(
+                            placementId:
+                                AdManager.interstitialVideoAdPlacementId,
+                            listener: (state, args) => print(
+                                'Interstitial Video Listener: $state => $args'),
+                          );
                           Navigator.of(context).pop();
                         },
                       ),
@@ -146,5 +169,21 @@ class _ReadingScreenState extends State<ReadingScreen> {
   @override
   void dispose() {
     super.dispose();
+  }
+}
+
+class AdManager {
+  static String get gameId {
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      return '4498368';
+    }
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      return 'your_ios_game_id';
+    }
+    return '';
+  }
+
+  static String get interstitialVideoAdPlacementId {
+    return 'Chapter_End';
   }
 }
