@@ -240,20 +240,23 @@ class _$_Comments implements _Comments {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Comments &&
-            (identical(other.commentId, commentId) ||
-                other.commentId == commentId) &&
-            (identical(other.comment, comment) || other.comment == comment) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp) &&
-            (identical(other.episodeId, episodeId) ||
-                other.episodeId == episodeId) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.user, user) || other.user == user));
+            const DeepCollectionEquality().equals(other.commentId, commentId) &&
+            const DeepCollectionEquality().equals(other.comment, comment) &&
+            const DeepCollectionEquality().equals(other.timestamp, timestamp) &&
+            const DeepCollectionEquality().equals(other.episodeId, episodeId) &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, commentId, comment, timestamp, episodeId, userId, user);
+      runtimeType,
+      const DeepCollectionEquality().hash(commentId),
+      const DeepCollectionEquality().hash(comment),
+      const DeepCollectionEquality().hash(timestamp),
+      const DeepCollectionEquality().hash(episodeId),
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override

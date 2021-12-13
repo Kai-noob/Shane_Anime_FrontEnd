@@ -544,12 +544,13 @@ class _$_Authenticated implements _Authenticated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Authenticated &&
-            (identical(other.currentUser, currentUser) ||
-                other.currentUser == currentUser));
+            const DeepCollectionEquality()
+                .equals(other.currentUser, currentUser));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentUser);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(currentUser));
 
   @JsonKey(ignore: true)
   @override

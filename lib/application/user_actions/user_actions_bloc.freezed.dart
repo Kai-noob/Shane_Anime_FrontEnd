@@ -436,14 +436,16 @@ class _$_LikeEpisodes implements _LikeEpisodes {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LikeEpisodes &&
-            (identical(other.likeStatus, likeStatus) ||
-                other.likeStatus == likeStatus) &&
-            (identical(other.episodes, episodes) ||
-                other.episodes == episodes));
+            const DeepCollectionEquality()
+                .equals(other.likeStatus, likeStatus) &&
+            const DeepCollectionEquality().equals(other.episodes, episodes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, likeStatus, episodes);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(likeStatus),
+      const DeepCollectionEquality().hash(episodes));
 
   @JsonKey(ignore: true)
   @override
@@ -644,12 +646,12 @@ class _$_CheckLikeStatus implements _CheckLikeStatus {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CheckLikeStatus &&
-            (identical(other.episodes, episodes) ||
-                other.episodes == episodes));
+            const DeepCollectionEquality().equals(other.episodes, episodes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, episodes);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(episodes));
 
   @JsonKey(ignore: true)
   @override
@@ -839,11 +841,12 @@ class _$_FetchUserComments implements _FetchUserComments {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _FetchUserComments &&
-            (identical(other.userId, userId) || other.userId == userId));
+            const DeepCollectionEquality().equals(other.userId, userId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
 
   @JsonKey(ignore: true)
   @override
@@ -1033,12 +1036,13 @@ class _$_CommentsReceived implements _CommentsReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CommentsReceived &&
-            (identical(other.failureOrComments, failureOrComments) ||
-                other.failureOrComments == failureOrComments));
+            const DeepCollectionEquality()
+                .equals(other.failureOrComments, failureOrComments));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failureOrComments);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failureOrComments));
 
   @JsonKey(ignore: true)
   @override
@@ -1230,12 +1234,13 @@ class _$_ProfileReceived implements _ProfileReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ProfileReceived &&
-            (identical(other.failureOrProfile, failureOrProfile) ||
-                other.failureOrProfile == failureOrProfile));
+            const DeepCollectionEquality()
+                .equals(other.failureOrProfile, failureOrProfile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failureOrProfile);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failureOrProfile));
 
   @JsonKey(ignore: true)
   @override
@@ -1424,11 +1429,12 @@ class _$_EditName implements _EditName {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _EditName &&
-            (identical(other.name, name) || other.name == name));
+            const DeepCollectionEquality().equals(other.name, name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
 
   @JsonKey(ignore: true)
   @override
@@ -1617,11 +1623,12 @@ class _$_EditImage implements _EditImage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _EditImage &&
-            (identical(other.image, image) || other.image == image));
+            const DeepCollectionEquality().equals(other.image, image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, image);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(image));
 
   @JsonKey(ignore: true)
   @override
@@ -1811,12 +1818,12 @@ class _$_DeleteComment implements _DeleteComment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DeleteComment &&
-            (identical(other.commentId, commentId) ||
-                other.commentId == commentId));
+            const DeepCollectionEquality().equals(other.commentId, commentId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, commentId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(commentId));
 
   @JsonKey(ignore: true)
   @override
@@ -2020,14 +2027,17 @@ class _$_AddComment implements _AddComment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AddComment &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.comment, comment) || other.comment == comment) &&
-            (identical(other.episodeId, episodeId) ||
-                other.episodeId == episodeId));
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.comment, comment) &&
+            const DeepCollectionEquality().equals(other.episodeId, episodeId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, comment, episodeId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(comment),
+      const DeepCollectionEquality().hash(episodeId));
 
   @JsonKey(ignore: true)
   @override
@@ -2696,11 +2706,12 @@ class _$_ProfileLoaded implements _ProfileLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ProfileLoaded &&
-            (identical(other.profile, profile) || other.profile == profile));
+            const DeepCollectionEquality().equals(other.profile, profile));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, profile);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(profile));
 
   @JsonKey(ignore: true)
   @override
@@ -2883,11 +2894,12 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Error &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -3063,11 +3075,12 @@ class _$_LikeStatus implements _LikeStatus {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _LikeStatus &&
-            (identical(other.isLiked, isLiked) || other.isLiked == isLiked));
+            const DeepCollectionEquality().equals(other.isLiked, isLiked));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLiked);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(isLiked));
 
   @JsonKey(ignore: true)
   @override
@@ -3253,11 +3266,12 @@ class _$_UpdateNameSuccess implements _UpdateNameSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UpdateNameSuccess &&
-            (identical(other.user, user) || other.user == user));
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override
@@ -3443,11 +3457,12 @@ class _$_UpdateImageSuccess implements _UpdateImageSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _UpdateImageSuccess &&
-            (identical(other.user, user) || other.user == user));
+            const DeepCollectionEquality().equals(other.user, user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(user));
 
   @JsonKey(ignore: true)
   @override

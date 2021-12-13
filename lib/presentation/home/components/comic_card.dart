@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/application/episodes/episodes_bloc.dart';
+import 'package:movie_app/domain/episodes/episodes.dart';
 import '../../../domain/comic/comic.dart';
-import '../../../domain/episodes/episodes.dart';
 import '../../../helper/global/image_widget.dart';
 import '../../details/details_screen.dart';
 
@@ -15,18 +17,6 @@ class ComicCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Episodes? lastChapter;
-    if (comic.episodes!.isEmpty) {
-      lastChapter = Episodes(
-          comicId: comic.id!,
-          episodeNumber: 0,
-          episodeName: "No Chapter",
-          like: {},
-          driveLink: "",
-          pdfFile: "");
-    } else {
-      lastChapter = comic.episodes!.last;
-    }
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 10.h),
       child: Column(
@@ -55,29 +45,49 @@ class ComicCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis),
             ),
           ),
-          Container(
-            constraints: const BoxConstraints(maxWidth: 150),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  lastChapter.episodeName,
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                      overflow: TextOverflow.ellipsis),
-                ),
-                Text(
-                  lastChapter.episodeNumber.toString(),
-                  style: TextStyle(
-                      fontSize: 12.sp,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                      overflow: TextOverflow.ellipsis),
-                ),
-              ],
-            ),
+          BlocBuilder<EpisodesBloc, EpisodesState>(
+            builder: (context, state) {
+              return state.maybeMap(
+                  orElse: () => Container(),
+                  loaded: (state) {
+                    Episodes? lastChapter;
+                    if (state.episodes.isEmpty) {
+                      lastChapter = Episodes(
+                          comicId: comic.id!,
+                          episodeNumber: 0,
+                          episodeName: "No Chapter",
+                          like: {},
+                          driveLink: "",
+                          pdfFile: "");
+                    } else {
+                      lastChapter = state.episodes.last;
+                    }
+                    return Container(
+                      constraints: const BoxConstraints(maxWidth: 150),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            lastChapter.episodeName,
+                            style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                          Text(
+                            lastChapter.episodeNumber.toString(),
+                            style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
+                                overflow: TextOverflow.ellipsis),
+                          ),
+                        ],
+                      ),
+                    );
+                  });
+            },
           ),
           SizedBox(height: 5.h),
         ],

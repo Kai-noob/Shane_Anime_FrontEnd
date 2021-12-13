@@ -308,35 +308,34 @@ class _$_Episodes implements _Episodes {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Episodes &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.comicId, comicId) || other.comicId == comicId) &&
-            (identical(other.episodeName, episodeName) ||
-                other.episodeName == episodeName) &&
-            (identical(other.episodeNumber, episodeNumber) ||
-                other.episodeNumber == episodeNumber) &&
-            (identical(other.pdfFile, pdfFile) || other.pdfFile == pdfFile) &&
-            (identical(other.driveLink, driveLink) ||
-                other.driveLink == driveLink) &&
-            (identical(other.episodeCount, episodeCount) ||
-                other.episodeCount == episodeCount) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.coverPhoto, coverPhoto) ||
-                other.coverPhoto == coverPhoto) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.comicId, comicId) &&
+            const DeepCollectionEquality()
+                .equals(other.episodeName, episodeName) &&
+            const DeepCollectionEquality()
+                .equals(other.episodeNumber, episodeNumber) &&
+            const DeepCollectionEquality().equals(other.pdfFile, pdfFile) &&
+            const DeepCollectionEquality().equals(other.driveLink, driveLink) &&
+            const DeepCollectionEquality()
+                .equals(other.episodeCount, episodeCount) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.coverPhoto, coverPhoto) &&
             const DeepCollectionEquality().equals(other.like, like));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      comicId,
-      episodeName,
-      episodeNumber,
-      pdfFile,
-      driveLink,
-      episodeCount,
-      title,
-      coverPhoto,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(comicId),
+      const DeepCollectionEquality().hash(episodeName),
+      const DeepCollectionEquality().hash(episodeNumber),
+      const DeepCollectionEquality().hash(pdfFile),
+      const DeepCollectionEquality().hash(driveLink),
+      const DeepCollectionEquality().hash(episodeCount),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(coverPhoto),
       const DeepCollectionEquality().hash(like));
 
   @JsonKey(ignore: true)

@@ -167,11 +167,12 @@ class _$_SaveComic implements _SaveComic {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SaveComic &&
-            (identical(other.comicId, comicId) || other.comicId == comicId));
+            const DeepCollectionEquality().equals(other.comicId, comicId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, comicId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(comicId));
 
   @JsonKey(ignore: true)
   @override
@@ -316,11 +317,12 @@ class _$_RemoveComic implements _RemoveComic {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _RemoveComic &&
-            (identical(other.comicId, comicId) || other.comicId == comicId));
+            const DeepCollectionEquality().equals(other.comicId, comicId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, comicId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(comicId));
 
   @JsonKey(ignore: true)
   @override
@@ -585,12 +587,13 @@ class _$_SavedComicsReceived implements _SavedComicsReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SavedComicsReceived &&
-            (identical(other.failureOrComics, failureOrComics) ||
-                other.failureOrComics == failureOrComics));
+            const DeepCollectionEquality()
+                .equals(other.failureOrComics, failureOrComics));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failureOrComics);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failureOrComics));
 
   @JsonKey(ignore: true)
   @override
@@ -1115,12 +1118,13 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Error &&
-            (identical(other.comicFailure, comicFailure) ||
-                other.comicFailure == comicFailure));
+            const DeepCollectionEquality()
+                .equals(other.comicFailure, comicFailure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, comicFailure);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(comicFailure));
 
   @JsonKey(ignore: true)
   @override

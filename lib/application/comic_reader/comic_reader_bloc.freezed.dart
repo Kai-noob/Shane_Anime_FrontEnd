@@ -198,16 +198,19 @@ class _$_CheckPdf implements _CheckPdf {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CheckPdf &&
-            (identical(other.comicId, comicId) || other.comicId == comicId) &&
-            (identical(other.episodeName, episodeName) ||
-                other.episodeName == episodeName) &&
-            (identical(other.episodeNumber, episodeNumber) ||
-                other.episodeNumber == episodeNumber));
+            const DeepCollectionEquality().equals(other.comicId, comicId) &&
+            const DeepCollectionEquality()
+                .equals(other.episodeName, episodeName) &&
+            const DeepCollectionEquality()
+                .equals(other.episodeNumber, episodeNumber));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, comicId, episodeName, episodeNumber);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(comicId),
+      const DeepCollectionEquality().hash(episodeName),
+      const DeepCollectionEquality().hash(episodeNumber));
 
   @JsonKey(ignore: true)
   @override
@@ -366,16 +369,19 @@ class _$_ChangePdf implements _ChangePdf {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ChangePdf &&
-            (identical(other.comicId, comicId) || other.comicId == comicId) &&
-            (identical(other.episodeName, episodeName) ||
-                other.episodeName == episodeName) &&
-            (identical(other.episodeNumber, episodeNumber) ||
-                other.episodeNumber == episodeNumber));
+            const DeepCollectionEquality().equals(other.comicId, comicId) &&
+            const DeepCollectionEquality()
+                .equals(other.episodeName, episodeName) &&
+            const DeepCollectionEquality()
+                .equals(other.episodeNumber, episodeNumber));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, comicId, episodeName, episodeNumber);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(comicId),
+      const DeepCollectionEquality().hash(episodeName),
+      const DeepCollectionEquality().hash(episodeNumber));
 
   @JsonKey(ignore: true)
   @override
@@ -760,11 +766,12 @@ class _$_Pdfloaded implements _Pdfloaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Pdfloaded &&
-            (identical(other.pdf, pdf) || other.pdf == pdf));
+            const DeepCollectionEquality().equals(other.pdf, pdf));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pdf);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(pdf));
 
   @JsonKey(ignore: true)
   @override
@@ -920,11 +927,12 @@ class _$_DriveLoaded implements _DriveLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _DriveLoaded &&
-            (identical(other.pdf, pdf) || other.pdf == pdf));
+            const DeepCollectionEquality().equals(other.pdf, pdf));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pdf);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(pdf));
 
   @JsonKey(ignore: true)
   @override
@@ -1077,11 +1085,12 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Error &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -1236,12 +1245,12 @@ class _$_ChgEpisodeSuccess implements _ChgEpisodeSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ChgEpisodeSuccess &&
-            (identical(other.episodes, episodes) ||
-                other.episodes == episodes));
+            const DeepCollectionEquality().equals(other.episodes, episodes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, episodes);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(episodes));
 
   @JsonKey(ignore: true)
   @override

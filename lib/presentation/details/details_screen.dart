@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:movie_app/application/episodes/episodes_bloc.dart';
+import 'package:movie_app/application/genre/genre_bloc.dart';
 import '../../ad_helper.dart';
 import '../../helper/global/cutom_error_widget.dart';
 import '../../helper/global/loading_indicator.dart';
@@ -19,7 +21,6 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   // Banner ads
   late BannerAd _bannerAd;
-  bool _isBannerAdReady = false;
 
   @override
   void initState() {
@@ -27,17 +28,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
     super.initState();
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
-          setState(() {
-            _isBannerAdReady = true;
-          });
+          setState(() {});
         },
         onAdFailedToLoad: (ad, err) {
           print('Failed to load a banner ad: ${err.message}');
-          _isBannerAdReady = false;
           ad.dispose();
         },
       ),
@@ -47,9 +45,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ComicDetailsBloc>()
-        ..add(ComicDetailsEvent.getComicDetais(widget.comicId)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) => getIt<ComicDetailsBloc>()
+              ..add(ComicDetailsEvent.getComicDetais(widget.comicId))),
+        BlocProvider(
+            create: (context) => getIt<EpisodesBloc>()
+              ..add(EpisodesEvent.getLatestEpisodes(widget.comicId))),
+        BlocProvider(
+            create: (context) => getIt<GenreBloc>()
+              ..add(GenreEvent.getComicGenres(widget.comicId))),
+      ],
       child: Scaffold(
         body: BlocBuilder<ComicDetailsBloc, ComicDetailsState>(
             builder: (context, state) => state.maybeMap(
@@ -69,7 +76,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           color: Colors.white,
           child: Align(
             alignment: Alignment.topCenter,
-            child: Container(
+            child: SizedBox(
               width: _bannerAd.size.width.toDouble(),
               height: _bannerAd.size.height.toDouble(),
               child: AdWidget(ad: _bannerAd),

@@ -21,20 +21,18 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   // Banner ads
   late BannerAd _bannerAd;
-  bool _isBannerAdReady = false;
 
   // Add _interstitialAd
   InterstitialAd? _interstitialAd;
   bool _isInterstitialAdReady = false;
 
-  // TODO: Implement _loadInterstitialAd()
   void _loadInterstitialAd() {
     InterstitialAd.load(
       adUnitId: AdHelper.interstitialAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
-          this._interstitialAd = ad;
+          _interstitialAd = ad;
 
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {},
@@ -56,17 +54,14 @@ class _IntroScreenState extends State<IntroScreen> {
     super.initState();
     _bannerAd = BannerAd(
       adUnitId: AdHelper.bannerAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       size: AdSize.banner,
       listener: BannerAdListener(
         onAdLoaded: (_) {
-          setState(() {
-            _isBannerAdReady = true;
-          });
+          setState(() {});
         },
         onAdFailedToLoad: (ad, err) {
           print('Failed to load a banner ad: ${err.message}');
-          _isBannerAdReady = false;
           ad.dispose();
         },
       ),
@@ -105,7 +100,6 @@ class _IntroScreenState extends State<IntroScreen> {
                       ),
                       buildCard(snapshot.data!["button_one"],
                           snapshot.data!["link_one"], () {
-                        // TODO: Display an Interstitial Ad
                         if (_isInterstitialAdReady) {
                           _interstitialAd?.show();
                         }
@@ -115,7 +109,6 @@ class _IntroScreenState extends State<IntroScreen> {
                       }),
                       buildCard(snapshot.data!["button_two"],
                           snapshot.data!["link_two"], () {
-                        // TODO: Display an Interstitial Ad
                         if (_isInterstitialAdReady) {
                           _interstitialAd?.show();
                         }
@@ -125,7 +118,6 @@ class _IntroScreenState extends State<IntroScreen> {
                       }),
                       buildCard(snapshot.data!["button_three"],
                           snapshot.data!["link_three"], () async {
-                        // TODO: Display an Interstitial Ad
                         if (_isInterstitialAdReady) {
                           _interstitialAd?.show();
                         }
@@ -155,7 +147,7 @@ class _IntroScreenState extends State<IntroScreen> {
         color: Colors.white,
         child: Align(
           alignment: Alignment.topCenter,
-          child: Container(
+          child: SizedBox(
             width: _bannerAd.size.width.toDouble(),
             height: _bannerAd.size.height.toDouble(),
             child: AdWidget(ad: _bannerAd),

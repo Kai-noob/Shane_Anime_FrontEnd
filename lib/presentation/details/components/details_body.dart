@@ -2,12 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/application/episodes/episodes_bloc.dart';
+import 'package:movie_app/application/genre/genre_bloc.dart';
+import 'package:movie_app/helper/global/loading_indicator.dart';
 import 'package:readmore/readmore.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../application/save_comic/save_comic_bloc.dart';
 import '../../../domain/comic/comic.dart';
 import '../../../injection.dart';
-
 import 'episodes_list_view.dart';
 
 class DetailsBody extends StatefulWidget {
@@ -26,7 +29,7 @@ class _DetailsBodyState extends State<DetailsBody> {
   bool isDecending = false;
   @override
   Widget build(BuildContext context) {
-    String genre = widget.comic.genres!.map((e) => e.name).join(".");
+    // String genre = widget.comic.genres!.map((e) => e.name).join(".");
 
     return SafeArea(
         child: CustomScrollView(
@@ -74,11 +77,76 @@ class _DetailsBodyState extends State<DetailsBody> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          Text(genre,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 14.sp,
-                              )),
+                          BlocBuilder<GenreBloc, GenreState>(
+                            builder: (context, state) {
+                              return state.maybeMap(
+                                orElse: () => Container(),
+                                loading: (_) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Shimmer.fromColors(
+                                      baseColor: Colors.white30,
+                                      highlightColor: Colors.white24,
+                                      child: Container(
+                                        height: 10.h,
+                                        width: 200.w,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5.r),
+                                            color: const Color(0xff1B2C3B)),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    Shimmer.fromColors(
+                                      baseColor: Colors.white30,
+                                      highlightColor: Colors.white24,
+                                      child: Container(
+                                        height: 10.h,
+                                        width: 150.w,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5.r),
+                                            color: const Color(0xff1B2C3B)),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    Shimmer.fromColors(
+                                      baseColor: Colors.white30,
+                                      highlightColor: Colors.white24,
+                                      child: Container(
+                                        height: 10.h,
+                                        width: 200.w,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5.r),
+                                            color: const Color(0xff1B2C3B)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                loaded: (genreState) {
+                                  String genre = genreState.genres
+                                      .map((e) => e.name)
+                                      .join("/");
+                                  return Text(
+                                    genreState.genres.isEmpty
+                                        ? "No genre"
+                                        : genre,
+                                    style: TextStyle(
+                                        fontSize: 15.sp,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        letterSpacing: 2.0,
+                                        height: 2),
+                                  );
+                                },
+                              );
+                            },
+                          ),
                           Text(widget.comic.title,
                               style: TextStyle(
                                 color: Colors.white,
@@ -139,9 +207,17 @@ class _DetailsBodyState extends State<DetailsBody> {
             ),
           ),
         ),
-        EpisodeListView(
-          episodes: widget.comic.episodes!,
-          isDecending: isDecending,
+        BlocBuilder<EpisodesBloc, EpisodesState>(
+          builder: (context, state) {
+            return state.maybeMap(
+                orElse: () => SliverToBoxAdapter(child: Container()),
+                loading: (_) =>
+                    const SliverToBoxAdapter(child: LoadingIndicator()),
+                loaded: (state) => EpisodeListView(
+                      episodes: state.episodes,
+                      isDecending: isDecending,
+                    ));
+          },
         )
         // DetailsTitle(comicModel: comicModel),
       ],

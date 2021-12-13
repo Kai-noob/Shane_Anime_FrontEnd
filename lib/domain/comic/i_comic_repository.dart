@@ -18,4 +18,5 @@ abstract class IComicRepository {
       String comicId, String episodeName, int episodeNumber);
   Future<bool> checkPdf(String comicId, String episodeName, int episodeNumber);
   Future<Either<ComicFailure, Episodes>> getEpisode(String episodeId);
+  Future<Either<ComicFailure, List<Episodes>>> getLatestEpisode(String comicId);
 }

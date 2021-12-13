@@ -28,6 +28,11 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
       final failureOrSuccess = await _comiRepo.getEpisode(e.episodeId);
       emit(failureOrSuccess.fold((l) => EpisodesState.error(l),
           (r) => EpisodesState.episodeLoaded(r)));
+    }, getLatestEpisodes: (e) async {
+      emit(const EpisodesState.loading());
+      final failureOrSuccess = await _comiRepo.getLatestEpisode(e.comicId);
+      emit(failureOrSuccess.fold(
+          (l) => EpisodesState.error(l), (r) => EpisodesState.loaded(r)));
     });
   }
 }

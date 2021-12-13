@@ -26,6 +26,12 @@ class _$EpisodesEventTearOff {
       episodeId,
     );
   }
+
+  _GetLatestEpisodes getLatestEpisodes(String comicId) {
+    return _GetLatestEpisodes(
+      comicId,
+    );
+  }
 }
 
 /// @nodoc
@@ -37,18 +43,21 @@ mixin _$EpisodesEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getEpisodes,
     required TResult Function(String episodeId) getEpisode,
+    required TResult Function(String comicId) getLatestEpisodes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getEpisodes,
     TResult Function(String episodeId)? getEpisode,
+    TResult Function(String comicId)? getLatestEpisodes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getEpisodes,
     TResult Function(String episodeId)? getEpisode,
+    TResult Function(String comicId)? getLatestEpisodes,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,18 +65,21 @@ mixin _$EpisodesEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetEpisodes value) getEpisodes,
     required TResult Function(_GetEpisode value) getEpisode,
+    required TResult Function(_GetLatestEpisodes value) getLatestEpisodes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetEpisodes value)? getEpisodes,
     TResult Function(_GetEpisode value)? getEpisode,
+    TResult Function(_GetLatestEpisodes value)? getLatestEpisodes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetEpisodes value)? getEpisodes,
     TResult Function(_GetEpisode value)? getEpisode,
+    TResult Function(_GetLatestEpisodes value)? getLatestEpisodes,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,6 +144,7 @@ class _$_GetEpisodes implements _GetEpisodes {
   TResult when<TResult extends Object?>({
     required TResult Function() getEpisodes,
     required TResult Function(String episodeId) getEpisode,
+    required TResult Function(String comicId) getLatestEpisodes,
   }) {
     return getEpisodes();
   }
@@ -141,6 +154,7 @@ class _$_GetEpisodes implements _GetEpisodes {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getEpisodes,
     TResult Function(String episodeId)? getEpisode,
+    TResult Function(String comicId)? getLatestEpisodes,
   }) {
     return getEpisodes?.call();
   }
@@ -150,6 +164,7 @@ class _$_GetEpisodes implements _GetEpisodes {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getEpisodes,
     TResult Function(String episodeId)? getEpisode,
+    TResult Function(String comicId)? getLatestEpisodes,
     required TResult orElse(),
   }) {
     if (getEpisodes != null) {
@@ -163,6 +178,7 @@ class _$_GetEpisodes implements _GetEpisodes {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetEpisodes value) getEpisodes,
     required TResult Function(_GetEpisode value) getEpisode,
+    required TResult Function(_GetLatestEpisodes value) getLatestEpisodes,
   }) {
     return getEpisodes(this);
   }
@@ -172,6 +188,7 @@ class _$_GetEpisodes implements _GetEpisodes {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetEpisodes value)? getEpisodes,
     TResult Function(_GetEpisode value)? getEpisode,
+    TResult Function(_GetLatestEpisodes value)? getLatestEpisodes,
   }) {
     return getEpisodes?.call(this);
   }
@@ -181,6 +198,7 @@ class _$_GetEpisodes implements _GetEpisodes {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetEpisodes value)? getEpisodes,
     TResult Function(_GetEpisode value)? getEpisode,
+    TResult Function(_GetLatestEpisodes value)? getLatestEpisodes,
     required TResult orElse(),
   }) {
     if (getEpisodes != null) {
@@ -243,12 +261,12 @@ class _$_GetEpisode implements _GetEpisode {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _GetEpisode &&
-            (identical(other.episodeId, episodeId) ||
-                other.episodeId == episodeId));
+            const DeepCollectionEquality().equals(other.episodeId, episodeId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, episodeId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(episodeId));
 
   @JsonKey(ignore: true)
   @override
@@ -260,6 +278,7 @@ class _$_GetEpisode implements _GetEpisode {
   TResult when<TResult extends Object?>({
     required TResult Function() getEpisodes,
     required TResult Function(String episodeId) getEpisode,
+    required TResult Function(String comicId) getLatestEpisodes,
   }) {
     return getEpisode(episodeId);
   }
@@ -269,6 +288,7 @@ class _$_GetEpisode implements _GetEpisode {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getEpisodes,
     TResult Function(String episodeId)? getEpisode,
+    TResult Function(String comicId)? getLatestEpisodes,
   }) {
     return getEpisode?.call(episodeId);
   }
@@ -278,6 +298,7 @@ class _$_GetEpisode implements _GetEpisode {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getEpisodes,
     TResult Function(String episodeId)? getEpisode,
+    TResult Function(String comicId)? getLatestEpisodes,
     required TResult orElse(),
   }) {
     if (getEpisode != null) {
@@ -291,6 +312,7 @@ class _$_GetEpisode implements _GetEpisode {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetEpisodes value) getEpisodes,
     required TResult Function(_GetEpisode value) getEpisode,
+    required TResult Function(_GetLatestEpisodes value) getLatestEpisodes,
   }) {
     return getEpisode(this);
   }
@@ -300,6 +322,7 @@ class _$_GetEpisode implements _GetEpisode {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetEpisodes value)? getEpisodes,
     TResult Function(_GetEpisode value)? getEpisode,
+    TResult Function(_GetLatestEpisodes value)? getLatestEpisodes,
   }) {
     return getEpisode?.call(this);
   }
@@ -309,6 +332,7 @@ class _$_GetEpisode implements _GetEpisode {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetEpisodes value)? getEpisodes,
     TResult Function(_GetEpisode value)? getEpisode,
+    TResult Function(_GetLatestEpisodes value)? getLatestEpisodes,
     required TResult orElse(),
   }) {
     if (getEpisode != null) {
@@ -324,6 +348,146 @@ abstract class _GetEpisode implements EpisodesEvent {
   String get episodeId;
   @JsonKey(ignore: true)
   _$GetEpisodeCopyWith<_GetEpisode> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetLatestEpisodesCopyWith<$Res> {
+  factory _$GetLatestEpisodesCopyWith(
+          _GetLatestEpisodes value, $Res Function(_GetLatestEpisodes) then) =
+      __$GetLatestEpisodesCopyWithImpl<$Res>;
+  $Res call({String comicId});
+}
+
+/// @nodoc
+class __$GetLatestEpisodesCopyWithImpl<$Res>
+    extends _$EpisodesEventCopyWithImpl<$Res>
+    implements _$GetLatestEpisodesCopyWith<$Res> {
+  __$GetLatestEpisodesCopyWithImpl(
+      _GetLatestEpisodes _value, $Res Function(_GetLatestEpisodes) _then)
+      : super(_value, (v) => _then(v as _GetLatestEpisodes));
+
+  @override
+  _GetLatestEpisodes get _value => super._value as _GetLatestEpisodes;
+
+  @override
+  $Res call({
+    Object? comicId = freezed,
+  }) {
+    return _then(_GetLatestEpisodes(
+      comicId == freezed
+          ? _value.comicId
+          : comicId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetLatestEpisodes implements _GetLatestEpisodes {
+  const _$_GetLatestEpisodes(this.comicId);
+
+  @override
+  final String comicId;
+
+  @override
+  String toString() {
+    return 'EpisodesEvent.getLatestEpisodes(comicId: $comicId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _GetLatestEpisodes &&
+            const DeepCollectionEquality().equals(other.comicId, comicId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(comicId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetLatestEpisodesCopyWith<_GetLatestEpisodes> get copyWith =>
+      __$GetLatestEpisodesCopyWithImpl<_GetLatestEpisodes>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getEpisodes,
+    required TResult Function(String episodeId) getEpisode,
+    required TResult Function(String comicId) getLatestEpisodes,
+  }) {
+    return getLatestEpisodes(comicId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getEpisodes,
+    TResult Function(String episodeId)? getEpisode,
+    TResult Function(String comicId)? getLatestEpisodes,
+  }) {
+    return getLatestEpisodes?.call(comicId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getEpisodes,
+    TResult Function(String episodeId)? getEpisode,
+    TResult Function(String comicId)? getLatestEpisodes,
+    required TResult orElse(),
+  }) {
+    if (getLatestEpisodes != null) {
+      return getLatestEpisodes(comicId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetEpisodes value) getEpisodes,
+    required TResult Function(_GetEpisode value) getEpisode,
+    required TResult Function(_GetLatestEpisodes value) getLatestEpisodes,
+  }) {
+    return getLatestEpisodes(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetEpisodes value)? getEpisodes,
+    TResult Function(_GetEpisode value)? getEpisode,
+    TResult Function(_GetLatestEpisodes value)? getLatestEpisodes,
+  }) {
+    return getLatestEpisodes?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetEpisodes value)? getEpisodes,
+    TResult Function(_GetEpisode value)? getEpisode,
+    TResult Function(_GetLatestEpisodes value)? getLatestEpisodes,
+    required TResult orElse(),
+  }) {
+    if (getLatestEpisodes != null) {
+      return getLatestEpisodes(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetLatestEpisodes implements EpisodesEvent {
+  const factory _GetLatestEpisodes(String comicId) = _$_GetLatestEpisodes;
+
+  String get comicId;
+  @JsonKey(ignore: true)
+  _$GetLatestEpisodesCopyWith<_GetLatestEpisodes> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -734,11 +898,12 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Error &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -1041,12 +1206,12 @@ class _$_EpisodeLoaded implements _EpisodeLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _EpisodeLoaded &&
-            (identical(other.episodes, episodes) ||
-                other.episodes == episodes));
+            const DeepCollectionEquality().equals(other.episodes, episodes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, episodes);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(episodes));
 
   @JsonKey(ignore: true)
   @override

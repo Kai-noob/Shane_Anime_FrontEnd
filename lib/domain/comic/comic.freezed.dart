@@ -29,9 +29,7 @@ class _$ComicTearOff {
       @JsonKey(name: "editor_choice") required bool editorChoice,
       required bool published,
       required bool completed,
-      @TimestampConverter() required DateTime created,
-      @JsonKey(ignore: true) List<Genre>? genres,
-      @JsonKey(ignore: true) List<Episodes>? episodes}) {
+      @TimestampConverter() required DateTime created}) {
     return _Comic(
       id: id,
       title: title,
@@ -41,8 +39,6 @@ class _$ComicTearOff {
       published: published,
       completed: completed,
       created: created,
-      genres: genres,
-      episodes: episodes,
     );
   }
 
@@ -68,10 +64,6 @@ mixin _$Comic {
   bool get completed => throw _privateConstructorUsedError;
   @TimestampConverter()
   DateTime get created => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  List<Genre>? get genres => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  List<Episodes>? get episodes => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -90,9 +82,7 @@ abstract class $ComicCopyWith<$Res> {
       @JsonKey(name: "editor_choice") bool editorChoice,
       bool published,
       bool completed,
-      @TimestampConverter() DateTime created,
-      @JsonKey(ignore: true) List<Genre>? genres,
-      @JsonKey(ignore: true) List<Episodes>? episodes});
+      @TimestampConverter() DateTime created});
 }
 
 /// @nodoc
@@ -113,8 +103,6 @@ class _$ComicCopyWithImpl<$Res> implements $ComicCopyWith<$Res> {
     Object? published = freezed,
     Object? completed = freezed,
     Object? created = freezed,
-    Object? genres = freezed,
-    Object? episodes = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -149,14 +137,6 @@ class _$ComicCopyWithImpl<$Res> implements $ComicCopyWith<$Res> {
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      genres: genres == freezed
-          ? _value.genres
-          : genres // ignore: cast_nullable_to_non_nullable
-              as List<Genre>?,
-      episodes: episodes == freezed
-          ? _value.episodes
-          : episodes // ignore: cast_nullable_to_non_nullable
-              as List<Episodes>?,
     ));
   }
 }
@@ -174,9 +154,7 @@ abstract class _$ComicCopyWith<$Res> implements $ComicCopyWith<$Res> {
       @JsonKey(name: "editor_choice") bool editorChoice,
       bool published,
       bool completed,
-      @TimestampConverter() DateTime created,
-      @JsonKey(ignore: true) List<Genre>? genres,
-      @JsonKey(ignore: true) List<Episodes>? episodes});
+      @TimestampConverter() DateTime created});
 }
 
 /// @nodoc
@@ -198,8 +176,6 @@ class __$ComicCopyWithImpl<$Res> extends _$ComicCopyWithImpl<$Res>
     Object? published = freezed,
     Object? completed = freezed,
     Object? created = freezed,
-    Object? genres = freezed,
-    Object? episodes = freezed,
   }) {
     return _then(_Comic(
       id: id == freezed
@@ -234,14 +210,6 @@ class __$ComicCopyWithImpl<$Res> extends _$ComicCopyWithImpl<$Res>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      genres: genres == freezed
-          ? _value.genres
-          : genres // ignore: cast_nullable_to_non_nullable
-              as List<Genre>?,
-      episodes: episodes == freezed
-          ? _value.episodes
-          : episodes // ignore: cast_nullable_to_non_nullable
-              as List<Episodes>?,
     ));
   }
 }
@@ -257,9 +225,7 @@ class _$_Comic implements _Comic {
       @JsonKey(name: "editor_choice") required this.editorChoice,
       required this.published,
       required this.completed,
-      @TimestampConverter() required this.created,
-      @JsonKey(ignore: true) this.genres,
-      @JsonKey(ignore: true) this.episodes});
+      @TimestampConverter() required this.created});
 
   factory _$_Comic.fromJson(Map<String, dynamic> json) =>
       _$$_ComicFromJson(json);
@@ -284,16 +250,10 @@ class _$_Comic implements _Comic {
   @override
   @TimestampConverter()
   final DateTime created;
-  @override
-  @JsonKey(ignore: true)
-  final List<Genre>? genres;
-  @override
-  @JsonKey(ignore: true)
-  final List<Episodes>? episodes;
 
   @override
   String toString() {
-    return 'Comic(id: $id, title: $title, coverPhoto: $coverPhoto, review: $review, editorChoice: $editorChoice, published: $published, completed: $completed, created: $created, genres: $genres, episodes: $episodes)';
+    return 'Comic(id: $id, title: $title, coverPhoto: $coverPhoto, review: $review, editorChoice: $editorChoice, published: $published, completed: $completed, created: $created)';
   }
 
   @override
@@ -301,35 +261,29 @@ class _$_Comic implements _Comic {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Comic &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.coverPhoto, coverPhoto) ||
-                other.coverPhoto == coverPhoto) &&
-            (identical(other.review, review) || other.review == review) &&
-            (identical(other.editorChoice, editorChoice) ||
-                other.editorChoice == editorChoice) &&
-            (identical(other.published, published) ||
-                other.published == published) &&
-            (identical(other.completed, completed) ||
-                other.completed == completed) &&
-            (identical(other.created, created) || other.created == created) &&
-            const DeepCollectionEquality().equals(other.genres, genres) &&
-            const DeepCollectionEquality().equals(other.episodes, episodes));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.coverPhoto, coverPhoto) &&
+            const DeepCollectionEquality().equals(other.review, review) &&
+            const DeepCollectionEquality()
+                .equals(other.editorChoice, editorChoice) &&
+            const DeepCollectionEquality().equals(other.published, published) &&
+            const DeepCollectionEquality().equals(other.completed, completed) &&
+            const DeepCollectionEquality().equals(other.created, created));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      title,
-      coverPhoto,
-      review,
-      editorChoice,
-      published,
-      completed,
-      created,
-      const DeepCollectionEquality().hash(genres),
-      const DeepCollectionEquality().hash(episodes));
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(coverPhoto),
+      const DeepCollectionEquality().hash(review),
+      const DeepCollectionEquality().hash(editorChoice),
+      const DeepCollectionEquality().hash(published),
+      const DeepCollectionEquality().hash(completed),
+      const DeepCollectionEquality().hash(created));
 
   @JsonKey(ignore: true)
   @override
@@ -351,9 +305,7 @@ abstract class _Comic implements Comic {
       @JsonKey(name: "editor_choice") required bool editorChoice,
       required bool published,
       required bool completed,
-      @TimestampConverter() required DateTime created,
-      @JsonKey(ignore: true) List<Genre>? genres,
-      @JsonKey(ignore: true) List<Episodes>? episodes}) = _$_Comic;
+      @TimestampConverter() required DateTime created}) = _$_Comic;
 
   factory _Comic.fromJson(Map<String, dynamic> json) = _$_Comic.fromJson;
 
@@ -377,12 +329,6 @@ abstract class _Comic implements Comic {
   @override
   @TimestampConverter()
   DateTime get created;
-  @override
-  @JsonKey(ignore: true)
-  List<Genre>? get genres;
-  @override
-  @JsonKey(ignore: true)
-  List<Episodes>? get episodes;
   @override
   @JsonKey(ignore: true)
   _$ComicCopyWith<_Comic> get copyWith => throw _privateConstructorUsedError;

@@ -2,8 +2,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/application/genre/genre_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../application/home/hot_comic/hot_comic_bloc.dart';
 import '../../../helper/global/cutom_error_widget.dart';
+import '../../../injection.dart';
 import '../../details/details_screen.dart';
 import '../../search/search_screen.dart';
 
@@ -58,77 +61,167 @@ class _HomeAppBarState extends State<HomeAppBar> {
                       },
                       itemCount: state.comics.length,
                       itemBuilder: (BuildContext context, int index) {
-                        String genre = state.comics[index].genres!
-                            .map((e) => e.name)
-                            .join("/");
+                        // String genre = state.comics[index].genres!
+                        //     .map((e) => e.name)
+                        //     .join("/");
 
-                        return GestureDetector(
-                          onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      DetailsScreen(
-                                          comicId: state.comics[index].id!))),
-                          child: CachedNetworkImage(
-                            imageUrl: state.comics[index].coverPhoto,
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              child: Container(
+                        return BlocProvider(
+                          create: (context) => getIt<GenreBloc>()
+                            ..add(GenreEvent.getComicGenres(
+                                state.comics[index].id!)),
+                          child: GestureDetector(
+                            onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        DetailsScreen(
+                                            comicId: state.comics[index].id!))),
+                            child: CachedNetworkImage(
+                              imageUrl: state.comics[index].coverPhoto,
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
                                 decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        begin: Alignment.bottomRight,
-                                        colors: [
-                                      const Color(0xFF1C1D21),
-                                      const Color(0xFF1C1D21).withOpacity(.3)
-                                    ])),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
-                                      Text(genre,
-                                          style: TextStyle(fontSize: 15.sp)),
-                                      Text(state.comics[index].title,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: "HeaderFont",
-                                            fontSize: 30.sp,
-                                          )),
-                                      SizedBox(
-                                        height: 8.h,
-                                      ),
-                                      SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: List.generate(
-                                                state.comics.length,
-                                                (index) =>
-                                                    buildDots(index: index))),
-                                      )
-                                    ],
+                                  borderRadius: BorderRadius.circular(5),
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                          begin: Alignment.bottomRight,
+                                          colors: [
+                                        const Color(0xFF1C1D21),
+                                        const Color(0xFF1C1D21).withOpacity(.3)
+                                      ])),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(20),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: <Widget>[
+                                        BlocBuilder<GenreBloc, GenreState>(
+                                          builder: (context, state) {
+                                            return state.maybeMap(
+                                              orElse: () => Container(),
+                                              loading: (_) => Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Shimmer.fromColors(
+                                                    baseColor: Colors.white30,
+                                                    highlightColor:
+                                                        Colors.white24,
+                                                    child: Container(
+                                                      height: 10.h,
+                                                      width: 200.w,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.r),
+                                                          color: const Color(
+                                                              0xff1B2C3B)),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8.h,
+                                                  ),
+                                                  Shimmer.fromColors(
+                                                    baseColor: Colors.white30,
+                                                    highlightColor:
+                                                        Colors.white24,
+                                                    child: Container(
+                                                      height: 10.h,
+                                                      width: 150.w,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.r),
+                                                          color: const Color(
+                                                              0xff1B2C3B)),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8.h,
+                                                  ),
+                                                  Shimmer.fromColors(
+                                                    baseColor: Colors.white30,
+                                                    highlightColor:
+                                                        Colors.white24,
+                                                    child: Container(
+                                                      height: 10.h,
+                                                      width: 200.w,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      5.r),
+                                                          color: const Color(
+                                                              0xff1B2C3B)),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              loaded: (genreState) {
+                                                String genre = genreState.genres
+                                                    .map((e) => e.name)
+                                                    .join("/");
+                                                return Text(
+                                                  genreState.genres.isEmpty
+                                                      ? "No genre"
+                                                      : genre,
+                                                  style: TextStyle(
+                                                      fontSize: 15.sp,
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      letterSpacing: 2.0,
+                                                      height: 2),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        // Text(genre,
+                                        //     style: TextStyle(fontSize: 15.sp)),
+                                        Text(state.comics[index].title,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: "HeaderFont",
+                                              fontSize: 20.sp,
+                                            )),
+                                        SizedBox(
+                                          height: 8.h,
+                                        ),
+                                        SingleChildScrollView(
+                                          scrollDirection: Axis.horizontal,
+                                          child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: List.generate(
+                                                  state.comics.length,
+                                                  (index) =>
+                                                      buildDots(index: index))),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
+                              placeholder: (context, url) => Container(
+                                decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                        image:
+                                            AssetImage("assets/logo/logo.png")),
+                                    color: Colors.grey.shade300),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.image_outlined, size: 35),
                             ),
-                            placeholder: (context, url) => Container(
-                              decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                      image:
-                                          AssetImage("assets/logo/logo.png")),
-                                  color: Colors.grey.shade300),
-                            ),
-                            errorWidget: (context, url, error) =>
-                                const Icon(Icons.image_outlined, size: 35),
                           ),
                         );
                       });

@@ -177,12 +177,13 @@ class _$_CommentsReceived implements _CommentsReceived {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _CommentsReceived &&
-            (identical(other.failureOrComments, failureOrComments) ||
-                other.failureOrComments == failureOrComments));
+            const DeepCollectionEquality()
+                .equals(other.failureOrComments, failureOrComments));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failureOrComments);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failureOrComments));
 
   @JsonKey(ignore: true)
   @override
@@ -333,12 +334,12 @@ class _$_FetchComment implements _FetchComment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _FetchComment &&
-            (identical(other.episodeId, episodeId) ||
-                other.episodeId == episodeId));
+            const DeepCollectionEquality().equals(other.episodeId, episodeId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, episodeId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(episodeId));
 
   @JsonKey(ignore: true)
   @override
@@ -488,12 +489,12 @@ class _$_FetchComments implements _FetchComments {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _FetchComments &&
-            (identical(other.episodeId, episodeId) ||
-                other.episodeId == episodeId));
+            const DeepCollectionEquality().equals(other.episodeId, episodeId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, episodeId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(episodeId));
 
   @JsonKey(ignore: true)
   @override
@@ -656,14 +657,17 @@ class _$_AddComment implements _AddComment {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AddComment &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.comment, comment) || other.comment == comment) &&
-            (identical(other.episodeId, episodeId) ||
-                other.episodeId == episodeId));
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.comment, comment) &&
+            const DeepCollectionEquality().equals(other.episodeId, episodeId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, comment, episodeId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(comment),
+      const DeepCollectionEquality().hash(episodeId));
 
   @JsonKey(ignore: true)
   @override

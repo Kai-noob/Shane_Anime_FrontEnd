@@ -153,12 +153,15 @@ class _$_ComicGenre implements _ComicGenre {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _ComicGenre &&
-            (identical(other.comicId, comicId) || other.comicId == comicId) &&
-            (identical(other.genreId, genreId) || other.genreId == genreId));
+            const DeepCollectionEquality().equals(other.comicId, comicId) &&
+            const DeepCollectionEquality().equals(other.genreId, genreId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, comicId, genreId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(comicId),
+      const DeepCollectionEquality().hash(genreId));
 
   @JsonKey(ignore: true)
   @override

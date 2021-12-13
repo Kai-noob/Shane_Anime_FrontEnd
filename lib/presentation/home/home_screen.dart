@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/application/episodes/episodes_bloc.dart';
 import '../../helper/global/cutom_error_widget.dart';
 
 import '../../helper/services/local_notification_sevice.dart';
@@ -71,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
           slivers: [
             const HomeAppBar(),
             SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
               sliver: SliverToBoxAdapter(
                 child: Text(
                   "Daily Episodes",
@@ -105,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ))),
             SliverPadding(
-              padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 10.w),
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
               sliver: SliverToBoxAdapter(
                 child: Text(
                   "Genres",
@@ -138,9 +139,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                                children: state.comics
-                                    .map((e) => ComicCard(comic: e))
-                                    .toList()),
+                                children: state.comics.map((e) {
+                              return BlocProvider(
+                                create: (context) => getIt<EpisodesBloc>()
+                                  ..add(EpisodesEvent.getLatestEpisodes(e.id!)),
+                                child: ComicCard(comic: e),
+                              );
+                            }).toList()),
                           ),
                         ))),
             HomeTitleWidget(
@@ -167,9 +172,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                                children: state.comics
-                                    .map((e) => ComicCard(comic: e))
-                                    .toList()),
+                                children: state.comics.map((e) {
+                              return BlocProvider(
+                                create: (context) => getIt<EpisodesBloc>()
+                                  ..add(EpisodesEvent.getLatestEpisodes(e.id!)),
+                                child: ComicCard(comic: e),
+                              );
+                            }).toList()),
                           ),
                         ))),
             HomeTitleWidget(
@@ -197,7 +206,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             scrollDirection: Axis.horizontal,
                             child: Row(
                                 children: state.comics
-                                    .map((e) => ComicCard(comic: e))
+                                    .map((e) => BlocProvider(
+                                          create: (context) =>
+                                              getIt<EpisodesBloc>()
+                                                ..add(EpisodesEvent
+                                                    .getLatestEpisodes(e.id!)),
+                                          child: ComicCard(comic: e),
+                                        ))
                                     .toList()),
                           ),
                         )))

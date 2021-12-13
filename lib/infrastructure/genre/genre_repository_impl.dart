@@ -46,8 +46,6 @@ class GenreRepositoryImpl implements IGenreRepository {
 
       List<Comic> _comicList = [];
       for (var _comicGenre in _comicGenres) {
-        List<Genre> _genres = await getGenre(_comicGenre.comicId);
-        List<Episodes> _episodes = await getEpisodes(_comicGenre.comicId);
         final _querySnapshot = await _firestore
             .collection("comics")
             .doc(_comicGenre.comicId)
@@ -56,9 +54,8 @@ class GenreRepositoryImpl implements IGenreRepository {
         final _comic =
             Comic.fromJson(_querySnapshot.data() as Map<String, dynamic>)
                 .copyWith(
-                    id: _comicGenre.comicId,
-                    genres: _genres,
-                    episodes: _episodes);
+          id: _comicGenre.comicId,
+        );
         _comicList.add(_comic);
       }
 
@@ -100,38 +97,6 @@ class GenreRepositoryImpl implements IGenreRepository {
     return _episodeList;
   }
 
-  Future<List<ComicGenre>> getGenreId(String comicId) async {
-    final QuerySnapshot _comicGenreSnapshot = await FirebaseFirestore.instance
-        .collection("comic_genre")
-        .where("comic_id", isEqualTo: comicId)
-        .get();
-
-    List<ComicGenre> _comicGenres = [];
-
-    for (QueryDocumentSnapshot _comicGenre in _comicGenreSnapshot.docs) {
-      _comicGenres
-          .add(ComicGenre.fromJson(_comicGenre.data() as Map<String, dynamic>));
-    }
-    return _comicGenres;
-  }
-
-  Future<List<Genre>> getGenre(String comicId) async {
-    List<Genre> _genres = [];
-    List<ComicGenre> _comicGenres = await getGenreId(comicId);
-
-    for (var _comicGenre in _comicGenres) {
-      final _querySnapshot = await FirebaseFirestore.instance
-          .collection("genres")
-          .doc(_comicGenre.genreId)
-          .get();
-      final _genre =
-          Genre.fromJson(_querySnapshot.data() as Map<String, dynamic>);
-      _genres.add(_genre);
-    }
-
-    return _genres;
-  }
-
   Future<List<ComicGenre>> getComicId(String genreId) async {
     QuerySnapshot _querySnapshot = await _firestore
         .collection("comic_genre")
@@ -147,5 +112,43 @@ class GenreRepositoryImpl implements IGenreRepository {
       _comicGenreList.add(comicGenres);
     }
     return _comicGenreList;
+  }
+
+  @override
+  Future<Either<ComicFailure, List<Genre>>> getComicGenres(
+      String comicId) async {
+    try {
+      List<Genre> _genres = [];
+
+      final QuerySnapshot _comicGenreSnapshot = await FirebaseFirestore.instance
+          .collection("comic_genre")
+          .where("comic_id", isEqualTo: comicId)
+          .get();
+
+      List<ComicGenre> _comicGenres = [];
+
+      for (QueryDocumentSnapshot _comicGenre in _comicGenreSnapshot.docs) {
+        _comicGenres.add(
+            ComicGenre.fromJson(_comicGenre.data() as Map<String, dynamic>));
+      }
+
+      for (var _comicGenre in _comicGenres) {
+        final _querySnapshot = await FirebaseFirestore.instance
+            .collection("genres")
+            .doc(_comicGenre.genreId)
+            .get();
+        final _genre =
+            Genre.fromJson(_querySnapshot.data() as Map<String, dynamic>);
+        _genres.add(_genre);
+      }
+
+      return right(_genres);
+    } on FirebaseException catch (e) {
+      if (e.code == 'not-found') {
+        return left(const ComicFailure.notFound());
+      } else {
+        return left(const ComicFailure.unexcepted());
+      }
+    }
   }
 }

@@ -151,11 +151,12 @@ class _$GetComicsDetails implements GetComicsDetails {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is GetComicsDetails &&
-            (identical(other.comicId, comicId) || other.comicId == comicId));
+            const DeepCollectionEquality().equals(other.comicId, comicId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, comicId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(comicId));
 
   @JsonKey(ignore: true)
   @override
@@ -483,11 +484,12 @@ class _$_Loaded implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Loaded &&
-            (identical(other.comic, comic) || other.comic == comic));
+            const DeepCollectionEquality().equals(other.comic, comic));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, comic);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(comic));
 
   @JsonKey(ignore: true)
   @override
@@ -627,11 +629,12 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Error &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override

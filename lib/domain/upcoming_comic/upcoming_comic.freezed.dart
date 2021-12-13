@@ -212,19 +212,24 @@ class _$_Upcomingcomic implements _Upcomingcomic {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Upcomingcomic &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.coverPhoto, coverPhoto) ||
-                other.coverPhoto == coverPhoto) &&
-            (identical(other.review, review) || other.review == review) &&
-            (identical(other.episodeNumber, episodeNumber) ||
-                other.episodeNumber == episodeNumber) &&
-            (identical(other.releaseDate, releaseDate) ||
-                other.releaseDate == releaseDate));
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality()
+                .equals(other.coverPhoto, coverPhoto) &&
+            const DeepCollectionEquality().equals(other.review, review) &&
+            const DeepCollectionEquality()
+                .equals(other.episodeNumber, episodeNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.releaseDate, releaseDate));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, title, coverPhoto, review, episodeNumber, releaseDate);
+      runtimeType,
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(coverPhoto),
+      const DeepCollectionEquality().hash(review),
+      const DeepCollectionEquality().hash(episodeNumber),
+      const DeepCollectionEquality().hash(releaseDate));
 
   @JsonKey(ignore: true)
   @override

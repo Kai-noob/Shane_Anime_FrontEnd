@@ -26,6 +26,12 @@ class _$GenreEventTearOff {
       genreId,
     );
   }
+
+  _GetComicGenres getComicGenres(String comicId) {
+    return _GetComicGenres(
+      comicId,
+    );
+  }
 }
 
 /// @nodoc
@@ -37,18 +43,21 @@ mixin _$GenreEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() getGenres,
     required TResult Function(String genreId) getComicsByGenres,
+    required TResult Function(String comicId) getComicGenres,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getGenres,
     TResult Function(String genreId)? getComicsByGenres,
+    TResult Function(String comicId)? getComicGenres,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getGenres,
     TResult Function(String genreId)? getComicsByGenres,
+    TResult Function(String comicId)? getComicGenres,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -56,18 +65,21 @@ mixin _$GenreEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetGenres value) getGenres,
     required TResult Function(_GetComicsByGenres value) getComicsByGenres,
+    required TResult Function(_GetComicGenres value) getComicGenres,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetGenres value)? getGenres,
     TResult Function(_GetComicsByGenres value)? getComicsByGenres,
+    TResult Function(_GetComicGenres value)? getComicGenres,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetGenres value)? getGenres,
     TResult Function(_GetComicsByGenres value)? getComicsByGenres,
+    TResult Function(_GetComicGenres value)? getComicGenres,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -130,6 +142,7 @@ class _$_GetGenres implements _GetGenres {
   TResult when<TResult extends Object?>({
     required TResult Function() getGenres,
     required TResult Function(String genreId) getComicsByGenres,
+    required TResult Function(String comicId) getComicGenres,
   }) {
     return getGenres();
   }
@@ -139,6 +152,7 @@ class _$_GetGenres implements _GetGenres {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getGenres,
     TResult Function(String genreId)? getComicsByGenres,
+    TResult Function(String comicId)? getComicGenres,
   }) {
     return getGenres?.call();
   }
@@ -148,6 +162,7 @@ class _$_GetGenres implements _GetGenres {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getGenres,
     TResult Function(String genreId)? getComicsByGenres,
+    TResult Function(String comicId)? getComicGenres,
     required TResult orElse(),
   }) {
     if (getGenres != null) {
@@ -161,6 +176,7 @@ class _$_GetGenres implements _GetGenres {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetGenres value) getGenres,
     required TResult Function(_GetComicsByGenres value) getComicsByGenres,
+    required TResult Function(_GetComicGenres value) getComicGenres,
   }) {
     return getGenres(this);
   }
@@ -170,6 +186,7 @@ class _$_GetGenres implements _GetGenres {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetGenres value)? getGenres,
     TResult Function(_GetComicsByGenres value)? getComicsByGenres,
+    TResult Function(_GetComicGenres value)? getComicGenres,
   }) {
     return getGenres?.call(this);
   }
@@ -179,6 +196,7 @@ class _$_GetGenres implements _GetGenres {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetGenres value)? getGenres,
     TResult Function(_GetComicsByGenres value)? getComicsByGenres,
+    TResult Function(_GetComicGenres value)? getComicGenres,
     required TResult orElse(),
   }) {
     if (getGenres != null) {
@@ -242,11 +260,12 @@ class _$_GetComicsByGenres implements _GetComicsByGenres {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _GetComicsByGenres &&
-            (identical(other.genreId, genreId) || other.genreId == genreId));
+            const DeepCollectionEquality().equals(other.genreId, genreId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, genreId);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(genreId));
 
   @JsonKey(ignore: true)
   @override
@@ -258,6 +277,7 @@ class _$_GetComicsByGenres implements _GetComicsByGenres {
   TResult when<TResult extends Object?>({
     required TResult Function() getGenres,
     required TResult Function(String genreId) getComicsByGenres,
+    required TResult Function(String comicId) getComicGenres,
   }) {
     return getComicsByGenres(genreId);
   }
@@ -267,6 +287,7 @@ class _$_GetComicsByGenres implements _GetComicsByGenres {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getGenres,
     TResult Function(String genreId)? getComicsByGenres,
+    TResult Function(String comicId)? getComicGenres,
   }) {
     return getComicsByGenres?.call(genreId);
   }
@@ -276,6 +297,7 @@ class _$_GetComicsByGenres implements _GetComicsByGenres {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getGenres,
     TResult Function(String genreId)? getComicsByGenres,
+    TResult Function(String comicId)? getComicGenres,
     required TResult orElse(),
   }) {
     if (getComicsByGenres != null) {
@@ -289,6 +311,7 @@ class _$_GetComicsByGenres implements _GetComicsByGenres {
   TResult map<TResult extends Object?>({
     required TResult Function(_GetGenres value) getGenres,
     required TResult Function(_GetComicsByGenres value) getComicsByGenres,
+    required TResult Function(_GetComicGenres value) getComicGenres,
   }) {
     return getComicsByGenres(this);
   }
@@ -298,6 +321,7 @@ class _$_GetComicsByGenres implements _GetComicsByGenres {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetGenres value)? getGenres,
     TResult Function(_GetComicsByGenres value)? getComicsByGenres,
+    TResult Function(_GetComicGenres value)? getComicGenres,
   }) {
     return getComicsByGenres?.call(this);
   }
@@ -307,6 +331,7 @@ class _$_GetComicsByGenres implements _GetComicsByGenres {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetGenres value)? getGenres,
     TResult Function(_GetComicsByGenres value)? getComicsByGenres,
+    TResult Function(_GetComicGenres value)? getComicGenres,
     required TResult orElse(),
   }) {
     if (getComicsByGenres != null) {
@@ -322,6 +347,145 @@ abstract class _GetComicsByGenres implements GenreEvent {
   String get genreId;
   @JsonKey(ignore: true)
   _$GetComicsByGenresCopyWith<_GetComicsByGenres> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$GetComicGenresCopyWith<$Res> {
+  factory _$GetComicGenresCopyWith(
+          _GetComicGenres value, $Res Function(_GetComicGenres) then) =
+      __$GetComicGenresCopyWithImpl<$Res>;
+  $Res call({String comicId});
+}
+
+/// @nodoc
+class __$GetComicGenresCopyWithImpl<$Res> extends _$GenreEventCopyWithImpl<$Res>
+    implements _$GetComicGenresCopyWith<$Res> {
+  __$GetComicGenresCopyWithImpl(
+      _GetComicGenres _value, $Res Function(_GetComicGenres) _then)
+      : super(_value, (v) => _then(v as _GetComicGenres));
+
+  @override
+  _GetComicGenres get _value => super._value as _GetComicGenres;
+
+  @override
+  $Res call({
+    Object? comicId = freezed,
+  }) {
+    return _then(_GetComicGenres(
+      comicId == freezed
+          ? _value.comicId
+          : comicId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetComicGenres implements _GetComicGenres {
+  const _$_GetComicGenres(this.comicId);
+
+  @override
+  final String comicId;
+
+  @override
+  String toString() {
+    return 'GenreEvent.getComicGenres(comicId: $comicId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _GetComicGenres &&
+            const DeepCollectionEquality().equals(other.comicId, comicId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(comicId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$GetComicGenresCopyWith<_GetComicGenres> get copyWith =>
+      __$GetComicGenresCopyWithImpl<_GetComicGenres>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getGenres,
+    required TResult Function(String genreId) getComicsByGenres,
+    required TResult Function(String comicId) getComicGenres,
+  }) {
+    return getComicGenres(comicId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getGenres,
+    TResult Function(String genreId)? getComicsByGenres,
+    TResult Function(String comicId)? getComicGenres,
+  }) {
+    return getComicGenres?.call(comicId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getGenres,
+    TResult Function(String genreId)? getComicsByGenres,
+    TResult Function(String comicId)? getComicGenres,
+    required TResult orElse(),
+  }) {
+    if (getComicGenres != null) {
+      return getComicGenres(comicId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetGenres value) getGenres,
+    required TResult Function(_GetComicsByGenres value) getComicsByGenres,
+    required TResult Function(_GetComicGenres value) getComicGenres,
+  }) {
+    return getComicGenres(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetGenres value)? getGenres,
+    TResult Function(_GetComicsByGenres value)? getComicsByGenres,
+    TResult Function(_GetComicGenres value)? getComicGenres,
+  }) {
+    return getComicGenres?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetGenres value)? getGenres,
+    TResult Function(_GetComicsByGenres value)? getComicsByGenres,
+    TResult Function(_GetComicGenres value)? getComicGenres,
+    required TResult orElse(),
+  }) {
+    if (getComicGenres != null) {
+      return getComicGenres(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetComicGenres implements GenreEvent {
+  const factory _GetComicGenres(String comicId) = _$_GetComicGenres;
+
+  String get comicId;
+  @JsonKey(ignore: true)
+  _$GetComicGenresCopyWith<_GetComicGenres> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -731,11 +895,12 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Error &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override

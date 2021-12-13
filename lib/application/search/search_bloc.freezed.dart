@@ -149,11 +149,12 @@ class _$_SearchComics implements _SearchComics {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SearchComics &&
-            (identical(other.title, title) || other.title == title));
+            const DeepCollectionEquality().equals(other.title, title));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(title));
 
   @JsonKey(ignore: true)
   @override
@@ -752,11 +753,12 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Error &&
-            (identical(other.failure, failure) || other.failure == failure));
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, failure);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override

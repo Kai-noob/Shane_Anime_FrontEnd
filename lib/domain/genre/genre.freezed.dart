@@ -157,13 +157,17 @@ class _$_Genre implements _Genre {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Genre &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.icon, icon) || other.icon == icon));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.icon, icon));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, icon);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(icon));
 
   @JsonKey(ignore: true)
   @override

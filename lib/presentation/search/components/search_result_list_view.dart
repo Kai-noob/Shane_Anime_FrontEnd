@@ -2,10 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/application/genre/genre_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../helper/global/cutom_error_widget.dart';
 
 import '../../../application/search/search_bloc.dart';
 import '../../../helper/global/loading_indicator.dart';
+import '../../../injection.dart';
 import '../../details/details_screen.dart';
 
 class SearchResultListView extends StatelessWidget {
@@ -81,37 +84,111 @@ class SearchResultListView extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 itemCount: state.comics.length,
                 itemBuilder: (BuildContext context, int index) {
-                  String genre =
-                      state.comics[index].genres!.map((e) => e.name).join(",");
-                  return ListTile(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => DetailsScreen(
-                                comicId: state.comics[index].id!,
-                              )));
-                    },
-                    leading: SizedBox(
-                      height: 60.h,
-                      width: 60.w,
-                      child: CachedNetworkImage(
-                        imageUrl: state.comics[index].coverPhoto,
-                        fit: BoxFit.cover,
-                        placeholder: (context, url) => Container(
-                          decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                  image: AssetImage("assets/logo/logo.png")),
-                              color: Colors.grey.shade200),
+                  return BlocProvider(
+                    create: (context) => getIt<GenreBloc>()
+                      ..add(GenreEvent.getComicGenres(state.comics[index].id!)),
+                    child: ListTile(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => DetailsScreen(
+                                  comicId: state.comics[index].id!,
+                                )));
+                      },
+                      leading: SizedBox(
+                        height: 60.h,
+                        width: 60.w,
+                        child: CachedNetworkImage(
+                          imageUrl: state.comics[index].coverPhoto,
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Container(
+                            decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                    image: AssetImage("assets/logo/logo.png")),
+                                color: Colors.grey.shade200),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.warning_outlined, size: 35),
                         ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.warning_outlined, size: 35),
+                      ),
+                      title: Text(
+                        state.comics[index].title,
+                        style: TextStyle(
+                            fontSize: 16.sp, fontWeight: FontWeight.w500),
+                      ),
+                      subtitle: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0.h),
+                        child: BlocBuilder<GenreBloc, GenreState>(
+                          builder: (context, state) {
+                            return state.maybeMap(
+                              orElse: () => Container(),
+                              // loading: (_) => Column(
+                              //   crossAxisAlignment: CrossAxisAlignment.start,
+                              //   children: [
+
+                              //     SizedBox(
+                              //       height: 8.h,
+                              //     ),
+                              //     Shimmer.fromColors(
+                              //       baseColor: Colors.white30,
+                              //       highlightColor: Colors.white24,
+                              //       child: Container(
+                              //         height: 10.h,
+                              //         width: 130.w,
+                              //         decoration: BoxDecoration(
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5.r),
+                              //             color: const Color(0xff1B2C3B)),
+                              //       ),
+                              //     ),
+                              //     SizedBox(
+                              //       height: 8.h,
+                              //     ),
+                              //     Shimmer.fromColors(
+                              //       baseColor: Colors.white30,
+                              //       highlightColor: Colors.white24,
+                              //       child: Container(
+                              //         height: 10.h,
+                              //         width: 100.w,
+                              //         decoration: BoxDecoration(
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5.r),
+                              //             color: const Color(0xff1B2C3B)),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
+                              loading: (_) => Shimmer.fromColors(
+                                baseColor: Colors.white30,
+                                highlightColor: Colors.white24,
+                                child: Container(
+                                  height: 10.h,
+                                  width: 200.w,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5.r),
+                                      color: const Color(0xff1B2C3B)),
+                                ),
+                              ),
+                              loaded: (genreState) {
+                                String genre = genreState.genres
+                                    .map((e) => e.name)
+                                    .join(",");
+                                return Text(
+                                  genreState.genres.isEmpty
+                                      ? "No genre"
+                                      : genre,
+                                  style: TextStyle(
+                                    fontSize: 10.sp,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w300,
+                                    letterSpacing: 2.0,
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
                     ),
-                    title: Text(
-                      state.comics[index].title,
-                      style: TextStyle(
-                          fontSize: 16.sp, fontWeight: FontWeight.w500),
-                    ),
-                    subtitle: Text(genre),
                   );
                 },
               );

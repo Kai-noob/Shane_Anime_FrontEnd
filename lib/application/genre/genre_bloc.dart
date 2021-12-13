@@ -28,6 +28,11 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
       final failureOrSuccess = await _genreRepo.getComicsByGenres(e.genreId);
       emit(failureOrSuccess.fold(
           (l) => GenreState.error(l), (r) => GenreState.comicsLoaded(r)));
+    }, getComicGenres: (e) async {
+      emit(const GenreState.loading());
+      final failureOrSuccess = await _genreRepo.getComicGenres(e.comicId);
+      emit(failureOrSuccess.fold(
+          (l) => GenreState.error(l), (r) => GenreState.loaded(r)));
     });
   }
 }

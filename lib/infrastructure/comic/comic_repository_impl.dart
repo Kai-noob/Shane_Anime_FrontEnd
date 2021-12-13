@@ -26,14 +26,15 @@ class ComicRepositoryImpl implements IComicRepository {
       List<Comic> _completeAllComicList = [];
 
       for (QueryDocumentSnapshot _completeAllComic in _querySnapshot.docs) {
-        List<Genre> _genres = await getGenre(_completeAllComic.id);
-        List<Episodes> _episodes = await getEpisodes(_completeAllComic.id);
+        // final episodeSnapshot = await _firestore
+        //     .collection("episodes")
+        //     .where("comic_id", isEqualTo: _completeAllComic.id)
+        //     .get();
         final completeAllComic =
             Comic.fromJson(_completeAllComic.data() as Map<String, dynamic>)
                 .copyWith(
-                    id: _completeAllComic.id,
-                    genres: _genres,
-                    episodes: _episodes);
+          id: _completeAllComic.id,
+        );
 
         _completeAllComicList.add(completeAllComic);
       }
@@ -56,21 +57,20 @@ class ComicRepositoryImpl implements IComicRepository {
           .where("published", isEqualTo: true)
           .get();
 
-      List<Comic> _completeAllComicList = [];
+      List<Comic> _moreHotComicList = [];
 
-      for (QueryDocumentSnapshot _completeAllComic in _querySnapshot.docs) {
-        List<Genre> _genres = await getGenre(_completeAllComic.id);
-        List<Episodes> _episodes = await getEpisodes(_completeAllComic.id);
-        final completeAllComic =
-            Comic.fromJson(_completeAllComic.data() as Map<String, dynamic>)
-                .copyWith(
-                    id: _completeAllComic.id,
-                    genres: _genres,
-                    episodes: _episodes);
+      for (QueryDocumentSnapshot _moreHotComic in _querySnapshot.docs) {
+        // final episodeSnapshot = await _firestore
+        //     .collection("episodes")
+        //     .where("comic_id", isEqualTo: _moreHotComic.id)
+        //     .get();
+        final moreHotComic =
+            Comic.fromJson(_moreHotComic.data() as Map<String, dynamic>)
+                .copyWith(id: _moreHotComic.id);
 
-        _completeAllComicList.add(completeAllComic);
+        _moreHotComicList.add(moreHotComic);
       }
-      return right(_completeAllComicList);
+      return right(_moreHotComicList);
     } on FirebaseException catch (e) {
       if (e.code == 'not-found') {
         return left(const ComicFailure.notFound());
@@ -84,11 +84,10 @@ class ComicRepositoryImpl implements IComicRepository {
   Future<Either<ComicFailure, Comic>> getComicDetails(String comicId) async {
     try {
       final comicDoc = await _firestore.collection("comics").doc(comicId).get();
-      final List<Genre> genreList = await getGenre(comicId);
-      final List<Episodes> episodes = await getEpisodes(comicId);
 
-      final comic = Comic.fromJson(comicDoc.data()!)
-          .copyWith(id: comicId, genres: genreList, episodes: episodes);
+      final comic = Comic.fromJson(comicDoc.data()!).copyWith(
+        id: comicId,
+      );
       return right(comic);
     } on FirebaseException catch (e) {
       if (e.code == 'not-found') {
@@ -145,36 +144,6 @@ class ComicRepositoryImpl implements IComicRepository {
     }
   }
 
-  Future<List<Episodes>> getEpisodes(String comicId) async {
-    QuerySnapshot _querySnapshot = await _firestore
-        .collection("episodes")
-        .orderBy("episode_name")
-        .orderBy("episode_number")
-        .where("comic_id", isEqualTo: comicId)
-        .get();
-
-    List<Episodes> _episodeList = [];
-
-    for (QueryDocumentSnapshot _episode in _querySnapshot.docs) {
-      final _comicSnapshot = await _firestore
-          .collection("comics")
-          .doc(_episode.get("comic_id"))
-          .get();
-
-      final _comic = _comicSnapshot.data() as Map<String, dynamic>;
-
-      final episode = Episodes.fromJson(_episode.data() as Map<String, dynamic>)
-          .copyWith(
-              id: _episode.id,
-              title: _comic["title"],
-              coverPhoto: _comic['cover_photo'],
-              episodeCount: _querySnapshot.size);
-
-      _episodeList.add(episode);
-    }
-    return _episodeList;
-  }
-
   Future<List<Genre>> getGenre(String comicId) async {
     List<Genre> _genres = [];
     List<ComicGenre> _comicGenres = await getGenreId(comicId);
@@ -218,14 +187,11 @@ class ComicRepositoryImpl implements IComicRepository {
       List<Comic> _homeAllComicList = [];
 
       for (QueryDocumentSnapshot _homeAllComics in _querySnapshot.docs) {
-        List<Genre> _genres = await getGenre(_homeAllComics.id);
-        List<Episodes> _episodes = await getEpisodes(_homeAllComics.id);
         final homeAllComics =
             Comic.fromJson(_homeAllComics.data() as Map<String, dynamic>)
                 .copyWith(
-                    id: _homeAllComics.id,
-                    genres: _genres,
-                    episodes: _episodes);
+          id: _homeAllComics.id,
+        );
 
         _homeAllComicList.add(homeAllComics);
       }
@@ -252,14 +218,11 @@ class ComicRepositoryImpl implements IComicRepository {
       List<Comic> _homeCompletedComicList = [];
 
       for (QueryDocumentSnapshot _homeCompletedComic in _querySnapshot.docs) {
-        List<Genre> _genres = await getGenre(_homeCompletedComic.id);
-        List<Episodes> _episodes = await getEpisodes(_homeCompletedComic.id);
         final homeCompletedComics =
             Comic.fromJson(_homeCompletedComic.data() as Map<String, dynamic>)
                 .copyWith(
-                    id: _homeCompletedComic.id,
-                    genres: _genres,
-                    episodes: _episodes);
+          id: _homeCompletedComic.id,
+        );
 
         _homeCompletedComicList.add(homeCompletedComics);
       }
@@ -286,12 +249,11 @@ class ComicRepositoryImpl implements IComicRepository {
       List<Comic> _homeHotComicList = [];
 
       for (QueryDocumentSnapshot _homeHotComic in _querySnapshot.docs) {
-        List<Genre> _genres = await getGenre(_homeHotComic.id);
-        List<Episodes> _episodes = await getEpisodes(_homeHotComic.id);
         final homeHotComics =
             Comic.fromJson(_homeHotComic.data() as Map<String, dynamic>)
                 .copyWith(
-                    id: _homeHotComic.id, genres: _genres, episodes: _episodes);
+          id: _homeHotComic.id,
+        );
 
         _homeHotComicList.add(homeHotComics);
       }
@@ -316,12 +278,9 @@ class ComicRepositoryImpl implements IComicRepository {
       List<Comic> _moreAllComicList = [];
 
       for (QueryDocumentSnapshot _moreAllComic in _querySnapshot.docs) {
-        List<Genre> _genres = await getGenre(_moreAllComic.id);
-        List<Episodes> _episodes = await getEpisodes(_moreAllComic.id);
         final moreAllComics =
             Comic.fromJson(_moreAllComic.data() as Map<String, dynamic>)
-                .copyWith(
-                    id: _moreAllComic.id, genres: _genres, episodes: _episodes);
+                .copyWith(id: _moreAllComic.id);
 
         _moreAllComicList.add(moreAllComics);
       }
@@ -347,12 +306,11 @@ class ComicRepositoryImpl implements IComicRepository {
       List<Comic> _searchComicList = [];
 
       for (QueryDocumentSnapshot _searchComic in _querySnapshot.docs) {
-        List<Genre> _genres = await getGenre(_searchComic.id);
-        List<Episodes> _episodes = await getEpisodes(_searchComic.id);
         final searchComics =
             Comic.fromJson(_searchComic.data() as Map<String, dynamic>)
                 .copyWith(
-                    id: _searchComic.id, genres: _genres, episodes: _episodes);
+          id: _searchComic.id,
+        );
 
         _searchComicList.add(searchComics);
       }
@@ -451,5 +409,45 @@ class ComicRepositoryImpl implements IComicRepository {
       }
     }
     return false;
+  }
+
+  @override
+  Future<Either<ComicFailure, List<Episodes>>> getLatestEpisode(
+      String comicId) async {
+    try {
+      QuerySnapshot _querySnapshot = await _firestore
+          .collection("episodes")
+          .orderBy("episode_name")
+          .orderBy("episode_number")
+          .where("comic_id", isEqualTo: comicId)
+          .get();
+
+      List<Episodes> _episodeList = [];
+
+      for (QueryDocumentSnapshot _episode in _querySnapshot.docs) {
+        final _comicSnapshot = await _firestore
+            .collection("comics")
+            .doc(_episode.get("comic_id"))
+            .get();
+
+        final _comic = _comicSnapshot.data() as Map<String, dynamic>;
+
+        final episode =
+            Episodes.fromJson(_episode.data() as Map<String, dynamic>).copyWith(
+                id: _episode.id,
+                title: _comic["title"],
+                coverPhoto: _comic['cover_photo'],
+                episodeCount: _querySnapshot.size);
+
+        _episodeList.add(episode);
+      }
+      return right(_episodeList);
+    } on FirebaseException catch (e) {
+      if (e.code == 'not-found') {
+        return left(const ComicFailure.notFound());
+      } else {
+        return left(const ComicFailure.unexcepted());
+      }
+    }
   }
 }
