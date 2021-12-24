@@ -28,8 +28,8 @@ class DailyUpdateCard extends StatelessWidget {
                       )));
             },
             child: SizedBox(
-              height: 220.h,
-              width: 170.w,
+              height: 250.h,
+              width: 150.w,
               child: ImageWidget(image: episodes.coverPhoto!),
             ),
           ),

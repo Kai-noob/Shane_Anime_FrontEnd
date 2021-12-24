@@ -72,7 +72,7 @@ class PwLoginScreen extends StatelessWidget {
               Visibility(
                 visible: isShow ? true : false,
                 child: Center(
-                  child: Text("Hint Password- $pw",
+                  child: Text("လျှို့ဝှက်နံပတ်- $pw",
                       style: TextStyle(fontSize: 15.sp)),
                 ),
               ),

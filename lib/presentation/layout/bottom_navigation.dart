@@ -30,8 +30,10 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     return Scaffold(
       body: _pages[_currrentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 0.0,
+        elevation: 3.0,
         type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         currentIndex: _currrentIndex,
         onTap: (value) {
           setState(() {
@@ -41,8 +43,13 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         items: [
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                "assets/logo/home.svg",
+                "assets/logo/hometwo.svg",
                 color: Colors.white,
+                height: 22.h,
+              ),
+              activeIcon: SvgPicture.asset(
+                "assets/logo/hometwo.svg",
+                color: Colors.red,
                 height: 22.h,
               ),
               label: "Home"),
@@ -52,6 +59,11 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 color: Colors.white,
                 height: 22.h,
               ),
+              activeIcon: SvgPicture.asset(
+                "assets/logo/upcoming.svg",
+                color: Colors.red,
+                height: 22.h,
+              ),
               label: "Coming"),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -59,11 +71,21 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 color: Colors.white,
                 height: 22.h,
               ),
+              activeIcon: SvgPicture.asset(
+                "assets/logo/library.svg",
+                color: Colors.red,
+                height: 22.h,
+              ),
               label: "Library"),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 "assets/logo/more.svg",
                 color: Colors.white,
+                height: 22.h,
+              ),
+              activeIcon: SvgPicture.asset(
+                "assets/logo/more.svg",
+                color: Colors.red,
                 height: 22.h,
               ),
               label: "More"),

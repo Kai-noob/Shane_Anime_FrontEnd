@@ -257,13 +257,19 @@ class ComicRepositoryImpl implements IComicRepository {
 
         _homeHotComicList.add(homeHotComics);
       }
+      print("Query ${_querySnapshot.docs.length}");
+      print(_homeHotComicList.length);
       return right(_homeHotComicList);
     } on FirebaseException catch (e) {
+      print("error ${e.toString}");
       if (e.code == 'not-found') {
         return left(const ComicFailure.notFound());
       } else {
         return left(const ComicFailure.unexcepted());
       }
+    } catch (e) {
+      print("Error ${e.toString()}");
+      return left(const ComicFailure.unexcepted());
     }
   }
 
@@ -425,19 +431,8 @@ class ComicRepositoryImpl implements IComicRepository {
       List<Episodes> _episodeList = [];
 
       for (QueryDocumentSnapshot _episode in _querySnapshot.docs) {
-        final _comicSnapshot = await _firestore
-            .collection("comics")
-            .doc(_episode.get("comic_id"))
-            .get();
-
-        final _comic = _comicSnapshot.data() as Map<String, dynamic>;
-
         final episode =
-            Episodes.fromJson(_episode.data() as Map<String, dynamic>).copyWith(
-                id: _episode.id,
-                title: _comic["title"],
-                coverPhoto: _comic['cover_photo'],
-                episodeCount: _querySnapshot.size);
+            Episodes.fromJson(_episode.data() as Map<String, dynamic>);
 
         _episodeList.add(episode);
       }

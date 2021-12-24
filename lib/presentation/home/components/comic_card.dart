@@ -9,10 +9,14 @@ import '../../details/details_screen.dart';
 
 class ComicCard extends StatelessWidget {
   final Comic comic;
+  final int height;
+  final int width;
 
   const ComicCard({
     Key? key,
     required this.comic,
+    required this.height,
+    required this.width,
   }) : super(key: key);
 
   @override
@@ -27,8 +31,8 @@ class ComicCard extends StatelessWidget {
                   builder: (_) => DetailsScreen(comicId: comic.id!)));
             },
             child: SizedBox(
-              height: 220.h,
-              width: 170.w,
+              height: height.h,
+              width: width.w,
               child: ImageWidget(image: comic.coverPhoto),
             ),
           ),

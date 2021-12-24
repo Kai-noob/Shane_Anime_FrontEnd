@@ -24,45 +24,34 @@ class EpisodeListView extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.r)),
-            title: Row(
-              children: [
-                Text(
-                  episode.episodeName,
-                  style: TextStyle(
-                      color: Colors.grey.shade50, fontWeight: FontWeight.w100),
-                ),
-                Text(
-                  episode.episodeNumber.toString(),
-                  style: TextStyle(
-                      color: Colors.grey.shade50, fontWeight: FontWeight.w100),
-                ),
-              ],
-            ),
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => ReadingScreen(
-                        episode: sortEpisodes[index],
-                      )));
-            },
-            leading: SizedBox(
-              height: 50.h,
-              width: 50.w,
-              child: CachedNetworkImage(
-                imageUrl: episode.coverPhoto!,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => Container(
-                  decoration: BoxDecoration(
-                      image: const DecorationImage(
-                          image: AssetImage("assets/logo/logo.png")),
-                      color: Colors.grey.shade200),
-                ),
-                errorWidget: (context, url, error) =>
-                    const Icon(Icons.warning_outlined, size: 35),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.r)),
+              title: Row(
+                children: [
+                  Text(
+                    episode.episodeName,
+                    style: TextStyle(
+                        color: Colors.grey.shade50,
+                        fontWeight: FontWeight.w100),
+                  ),
+                  Text(
+                    episode.episodeNumber.toString(),
+                    style: TextStyle(
+                        color: Colors.grey.shade50,
+                        fontWeight: FontWeight.w100),
+                  ),
+                ],
               ),
-            ),
-          ),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => ReadingScreen(
+                          episode: sortEpisodes[index],
+                        )));
+              },
+              leading: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Icon(Icons.menu_book_sharp),
+              )),
         );
       }, childCount: episodes.length),
     );

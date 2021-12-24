@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/presentation/intro/check_screen_for_auth_screen.dart';
 import 'package:movie_app/presentation/intro/intro_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen>
         (status) {
           if (status == AnimationStatus.completed) {
             Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (_) => const IntroScreen()));
+                MaterialPageRoute(builder: (_) => const CheckScreen()));
             Timer(
               const Duration(milliseconds: 300),
               () {

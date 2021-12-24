@@ -25,10 +25,16 @@ class HotComicBloc extends Bloc<HotComicEvent, HotComicState> {
       emit(failureOrSuccess.fold(
           (l) => HotComicState.error(l), (r) => HotComicState.loaded(r)));
     }, getHomeHotComics: (e) async {
+      emit(HotComicState.loading());
       final Either<ComicFailure, List<Comic>> failureOrSuccess =
           await _comicRepo.getHomeHotComics();
-      emit(failureOrSuccess.fold(
-          (l) => HotComicState.error(l), (r) => HotComicState.loaded(r)));
+      emit(failureOrSuccess.fold((l) {
+        print(l);
+        return HotComicState.error(l);
+      }, (r) {
+        print("Right ${r.length}");
+        return HotComicState.loaded(r);
+      }));
     });
   }
 }

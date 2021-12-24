@@ -143,7 +143,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               return BlocProvider(
                                 create: (context) => getIt<EpisodesBloc>()
                                   ..add(EpisodesEvent.getLatestEpisodes(e.id!)),
-                                child: ComicCard(comic: e),
+                                child: ComicCard(
+                                  comic: e,
+                                  height: 200,
+                                  width: 200,
+                                ),
                               );
                             }).toList()),
                           ),
@@ -157,7 +161,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
             BlocBuilder<CompleteComicBloc, CompleteComicState>(
                 builder: (context, state) => state.maybeMap(
-                    orElse: () => SliverToBoxAdapter(child: Container()),
+                    orElse: () => SliverToBoxAdapter(
+                            child: Container(
+                          child: Text("Something"),
+                        )),
                     loading: (_) => const ShimmerCard(),
                     error: (error) => SliverToBoxAdapter(
                           child: CustomError(
@@ -176,7 +183,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               return BlocProvider(
                                 create: (context) => getIt<EpisodesBloc>()
                                   ..add(EpisodesEvent.getLatestEpisodes(e.id!)),
-                                child: ComicCard(comic: e),
+                                child: ComicCard(
+                                  comic: e,
+                                  height: 200,
+                                  width: 200,
+                                ),
                               );
                             }).toList()),
                           ),
@@ -190,7 +201,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
             BlocBuilder<AllComicsBloc, AllComicsState>(
                 builder: (context, state) => state.maybeMap(
-                    orElse: () => SliverToBoxAdapter(child: Container()),
+                    orElse: () => SliverToBoxAdapter(
+                        child: Container(child: Text("Something"))),
                     loading: (_) => const ShimmerCard(),
                     error: (error) => SliverToBoxAdapter(
                           child: CustomError(
@@ -211,7 +223,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                               getIt<EpisodesBloc>()
                                                 ..add(EpisodesEvent
                                                     .getLatestEpisodes(e.id!)),
-                                          child: ComicCard(comic: e),
+                                          child: ComicCard(
+                                            comic: e,
+                                            height: 200,
+                                            width: 200,
+                                          ),
                                         ))
                                     .toList()),
                           ),

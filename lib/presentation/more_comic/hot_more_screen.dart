@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/application/episodes/episodes_bloc.dart';
 import 'package:movie_app/application/genre/genre_bloc.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:timeago/timeago.dart';
 import '../../helper/global/cutom_error_widget.dart';
 import '../../application/home/hot_comic/hot_comic_bloc.dart';
 import '../../helper/global/image_widget.dart';
