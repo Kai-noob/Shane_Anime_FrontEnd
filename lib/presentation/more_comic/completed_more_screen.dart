@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/application/episodes/episodes_bloc.dart';
 import 'package:movie_app/application/genre/genre_bloc.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:startapp/startapp.dart';
 import '../../helper/global/cutom_error_widget.dart';
 import '../../application/home/complete_comic/complete_comic_bloc.dart';
 import '../../helper/global/image_widget.dart';
@@ -20,6 +21,7 @@ class CompletedMoreComicView extends StatelessWidget {
       create: (context) => getIt<CompleteComicBloc>()
         ..add(const CompleteComicEvent.getMoreCompletedComics()),
       child: Scaffold(
+          bottomNavigationBar: AdBanner(),
           appBar: AppBar(
             elevation: 0.0,
             leading: IconButton(

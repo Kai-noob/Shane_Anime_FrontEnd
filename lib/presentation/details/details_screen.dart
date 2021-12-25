@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:movie_app/application/episodes/episodes_bloc.dart';
 import 'package:movie_app/application/genre/genre_bloc.dart';
-import '../../ad_helper.dart';
+import 'package:startapp/startapp.dart';
 import '../../helper/global/cutom_error_widget.dart';
 import '../../helper/global/loading_indicator.dart';
 import '../../application/comic_details/comic_details_bloc.dart';
@@ -19,30 +19,6 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  // Banner ads
-  late BannerAd _bannerAd;
-
-  @override
-  void initState() {
-    //Initialize _bannerAd
-    super.initState();
-    _bannerAd = BannerAd(
-      adUnitId: AdHelper.bannerAdUnitId,
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        onAdLoaded: (_) {
-          setState(() {});
-        },
-        onAdFailedToLoad: (ad, err) {
-          print('Failed to load a banner ad: ${err.message}');
-          ad.dispose();
-        },
-      ),
-    );
-    _bannerAd.load();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -71,18 +47,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 loaded: (state) => DetailsBody(
                       comic: state.comic,
                     ))),
-        bottomNavigationBar: Container(
-          height: 50.0,
-          color: Colors.white,
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: SizedBox(
-              width: _bannerAd.size.width.toDouble(),
-              height: _bannerAd.size.height.toDouble(),
-              child: AdWidget(ad: _bannerAd),
-            ),
-          ),
-        ),
+        bottomNavigationBar: AdBanner(),
       ),
     );
   }

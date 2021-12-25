@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:startapp/startapp.dart';
 import 'components/save_screen.dart';
 import 'components/user_comments_screen.dart';
 
 import 'components/sliver_delegate.dart';
 
-class LibraryScreen extends StatelessWidget {
+class LibraryScreen extends StatefulWidget {
   const LibraryScreen({Key? key}) : super(key: key);
 
+  @override
+  _LibraryScreenState createState() => _LibraryScreenState();
+}
+
+class _LibraryScreenState extends State<LibraryScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -49,6 +56,7 @@ class LibraryScreen extends StatelessWidget {
             children: [SaveScreen(), UserCommentsScreen()],
           ),
         ),
+        bottomNavigationBar: AdBanner(),
       ),
     );
   }

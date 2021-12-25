@@ -62,6 +62,10 @@
             android:value="2" />
        <meta-data
            android:name="com.google.android.gms.ads.APPLICATION_ID"
-           android:value="ca-app-pub-3940256099942544~3347511713"/>
+           android:value="ca-app-pub-2964858555111883~5080155491"/>
+       <meta-data android:name="com.startapp.sdk.APPLICATION_ID" android:value="211433903" />
+       <meta-data android:name="com.startapp.sdk.RETURN_ADS_ENABLED" android:value="false" />
+       <meta-data android:name="vn.momo.plugin.startapp.SPLASH_AD_ENABLED" android:value="false" />
+
     </application>
 </manifest>

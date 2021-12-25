@@ -1,8 +1,10 @@
 import 'package:badges/badges.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:unity_ads_plugin/unity_ads.dart';
 import '../../../application/bloc/comment_bloc.dart';
 import '../../../application/comic_reader/comic_reader_bloc.dart';
 
@@ -27,6 +29,12 @@ class ReadingNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UnityAds.init(
+      gameId: AdManager.gameId,
+      testMode: true,
+      listener: (state, args) => print('Init Listener: $state => $args'),
+    );
+
     return BlocProvider(
       create: (context) => getIt<UserActionsBloc>()
         ..add(UserActionsEvent.checkLikeStatus(episode)),
@@ -44,6 +52,12 @@ class ReadingNavBar extends StatelessWidget {
                         Expanded(
                           child: IconButton(
                               onPressed: () {
+                                UnityAds.showVideoAd(
+                                  placementId:
+                                      AdManager.interstitialVideoAdPlacementId,
+                                  listener: (state, args) => print(
+                                      'Interstitial Video Listener: $state => $args'),
+                                );
                                 episode.episodeNumber == 1
                                     ? null
                                     : context.read<ComicReaderBloc>().add(
@@ -100,6 +114,12 @@ class ReadingNavBar extends StatelessWidget {
                         Expanded(
                           child: IconButton(
                               onPressed: () {
+                                UnityAds.showVideoAd(
+                                  placementId:
+                                      AdManager.interstitialVideoAdPlacementId,
+                                  listener: (state, args) => print(
+                                      'Interstitial Video Listener: $state => $args'),
+                                );
                                 episode.episodeNumber == episode.episodeCount
                                     ? null
                                     : context.read<ComicReaderBloc>().add(
@@ -122,5 +142,21 @@ class ReadingNavBar extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class AdManager {
+  static String get gameId {
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      return '4498368';
+    }
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      return 'your_ios_game_id';
+    }
+    return '';
+  }
+
+  static String get interstitialVideoAdPlacementId {
+    return 'Chapter_End';
   }
 }

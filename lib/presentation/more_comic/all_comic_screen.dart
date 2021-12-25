@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/application/episodes/episodes_bloc.dart';
 import 'package:movie_app/application/genre/genre_bloc.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:startapp/startapp.dart';
 import '../../helper/global/cutom_error_widget.dart';
 import '../../application/home/all_comics/all_comics_bloc.dart';
 import '../../helper/global/image_widget.dart';
@@ -21,6 +22,7 @@ class AllMoreComicView extends StatelessWidget {
       create: (context) =>
           getIt<AllComicsBloc>()..add(const AllComicsEvent.getMoreAllComics()),
       child: Scaffold(
+          bottomNavigationBar: AdBanner(),
           appBar: AppBar(
             elevation: 0.0,
             leading: IconButton(

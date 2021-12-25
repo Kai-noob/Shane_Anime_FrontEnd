@@ -35,7 +35,7 @@ class _ReadingScreenState extends State<ReadingScreen> {
   void initState() {
     UnityAds.init(
       gameId: AdManager.gameId,
-      testMode: true,
+      testMode: false,
       listener: (state, args) => print('Init Listener: $state => $args'),
     );
 
@@ -44,75 +44,33 @@ class _ReadingScreenState extends State<ReadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<ComicReaderBloc>()
-        ..add(ComicReaderEvent.checkPdf(widget.episode.comicId,
-            widget.episode.episodeName, widget.episode.episodeNumber)),
-      child: BlocConsumer<ComicReaderBloc, ComicReaderState>(
-        listener: (context, state) => state.maybeMap(
-            orElse: () {},
-            chgEpisodeSuccess: (state) {
-              context.read<ComicReaderBloc>().add(ComicReaderEvent.checkPdf(
-                  state.episodes.comicId,
-                  state.episodes.episodeName,
-                  state.episodes.episodeNumber));
-            }),
-        buildWhen: (previous, current) => previous != current,
-        builder: (context, state) {
-          return state.maybeMap(
-              orElse: () => Container(),
-              loading: (_) => const LoadingIndicator(),
-              error: (error) => CustomError(
-                  errorMessage: error.failure.maybeMap(
-                      unexcepted: (_) => "Unexcepted Error occured.",
-                      notFound: (_) => "No Saved Mangas",
-                      orElse: () => "Unknown Error"),
-                  errorImage: "assets/logo/error.svg"),
-              driveLoaded: (state) {
-                return Scaffold(
-                  appBar: AppBar(
-                    leading: IconButton(
-                      icon: const Icon(Icons.arrow_back_ios),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                    elevation: 0.0,
-                    title: Row(
-                      children: [
-                        Text(state.pdf.episodeName),
-                        Text(state.pdf.episodeNumber.toString()),
-                      ],
-                    ),
-                  ),
-                  bottomNavigationBar: ReadingNavBar(
-                    episode: state.pdf,
-                  ),
-                  body: WebView(
-                    initialUrl: state.pdf.driveLink,
-                    javascriptMode: JavascriptMode.unrestricted,
-                    onWebViewCreated: (WebViewController webViewController) {
-                      _webViewController = webViewController;
-                      // _controller.complete(webViewController);
-                    },
-                    onPageFinished: (String url) {
-                      // Removes header and footer from page
-                      _webViewController
-                          .runJavascript("javascript:(function() { "
-                              "var head = document.getElementsByTagName('header')[0];"
-                              "head.parentNode.removeChild(head);"
-                              "var footer = document.getElementsByTagName('footer')[0];"
-                              "footer.parentNode.removeChild(footer);"
-                              "})()")
-                          .then((value) =>
-                              debugPrint('Page finished loading Javascript'))
-                          .catchError((onError) => debugPrint('$onError'));
-                    },
-                  ),
-                );
-              },
-              pdfLoaded: (state) {
-                return Scaffold(
+    return WillPopScope(
+      child: BlocProvider(
+        create: (context) => getIt<ComicReaderBloc>()
+          ..add(ComicReaderEvent.checkPdf(widget.episode.comicId,
+              widget.episode.episodeName, widget.episode.episodeNumber)),
+        child: BlocConsumer<ComicReaderBloc, ComicReaderState>(
+          listener: (context, state) => state.maybeMap(
+              orElse: () {},
+              chgEpisodeSuccess: (state) {
+                context.read<ComicReaderBloc>().add(ComicReaderEvent.checkPdf(
+                    state.episodes.comicId,
+                    state.episodes.episodeName,
+                    state.episodes.episodeNumber));
+              }),
+          buildWhen: (previous, current) => previous != current,
+          builder: (context, state) {
+            return state.maybeMap(
+                orElse: () => Container(),
+                loading: (_) => const LoadingIndicator(),
+                error: (error) => CustomError(
+                    errorMessage: error.failure.maybeMap(
+                        unexcepted: (_) => "Unexcepted Error occured.",
+                        notFound: (_) => "No Saved Mangas",
+                        orElse: () => "Unknown Error"),
+                    errorImage: "assets/logo/error.svg"),
+                driveLoaded: (state) {
+                  return Scaffold(
                     appBar: AppBar(
                       leading: IconButton(
                         icon: const Icon(Icons.arrow_back_ios),
@@ -137,30 +95,90 @@ class _ReadingScreenState extends State<ReadingScreen> {
                     bottomNavigationBar: ReadingNavBar(
                       episode: state.pdf,
                     ),
-                    body: FutureBuilder<String>(
-                        future: loadPDf(state.pdf.pdfFile!),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const LoadingIndicator();
-                          }
-                          if (snapshot.hasError) {
-                            return const CustomError(
-                                errorMessage:
-                                    "Something went wrong.Try again Later",
-                                errorImage: "assets/logo/error.svg");
-                          }
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            if (snapshot.hasData) {
-                              return PDFView(filePath: snapshot.data);
+                    body: WebView(
+                      initialUrl: state.pdf.driveLink,
+                      javascriptMode: JavascriptMode.unrestricted,
+                      onWebViewCreated: (WebViewController webViewController) {
+                        _webViewController = webViewController;
+                        // _controller.complete(webViewController);
+                      },
+                      onPageFinished: (String url) {
+                        // Removes header and footer from page
+                        _webViewController
+                            .runJavascript("javascript:(function() { "
+                                "var head = document.getElementsByTagName('header')[0];"
+                                "head.parentNode.removeChild(head);"
+                                "var footer = document.getElementsByTagName('footer')[0];"
+                                "footer.parentNode.removeChild(footer);"
+                                "})()")
+                            .then((value) =>
+                                debugPrint('Page finished loading Javascript'))
+                            .catchError((onError) => debugPrint('$onError'));
+                      },
+                    ),
+                  );
+                },
+                pdfLoaded: (state) {
+                  return Scaffold(
+                      appBar: AppBar(
+                        leading: IconButton(
+                          icon: const Icon(Icons.arrow_back_ios),
+                          onPressed: () {
+                            UnityAds.showVideoAd(
+                              placementId:
+                                  AdManager.interstitialVideoAdPlacementId,
+                              listener: (state, args) => print(
+                                  'Interstitial Video Listener: $state => $args'),
+                            );
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        elevation: 0.0,
+                        title: Row(
+                          children: [
+                            Text(state.pdf.episodeName),
+                            Text(state.pdf.episodeNumber.toString()),
+                          ],
+                        ),
+                      ),
+                      bottomNavigationBar: ReadingNavBar(
+                        episode: state.pdf,
+                      ),
+                      body: FutureBuilder<String>(
+                          future: loadPDf(state.pdf.pdfFile!),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const LoadingIndicator();
                             }
-                          }
-                          return const SizedBox();
-                        }));
-              });
-        },
+                            if (snapshot.hasError) {
+                              return const CustomError(
+                                  errorMessage:
+                                      "Something went wrong.Try again Later",
+                                  errorImage: "assets/logo/error.svg");
+                            }
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              if (snapshot.hasData) {
+                                return PDFView(filePath: snapshot.data);
+                              }
+                            }
+                            return const SizedBox();
+                          }));
+                });
+          },
+        ),
       ),
+      onWillPop: () async {
+        Navigator.of(context).pop();
+        UnityAds.showVideoAd(
+          placementId: AdManager.interstitialVideoAdPlacementId,
+          listener: (state, args) =>
+              print('Interstitial Video Listener: $state => $args'),
+        );
+
+        return true;
+      },
     );
   }
 

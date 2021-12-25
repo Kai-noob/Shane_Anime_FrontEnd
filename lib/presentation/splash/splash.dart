@@ -2,8 +2,7 @@ import 'dart:async';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movie_app/presentation/intro/check_screen_for_auth_screen.dart';
-import 'package:movie_app/presentation/intro/intro_screen.dart';
+import 'package:movie_app/presentation/intro/update_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

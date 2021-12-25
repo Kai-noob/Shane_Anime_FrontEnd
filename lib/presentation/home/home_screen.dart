@@ -3,6 +3,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:startapp/startapp.dart';
 import 'package:movie_app/application/episodes/episodes_bloc.dart';
 import '../../helper/global/cutom_error_widget.dart';
 
@@ -45,6 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
       if (message.notification != null) {}
       LocalNotificationService.display(message);
     });
+
+    //Initialize _bannerAd
+    super.initState();
   }
 
   @override
@@ -234,6 +239,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         )))
           ],
         ),
+        bottomNavigationBar: // StartApp AdBanner as widget
+            AdBanner(),
       ),
     );
   }

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:startapp/startapp.dart';
 import '../../library/components/save_screen.dart';
 import '../../library/components/user_comments_screen.dart';
 
-class CommentHistory extends StatelessWidget {
+class CommentHistory extends StatefulWidget {
   final bool isComment;
   const CommentHistory({Key? key, required this.isComment}) : super(key: key);
 
+  @override
+  _CommentHistoryState createState() => _CommentHistoryState();
+}
+
+class _CommentHistoryState extends State<CommentHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,9 +24,10 @@ class CommentHistory extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        title: Text(isComment ? "Comment History" : "Saved Mangas"),
+        title: Text(widget.isComment ? "Comment History" : "Saved Mangas"),
       ),
-      body: isComment ? const UserCommentsScreen() : const SaveScreen(),
+      body: widget.isComment ? const UserCommentsScreen() : const SaveScreen(),
+      bottomNavigationBar: AdBanner(),
     );
   }
 }

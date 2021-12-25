@@ -14,11 +14,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "1083688049259-a5mo2cequi38jb6rog046r4t7m8cvo39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shaneMangaMM.reader",
+            "certificate_hash": "1610f688721134b579a8671b318d5df111007ff7"
+          }
+        },
+        {
           "client_id": "1083688049259-e9ipnfm0ksgg10pamlktrjba8htct9lu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.shaneMangaMM.reader",
             "certificate_hash": "660859fe61a274f29164c0b839fffad2886500bb"
+          }
+        },
+        {
+          "client_id": "1083688049259-o82q3pn4m8qt85n1ls4aa9qr5ivigc6v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shaneMangaMM.reader",
+            "certificate_hash": "5ad764a4dbe5859bf3e38268d84254b074cdc6cd"
           }
         },
         {
